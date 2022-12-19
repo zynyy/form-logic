@@ -1,0 +1,51 @@
+{
+  "name": "@formlogic/render",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "lib",
+  "module": "esm",
+  "types": "esm/index.d.ts",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "scripts": {
+    "build": "rimraf -rf lib esm dist && pnpm run create:style && pnpm run build:cjs && pnpm run build:esm && pnpm run build:style",
+    "create:style": "ts-node --project tsconfig.cjs.json ./create-style",
+    "build:style": "ts-node  --project tsconfig.cjs.json ./build-style",
+    "build:cjs": "tsc --project tsconfig.cjs.json && tsc-alias -p tsconfig.cjs.json",
+    "build:esm": "tsc --project tsconfig.esm.json && tsc-alias -p tsconfig.esm.json",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "run-server": "formlogic-server dev"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.8.0",
+    "@formily/core": "^2.2.14",
+    "@formily/grid": "^2.2.14",
+    "@formily/json-schema": "^2.2.14",
+    "@formily/react": "^2.2.14",
+    "@formily/reactive": "^2.2.14",
+    "@formily/shared": "^2.2.14",
+    "@formlogic/server": "^1.0.0",
+    "@popperjs/core": "^2.11.6",
+    "antd": "^5.0.5",
+    "axios": "^1.2.1",
+    "classnames": "^2.3.2",
+    "lodash.isequal": "^4.5.0",
+    "qs": "^6.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-sortable-hoc": "^2.0.0",
+    "resize-observer-polyfill": "^1.5.1",
+    "rxjs": "^7.6.0",
+    "scroll-into-view-if-needed": "^3.0.3",
+    "xlsx": "^0.18.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/qs": "^6.9.7",
+    "@types/react": "^18.0.26"
+  }
+}

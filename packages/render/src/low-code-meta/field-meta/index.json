@@ -1,0 +1,14 @@
+{
+  "code": {
+    "name": "编码",
+    "category": ""
+  },
+  "name": {
+    "name": "名称",
+    "category": ""
+  },
+  "sex": {
+    "name": "性别",
+    "category": ""
+  }
+}

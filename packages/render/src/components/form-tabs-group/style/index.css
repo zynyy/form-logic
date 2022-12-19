@@ -1,0 +1,9 @@
+.form-tabs-group.ant-tabs-top > .ant-tabs-nav {
+  margin-bottom: 0;
+}
+
+.form-tabs-group .ant-card {
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

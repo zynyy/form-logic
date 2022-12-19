@@ -1,0 +1,43 @@
+#side-bar-stencil {
+  position: relative;
+  width: 240px;
+  height: 100%;
+  border-right: 1px solid #dfe3e8;
+}
+
+#side-bar-stencil .x6-widget-stencil,
+#side-bar-stencil .x6-widget-stencil-title {
+  background-color: #fff;
+}
+
+.editor-flow-warp {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.tool-bar {
+  text-align: center;
+}
+
+.editor-flow-container {
+  flex: 1;
+  height: 100%;
+}
+
+.editor-flow-minimap {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+}
+
+.editor-flow-minimap .x6-widget-minimap-viewport {
+  border: 1px solid #e0e0e0;
+}
+
+@keyframes ant-line {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}

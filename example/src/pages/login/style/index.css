@@ -1,0 +1,53 @@
+.main {
+  width: 368px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main .icon {
+  margin-left: 16px;
+  color: rgba(0, 0, 0, 0.2);
+  font-size: 24px;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.main .icon:hover {
+  color: #1677ff;
+}
+
+.main .other {
+  margin-top: 24px;
+  line-height: 22px;
+  text-align: left;
+}
+
+.main .other .register {
+  float: right;
+}
+
+.main .login .prefixIcon {
+  color: #d9d9d9;
+  font-size: 14px;
+}
+
+.main .login .submit {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.main .btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.main .btn .ant-btn-link {
+  padding-right: 0;
+}

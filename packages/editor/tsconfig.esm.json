@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "esm",
+    "module": "ESNext"
+  },
+  "exclude": [
+    ".storybook",
+    "src/**/*.stories.tsx",
+    "src/**/*.stories.ts",
+    "storybook",
+    "tsconfig.cjs.json",
+    "tsconfig.esm.json"
+  ]
+}

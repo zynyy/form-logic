@@ -1,0 +1,118 @@
+{
+  "code": "User_C",
+  "name": "用户新增配置",
+  "model": "User",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    {
+      "code": "basicInfo",
+      "name": "基础信息"
+    },
+    {
+      "code": "tabsInfo",
+      "name": "标签信息",
+      "hasTabs": "1",
+      "tabs": ["schoolInfo", "personalInfo"]
+    },
+    {
+      "code": "personalInfo",
+      "name": "个人信息"
+    },
+    {
+      "code": "schoolInfo",
+      "name": "学校信息"
+    }
+  ],
+  "data": [
+    {
+      "code": "code",
+      "name": "用户编码",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "disabled": "1"
+    },
+    {
+      "code": "name",
+      "name": "用户名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "sex",
+      "name": "性别",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1",
+      "component": "Select",
+      "componentProps": {},
+      "wrap": 1
+    },
+    {
+      "code": "school",
+      "name": "学校信息",
+      "type": "column",
+      "schemaType": "array",
+      "group": "schoolInfo",
+      "required": "1",
+      "hasSerialNo": "1",
+      "hasSort": "0",
+      "colSpan": 3,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "component": "ArrayTable",
+      "componentProps": {},
+      "defaultValue": [],
+      "hiddenName": "1",
+      "itemMetaSchema": {
+        "code": "User_L",
+        "name": "用户新增配置",
+        "model": "User",
+        "data": [
+          {
+            "code": "add",
+            "name": "新增",
+            "type": "button",
+            "schemaType": "void",
+            "hiddenName": "0",
+            "group": "basicInfo",
+            "component": "ArrayBase.Addition"
+          },
+          {
+            "code": "delete",
+            "name": "删除",
+            "type": "table_button",
+            "schemaType": "void",
+            "hiddenName": "0",
+            "group": "basicInfo",
+            "component": "ArrayBase.Remove"
+          },
+          {
+            "code": "code",
+            "name": "学校编码",
+            "type": "table_column",
+            "schemaType": "string",
+            "hiddenName": "0",
+            "group": "basicInfo",
+            "disabled": "1"
+          },
+          {
+            "code": "name",
+            "name": "学校名称",
+            "type": "table_column",
+            "schemaType": "string",
+            "group": "personalInfo",
+            "required": "1",
+            "component": "Input"
+          }
+        ]
+      }
+    }
+  ]
+}

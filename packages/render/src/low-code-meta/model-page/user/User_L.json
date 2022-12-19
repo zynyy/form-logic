@@ -1,0 +1,65 @@
+{
+  "code": "User_L",
+  "name": "用户列表",
+  "model": "User",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "data": [
+    {
+      "code": "code",
+      "name": "用户编码",
+      "type": "search_column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo"
+    },
+    {
+      "code": "name",
+      "name": "用户名称",
+      "type": "search_column",
+      "schemaType": "string",
+      "group": "personalInfo"
+    },
+    {
+      "code": "age",
+      "name": "年龄",
+      "type": "search_column",
+      "schemaType": "string",
+      "group": "personalInfo"
+    },
+    {
+      "code": "sex",
+      "name": "性别",
+      "type": "search_column",
+      "schemaType": "string",
+      "group": "personalInfo"
+    },
+    {
+      "code": "code",
+      "name": "用户编码",
+      "type": "table_column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "disabled": "1"
+    },
+    {
+      "code": "name",
+      "name": "用户名称",
+      "type": "table_column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "name",
+      "name": "用户名称",
+      "type": "table_column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    }
+  ]
+}
