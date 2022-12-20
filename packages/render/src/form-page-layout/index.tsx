@@ -15,7 +15,7 @@ import {
 import { AnyObject, EventsObject, LogicConfig } from '@/interface';
 import ExecLogic from '@/exec-logic';
 
-interface FormNormalProps
+export interface FormPageLayoutProps
   extends TransformsOptionsArgs,
     Pick<SchemeFormProps, 'onMount' | 'formConfig'> {
   getLogicConfig: LogicConfig;
@@ -27,7 +27,7 @@ interface FormNormalProps
   onBackClick?: (e: MouseEvent<HTMLElement>) => void;
 }
 
-const FormPageLayout: FC<FormNormalProps> = ({
+const FormPageLayout: FC<FormPageLayoutProps> = ({
   pageCode,
   metaSchema,
   hasGroup,

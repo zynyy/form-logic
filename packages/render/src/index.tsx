@@ -12,9 +12,6 @@ export { default as SchemeForm } from './scheme-form';
 
 export type { SchemeFormProps, SchemeFormRef } from './scheme-form';
 
-export { default as ListNormal } from './list-normal';
-
-export type { ListNormalProps, ListNormalRef } from './list-normal';
 
 export { default as ListCheck } from './list-check';
 export type { ListCheckRef, ListCheckProps } from './list-check';
@@ -26,7 +23,13 @@ export { default as DrawerForm } from './drawer-form';
 export type { DrawerFormProps } from './drawer-form';
 
 export { default as ListLayout } from './list-layout';
-export type { ListLayoutProps, ListLayoutRef } from './list-layout';
+export type { ListLayoutProps } from './list-layout';
+
+
+export { default as FormPageLayout } from './form-page-layout';
+export type { FormPageLayoutProps } from './form-page-layout';
+
+
 
 export { default as effectHook } from './effect-hook';
 
