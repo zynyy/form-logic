@@ -1,4 +1,5 @@
 import { SchemaTypes } from '@formily/json-schema';
+import { MouseEvent } from 'react';
 
 import effectHook from '@/effect-hook';
 
@@ -20,6 +21,10 @@ export interface BtnFieldsItem {
   filed: string;
   clickCodes: string[];
   eventCode: string;
+}
+
+export interface EventsObject {
+  [key: string]: (e: MouseEvent<HTMLElement>, ...args: any) => void;
 }
 
 export type LogicListItem = {

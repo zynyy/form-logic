@@ -1,12 +1,5 @@
 import { forwardRef, useEffect, useImperativeHandle, useMemo } from 'react';
-import {
-  Form,
-  createForm,
-  setValidateLanguage,
-  IFormProps,
-  JSXComponent,
-  onFormMount,
-} from '@formily/core';
+import { Form, setValidateLanguage, IFormProps, JSXComponent } from '@formily/core';
 import { createSchemaField, FormProvider } from '@formily/react';
 import { ISchema } from '@formily/json-schema';
 
@@ -15,7 +8,7 @@ import FormItem from '../components/form-item';
 import FormLayout from '../components/form-layout';
 import FormGroup from '../components/form-group';
 
-import { Empty, Space, Input as AntdInput } from 'antd';
+import { Empty, Space, Input as AntdInput, Skeleton } from 'antd';
 import Input from '@/components/input';
 import Select from '@/components/select';
 import Fragment from '@/components/fragment';
@@ -33,6 +26,7 @@ export interface SchemeFormProps {
   language?: string;
   schema: ISchema;
   onMount?: (form: Form) => void;
+  done?: boolean;
   form?: Form;
   components?: {
     [key: string]: JSXComponent;
@@ -42,7 +36,7 @@ export interface SchemeFormProps {
 export type SchemeFormRef = Form;
 
 const SchemeForm = forwardRef<SchemeFormRef, SchemeFormProps>(
-  ({ formConfig, language, schema, components, onMount, form: propsForm }, ref) => {
+  ({ formConfig, done, language, schema, components, onMount, form: propsForm }, ref) => {
     const [warpForm] = useCreateForm(formConfig, onMount, propsForm);
 
     const SchemaField = useMemo(() => {
@@ -75,17 +69,23 @@ const SchemeForm = forwardRef<SchemeFormRef, SchemeFormProps>(
     }, [language]);
 
     return (
-      <FormProvider form={warpForm}>
-        <form className={`form-id-${warpForm.id}`}>
-          {schema ? (
-            <SchemaField schema={schema} components={components} />
-          ) : (
-            <Empty description="暂无数据" />
-          )}
-        </form>
-      </FormProvider>
+      <Skeleton loading={!done}>
+        <FormProvider form={warpForm}>
+          <form className={`form-id-${warpForm.id}`}>
+            {schema ? (
+              <SchemaField schema={schema} components={components} />
+            ) : (
+              <Empty description="暂无数据" />
+            )}
+          </form>
+        </FormProvider>
+      </Skeleton>
     );
   },
 );
+
+SchemeForm.defaultProps = {
+  done: true,
+};
 
 export default SchemeForm;

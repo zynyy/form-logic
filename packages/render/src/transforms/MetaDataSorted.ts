@@ -12,6 +12,7 @@ interface ResultReturn {
 
 class MetaDataSorted {
   private metaSchema: MetaSchema;
+  private hasGroup: boolean = false;
 
   columnsArray: MetaSchemaData[] = [];
 
@@ -27,8 +28,9 @@ class MetaDataSorted {
 
   groupsOrder: MetaSchemaGroup[];
 
-  constructor(metaSchema: MetaSchema) {
+  constructor(metaSchema: MetaSchema, hasGroup?: boolean) {
     this.metaSchema = metaSchema;
+    this.hasGroup = hasGroup;
   }
 
   private column = (item: MetaSchemaData) => {
@@ -44,7 +46,13 @@ class MetaDataSorted {
   };
 
   private button = (item: MetaSchemaData) => {
-    this.buttonsArray.push(item);
+    const { group } = item;
+
+    if (this.hasGroup && group) {
+      this.column(item);
+    } else {
+      this.buttonsArray.push(item);
+    }
   };
 
   private search_button = (item: MetaSchemaData) => {

@@ -2,7 +2,7 @@ import { isUrl } from '@/utils/is';
 import { Layout, Menu, MenuProps } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   flatMenuChildren,
@@ -20,6 +20,7 @@ const LeftNavSider = () => {
   const [flatMenus, setFlatMenus] = useState([]);
   const [rootSubmenuKeys, setRootSubmenuKeys] = useState([]);
   const { pathname } = useLocation();
+
 
   const [title, setTitle] = useState('菜单栏');
 
@@ -177,6 +178,7 @@ const LeftNavSider = () => {
       setSelectedKeys(path ? [path] : []);
 
       setTitle(name);
+
     });
     return () => window.cancelAnimationFrame && window.cancelAnimationFrame(animationFrameId);
   }, [pathname, flatMenus]);
@@ -191,7 +193,7 @@ const LeftNavSider = () => {
         inlineIndent={15}
         items={menus}
         style={{
-          height: "100%"
+          height: '100%',
         }}
       />
       <Helmet>
@@ -201,4 +203,4 @@ const LeftNavSider = () => {
   );
 };
 
-export default LeftNavSider;
+export default memo(LeftNavSider);

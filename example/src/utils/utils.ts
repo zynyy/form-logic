@@ -86,3 +86,8 @@ export const compareSimilarity = (
 
   return weight;
 };
+
+
+export const getQueryUrl = (url, query) => {
+  return `${url}?${qs.stringify(query)}`
+}

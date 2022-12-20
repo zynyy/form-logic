@@ -35,7 +35,8 @@
       "type": "button",
       "schemaType": "void",
       "hiddenName": "0",
-      "component": "ArrayBase.Addition"
+      "component": "ArrayBase.Addition",
+      "eventCode": "onAdd"
     },
     {
       "code": "code",
@@ -48,6 +49,15 @@
       "name": "名称",
       "type": "table_column",
       "schemaType": "string"
+    },
+    {
+      "code": "addBtn",
+      "name": "新建",
+      "type": "table_button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "component": "ArrayBase.Addition",
+      "eventCode": "onAdd"
     }
   ]
 }

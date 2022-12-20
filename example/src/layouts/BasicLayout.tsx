@@ -10,7 +10,7 @@ const { Content, Header } = Layout;
 
 import './style/index.css';
 
-const BasicLayout: FC<PropsWithChildren> = () => {
+const BasicLayout: FC<PropsWithChildren> = ({children}) => {
   const location = useLocation();
   const pathSnippets = location.pathname.split('/').filter((i) => i);
 

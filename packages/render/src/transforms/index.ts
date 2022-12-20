@@ -12,27 +12,10 @@ import MetaDataSorted from '@/transforms/MetaDataSorted';
 import { ISchema } from '@formily/json-schema';
 import { strNumBoolToBoolean } from '@/transforms/utils';
 
-import { MouseEvent } from 'react';
-
 export interface TransformsSchemaOptions {
   metaSchema: MetaSchema;
   schemaMode?: SchemaMode;
   hasGroup?: boolean;
-  buttonsEvent?: {
-    [key: string]: (e: MouseEvent<HTMLElement>) => void;
-  };
-  logic?: {
-    [key: string]: {
-      dsl: {
-        cells: {
-          id: string;
-        };
-      };
-      nodeFns: {
-        [key: string]: () => void | any;
-      };
-    };
-  };
 }
 
 export interface ListSchema {
@@ -60,17 +43,17 @@ class TransformsSchema extends MetaDataSorted {
   private searchLogic: LogicListItem[] = [];
   private tableLogic: LogicListItem[] = [];
 
-  private searchBtnFields: BtnFieldsItem[];
-  private tableBtnFields: BtnFieldsItem[];
-  private btnFields: BtnFieldsItem[];
+  private searchBtnFields: BtnFieldsItem[] = [];
+  private tableBtnFields: BtnFieldsItem[] = [];
+  private btnFields: BtnFieldsItem[] = [];
 
   private runSchema: 'schema' | 'list' = 'list';
 
   private schemaTypeMap: Map<string, (item: MetaSchemaData, index: number) => ISchema> = new Map();
 
   constructor(op: TransformsSchemaOptions | undefined) {
-    const { metaSchema } = op || {};
-    super(metaSchema);
+    const { metaSchema,hasGroup } = op || {};
+    super(metaSchema, hasGroup);
     this.options = op;
 
     this.schemaTypeMap
@@ -218,14 +201,14 @@ class TransformsSchema extends MetaDataSorted {
   private pushLogic = (item: MetaSchemaData, prefixField?: string) => {
     const { logics, code, eventCode } = item;
 
-    if (logics && logics.length) {
+    if ((logics && logics.length) || eventCode) {
       const filed = prefixField ? `${prefixField}.${code}` : code;
 
       const logicHooks = {};
 
       const clickCodes = [];
 
-      logics.forEach((cur) => {
+      logics?.forEach((cur) => {
         const { event, logicCode } = cur || {};
 
         if (event === 'onClick') {
@@ -253,7 +236,7 @@ class TransformsSchema extends MetaDataSorted {
       };
 
       if (this.runSchema === 'list') {
-        if (clickCodes.length) {
+        if (clickCodes.length || eventCode) {
           switch (item.type) {
             case MetaDataTypeEnum.button:
             case MetaDataTypeEnum.table_button: {
@@ -284,8 +267,13 @@ class TransformsSchema extends MetaDataSorted {
           }
         }
       } else {
-        this.logicList.push(record);
-        this.btnFields.push(btnRecord);
+        if (Object.keys(logicHooks).length) {
+          this.logicList.push(record);
+        }
+
+        if (clickCodes.length || eventCode) {
+          this.btnFields.push(btnRecord);
+        }
       }
     }
   };
@@ -612,10 +600,11 @@ class TransformsSchema extends MetaDataSorted {
         dataSource: {
           type: 'array',
           'x-component': 'ListTable',
-          properties: this.buttonsSchema(this.buttonsArray),
+          properties: this.buttonsSchema(this.buttonsArray, 'dataSource'),
           items: this.arrayItemSchema(
             {
               hasSerialNo: true,
+              code: 'dataSource',
             },
             this.tableColumnsArray,
             this.tableButtonsArray,
