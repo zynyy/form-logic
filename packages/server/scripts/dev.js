@@ -5,6 +5,9 @@ const {
   generateLogic,
   getLogicDsl,
   checkFile,
+  getPageConfigPath,
+  getJsonFileContent,
+  getFileExists
 } = require('./utils');
 const createServer = require('./utils/createServer');
 const watchFile = require('./utils/watchFile');
@@ -91,6 +94,29 @@ class Dev {
     this.send(res, this.sendBody(dsl));
   };
 
+  pageConfigDetail = (req, res) => {
+    const { pageCode } = req.query;
+
+    if (!pageCode) {
+      this.send(res, this.sendBody(false, `pageCode 不能为空`));
+      return;
+    }
+
+    const { outputPath } = this.config || {};
+
+    const { pageCodePath } = getPageConfigPath({
+      outputPath,
+      pageCode,
+    });
+
+    if (!getFileExists(pageCodePath)) {
+      this.send(res, this.sendBody(false, `${pageCode} 无法找到对应文件`));
+      return;
+    }
+
+    this.send(res, this.sendBody(getJsonFileContent(pageCodePath)));
+  };
+
   run = () => {
     const { port, outputPath, fileExt } = this.config || {};
 
@@ -107,6 +133,7 @@ class Dev {
     app.get('/local-api/connect', this.connect);
     app.get('/local-api/pkgDependencies', this.getPkgDependencies);
     app.get('/local-api/logicDetail', this.logicDetail);
+    app.get('/local-api/pageConfigDetail', this.pageConfigDetail);
   };
 }
 

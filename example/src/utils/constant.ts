@@ -24,3 +24,9 @@ export const DEFAULT_TABLE_PADINATION = {
   showSizeChanger: true,
   pageSizeOptions: ['30', '50', '100'],
 };
+
+
+export const ECMA_STRING_TAG = {
+  error: '[object Error]', // 381
+  function: '[object Function]', // 138
+};

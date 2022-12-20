@@ -7,7 +7,7 @@ module.exports = {
   projectName: '@formlogic/render',
   outputPath: path.join(__dirname, './src/low-code-meta'),
   ip: '127.0.0.1',
-  port: '3000',
+  port: '3200',
   npmRegistry: 'https://registry.npmjs.com/',
   fileExt: 'ts', // 生成相关文件的后缀
 };

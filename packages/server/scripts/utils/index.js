@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const { exec } = require('child_process');
-const os = require('os');
 const logicLoader = require('./require-context/logicLoader');
 
 const PROJECT_PATH = process.cwd();
@@ -46,6 +45,11 @@ const getPackageJson = () => {
   return JSON.parse(getFileContent(pkgPath) || '{}');
 };
 
+
+const getFileExists = (path) => {
+  return fs.existsSync(path)
+}
+
 const getProjectName = () => {
   const pkgJson = getPackageJson();
   return pkgJson.name;
@@ -89,7 +93,7 @@ const deleteFile = (filename, cb) => {
 };
 
 const getConfig = () => {
-  const isConfigFileExisted = fs.existsSync(CONFIG_FILE_PATH);
+  const isConfigFileExisted = getFileExists(CONFIG_FILE_PATH);
   if (isConfigFileExisted) {
     return mergeConfig(require(CONFIG_FILE_PATH));
   } else {
@@ -159,25 +163,38 @@ const writeLogicLoader = (logicPath, ext) => {
   generateFile(`${logicPath}/loader.${ext}`, `export default {${loaderContent.join(',')}}`);
 };
 
-const getSaveDslData = (dsl, code, pageCode) => {
+const getSaveSimpleDslData = (dsl, code, pageCode) => {
   const { cells } = dsl || {};
 
   return {
     code,
     pageCode,
     cells: cells.map((item) => {
-      const { data } = item || {};
+      const { data, id, shape, target, source } = item || {};
       const { code, dependencies, ...restData } = data || {};
       return {
-        ...item,
+        id,
+        shape,
+        target,
+        source,
         data: restData,
       };
     }),
   };
 };
 
+const getSaveDslData = (dsl, code, pageCode) => {
+  const { cells } = dsl || {};
+
+  return {
+    code,
+    pageCode,
+    cells,
+  };
+};
+
 const removeNodesFile = (path, nodeIds) => {
-  if (fs.existsSync(path)) {
+  if (getFileExists(path)) {
     const files = fs.readdirSync(path);
     files.forEach((filename) => {
       const existNode = nodeIds.find((node) => filename.startsWith(node));
@@ -219,12 +236,14 @@ const getLogicPath = ({ outputPath, code, pageCode }) => {
   const basePath = `${logicPath}/${model || 'common'}/${code}`;
   const nodesPath = `${basePath}/nodes`;
   const dslPath = `${basePath}/dsl.json`;
+  const dslOriginPath = `${basePath}/dsl.origin.json`;
 
   return {
     logicPath,
     basePath,
     nodesPath,
     dslPath,
+    dslOriginPath,
   };
 };
 
@@ -234,7 +253,11 @@ const generateLogic = ({ outputPath, code, pageCode, files, fileExtension, dsl }
   let dslFile = false;
   let nodeFile = false;
 
-  const { logicPath, basePath, nodesPath, dslPath } = getLogicPath({ outputPath, code, pageCode });
+  const { logicPath, basePath, nodesPath, dslPath, dslOriginPath } = getLogicPath({
+    outputPath,
+    code,
+    pageCode,
+  });
 
   const nodeIds = files.map((item) => item.fileName);
 
@@ -246,10 +269,12 @@ const generateLogic = ({ outputPath, code, pageCode, files, fileExtension, dsl }
     }
   };
 
-  generateFile(dslPath, JSON.stringify(getSaveDslData(dsl)), () => {
+  generateFile(dslPath, JSON.stringify(getSaveSimpleDslData(dsl)), () => {
     dslFile = true;
     generateIndex();
   });
+
+  generateFile(dslOriginPath, JSON.stringify(getSaveDslData(dsl)));
 
   files.forEach((item, index) => {
     const { fileName, content } = item || {};
@@ -267,8 +292,28 @@ const generateLogic = ({ outputPath, code, pageCode, files, fileExtension, dsl }
   });
 };
 
+const getPageConfigPath = ({ outputPath, pageCode }) => {
+  const [model] = pageCode?.split('_') || [];
+
+  const modelPagePath = `${outputPath}${outputPath.endsWith(path.sep) ? '' : '/'}model-page`;
+
+  const modelPath = `${modelPagePath}/${model}`;
+
+  const pageCodePath = `${modelPath}/${pageCode}.json`;
+
+  return {
+    modelPagePath,
+    modelPath,
+    pageCodePath,
+  };
+};
+
+const getJsonFileContent = (path) => {
+  return JSON.parse(getFileContent(path) || '{}');
+}
+
 const getDslJson = (dslPath) => {
-  return JSON.parse(getFileContent(dslPath) || '{}');
+  return getJsonFileContent(dslPath);
 };
 
 const getLogicDsl = ({ outputPath, code, pageCode, fileExtension }) => {
@@ -287,7 +332,7 @@ const getLogicDsl = ({ outputPath, code, pageCode, fileExtension }) => {
 
         const fullPath = `${nodesPath}/${id}.${ext}`;
 
-        if (fs.existsSync(fullPath)) {
+        if (getFileExists(fullPath)) {
           return {
             ...item,
             data: {
@@ -310,7 +355,7 @@ const checkFile = (outputPath, ext) => {
   const loaderPath = `${logicPath}/loader.${ext}`;
   const logicIndexPath = `${logicPath}/index.${ext}`;
 
-  if (!fs.existsSync(readmePath)) {
+  if (!getFileExists(readmePath)) {
     const outputPathArr = outputPath.split(path.sep);
 
     const latsIndex = outputPathArr.length - 1;
@@ -325,12 +370,12 @@ const checkFile = (outputPath, ext) => {
     );
   }
 
-  if (!fs.existsSync(loaderPath)) {
+  if (!getFileExists(loaderPath)) {
     console.log(`检测发现 logic/loader.${ext} 文件不存在即将生成`);
     writeLogicLoader(logicPath, ext);
   }
 
-  if (!fs.existsSync(logicIndexPath)) {
+  if (!getFileExists(logicIndexPath)) {
     console.log(`检测发现 logic/index.${ext} 文件不存在即将生成`);
     generateFile(logicIndexPath, getFileContent(LOGIC_TPL_PATH));
   }
@@ -347,4 +392,7 @@ module.exports = {
   generateLogic,
   getLogicDsl,
   checkFile,
+  getPageConfigPath,
+  getJsonFileContent,
+  getFileExists
 };

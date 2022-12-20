@@ -6,10 +6,7 @@ import {
   onFieldChange,
   onFieldInitialValueChange,
   onFieldReact,
-  onFormMount,
   onFormUnmount,
-  onFormInit,
-  onFormReact,
   onFormValuesChange,
   onFormInputChange,
   onFormSubmit,
@@ -21,6 +18,10 @@ export const DRAWER_CLOSE = 'onDrawerClose';
 
 export const MODAL_OPEN = 'onModalOpen';
 export const MODAL_CLOSE = 'onModalClose';
+
+export const BIND_LOGIC_START = 'onBindLogicStart';
+
+export const BIND_LOGIC_END = 'onBindLogicEnd';
 
 const onCustomEvent = createEffectHook(CUSTOM_EVENT, (payload, form) => {
   return (listener) => {
@@ -52,11 +53,20 @@ const onModalClose = createEffectHook(MODAL_CLOSE, (payload, form) => {
   };
 });
 
+const onBindLogicStart = createEffectHook(BIND_LOGIC_START, (payload, form) => {
+  return (listener) => {
+    listener(payload, form);
+  };
+});
+
+const onBindLogicEnd = createEffectHook(BIND_LOGIC_END, (payload, form) => {
+  return (listener) => {
+    listener(payload, form);
+  };
+});
+
 export default {
-  onFormInit,
-  onFormMount,
   onFormUnmount,
-  onFormReact,
   onFormValuesChange,
   onFormInputChange,
   onFormSubmit,
@@ -71,4 +81,6 @@ export default {
   onDrawerClose,
   onModalOpen,
   onModalClose,
+  onBindLogicStart,
+  onBindLogicEnd,
 };

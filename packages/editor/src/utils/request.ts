@@ -12,7 +12,7 @@ const HTTPStatusCodeMessage = {
 };
 
 const serviceInstance = axios.create({
-  baseURL: 'http://127.0.0.1:3000',
+  baseURL: `${window.location.protocol}//${window.location.host}/`,
   // timeout: 3000, // 设置超时时间
 });
 

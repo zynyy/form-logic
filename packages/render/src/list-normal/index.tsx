@@ -1,51 +1,75 @@
 import SchemaLayout from '@/components/schema-layout/SchemaLayout';
 import WhereLayout from '@/components/schema-layout/WhereLayout';
 import SchemeForm from '@/scheme-form';
-import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { MetaSchema } from '@/interface';
-import { ArrayField, Form, IFormProps, isField } from '@formily/core';
-import { useListSchema } from '@/hooks';
+import { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+
+import { Form, IFormProps, isArrayField, isField, onFieldInit } from '@formily/core';
+
 import { Button, Space, Spin } from 'antd';
 
 import { SearchOutlined, ClearOutlined } from '@ant-design/icons';
 import { getSubmitFormValues } from '@/utils/getSubmitFormValues';
+import { ISchema } from '@formily/json-schema';
+import { requestGet } from '@/utils/request';
+import { useCreateForm } from '@/hooks';
+import { AnyObject } from '@/interface';
 
 export interface ListNormalProps {
-  metaSchema?: MetaSchema;
+  searchSchema?: ISchema;
+  tableSchema?: ISchema;
+  hasCollapsed?: boolean;
   searchFormConfig?: IFormProps;
+  tableFormConfig?: IFormProps;
+  action: string;
+  onTableMount?: (form: Form) => void;
+  onSearchMount?: (form: Form) => void;
+  extraSearchParams?: AnyObject;
+  transformSearchParams?: (searchParams: AnyObject) => AnyObject;
 }
 
-export interface ListNormalRef {}
+export interface ListNormalRef {
+  searchForm: Form;
+  dataTableForm: Form;
+}
 
 const ListNormal = forwardRef<ListNormalRef, ListNormalProps>(
-  ({ metaSchema, searchFormConfig }, ref) => {
+  (
+    {
+      searchSchema,
+      action,
+      tableSchema,
+      hasCollapsed,
+      searchFormConfig,
+      onSearchMount,
+      onTableMount,
+      tableFormConfig,
+      transformSearchParams,
+      extraSearchParams,
+    },
+    ref,
+  ) => {
     const [loading, setLoading] = useState(false);
 
-    const [options] = useState(() => {
-      return {
-        metaSchema,
-      };
-    });
-
-    const searchFormRef = useRef<Form>();
-    const dataTableFormRef = useRef<Form>();
-
-    const { searchSchema, tableSchema, hasCollapsed } = useListSchema(options);
+    const [searchForm] = useCreateForm(searchFormConfig, onSearchMount);
+    const [dataTableForm] = useCreateForm(tableFormConfig, onTableMount);
 
     const initSearch = () => {
       handleSearch();
     };
 
     useImperativeHandle(ref, () => {
-      return {};
+      return {
+        searchForm,
+        dataTableForm,
+      };
     });
 
     const handleRestClick = () => {
-      searchFormRef.current.reset();
+      searchForm.reset();
     };
 
     const handleCollapsedClick = (collapsed: boolean) => {
-      searchFormRef.current.query('*').forEach((target) => {
+      searchForm.query('*').forEach((target) => {
         if (isField(target) && target?.data?.hiddenSearchColumn) {
           target.setDisplay(collapsed ? 'visible' : 'hidden');
           if (collapsed) {
@@ -56,16 +80,42 @@ const ListNormal = forwardRef<ListNormalRef, ListNormalProps>(
     };
 
     const handleSearch = () => {
-      getSubmitFormValues(searchFormRef.current).then((formValues) => {
-        dataTableFormRef.current.query('dataSource').take((target: ArrayField) => {
-          target.onInput([
-            {
-              code: 1,
-            },
-          ]);
-        });
+      getSubmitFormValues(searchForm).then((formValues) => {
+        setLoading(true);
+
+        const params = {
+          ...formValues,
+          ...extraSearchParams,
+        };
+
+        requestGet(action, transformSearchParams?.(params) || params)
+          .then((res) => {
+            const { data } = res || {};
+
+            dataTableForm.query('dataSource').take((target) => {
+              if (isArrayField(target)) {
+                target.onInput(data).then(() => void 0);
+              }
+            });
+          })
+          .finally(() => {
+            setLoading(false);
+          });
       });
     };
+
+    useEffect(() => {
+      if (dataTableForm?.id) {
+        dataTableForm.addEffects('init', () => {
+          onFieldInit('dataSource', () => {
+            initSearch();
+          });
+        });
+      }
+      return () => {
+        dataTableForm?.removeEffects('init');
+      };
+    }, [dataTableForm?.id]);
 
     return (
       <Spin spinning={loading}>
@@ -86,11 +136,11 @@ const ListNormal = forwardRef<ListNormalRef, ListNormalProps>(
                 </Space>
               }
             >
-              <SchemeForm schema={searchSchema} ref={searchFormRef} formConfig={searchFormConfig} />
+              <SchemeForm schema={searchSchema} form={searchForm} />
             </WhereLayout>
           }
         >
-          <SchemeForm schema={tableSchema} ref={dataTableFormRef} />
+          <SchemeForm form={dataTableForm} schema={tableSchema} />
         </SchemaLayout>
       </Spin>
     );

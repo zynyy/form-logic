@@ -1,0 +1,53 @@
+{
+  "code": "Model_L",
+  "name": "模型列表",
+  "model": "Model",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "search_column",
+      "schemaType": "string"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": [
+        {
+          "event": "onFieldInit",
+          "logicCode": "com_userCode"
+        },
+        {
+          "event": "onFieldInputValueChange",
+          "logicCode": "User_C_code"
+        }
+      ]
+    },
+    {
+      "code": "addBtn",
+      "name": "新建",
+      "type": "button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "component": "ArrayBase.Addition"
+    },
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "table_column",
+      "schemaType": "string"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "table_column",
+      "schemaType": "string"
+    }
+  ]
+}

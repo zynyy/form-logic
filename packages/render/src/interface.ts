@@ -1,10 +1,31 @@
 import { SchemaTypes } from '@formily/json-schema';
 
+import effectHook from '@/effect-hook';
+
 export type SchemaMode = 'EDITABLE' | 'DETAIL' | 'DISABLED';
 
 export type MetaDataType = keyof typeof MetaDataTypeEnum;
 
 export type StrNumBool = '0' | '1' | 1 | 0 | boolean | undefined | null;
+
+export type LogicConfig = (code: string) => Promise<any>;
+
+export type EffectHook = keyof typeof effectHook | 'onClick';
+
+export type EffectHookItem = {
+  [L in EffectHook]?: string[];
+};
+
+export interface BtnFieldsItem {
+  filed: string;
+  clickCodes: string[];
+  eventCode: string;
+}
+
+export type LogicListItem = {
+  filed: string;
+  logicHooks: EffectHookItem;
+};
 
 export enum MetaDataTypeEnum {
   column = 'column',
@@ -30,6 +51,11 @@ export interface MetaSchemaGroup {
   };
 }
 
+export interface MetaLogic {
+  event: EffectHook;
+  logicCode: string;
+}
+
 export interface MetaSchemaData {
   code: string; // 字段
   name: string; // 字段名称
@@ -43,12 +69,14 @@ export interface MetaSchemaData {
   hasSerialNo?: StrNumBool; // 是否需要显示序号
   hasSort?: StrNumBool; // 是否需要拖动排序
   description?: string; // 字段补充描述
+  eventCode?: string; // 自定义按钮事件
   colSpan?: number; // 跨列
   wrap?: StrNumBool; // 是否换行
   labelCol?: number; // 名称占比宽度
   wrapperCol?: number; // 组件占比宽度
   defaultValue?: any; // 默认值
   component?: string; // 组件
+  logics?: MetaLogic[];
   componentProps?: {
     // 组件属性
     [key: string]: any;
@@ -71,4 +99,8 @@ export interface MetaSchema {
   remark?: string;
   group?: MetaSchemaGroup[];
   data: MetaSchemaData[];
+}
+
+export interface AnyObject {
+  [key: string]: any;
 }

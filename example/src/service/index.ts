@@ -3,8 +3,9 @@
 import { message } from 'antd';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
+import qs from 'qs';
 
-import { isError } from './is';
+import { isError } from '@/utils/is';
 
 // https://tools.ietf.org/html/rfc2616#section-10
 // https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status
@@ -24,6 +25,15 @@ serviceInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // https://github.com/axios/axios#request-config
 
+    const { method, data } = config;
+
+    if (method === 'post') {
+      config.headers = config.headers || {};
+
+      config.headers['content-type'] = 'application/x-www-form-urlencoded';
+      config.data = qs.stringify(data);
+    }
+
     return config;
   },
   (error: any) => {
@@ -40,8 +50,8 @@ serviceInstance.interceptors.response.use(
     // https://github.com/axios/axios#response-schema
     const { data } = response;
 
-    const { code, msg } = data;
-    if (code !== 200) {
+    const { result, message: msg } = data;
+    if (result !== 1) {
       message.error(msg).then(() => void 0);
       return Promise.reject(data);
     }
@@ -50,7 +60,7 @@ serviceInstance.interceptors.response.use(
   },
   (error: any) => {
 
-    console.error(error)
+
 
     if (isError(error)) {
       const messageArray: Array<string | number> = error.message.split(' ');
@@ -71,6 +81,8 @@ serviceInstance.interceptors.response.use(
     if (error?.code === "ERR_BAD_REQUEST") {
       message.error(error.message).then(() => void 0);
     }
+
+
 
     return Promise.reject(error);
   },

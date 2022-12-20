@@ -2,10 +2,10 @@ import {FC, useEffect, useState} from "react";
 import {ZoomInOutlined, ZoomOutOutlined} from "@ant-design/icons";
 import {Space} from "antd";
 
-import BtnTooltipIcon from "../../../components/btn-tooltip-icon";
-import {scaleFormatter} from "../../../utils";
+import BtnTooltipIcon from "@/components/btn-tooltip-icon";
+import {scaleFormatter} from '@/utils';
 import {Graph} from "@antv/x6";
-import {MAX_ZOOM, MIN_ZOOM, ZOOM_STEP} from "../../../utils/const";
+import {MAX_ZOOM, MIN_ZOOM, ZOOM_STEP} from '@/utils/constant';
 
 import {Keyboard} from "@antv/x6-plugin-keyboard";
 

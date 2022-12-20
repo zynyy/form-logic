@@ -24,6 +24,7 @@ import Button from '@/components/button';
 import ArrayBase from '@/components/array-base';
 import FormTabsGroup from '@/components/form-tabs-group';
 import ListTable from '@/components/list-table';
+import { useCreateForm } from '@/hooks';
 
 const { Password } = AntdInput;
 
@@ -32,6 +33,7 @@ export interface SchemeFormProps {
   language?: string;
   schema: ISchema;
   onMount?: (form: Form) => void;
+  form?: Form;
   components?: {
     [key: string]: JSXComponent;
   };
@@ -40,18 +42,8 @@ export interface SchemeFormProps {
 export type SchemeFormRef = Form;
 
 const SchemeForm = forwardRef<SchemeFormRef, SchemeFormProps>(
-  ({ formConfig, language, schema, components, onMount }, ref) => {
-    const form = useMemo<Form>(() => {
-      return createForm({
-        ...formConfig,
-        effects: (form) => {
-          formConfig?.effects?.(form);
-          onFormMount(() => {
-            onMount?.(form);
-          });
-        },
-      });
-    }, [formConfig]);
+  ({ formConfig, language, schema, components, onMount, form: propsForm }, ref) => {
+    const [warpForm] = useCreateForm(formConfig, onMount, propsForm);
 
     const SchemaField = useMemo(() => {
       return createSchemaField({
@@ -75,7 +67,7 @@ const SchemeForm = forwardRef<SchemeFormRef, SchemeFormProps>(
     }, []);
 
     useImperativeHandle(ref, () => {
-      return form;
+      return warpForm;
     });
 
     useEffect(() => {
@@ -83,8 +75,8 @@ const SchemeForm = forwardRef<SchemeFormRef, SchemeFormProps>(
     }, [language]);
 
     return (
-      <FormProvider form={form}>
-        <form className={`form-id-${form.id}`}>
+      <FormProvider form={warpForm}>
+        <form className={`form-id-${warpForm.id}`}>
           {schema ? (
             <SchemaField schema={schema} components={components} />
           ) : (

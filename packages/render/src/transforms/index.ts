@@ -1,4 +1,13 @@
-import { MetaSchema, MetaSchemaData, MetaSchemaGroup, SchemaMode, StrNumBool } from '@/interface';
+import {
+  BtnFieldsItem,
+  LogicListItem,
+  MetaDataTypeEnum,
+  MetaSchema,
+  MetaSchemaData,
+  MetaSchemaGroup,
+  SchemaMode,
+  StrNumBool,
+} from '@/interface';
 import MetaDataSorted from '@/transforms/MetaDataSorted';
 import { ISchema } from '@formily/json-schema';
 import { strNumBoolToBoolean } from '@/transforms/utils';
@@ -15,38 +24,55 @@ export interface TransformsSchemaOptions {
   logic?: {
     [key: string]: {
       dsl: {
-        "cells": {
+        cells: {
           id: string;
-        }
-      },
+        };
+      };
       nodeFns: {
-        [key: string]: () => void | any
-      },
-    }
-  }
+        [key: string]: () => void | any;
+      };
+    };
+  };
 }
 
 export interface ListSchema {
   searchSchema: ISchema;
   tableSchema: ISchema;
   hasCollapsed: boolean;
+  searchLogic: LogicListItem[];
+  tableLogic: LogicListItem[];
+  searchBtnFields: BtnFieldsItem[];
+  tableBtnFields: BtnFieldsItem[];
 }
 
 export interface FormSchema {
   schema: ISchema;
   buttons: MetaSchemaData[];
+  logicList: LogicListItem[];
+  btnFields: BtnFieldsItem[];
 }
 
 class TransformsSchema extends MetaDataSorted {
   private options: TransformsSchemaOptions;
   private hasCollapsed = false;
 
+  private logicList: LogicListItem[] = [];
+  private searchLogic: LogicListItem[] = [];
+  private tableLogic: LogicListItem[] = [];
+
+  private searchBtnFields: BtnFieldsItem[];
+  private tableBtnFields: BtnFieldsItem[];
+  private btnFields: BtnFieldsItem[];
+
+  private runSchema: 'schema' | 'list' = 'list';
+
   private schemaTypeMap: Map<string, (item: MetaSchemaData, index: number) => ISchema> = new Map();
 
-  constructor(op: TransformsSchemaOptions) {
-    const { metaSchema } = op;
+  constructor(op: TransformsSchemaOptions | undefined) {
+    const { metaSchema } = op || {};
     super(metaSchema);
     this.options = op;
+
     this.schemaTypeMap
       .set('string', this.fieldSchema)
       .set('void', this.voidSchema)
@@ -189,12 +215,90 @@ class TransformsSchema extends MetaDataSorted {
     };
   };
 
-  private buttonsSchema = (buttons: MetaSchemaData[]) => {
+  private pushLogic = (item: MetaSchemaData, prefixField?: string) => {
+    const { logics, code, eventCode } = item;
+
+    if (logics && logics.length) {
+      const filed = prefixField ? `${prefixField}.${code}` : code;
+
+      const logicHooks = {};
+
+      const clickCodes = [];
+
+      logics.forEach((cur) => {
+        const { event, logicCode } = cur || {};
+
+        if (event === 'onClick') {
+          clickCodes.push(logicCode);
+        } else {
+          if (Reflect.has(logicHooks, event)) {
+            if (!logicHooks[event].includes(logicCode)) {
+              logicHooks[event] = logicHooks[event].concat(logicCode);
+            }
+          } else {
+            logicHooks[event] = [logicCode];
+          }
+        }
+      });
+
+      const record = {
+        filed,
+        logicHooks,
+      };
+
+      const btnRecord = {
+        filed,
+        clickCodes,
+        eventCode,
+      };
+
+      if (this.runSchema === 'list') {
+        if (clickCodes.length) {
+          switch (item.type) {
+            case MetaDataTypeEnum.button:
+            case MetaDataTypeEnum.table_button: {
+              this.tableBtnFields.push(btnRecord);
+              break;
+            }
+            case MetaDataTypeEnum.search_button: {
+              this.searchBtnFields.push(btnRecord);
+              break;
+            }
+            default: {
+              break;
+            }
+          }
+        }
+
+        if (Object.keys(logicHooks).length) {
+          switch (item.type) {
+            case MetaDataTypeEnum.search_column:
+            case MetaDataTypeEnum.search_button: {
+              this.searchLogic.push(record);
+              break;
+            }
+            default: {
+              this.tableLogic.push(record);
+              break;
+            }
+          }
+        }
+      } else {
+        this.logicList.push(record);
+        this.btnFields.push(btnRecord);
+      }
+    }
+  };
+
+  private buttonsSchema = (buttons: MetaSchemaData[], prefixField?: string) => {
     const properties = {};
 
     buttons.forEach((item) => {
       const { code, name } = item;
       const btnProperties = this.voidSchema(item);
+
+      this.pushLogic(item, prefixField);
+
       properties[code] = {
         ...btnProperties,
         'x-component-props': {
@@ -207,7 +311,7 @@ class TransformsSchema extends MetaDataSorted {
     return properties;
   };
 
-  private itemProperties = (item: MetaSchemaData): ISchema => {
+  private itemProperties = (item: MetaSchemaData, prefixField?: string): ISchema => {
     const {
       description,
       required,
@@ -224,6 +328,8 @@ class TransformsSchema extends MetaDataSorted {
     const modeExtraProp = this.getModeExtraProp(strNumBoolToBoolean(disabled));
 
     const defaultValue = this.getDefaultValue(item);
+
+    this.pushLogic(item, prefixField);
 
     return {
       [code]: {
@@ -297,10 +403,11 @@ class TransformsSchema extends MetaDataSorted {
       };
     }
 
-    tableColumns.forEach((item) => {
-      const { code } = item;
+    const prefixField = `${item.code}.*`;
 
-      properties[code] = this.voidSchema(item, this.itemProperties(item));
+    tableColumns.forEach((cur) => {
+      const { code } = cur;
+      properties[code] = this.voidSchema(cur, this.itemProperties(cur, prefixField));
     });
 
     if (tableButton.length) {
@@ -315,7 +422,7 @@ class TransformsSchema extends MetaDataSorted {
           operations: {
             type: 'void',
             'x-component': 'Space',
-            properties: this.buttonsSchema(tableButton),
+            properties: this.buttonsSchema(tableButton, prefixField),
           },
         },
       };
@@ -336,7 +443,7 @@ class TransformsSchema extends MetaDataSorted {
       ...this.fieldSchema(item, index),
       type: 'array',
       'x-component': component || 'ArrayTable',
-      properties: this.buttonsSchema(button),
+      properties: this.buttonsSchema(button, item.code),
       items: this.arrayItemSchema(item, tableColumns, tableButton),
     };
   };
@@ -359,6 +466,8 @@ class TransformsSchema extends MetaDataSorted {
       const lastIndex = wrapProperties.length - 1;
 
       const properties = this.schemaType(schemaType)(item, index);
+
+      this.pushLogic(item);
 
       if (properties) {
         if (strNumBoolToBoolean(wrap) || lastIndex === -1) {
@@ -517,14 +626,21 @@ class TransformsSchema extends MetaDataSorted {
   }
 
   getListSchema = (): ListSchema => {
+    this.runSchema = 'list';
     return {
       searchSchema: this.getSearchSchema(),
       tableSchema: this.getTableSchema(),
       hasCollapsed: this.hasCollapsed,
+      searchLogic: this.searchLogic,
+      tableLogic: this.tableLogic,
+      searchBtnFields: this.searchBtnFields,
+      tableBtnFields: this.tableBtnFields,
     };
   };
 
   getFormSchema = (): FormSchema => {
+    this.runSchema = 'schema';
+
     const { metaSchema, hasGroup } = this.options || {};
 
     const { labelCol, wrapperCol } = metaSchema || {};
@@ -537,22 +653,26 @@ class TransformsSchema extends MetaDataSorted {
       properties = this.gridProperties(this.columnsArray);
     }
 
-    return {
-      schema: {
-        type: 'object',
-        properties: {
-          formLayout: {
-            type: 'void',
-            'x-component': 'FormLayout',
-            'x-component-props': {
-              labelCol: labelCol || 6,
-              wrapperCol: wrapperCol || 18,
-            },
-            properties,
+    const schema = {
+      type: 'object',
+      properties: {
+        formLayout: {
+          type: 'void',
+          'x-component': 'FormLayout',
+          'x-component-props': {
+            labelCol: labelCol || 6,
+            wrapperCol: wrapperCol || 18,
           },
+          properties,
         },
       },
+    };
+
+    return {
+      schema,
       buttons: this.buttonsArray,
+      logicList: this.logicList,
+      btnFields: this.btnFields,
     };
   };
 }

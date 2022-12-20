@@ -1,4 +1,4 @@
-import {ECMA_STRING_TAG} from "./const";
+import {ECMA_STRING_TAG} from "./constant";
 
 type ECMAType = keyof typeof ECMA_STRING_TAG;
 

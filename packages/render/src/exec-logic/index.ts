@@ -1,4 +1,5 @@
 import Context from './context';
+import { AnyObject } from '@/interface';
 
 export interface ExecLogicOptions {
   dsl: {
@@ -17,9 +18,9 @@ class ExecLogic {
 
   private callback;
 
-  constructor(options: ExecLogicOptions, payload, callback) {
+  constructor(options: ExecLogicOptions, payload?: AnyObject, callback?: (val: any) => void) {
     this.options = options;
-    this.payload = payload;
+    this.payload = payload || {};
     this.callback = callback;
   }
 
@@ -153,7 +154,7 @@ class ExecLogic {
         }
       } else {
         if (curNode.id === this.endNode.id) {
-          this.callback(curResult);
+          this.callback?.(curResult);
         }
       }
     } catch (e) {

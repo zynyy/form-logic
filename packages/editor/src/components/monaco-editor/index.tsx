@@ -2,7 +2,7 @@ import Editor, { EditorProps, loader } from '@monaco-editor/react';
 import { useContext, useEffect, useRef, FC } from 'react';
 import * as monacoEditor from 'monaco-editor';
 import { FlowChartEditorContext } from '@/context';
-import { MONACO_EDITOR_PATHS_VS } from '@/utils/const';
+import { MONACO_EDITOR_PATHS_VS } from '@/utils/constant';
 
 interface MonacoEditorProps extends EditorProps {
   language?: 'javascript' | 'json';
