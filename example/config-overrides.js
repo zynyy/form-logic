@@ -31,12 +31,25 @@ const useEslintConfig = (configRules) => (config) => {
   return config;
 };
 
+
+const useSupportCjs = () => (config) => {
+  config.module.rules = config.module.rules.map(rule => {
+    if (rule.oneOf instanceof Array) {
+      rule.oneOf[rule.oneOf.length - 1].exclude = [/\.(js|mjs|jsx|cjs|ts|tsx)$/, /\.html$/, /\.json$/];
+    }
+    return rule;
+  });
+  return config;
+};
+
 module.exports = override(
   addWebpackExternals(), // cdn
 
-  addWebpackPlugin( new MonacoWebpackPlugin({
-    languages: ['javascript', 'json'],
-  })),
+  addWebpackPlugin(
+    new MonacoWebpackPlugin({
+      languages: ['javascript', 'json'],
+    }),
+  ),
   //  addBundleVisualizer(),
   addWebpackAlias({
     '@': path.resolve(__dirname, './src/'),
@@ -47,4 +60,5 @@ module.exports = override(
     issuer: /\.[jt]sx?$/,
     use: ['babel-loader', '@svgr/webpack', 'url-loader'],
   }),
+  useSupportCjs(),
 );
