@@ -11,9 +11,11 @@ import {
   useCreateForm,
   useFormSchema,
   useTransformsOptions,
+  useTriggerLogic,
 } from '@/hooks';
 import { AnyObject, EventsObject, LogicConfig } from '@/interface';
-import ExecLogic from '@/exec-logic';
+
+import { flushSync } from 'react-dom';
 
 export interface FormPageLayoutProps
   extends TransformsOptionsArgs,
@@ -59,6 +61,10 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
 
   const [done] = useBindLogic(form, schema, logicList, getLogicConfig, extraLogicParams, () => {});
 
+  const [triggerLogic] = useTriggerLogic(getLogicConfig, () => {
+    setSubmitLoading(false);
+  });
+
   const handleBackClick = (e: MouseEvent<HTMLElement>) => {
     if (onBackClick) {
       onBackClick(e);
@@ -79,38 +85,31 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
         ? buttons.map((item) => {
             const { name, logics, eventCode } = item || {};
 
+            const clickCodes =
+              logics?.filter((item) => item.event === 'onClick')?.map((item) => item.logicCode) ||
+              [];
+
             return (
               <Button
                 loading={submitLoading}
                 disabled={submitLoading}
+                key={name}
                 onClick={(e) => {
                   if (events?.[eventCode]) {
-                    events[eventCode](e, form);
+                    events[eventCode](e, form, setSubmitLoading);
                     return;
                   }
 
-                  setSubmitLoading(true);
-                  logics.forEach((cur) => {
-                    const { event, logicCode } = cur || {};
+                  if (clickCodes.length) {
+                    flushSync(() => {
+                      setSubmitLoading(true);
+                    });
 
-                    if (event === 'onClick') {
-                      getLogicConfig(logicCode).then((result) => {
-                        if (result) {
-                          const execLogic = new ExecLogic(
-                            result.default,
-                            {
-                              params: extraLogicParams,
-                              form,
-                            },
-                            () => {
-                              setSubmitLoading(false);
-                            },
-                          );
-                          execLogic.run().then(() => void 0);
-                        }
-                      });
-                    }
-                  });
+                    triggerLogic(clickCodes, {
+                      params: extraLogicParams,
+                      form,
+                    });
+                  }
                 }}
               >
                 {name}

@@ -30,6 +30,13 @@
       "disabled": "1"
     },
     {
+      "code": "add",
+      "name": "新增",
+      "type": "button",
+      "schemaType": "void",
+      "group": "basicInfo"
+    },
+    {
       "code": "name",
       "name": "用户名称",
       "type": "column",

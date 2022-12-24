@@ -1,103 +1,57 @@
-import React, { useLayoutEffect, useRef, useMemo, useContext } from 'react';
+import React, {
+  useLayoutEffect,
+  useRef,
+  useMemo,
+  PropsWithChildren,
+  FC,
+  CSSProperties,
+} from 'react';
 import { markRaw } from '@formily/reactive';
 import { observer } from '@formily/react';
-import { Grid, IGridOptions } from '@formily/grid';
-import { usePrefixCls } from '../hooks';
-import { useFormLayout } from '../form-layout';
-import cls from 'classnames';
+import { Grid } from '@formily/grid';
 
-const FormGridContext = React.createContext<Grid<HTMLElement>>(null);
+import { useFormLayout } from '../form-layout/hooks';
+import cn from 'classnames';
+import { FormGridContext, FormGridValueContext, useFormGridStyle } from './hooks';
 
-export interface IFormGridProps extends IGridOptions {
-  grid?: Grid<HTMLElement>;
-  prefixCls?: string;
+interface FormGridProps extends FormGridValueContext, PropsWithChildren {
   className?: string;
-  style?: React.CSSProperties;
+  style?: CSSProperties;
 }
 
-export interface IGridColumnProps {
-  gridSpan?: number;
-  style?: React.CSSProperties;
-  className?: string;
-}
+const FormGrid: FC<FormGridProps> = observer(({ className, style, children, ...props }) => {
+  const layout = useFormLayout();
+  const options = {
+    columnGap: layout?.gridColumnGap ?? 8,
+    rowGap: layout?.gridRowGap ?? 4,
+    ...props,
+  };
 
-type ComposedFormGrid = React.FC<React.PropsWithChildren<IFormGridProps>> & {
-  GridColumn: React.FC<React.PropsWithChildren<IGridColumnProps>>;
-  useFormGrid: () => Grid<HTMLElement>;
-  createFormGrid: (props: IFormGridProps) => Grid<HTMLElement>;
-  /**
-   * @deprecated
-   */
-  useGridSpan: (gridSpan: number) => number;
-  /**
-   * @deprecated
-   */
-  useGridColumn: (gridSpan: number) => number;
-};
+  const [wrapSSR, hashId, prefixCls] = useFormGridStyle();
 
-export const createFormGrid = (props: IFormGridProps) => {
-  return markRaw(new Grid(props));
-};
+  const grid = useMemo(() => markRaw(new Grid(options)), [Grid.id(options)]);
 
-export const useFormGrid = () => useContext(FormGridContext);
+  const ref = useRef<HTMLDivElement>();
 
-export const FormGrid: ComposedFormGrid = observer(
-  ({ children, className, style, ...props }: React.PropsWithChildren<IFormGridProps>) => {
-    const layout = useFormLayout();
-    const options = {
-      columnGap: layout?.gridColumnGap ?? 8,
-      rowGap: layout?.gridRowGap ?? 4,
-      ...props,
-    };
-    const grid = useMemo(
-      () => markRaw(options?.grid ? options.grid : new Grid(options)),
-      [Grid.id(options)],
-    );
-    const ref = useRef<HTMLDivElement>();
-    const prefixCls = usePrefixCls('formily-grid', props);
+  useLayoutEffect(() => {
+    return grid.connect(ref.current);
+  }, [grid]);
 
-    useLayoutEffect(() => {
-      return grid.connect(ref.current);
-    }, [grid]);
-    return (
-      <FormGridContext.Provider value={grid}>
-        <div
-          className={cls(`${prefixCls}-layout`, className)}
-          style={{
-            ...style,
-            display: 'grid',
-            gridTemplateColumns: grid.templateColumns,
-            gap: grid.gap,
-          }}
-          ref={ref}
-        >
-          {children}
-        </div>
-      </FormGridContext.Provider>
-    );
-  },
-  {
-    forwardRef: true,
-  },
-) as any;
-
-export const GridColumn: React.FC<React.PropsWithChildren<IGridColumnProps>> = observer(
-  ({ gridSpan, children, ...props }) => {
-    return (
-      <div {...props} style={props.style} data-grid-span={gridSpan}>
+  return wrapSSR(
+    <FormGridContext.Provider value={grid}>
+      <div
+        className={cn(`${prefixCls}-layout`, hashId, className)}
+        style={{
+          ...style,
+          gridTemplateColumns: grid.templateColumns,
+          gap: grid.gap,
+        }}
+        ref={ref}
+      >
         {children}
       </div>
-    );
-  },
-);
-
-GridColumn.defaultProps = {
-  gridSpan: 1,
-};
-
-FormGrid.createFormGrid = createFormGrid;
-
-FormGrid.useFormGrid = useFormGrid;
-FormGrid.GridColumn = GridColumn;
+    </FormGridContext.Provider>,
+  );
+});
 
 export default FormGrid;

@@ -4,8 +4,8 @@ import { useField, RecursionField, observer } from '@formily/react';
 import FeedbackBadge from '@/components/feedback-badge';
 import { usePropertiesSources } from '@/components/hooks';
 import SchemaFragment from '@/components/schema-fragment';
-
-import './style/index.css'
+import { useFormTabsGroupStyle } from '@/components/form-tabs-group/hooks';
+import cls from 'classnames';
 
 interface FormTabsGroupProps extends PropsWithChildren {
   activeKey?: string;
@@ -33,61 +33,60 @@ const useTabs = (tabsSources) => {
   }, []);
 };
 
-const FormTabsGroup: FC<FormTabsGroupProps> = observer(
-  ({ activeKey: propActiveKey, onChange, ...restProps }) => {
-    const tabsSources = usePropertiesSources();
+const FormTabsGroup: FC<FormTabsGroupProps> = observer(({ activeKey: propActiveKey, onChange }) => {
+  const tabsSources = usePropertiesSources();
 
-    const tabs = useTabs(tabsSources);
+  const tabs = useTabs(tabsSources);
 
-    const defaultKey = `${tabs[0]?.key}`;
+  const defaultKey = `${tabs[0]?.key}`;
 
-    const [activeKey, setActiveKey] = useState(() => {
-      return defaultKey;
-    });
+  const [warpSSR, hashId, prefixCls] = useFormTabsGroupStyle();
 
-    useEffect(() => {
-      setActiveKey(propActiveKey);
-    }, [propActiveKey]);
+  const [activeKey, setActiveKey] = useState(() => {
+    return defaultKey;
+  });
 
-    const existIndex = tabs.findIndex((cur) => cur.key === activeKey);
+  useEffect(() => {
+    setActiveKey(propActiveKey);
+  }, [propActiveKey]);
 
-    useEffect(() => {
-      if (existIndex === -1) {
-        setActiveKey(defaultKey);
-      }
-    }, [existIndex, defaultKey]);
+  const existIndex = tabs.findIndex((cur) => cur.key === activeKey);
 
-    const handleChange = (nextActiveKey) => {
-      setActiveKey(nextActiveKey);
-      onChange?.(nextActiveKey);
-    };
+  useEffect(() => {
+    if (existIndex === -1) {
+      setActiveKey(defaultKey);
+    }
+  }, [existIndex, defaultKey]);
 
-    return (
-      <div className="form-tabs-group-container">
-        <Tabs
-          activeKey={activeKey}
-          onChange={handleChange}
-          className="form-tabs-group"
-          type="card"
-          items={tabs.map((item) => {
-            const { schema, key, name, title } = item || {};
-            return {
-              key,
-              label: <FeedbackBadge name={name}>{title}</FeedbackBadge>,
-              forceRender: true,
-              children: (
-                <Card id={key}>
-                  <RecursionField schema={schema} name={name} onlyRenderProperties />
-                </Card>
-              ),
-            };
-          })}
-        />
+  const handleChange = (nextActiveKey) => {
+    setActiveKey(nextActiveKey);
+    onChange?.(nextActiveKey);
+  };
 
-        <SchemaFragment schemaSource={tabsSources} />
-      </div>
-    );
-  },
-);
+  return warpSSR(
+    <div className={cls(prefixCls, hashId)}>
+      <Tabs
+        activeKey={activeKey}
+        onChange={handleChange}
+        type="card"
+        items={tabs.map((item) => {
+          const { schema, key, name, title } = item || {};
+          return {
+            key,
+            label: <FeedbackBadge name={name}>{title}</FeedbackBadge>,
+            forceRender: true,
+            children: (
+              <Card size="small" id={key}>
+                <RecursionField schema={schema} name={name} onlyRenderProperties />
+              </Card>
+            ),
+          };
+        })}
+      />
+
+      <SchemaFragment schemaSource={tabsSources} />
+    </div>,
+  );
+});
 
 export default FormTabsGroup;

@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["src"],
-  "exclude": ["./src/__tests__/*", "./esm/*", "./lib/*", "./tsconfig.esm.json", "./tsconfig.cjs.json"],
+  "exclude": ["./src/__tests__/*", "./esm/*", "./lib/*"],
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {

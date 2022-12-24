@@ -1,232 +1,154 @@
-import { createContext, FC, MouseEvent, PropsWithChildren, useContext } from 'react';
-import { Button, Upload, UploadProps } from 'antd';
+import { FC, PropsWithChildren } from 'react';
+import { Button, ButtonProps, Upload, UploadProps } from 'antd';
 import {
   DeleteOutlined,
   DownOutlined,
   UpOutlined,
   PlusOutlined,
-  MenuOutlined,
   CopyOutlined,
   EditOutlined,
   UploadOutlined,
+  DragOutlined,
 } from '@ant-design/icons';
-import { AntdIconProps } from '@ant-design/icons/lib/components/AntdIcon';
-import { ButtonProps } from 'antd/lib/button';
 import { ArrayField } from '@formily/core';
-import {
-  useField,
-  useFieldSchema,
-  Schema,
-  JSXComponent,
-  RecordScope,
-  RecordsScope,
-} from '@formily/react';
-import { isValid, clone } from '@formily/shared';
-import { SortableHandle } from 'react-sortable-hoc';
-import { usePrefixCls } from '../hooks';
+import { useField, useFieldSchema } from '@formily/react';
+
 import cls from 'classnames';
 import BtnTooltipIcon from '@/components/btn-tooltip-icon';
 
-import './style/index.css';
+import { ArrayBaseContext, ArrayItemContext, useArrayContext } from './hooks/context';
+import {
+  useArrayBaseStyle,
+  useArrayIndex,
+  useArrayItemRecord,
+} from '@/components/array-base/hooks';
+import { SortableHandle } from '@/components/drag-sort';
+import { clone } from '@formily/shared';
 
-export interface IArrayBaseAdditionProps extends ButtonProps {
-  title?: string;
-  method?: 'push' | 'unshift';
-  defaultValue?: any;
+interface ArrayAdditionProps extends PropsWithChildren, ButtonProps {
+  onLogicClick: (...arg: any) => void;
 }
 
-export interface IArrayBaseContext {
-  props: IArrayBaseProps;
-  field: ArrayField;
-  schema: Schema;
+interface ArrayUploadProps extends PropsWithChildren, UploadProps {
+  onLogicClick: (...arg: any) => void;
 }
 
-export interface IArrayBaseItemProps {
+interface ArrayCopyProps extends PropsWithChildren, ButtonProps {
+  onLogicClick: (...arg: any) => void;
+}
+
+interface ArrayRemoveProps extends PropsWithChildren, ButtonProps {
+  onLogicClick: (...arg: any) => void;
+}
+
+interface ArrayMoveUpProps extends PropsWithChildren, ButtonProps {
+  onLogicClick: (...arg: any) => void;
+}
+interface ArrayMoveDownProps extends PropsWithChildren, ButtonProps {
+  onLogicClick: (...arg: any) => void;
+}
+
+interface ArrayEditProps extends PropsWithChildren, ButtonProps {
+  onLogicClick: (...arg: any) => void;
+}
+
+interface ArraySortHandleProps extends PropsWithChildren, ButtonProps {
+  onLogicClick: (...arg: any) => void;
+}
+
+interface ArrayPreviewTextProps extends PropsWithChildren, ButtonProps {
+  colName?: string;
+}
+
+interface ArrayBaseItemProps extends PropsWithChildren {
   index: number;
-  record: ((index: number) => Record<string, any>) | Record<string, any>;
+  record: any;
 }
 
 export type ArrayBaseMixins = {
-  Addition?: FC<PropsWithChildren<IArrayBaseAdditionProps>>;
-  Upload?: FC<PropsWithChildren<UploadProps & { title?: string; value?: any }>>;
-  Copy?: FC<PropsWithChildren<AntdIconProps & { index?: number }>>;
-  Remove?: FC<PropsWithChildren<AntdIconProps & { index?: number }>>;
-  MoveUp?: FC<PropsWithChildren<AntdIconProps & { index?: number }>>;
-  Edit?: FC<PropsWithChildren<AntdIconProps & { index?: number }>>;
-  MoveDown?: FC<PropsWithChildren<AntdIconProps & { index?: number }>>;
-  SortHandle?: FC<PropsWithChildren<AntdIconProps & { index?: number }>>;
-  PreviewText?: FC<PropsWithChildren<AntdIconProps & { index?: number; colName?: string }>>;
+  Addition?: FC<ArrayAdditionProps>;
+  Upload?: FC<ArrayUploadProps>;
+  Copy?: FC<ArrayCopyProps>;
+  Remove?: FC<ArrayRemoveProps>;
+  MoveUp?: FC<ArrayMoveUpProps>;
+  Edit?: FC<ArrayEditProps>;
+  MoveDown?: FC<ArrayMoveDownProps>;
+  SortHandle?: FC<ArraySortHandleProps>;
+  PreviewText?: FC<ArrayPreviewTextProps>;
   Index?: FC;
-  useArray?: () => IArrayBaseContext;
-  useIndex?: (index?: number) => number;
-  useRecord?: (record?: number) => any;
 };
 
-export interface IArrayBaseProps {
-  disabled?: boolean;
+export interface ArrayBaseProps {
   onAdd?: () => void;
-  onEdit?: (record: any, index: number) => void;
-  onRemove?: (record: any, index: number) => void;
-  onCopy?: (record: any, index: number) => void;
-  onMoveDown?: (record: any, index: number) => void;
-  onMoveUp?: (record: any, index: number) => void;
+  onEdit?: (index: number, record: any) => void;
+  onRemove?: (index: number, record: any) => void;
+  onCopy?: (index: number, record: any) => void;
+  onMoveDown?: (index: number, record: any) => void;
+  onMoveUp?: (index: number, record: any) => void;
 }
 
-type ComposedArrayBase = FC<PropsWithChildren<IArrayBaseProps>> &
-  ArrayBaseMixins & {
-    Item?: FC<PropsWithChildren<IArrayBaseItemProps>>;
-    mixin?: <T extends JSXComponent>(target: T) => T & ArrayBaseMixins;
-  };
-
-const ArrayBaseContext = createContext<IArrayBaseContext>(null);
-
-const ItemContext = createContext<IArrayBaseItemProps>(null);
-
-const takeRecord = (val: any, index?: number) => (typeof val === 'function' ? val(index) : val);
-
-const useArray = () => {
-  return useContext(ArrayBaseContext);
-};
-
-const useIndex = (index?: number) => {
-  const ctx = useContext(ItemContext);
-  return ctx ? ctx.index : index;
-};
-
-const useRecord = (record?: number) => {
-  const ctx = useContext(ItemContext);
-  return takeRecord(ctx ? ctx.record : record, ctx?.index);
-};
-
-const getSchemaDefaultValue = (schema: Schema) => {
-  if (schema?.type === 'array') {
-    return [];
-  }
-
-  if (schema?.type === 'object') {
-    return {};
-  }
-
-  if (schema?.type === 'void') {
-    for (let key in schema.properties) {
-      const value = getSchemaDefaultValue(schema.properties[key]);
-      if (isValid(value)) return value;
-    }
-  }
-
-  return schema?.default;
-};
-
-export const ArrayBase: ComposedArrayBase = (props) => {
+const InternalArrayBase = ({ children, ...restProps }) => {
   const field = useField<ArrayField>();
   const schema = useFieldSchema();
+
   return (
-    <RecordsScope getRecords={() => field.value}>
-      <ArrayBaseContext.Provider value={{ field, schema, props }}>
-        {props.children}
-      </ArrayBaseContext.Provider>
-    </RecordsScope>
+    <ArrayBaseContext.Provider value={{ field, schema, props: restProps }}>
+      {children}
+    </ArrayBaseContext.Provider>
   );
 };
 
-ArrayBase.PreviewText = ({ value, className, style, colName }) => {
-  const prefixCls = usePrefixCls('form-text', {});
+const ArrayBaseItem: FC<ArrayBaseItemProps> = ({ children, ...props }) => {
+  return <ArrayItemContext.Provider value={props}>{children}</ArrayItemContext.Provider>;
+};
 
-  const record = useRecord();
+const ArrayBaseIndex = (props) => {
+  const index = useArrayIndex();
+
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
+
+  return warpSSR(
+    <span {...props} className={cls(`${prefixCls}-index`, hashId)}>
+      #{index + 1}.
+    </span>,
+  );
+};
+
+const PreviewText = ({ value, className, colName }) => {
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
+
+  const record = useArrayItemRecord();
 
   const val = colName ? record[colName] : value;
 
-  return (
-    <div className={cls(prefixCls, className)} style={style}>
-      {val}
-    </div>
-  );
+  return warpSSR(<div className={cls(`${prefixCls}-text`, className, hashId)}>{val}</div>);
 };
 
-ArrayBase.Item = ({ children, ...props }) => {
-  return (
-    <ItemContext.Provider value={props}>
-      <RecordScope
-        getIndex={() => props.index}
-        getRecord={() => takeRecord(props.record, props.index)}
-      >
-        {children}
-      </RecordScope>
-    </ItemContext.Provider>
+const SortHandleIcon = SortableHandle(({ className, style, ...restProps }) => {
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
+
+  return warpSSR(
+    <DragOutlined
+      {...restProps}
+      className={cls(`${prefixCls}-sort-handle`, hashId, className)}
+      style={style}
+    />,
   );
-};
+});
 
-const SortHandle = SortableHandle((props: any) => {
-  const prefixCls = usePrefixCls('formily-array-base');
-  return (
-    <MenuOutlined
-      {...props}
-      className={cls(`${prefixCls}-sort-handle`, props.className)}
-      style={{ ...props.style }}
-    />
-  );
-}) as any;
-
-ArrayBase.SortHandle = (props) => {
-  const array = useArray();
-  if (!array) return null;
-  if (array.field?.pattern !== 'editable') return null;
-  return <SortHandle {...props} />;
-};
-
-ArrayBase.Index = (props) => {
-  const index = useIndex();
-  const prefixCls = usePrefixCls('formily-array-base');
-  return (
-    <span {...props} className={`${prefixCls}-index`}>
-      #{index + 1}.
-    </span>
-  );
-};
-
-ArrayBase.Addition = (props) => {
-  const field = useField();
-  const array = useArray();
-
-  const prefixCls = usePrefixCls('formily-array-base');
-
-  const handleClick = (e: MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-    if (field.disabled) {
-      return;
-    }
-    if (props.onClick) {
-      props.onClick(e);
-      return;
-    }
-    array?.props.onAdd?.();
-  };
-
-  if (!array || !['editable', 'disabled'].includes(array.field?.pattern)) {
+const SortHandle = (props) => {
+  const array = useArrayContext();
+  if (!array || !['editable'].includes(array.field?.pattern)) {
     return null;
   }
-
-  return (
-    <Button
-      type="dashed"
-      block
-      {...props}
-      disabled={field?.disabled}
-      className={cls(`${prefixCls}-addition`, props.className)}
-      onClick={handleClick}
-      icon={<PlusOutlined />}
-    >
-      {props.title || field.title}
-    </Button>
-  );
+  return <SortHandleIcon {...props} />;
 };
 
-ArrayBase.Remove = (props) => {
-  const index = useIndex(props.index);
-  const record = useRecord(props.index);
+const AdditionButton = ({ className, onClick, onLogicClick, ...restProps }) => {
   const field = useField();
-  const array = useArray();
-  const prefixCls = usePrefixCls('formily-array-base');
+  const array = useArrayContext();
+
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -234,19 +156,79 @@ ArrayBase.Remove = (props) => {
       return;
     }
 
-    if (props.onClick) {
-      props.onClick(e);
+    if (onLogicClick) {
+      onLogicClick(field);
       return;
     }
 
-    array.props?.onRemove?.(record, index);
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+
+    if (array?.props?.onAdd) {
+      array.props.onAdd();
+      return;
+    }
+
+    array.field?.push?.({});
+  };
+
+  if (!array || !['editable', 'disabled'].includes(array.field?.pattern)) {
+    return null;
+  }
+
+  return warpSSR(
+    <Button
+      type="primary"
+      block
+      {...restProps}
+      disabled={field?.disabled}
+      className={cls(`${prefixCls}-addition`, hashId, className)}
+      onClick={handleClick}
+      icon={<PlusOutlined />}
+    >
+      {field.title}
+    </Button>,
+  );
+};
+
+const RemoveButton = ({ className, onClick, onLogicClick }) => {
+  const index = useArrayIndex();
+  const record = useArrayItemRecord();
+  const field = useField();
+  const array = useArrayContext();
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    if (field.disabled) {
+      return;
+    }
+
+    if (onLogicClick) {
+      onLogicClick(field);
+      return;
+    }
+
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+
+    if (array?.props?.onRemove) {
+      array.props.onRemove(index, record);
+      return;
+    }
+
+    array.field?.remove(index);
   };
 
   if (!array || !['editable'].includes(array.field?.pattern)) {
     return null;
   }
 
-  return (
+  return warpSSR(
     <BtnTooltipIcon
       icon={<DeleteOutlined />}
       tooltip={field.title}
@@ -254,19 +236,20 @@ ArrayBase.Remove = (props) => {
       className={cls(
         `${prefixCls}-remove`,
         field?.disabled ? `${prefixCls}-remove-disabled` : '',
-        props.className,
+        className,
+        hashId,
       )}
       onClick={handleClick}
-    />
+    />,
   );
 };
 
-ArrayBase.Edit = ({ disabled, ...restProps }) => {
-  const index = useIndex(restProps.index);
-  const record = useRecord(restProps.index);
+const EditButton = ({ onClick, className, onLogicClick }) => {
+  const index = useArrayIndex();
+  const record = useArrayItemRecord();
   const field = useField();
-  const array = useArray();
-  const prefixCls = usePrefixCls('formily-array-base');
+  const array = useArrayContext();
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -275,18 +258,24 @@ ArrayBase.Edit = ({ disabled, ...restProps }) => {
       return;
     }
 
-    array.props?.onEdit?.(record, index);
-
-    if (restProps.onClick) {
-      restProps.onClick(e);
+    if (onLogicClick) {
+      onLogicClick(field);
+      return;
     }
+
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+
+    array.props?.onEdit?.(index, record);
   };
 
   if (!array || !['editable'].includes(array.field?.pattern)) {
     return null;
   }
 
-  return (
+  return warpSSR(
     <BtnTooltipIcon
       icon={<EditOutlined />}
       tooltip={field.title}
@@ -294,41 +283,41 @@ ArrayBase.Edit = ({ disabled, ...restProps }) => {
       className={cls(
         `${prefixCls}-edit`,
         field?.disabled ? `${prefixCls}-edit-disabled` : '',
-        restProps.className,
+        className,
+        hashId,
       )}
       onClick={handleClick}
-    />
+    />,
   );
 };
 
-ArrayBase.Upload = ({ title, value, className, ...restProps }) => {
+const UploadButton = ({ className, ...restProps }) => {
   const field = useField();
-  const array = useArray();
-  const prefixCls = usePrefixCls('formily-array-base');
+  const array = useArrayContext();
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   if (!array || !['editable', 'disabled'].includes(array.field?.pattern)) {
     return null;
   }
 
-  return (
+  return warpSSR(
     <Upload
       {...restProps}
-      className={cls(`${prefixCls}-upload`, className)}
-      fileList={value}
+      className={cls(`${prefixCls}-upload`, hashId, className)}
       showUploadList={false}
     >
-      <Button icon={<UploadOutlined />}> {title || field.title}</Button>
-    </Upload>
+      <Button icon={<UploadOutlined />}> {field.title}</Button>
+    </Upload>,
   );
 };
 
-ArrayBase.Copy = (props) => {
+const CopyButton = ({ className, onClick, onLogicClick }) => {
   const field = useField();
-  const array = useArray();
-  const index = useIndex(props.index);
-  const record = useRecord(props.index);
+  const array = useArrayContext();
+  const index = useArrayIndex();
+  const record = useArrayItemRecord();
 
-  const prefixCls = usePrefixCls('formily-array-base');
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -337,39 +326,49 @@ ArrayBase.Copy = (props) => {
       return;
     }
 
-    if (props.onClick) {
-      props.onClick(e);
+    if (onLogicClick) {
+      onLogicClick(field);
       return;
     }
 
-    array.props?.onCopy?.(record, index);
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+
+    if (array.props?.onCopy) {
+      array.props.onCopy?.(index, record);
+      return;
+    }
+
+    const value = clone(array?.field?.value[index] ?? {});
+    const distIndex = index + 1;
+    array.field?.insert?.(distIndex, value);
   };
 
   if (!array || !['editable'].includes(array.field?.pattern)) {
     return null;
   }
 
-  return (
+  return warpSSR(
     <BtnTooltipIcon
-      className={cls(
-        `${prefixCls}-copy`,
-        field?.disabled ? `${prefixCls}-copy-disabled` : '',
-        props.className,
-      )}
+      className={cls(`${prefixCls}-copy`, className, hashId, {
+        [`${prefixCls}-copy-disabled`]: field?.disabled,
+      })}
       disabled={field.disabled}
       tooltip={field.title}
       icon={<CopyOutlined />}
       onClick={handleClick}
-    />
+    />,
   );
 };
 
-ArrayBase.MoveDown = (props, ref) => {
-  const index = useIndex(props.index);
-  const record = useRecord(props.index);
+const MoveDownButton = ({ className, onClick, onLogicClick }) => {
+  const index = useArrayIndex();
+  const record = useArrayItemRecord();
   const field = useField();
-  const array = useArray();
-  const prefixCls = usePrefixCls('formily-array-base');
+  const array = useArrayContext();
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -377,39 +376,48 @@ ArrayBase.MoveDown = (props, ref) => {
     if (field.disabled) {
       return;
     }
-    if (props.onClick) {
-      props.onClick(e);
+
+    if (onLogicClick) {
+      onLogicClick(field);
       return;
     }
 
-    array.props?.onMoveDown?.(record, index);
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+
+    if (array.props?.onMoveDown) {
+      array.props.onMoveDown(index, record);
+      return;
+    }
+
+    array?.field?.moveDown(index);
   };
 
   if (!array || !['editable'].includes(array.field?.pattern)) {
     return null;
   }
 
-  return (
+  return warpSSR(
     <BtnTooltipIcon
-      className={cls(
-        `${prefixCls}-move-down`,
-        field?.disabled ? `${prefixCls}-move-down-disabled` : '',
-        props.className,
-      )}
+      className={cls(`${prefixCls}-move-down`, className, hashId, {
+        [`${prefixCls}-move-down-disabled`]: field?.disabled,
+      })}
       disabled={field.disabled}
       tooltip={field.title}
       icon={<DownOutlined />}
       onClick={handleClick}
-    />
+    />,
   );
 };
 
-ArrayBase.MoveUp = (props) => {
-  const index = useIndex(props.index);
-  const record = useRecord(props.index);
+const MoveUpButton = ({ onClick, className, onLogicClick }) => {
+  const index = useArrayIndex();
+  const record = useArrayItemRecord();
   const field = useField();
-  const array = useArray();
-  const prefixCls = usePrefixCls('formily-array-base');
+  const array = useArrayContext();
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   const handleClick = (e) => {
     e.stopPropagation();
@@ -418,35 +426,49 @@ ArrayBase.MoveUp = (props) => {
       return;
     }
 
-    if (props.onClick) {
-      props.onClick(e);
+    if (onLogicClick) {
+      onLogicClick(field);
       return;
     }
 
-    array.props?.onMoveDown?.(record, index);
+    if (onClick) {
+      onClick(e);
+      return;
+    }
+
+    array.props?.onMoveUp?.(index, record);
   };
 
   if (!array || !['editable'].includes(array.field?.pattern)) {
     return null;
   }
 
-  return (
+  return warpSSR(
     <BtnTooltipIcon
-      className={cls(
-        `${prefixCls}-move-up`,
-        field?.disabled ? `${prefixCls}-move-up-disabled` : '',
-        props.className,
-      )}
+      className={cls(className, hashId, `${prefixCls}-move-up`, {
+        [`${prefixCls}-move-up-disabled`]: field?.disabled,
+      })}
       tooltip={field.title}
       disabled={field.disabled}
       icon={<UpOutlined />}
       onClick={handleClick}
-    />
+    />,
   );
 };
 
-ArrayBase.useArray = useArray;
-ArrayBase.useIndex = useIndex;
-ArrayBase.useRecord = useRecord;
+const ArrayBase = Object.assign(InternalArrayBase, {
+  Item: ArrayBaseItem,
+  Index: ArrayBaseIndex,
+  SortHandle,
+  Addition: AdditionButton,
+  Copy: CopyButton,
+  Remove: RemoveButton,
+  MoveDown: MoveDownButton,
+  MoveUp: MoveUpButton,
+  useArray: useArrayContext,
+  useIndex: useArrayIndex,
+  useRecord: useArrayItemRecord,
+  PreviewText,
+});
 
 export default ArrayBase;

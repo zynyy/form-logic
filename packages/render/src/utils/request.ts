@@ -3,7 +3,6 @@
 import { message } from 'antd';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-
 import { isError } from './is';
 
 // https://tools.ietf.org/html/rfc2616#section-10
@@ -49,8 +48,7 @@ serviceInstance.interceptors.response.use(
     return Promise.resolve(data);
   },
   (error: any) => {
-
-    console.error(error)
+    console.error(error);
 
     if (isError(error)) {
       const messageArray: Array<string | number> = error.message.split(' ');
@@ -68,7 +66,7 @@ serviceInstance.interceptors.response.use(
       message.error('取消请求').then(() => void 0);
     }
 
-    if (error?.code === "ERR_BAD_REQUEST") {
+    if (error?.code === 'ERR_BAD_REQUEST') {
       message.error(error.message).then(() => void 0);
     }
 

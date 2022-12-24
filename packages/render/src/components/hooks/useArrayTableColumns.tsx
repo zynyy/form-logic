@@ -1,5 +1,5 @@
 import { TableProps } from 'antd';
-import { ArrayBase } from '@/components/array-base';
+import ArrayBase from '@/components/array-base';
 import { RecursionField } from '@formily/react';
 import { ObservableColumnSource } from '@/components/hooks/useArrayTableSources';
 
@@ -18,7 +18,6 @@ const useArrayTableColumns = (
       title: schema['title'],
       render: (value: any, record: any) => {
         const index = dataSource.indexOf(record);
-
         return (
           <ArrayBase.Item index={index} record={record}>
             <RecursionField schema={schema} name={index} onlyRenderProperties />

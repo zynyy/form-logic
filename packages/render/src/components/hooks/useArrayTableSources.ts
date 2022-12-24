@@ -57,4 +57,4 @@ const useArrayTableSources = () => {
   return parseArrayItems(schema.items);
 };
 
-export default useArrayTableSources
+export default useArrayTableSources;

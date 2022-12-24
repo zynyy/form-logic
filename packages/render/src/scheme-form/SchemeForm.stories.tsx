@@ -38,15 +38,13 @@ const Template = ({ hasGroup, schemaMode, metaSchema, ...args }) => {
 
   const [formConfig] = useState<IFormProps>(() => {
     return {
-      values: {
+      initialValues: {
         school: [
           {
-            code: 'xm',
-            name: '厦门',
+            name: 1,
           },
           {
-            code: 'xm1',
-            name: '厦门1',
+            code: 1,
           },
         ],
       },

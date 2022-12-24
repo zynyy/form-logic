@@ -26,7 +26,9 @@ class MetaDataSorted {
 
   tableButtonsArray: MetaSchemaData[] = [];
 
-  groupsOrder: MetaSchemaGroup[];
+  groupsOrder: MetaSchemaGroup[] = [];
+
+  groupButtonsArray: MetaSchemaData[] = [];
 
   constructor(metaSchema: MetaSchema, hasGroup?: boolean) {
     this.metaSchema = metaSchema;
@@ -49,7 +51,7 @@ class MetaDataSorted {
     const { group } = item;
 
     if (this.hasGroup && group) {
-      this.column(item);
+      this.groupButtonsArray.push(item);
     } else {
       this.buttonsArray.push(item);
     }

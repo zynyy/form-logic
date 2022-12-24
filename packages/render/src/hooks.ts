@@ -1,19 +1,23 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useContext } from 'react';
 
 import TransformsSchema, { FormSchema, ListSchema, TransformsSchemaOptions } from '@/transforms';
-import {
-  AnyObject,
-  BtnFieldsItem,
-  EventsObject,
-  LogicConfig,
-  LogicListItem,
-  MetaSchema,
-} from '@/interface';
+import { AnyObject, BtnFieldsItem, EventsObject, LogicConfig, LogicListItem } from '@/interface';
 import { createForm, Form, onFieldInit, onFormMount } from '@formily/core';
 import effectHook, { BIND_LOGIC_END, BIND_LOGIC_START } from '@/effect-hook';
 import ExecLogic from '@/exec-logic';
 import { ISchema } from '@formily/json-schema';
 import { getPageConfigDetail } from '@/service';
+
+import { ConfigProvider, theme } from 'antd';
+
+const { useToken } = theme;
+const { ConfigContext } = ConfigProvider;
+
+export const useAntdConfig = () => {
+  return useContext(ConfigContext);
+};
+
+export const useAntdThemeToken = useToken;
 
 export const useFormSchema = (options: TransformsSchemaOptions) => {
   const [formSchema, setFormSchema] = useState<FormSchema>({
@@ -24,13 +28,15 @@ export const useFormSchema = (options: TransformsSchemaOptions) => {
   });
 
   useEffect(() => {
-    console.log('转换开始', options);
+    if (options) {
+      console.log('转换开始', options);
 
-    const transformsSchema = new TransformsSchema(options);
-    const schema = transformsSchema.getFormSchema();
+      const transformsSchema = new TransformsSchema(options);
+      const schema = transformsSchema.getFormSchema();
 
-    console.log('转换结束', schema);
-    setFormSchema(schema);
+      console.log('转换结束', schema);
+      setFormSchema(schema);
+    }
   }, [options]);
 
   return formSchema;
@@ -80,6 +86,21 @@ export const useCreateForm = (formConfig, onMount, form?: Form): [Form] => {
   return [wrapForm];
 };
 
+export const useTriggerLogic = (getLogicConfig, cb) => {
+  const triggerLogic = (logicCodes: string[], payload: any) => {
+    logicCodes?.forEach((logicCode) => {
+      getLogicConfig(logicCode).then((result) => {
+        if (result && result.default) {
+          const execLogic = new ExecLogic(result.default, payload, cb);
+          execLogic.run().then(() => void 0);
+        }
+      });
+    });
+  };
+
+  return [triggerLogic];
+};
+
 export const useBindLogic = (
   form: Form | undefined,
   schema: ISchema,
@@ -89,6 +110,8 @@ export const useBindLogic = (
   cb,
 ) => {
   const [done, setDone] = useState(false);
+
+  const [triggerLogic] = useTriggerLogic(getLogicConfig, cb);
 
   useEffect(() => {
     if (schema && form) {
@@ -102,43 +125,20 @@ export const useBindLogic = (
             const logicCodes = logicHooks[hook];
             if (hook.startsWith('onField')) {
               effectHook[hook]?.(bindField, (filed) => {
-                logicCodes.forEach((logicCode) => {
-                  getLogicConfig(logicCode).then((result) => {
-                    if (result) {
-                      const execLogic = new ExecLogic(
-                        result.default,
-                        {
-                          params: logicParams,
-                          filed,
-                          form,
-                          bindField,
-                        },
-                        cb,
-                      );
-
-                      execLogic.run().then(() => void 0);
-                    }
-                  });
+                triggerLogic(logicCodes, {
+                  params: logicParams,
+                  filed,
+                  form,
+                  bindField,
                 });
               });
             } else {
               effectHook[hook]((payload) => {
-                logicCodes.forEach((logicCode) => {
-                  getLogicConfig(logicCode).then((result) => {
-                    if (result) {
-                      const execLogic = new ExecLogic(
-                        result.default,
-                        {
-                          params: logicParams,
-                          bindField,
-                          notifyArgs: payload,
-                          form,
-                        },
-                        cb,
-                      );
-                      execLogic.run().then(() => void 0);
-                    }
-                  });
+                triggerLogic(logicCodes, {
+                  params: logicParams,
+                  bindField,
+                  notifyArgs: payload,
+                  form,
                 });
               });
             }
@@ -166,6 +166,8 @@ export const useBindBtnClick = (
   events: EventsObject,
   cb,
 ) => {
+  const [triggerLogic] = useTriggerLogic(getLogicConfig, cb);
+
   useEffect(() => {
     if (form?.id) {
       form.addEffects('btnClickEvent', () => {
@@ -174,24 +176,13 @@ export const useBindBtnClick = (
           onFieldInit(bindField, (filed) => {
             if (clickCodes.length) {
               filed.setComponentProps({
-                onLogic: (...args) => {
-                  clickCodes.forEach((logicCode) => {
-                    getLogicConfig(logicCode).then((result) => {
-                      if (result) {
-                        const execLogic = new ExecLogic(
-                          result.default,
-                          {
-                            params: logicParams,
-                            filed,
-                            form,
-                            bindField,
-                            ...args,
-                          },
-                          cb,
-                        );
-                        execLogic.run().then(() => void 0);
-                      }
-                    });
+                onLogicClick: (...args) => {
+                  triggerLogic(clickCodes, {
+                    params: logicParams,
+                    filed,
+                    form,
+                    bindField,
+                    ...args,
                   });
                 },
               });
@@ -210,10 +201,10 @@ export const useBindBtnClick = (
     return () => {
       form?.removeEffects('btnClickEvent');
     };
-  }, [form?.id]);
+  }, [form?.id, btnList]);
 };
 
-export interface TransformsOptionsArgs extends TransformsSchemaOptions {
+export interface TransformsOptionsArgs extends Partial<TransformsSchemaOptions> {
   pageCode?: string;
 }
 

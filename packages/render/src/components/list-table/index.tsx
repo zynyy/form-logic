@@ -4,7 +4,7 @@ import { Space, Table, TableProps } from 'antd';
 import { observer, useField } from '@formily/react';
 
 import { useArrayTableColumns, useArrayTableSources, usePrefixCls, useSchemaBtn } from '../hooks';
-import { ArrayBase } from '../array-base';
+import ArrayBase from '../array-base';
 import { ArrayField } from '@formily/core';
 import SchemaFragment from '@/components/schema-fragment';
 

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { RecursionField } from '@formily/react';
 import { ISchema } from '@formily/json-schema';
 
@@ -27,4 +27,4 @@ const SchemaFragment: FC<SchemaFragmentProps> = ({ schemaSource }) => {
   );
 };
 
-export default SchemaFragment;
+export default memo(SchemaFragment);

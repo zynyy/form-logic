@@ -2,6 +2,7 @@ import { SchemaTypes } from '@formily/json-schema';
 import { MouseEvent } from 'react';
 
 import effectHook from '@/effect-hook';
+import { UseComponent } from '@/style/styleHook';
 
 export type SchemaMode = 'EDITABLE' | 'DETAIL' | 'DISABLED';
 
@@ -109,3 +110,6 @@ export interface MetaSchema {
 export interface AnyObject {
   [key: string]: any;
 }
+
+
+export type UseStyleReturnType =  [UseComponent, string, string]

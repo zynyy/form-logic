@@ -1,4 +1,4 @@
-import { FC, useEffect, useImperativeHandle, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { AnyObject, EventsObject, LogicConfig, MetaSchema } from '@/interface';
 import { Form, IFormProps, isArrayField, isField, onFieldInit } from '@formily/core';
 import {
@@ -105,12 +105,6 @@ const ListLayout: FC<ListLayoutProps> = (
     handleSearch();
   };
 
-  useImperativeHandle(ref, () => {
-    return {
-      searchForm,
-      dataTableForm,
-    };
-  });
 
   const handleRestClick = () => {
     searchForm.reset();

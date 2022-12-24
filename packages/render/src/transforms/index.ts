@@ -52,7 +52,7 @@ class TransformsSchema extends MetaDataSorted {
   private schemaTypeMap: Map<string, (item: MetaSchemaData, index: number) => ISchema> = new Map();
 
   constructor(op: TransformsSchemaOptions | undefined) {
-    const { metaSchema,hasGroup } = op || {};
+    const { metaSchema, hasGroup } = op || {};
     super(metaSchema, hasGroup);
     this.options = op;
 
@@ -161,7 +161,6 @@ class TransformsSchema extends MetaDataSorted {
       'x-validator': validator,
       'x-decorator': 'FormItem',
       'x-decorator-props': {
-        feedbackLayout: 'popover',
         ...this.getItemColProp(item),
         wrapperWrap: true,
         tooltip: description,
@@ -185,14 +184,16 @@ class TransformsSchema extends MetaDataSorted {
   };
 
   private voidSchema = (item: MetaSchemaData, properties?): ISchema => {
-    const { componentProps, component, hidden, name, disabled } = item || {};
+    const { componentProps, component, hidden, name, disabled, type } = item || {};
+
+    const defaultComponent = type?.endsWith('button') ? 'Button' : 'Fragment';
 
     return {
       type: 'void',
       title: name,
       ...this.getModeExtraProp(disabled),
       'x-hidden': strNumBoolToBoolean(hidden),
-      'x-component': component || 'Fragment',
+      'x-component': component || defaultComponent,
       'x-component-props': componentProps,
       properties: properties,
     };
@@ -331,7 +332,6 @@ class TransformsSchema extends MetaDataSorted {
         'x-validator': validator,
         'x-decorator': 'FormItem',
         'x-decorator-props': {
-          feedbackLayout: 'popover',
           ...this.getItemColProp(item),
           wrapperWrap: true,
           tooltip: description,
@@ -443,10 +443,25 @@ class TransformsSchema extends MetaDataSorted {
     return this.voidSchema;
   };
 
+  private groupButtonProperties = (groupCode: string, buttons: MetaSchemaData[]) => {
+    if (!buttons.length) {
+      return {};
+    }
+
+    return {
+      groupButtons: {
+        type: 'void',
+        component: 'Fragment',
+        ...this.getModeExtraProp(),
+        properties: this.buttonsSchema(buttons),
+      },
+    };
+  };
+
   private gridProperties = (grids: MetaSchemaData[]) => {
     const wrapProperties = [];
 
-    const { columnLayout } = this.options.metaSchema;
+    const { columnLayout } = this.options.metaSchema || {};
 
     grids.forEach((item, index) => {
       const { wrap, code, schemaType } = item || {};
@@ -552,6 +567,10 @@ class TransformsSchema extends MetaDataSorted {
           return item.group === code;
         });
 
+        const groupButtons = this.groupButtonsArray.filter((item) => {
+          return item.group === code;
+        });
+
         if (grids.length) {
           groupProperties[code] = {
             type: 'void',
@@ -563,7 +582,10 @@ class TransformsSchema extends MetaDataSorted {
               title: name,
               hiddenName: strNumBoolToBoolean(hiddenName),
             },
-            properties: this.gridProperties(grids),
+            properties: {
+              ...this.groupButtonProperties(code, groupButtons),
+              ...this.gridProperties(grids),
+            },
           };
         }
       }
