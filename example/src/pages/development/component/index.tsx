@@ -1,13 +1,7 @@
-import { ListNormal } from '@formlogic/render';
-
+import { ListLayout } from '@formlogic/render';
 
 const Component = () => {
+  return <ListLayout action="/" />;
+};
 
-
-  return <span>
-    组件
-  </span>
-
-}
-
-export default Component
+export default Component;

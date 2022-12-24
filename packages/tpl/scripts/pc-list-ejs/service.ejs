@@ -1,0 +1,52 @@
+import { requestGet, requestPost } from '@/service';
+
+export enum <%- fileName %>Config {
+CREATE = "<%- create %>",
+DETAIL = "<%- detail %>",
+EDIT = "<%- edit %>",
+LIST = "<%- list %>",
+
+<% if (isLink) { %>
+CREATE_LINK = '<%- link %>/create',
+EDIT_LINK = '<%- link %>/edit',
+DETAIL_LINK = '<%- link %>/detail',
+<% } %>
+
+
+MODEL_CODE='<%- listModelCode %>'
+}
+
+const baseUrl = "";
+
+export const apiUrl = {
+detail: `${baseUrl}/detail`, // 详情
+create: `${baseUrl}/create`, // 新增
+update: `${baseUrl}/update`, // 编辑
+page: `${baseUrl}/page`, // 列表接口
+
+};
+
+export interface <%- fileName %>SubmitParams extends DynamicObjectAny {}
+
+export interface <%- fileName %>CreateParams  extends DynamicObjectAny{}
+
+export interface <%- fileName %>DetailParams  extends DynamicObjectAny{}
+
+export interface <%- fileName %>UpdateParams  extends DynamicObjectAny{}
+
+
+
+// 新增
+export const <%- fileNameLower %>Create = (params: <%- fileName %>CreateParams) => {
+return requestPost(apiUrl.create, params);
+};
+
+// 编辑更新
+export const <%- fileNameLower %>Update = (params: <%- fileName %>UpdateParams) => {
+return requestPost(apiUrl.update, params);
+};
+
+// 详情页
+export const <%- fileNameLower %>Detail = (params: <%- fileName %>DetailParams) => {
+return requestGet(apiUrl.detail, params);
+};

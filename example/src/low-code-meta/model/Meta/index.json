@@ -1,6 +1,6 @@
 {
-  "code": "Model",
-  "name": "模型编码",
+  "code": "Meta",
+  "name": "元编码",
   "fields": [
     {
       "code": "code",
@@ -8,7 +8,7 @@
       "defaultValue": "",
       "schemaType": "string",
       "description": "",
-      "component": "Input",
+      "component": "INPUT",
       "componentProps": {}
     },
     {
@@ -16,7 +16,7 @@
       "name": "名称",
       "defaultValue": "",
       "schemaType": "string",
-      "component": "Input",
+      "component": "INPUT",
       "componentProps": {}
     }
   ]

@@ -1,10 +1,9 @@
+import { ListLayout } from '@formlogic/render';
 
 
 const Logic =() => {
 
-  return <span>
-    逻辑
-  </span>
+  return <ListLayout action="/" />;
 }
 
 export default Logic

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Input as AntdInput, InputProps } from 'antd';
+import { Input as AntdInput, InputProps } from '@formlogic/render';
 
 import { UserOutlined } from '@ant-design/icons';
 

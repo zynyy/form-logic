@@ -1,4 +1,4 @@
-import { Breadcrumb, Layout } from 'antd';
+import { Breadcrumb, Layout } from '@formlogic/render';
 
 import GlobalHeader from './header/global-header';
 import LeftNav from './sider/left-nav';
@@ -10,7 +10,7 @@ const { Content, Header } = Layout;
 
 import './style/index.css';
 
-const BasicLayout: FC<PropsWithChildren> = ({children}) => {
+const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
   const location = useLocation();
   const pathSnippets = location.pathname.split('/').filter((i) => i);
 
@@ -35,11 +35,7 @@ const BasicLayout: FC<PropsWithChildren> = ({children}) => {
           <Content className="page-container">
             <PageHeader breadcrumb={<Breadcrumb>{breadcrumbItems}</Breadcrumb>} />
 
-            <div
-              style={{
-                backgroundColor: '#fff',
-              }}
-            >
+            <div>
               <Outlet />
             </div>
           </Content>

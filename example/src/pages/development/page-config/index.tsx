@@ -1,8 +1,7 @@
-
+import { ListLayout } from '@formlogic/render';
 
 const PageConfig = () => {
+  return <ListLayout action="/" />;
+};
 
-  return <span>页面配置</span>
-}
-
-export default PageConfig
+export default PageConfig;

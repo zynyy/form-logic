@@ -1,5 +1,5 @@
 import { isUrl } from '@/utils/is';
-import { Layout, Menu, MenuProps } from 'antd';
+import { Layout, Menu, MenuProps } from '@formlogic/render';
 import { SettingOutlined } from '@ant-design/icons';
 
 import React, { useEffect, useState, memo } from 'react';

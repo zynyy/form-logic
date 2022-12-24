@@ -1,0 +1,22 @@
+import { ListLayout } from '@formlogic/render';
+
+import getLogicConfig from '@/low-code-meta/logic';
+
+import {
+
+apiUrl ,
+<%- fileName %>Config
+} from './service';
+
+const <%- fileName %>List = () => {
+
+return (
+<ListLayout
+        getLogicConfig={getLogicConfig}
+        pageCode={<%- fileName %>Config.LIST}
+        action={apiUrl.page}
+/>
+);
+};
+
+export default <%- fileName %>List;

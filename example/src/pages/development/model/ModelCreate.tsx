@@ -1,16 +1,30 @@
-import { ListNormal } from '@formlogic/render';
-import { useSearchParams, useParams, useLocation ,} from 'react-router-dom';
+import { FormPageLayout } from '@formlogic/render';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { getLocalConfig } from '@formlogic/render/lib/service';
 
+import { ModelConfig } from './services';
+import { useMetaSchema } from '@/hooks';
 
 const ModelCreate = () => {
-  const location= useLocation();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  console.log(location)
+  const metaSchema = useMetaSchema(ModelConfig.CREATE);
 
-  return <span>
-    组件
-  </span>
+  const handleBackClick = () => {
+    navigate(-1);
+  };
 
-}
+  return (
+    <>
+      <FormPageLayout
+        onBackClick={handleBackClick}
+        hasGroup
+        metaSchema={metaSchema}
+        getLogicConfig={getLocalConfig}
+      />
+    </>
+  );
+};
 
-export default ModelCreate
+export default ModelCreate;

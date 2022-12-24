@@ -1,12 +1,11 @@
-import { ListNormal } from '@formlogic/render';
+import { FormPageLayout } from '@formlogic/render';
+import { getLocalConfig } from '@formlogic/render/lib/service';
 
 
 const ComponentDetail = () => {
 
 
-  return <span>
-    组件
-  </span>
+  return <FormPageLayout getLogicConfig={getLocalConfig} />
 
 }
 

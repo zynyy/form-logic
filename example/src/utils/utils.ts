@@ -87,7 +87,14 @@ export const compareSimilarity = (
   return weight;
 };
 
-
 export const getQueryUrl = (url, query) => {
-  return `${url}?${qs.stringify(query)}`
-}
+  return `${url}?${qs.stringify(query)}`;
+};
+
+export const getModelPagePath = (pageCode: string) => {
+  const [model] = pageCode.split('_');
+
+  const page = `/low-code-meta/model-page/${model}/${pageCode}.json`;
+
+  return page;
+};

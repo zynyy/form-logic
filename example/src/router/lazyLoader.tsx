@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { Spin } from 'antd';
+import { Spin } from '@formlogic/render';
 
 const lazyLoader = (Component: any) => {
 

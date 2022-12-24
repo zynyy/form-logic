@@ -1,13 +1,8 @@
-import { ListNormal } from '@formlogic/render';
-
+import { FormPageLayout } from '@formlogic/render';
+import { getLocalConfig } from '@formlogic/render/lib/service';
 
 const ModelEdit = () => {
+  return <FormPageLayout getLogicConfig={getLocalConfig} />;
+};
 
-
-  return <span>
-    组件
-  </span>
-
-}
-
-export default ModelEdit
+export default ModelEdit;

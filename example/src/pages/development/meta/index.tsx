@@ -1,8 +1,9 @@
+import { ListLayout } from '@formlogic/render';
 
 
 const Meta =() => {
 
-  return <span>元数据</span>
+  return <ListLayout action="/" />;
 }
 
 export default Meta

@@ -1,6 +1,6 @@
 // https://github.com/axios/axios#axios-api
 
-import { message } from 'antd';
+import { message } from '@formlogic/render';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 import qs from 'qs';

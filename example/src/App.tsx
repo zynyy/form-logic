@@ -3,6 +3,7 @@ import PageLoading from '@/components/page-loading';
 import { Suspense } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import './assets/css/App.css';
+import './assets/css/formlogic.css';
 
 import router from './router';
 

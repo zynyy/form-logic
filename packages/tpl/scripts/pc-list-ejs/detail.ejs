@@ -1,0 +1,20 @@
+import { FormPageLayout } from '@formlogic/render';
+import { getLocalConfig } from '@formlogic/render/lib/service';
+
+import { FC } from 'react';
+
+import { <%- fileName %>Config, apiUrl, } from './service'
+
+interface <%- fileName %>DetailProps {
+
+}
+
+
+const <%- fileName %>Create:FC<<%- fileName %>DetailProps> = () => {
+
+
+return <FormPageLayout  pageCode={<%- fileName %>Config.DETAIL} getLogicConfig={getLocalConfig} />
+
+}
+
+export default <%- fileName %>Create

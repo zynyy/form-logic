@@ -52,7 +52,7 @@ const generateService = () => {
 
   const content = ejs.render(readFileSync(serviceTempPath, 'utf8'), ejsParams);
 
-  generateFile(`${listPath}/service.ts`, content);
+  generateFile(`${listPath}/services.ts`, content);
 };
 
 const generateEdit = () => {

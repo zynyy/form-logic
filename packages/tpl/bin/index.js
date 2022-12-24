@@ -9,7 +9,7 @@ process.on('unhandledRejection', (err) => {
 const spawn = require('cross-spawn');
 const args = process.argv.slice(2);
 
-const scripts = [];
+const scripts = ['list'];
 
 const scriptIndex = args.findIndex((x) => scripts.includes(x));
 

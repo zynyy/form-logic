@@ -1,10 +1,18 @@
-import { Alert, Button, Checkbox, Col, Row, Spin } from 'antd';
+import {
+  Alert,
+  Button,
+  Checkbox,
+  Col,
+  Row,
+  SchemeForm,
+  Form,
+  getSubmitFormValues,
+  FormilyForm
+} from '@formlogic/render';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
-
-import { SchemeForm, Form, getSubmitFormValues } from '@formlogic/render';
 
 import {
   getAutoLogin,
@@ -22,7 +30,7 @@ import UserInput from '@/components/user-input';
 import './style/index.css';
 
 const Login = () => {
-  const formRef = useRef<Form>();
+  const formRef = useRef<FormilyForm>();
 
   const navigate = useNavigate();
 

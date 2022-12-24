@@ -1,4 +1,4 @@
-import { Spin } from 'antd';
+import { Spin } from '@formlogic/render';
 
 const PageLoading = () => (
   <div style={{ textAlign: 'center' }}>

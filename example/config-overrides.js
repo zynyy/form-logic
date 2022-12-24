@@ -10,6 +10,7 @@ const {
 } = require('customize-cra');
 
 const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const eslintConfig = require('./.eslintrc.js');
 
@@ -31,11 +32,14 @@ const useEslintConfig = (configRules) => (config) => {
   return config;
 };
 
-
 const useSupportCjs = () => (config) => {
-  config.module.rules = config.module.rules.map(rule => {
+  config.module.rules = config.module.rules.map((rule) => {
     if (rule.oneOf instanceof Array) {
-      rule.oneOf[rule.oneOf.length - 1].exclude = [/\.(js|mjs|jsx|cjs|ts|tsx)$/, /\.html$/, /\.json$/];
+      rule.oneOf[rule.oneOf.length - 1].exclude = [
+        /\.(js|mjs|jsx|cjs|ts|tsx)$/,
+        /\.html$/,
+        /\.json$/,
+      ];
     }
     return rule;
   });
@@ -48,6 +52,11 @@ module.exports = override(
   addWebpackPlugin(
     new MonacoWebpackPlugin({
       languages: ['javascript', 'json'],
+    }),
+  ),
+  addWebpackPlugin(
+    new CopyPlugin({
+      patterns: [{ from: path.resolve(__dirname, 'src/low-code-meta/model-page'), to: 'low-code-meta/model-page' }],
     }),
   ),
   //  addBundleVisualizer(),

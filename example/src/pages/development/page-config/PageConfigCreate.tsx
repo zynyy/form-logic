@@ -1,5 +1,6 @@
-import { ListNormal } from '@formlogic/render';
+import { FormPageLayout } from '@formlogic/render';
 import { useSearchParams } from 'react-router-dom';
+import { getLocalConfig } from '@formlogic/render/lib/service';
 
 
 const PageConfigCreate = () => {
@@ -10,9 +11,7 @@ const PageConfigCreate = () => {
 
 
 
-  return <span>
-    组件
-  </span>
+  return <FormPageLayout getLogicConfig={getLocalConfig} />
 
 }
 
