@@ -32,8 +32,8 @@ import {
   calculateRenderInfo,
   sum,
   TableDOMHelper,
-  toArray,
 } from '@/components/ali-react-table/utils';
+import { toArray } from '@/utils';
 
 export interface ArtTableProps extends BaseTableProps {}
 

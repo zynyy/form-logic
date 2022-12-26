@@ -16,11 +16,11 @@ export type { SchemeFormProps, SchemeFormRef } from './scheme-form';
 export { default as ListCheck } from './list-check';
 export type { ListCheckRef, ListCheckProps } from './list-check';
 
-export { default as ModalForm } from './modal-form';
-export type { ModalFormProps } from './modal-form';
+export { default as ModalPageForm } from './modal-page-form';
+export type { ModalPageFormProps } from './modal-page-form';
 
-export { default as DrawerForm } from './drawer-form';
-export type { DrawerFormProps } from './drawer-form';
+export { default as DrawerPageForm } from './drawer-page-form';
+export type { DrawerPageFormProps } from './drawer-page-form';
 
 export { default as FormPageLayout } from './form-page-layout';
 export type { FormPageLayoutProps } from './form-page-layout';
@@ -45,7 +45,7 @@ export {
   isVoidField,
   isObjectField,
   isDataField,
-  isGeneralField
+  isGeneralField,
 } from '@formily/core';
 
 export { default as ArrayTableBase } from '@/components/array-table-base';

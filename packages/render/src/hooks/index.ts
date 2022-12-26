@@ -51,6 +51,7 @@ export const useListSchema = (options: TransformsSchemaOptions | undefined): Lis
     tableLogic: [],
     searchBtnFields: [],
     tableBtnFields: [],
+    searchButtons: []
   });
 
   useEffect(() => {
@@ -89,7 +90,7 @@ export const useCreateForm = (formConfig, onMount, form?: Form): [Form] => {
 export const useTriggerLogic = (getLogicConfig, cb) => {
   const triggerLogic = (logicCodes: string[], payload: any) => {
     logicCodes?.forEach((logicCode) => {
-      getLogicConfig(logicCode).then((result) => {
+      getLogicConfig?.(logicCode).then((result) => {
         if (result && result.default) {
           const execLogic = new ExecLogic(result.default, payload, cb);
           execLogic.run().then(() => void 0);
@@ -249,4 +250,19 @@ export const useTransformsOptions = ({
   }, [metaSchema]);
 
   return [options, loading];
+};
+
+import { useCallback, useLayoutEffect, useRef } from 'react';
+
+export const useLatestFn = (handlerFn: (...arg: any) => void) => {
+  const handlerRef = useRef((...arg: any) => {});
+
+  useLayoutEffect(() => {
+    handlerRef.current = handlerFn;
+  });
+
+  return useCallback((...args) => {
+    const fn = handlerRef.current;
+    return fn?.(...args);
+  }, []);
 };

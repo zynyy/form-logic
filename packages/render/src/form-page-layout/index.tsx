@@ -19,7 +19,7 @@ import { flushSync } from 'react-dom';
 
 export interface FormPageLayoutProps
   extends TransformsOptionsArgs,
-    Pick<SchemeFormProps, 'onMount' | 'formConfig'> {
+    Pick<SchemeFormProps, 'onFormMount' | 'formConfig' | 'components'> {
   getLogicConfig: LogicConfig;
   extraLogicParams?: AnyObject;
   events?: EventsObject;
@@ -34,7 +34,7 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
   metaSchema,
   hasGroup,
   schemaMode,
-  onMount,
+  onFormMount,
   formConfig,
   getLogicConfig,
   extraLogicParams,
@@ -43,6 +43,7 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
   hasBackBtn,
   hasButton,
   onBackClick,
+  components,
 }) => {
   const [options] = useTransformsOptions({
     pageCode,
@@ -55,7 +56,7 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
 
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  const [form] = useCreateForm(formConfig, onMount);
+  const [form] = useCreateForm(formConfig, onFormMount);
 
   useBindBtnClick(form, btnFields, getLogicConfig, extraLogicParams, events, () => {});
 
@@ -127,7 +128,7 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
   return (
     <Spin spinning={submitLoading}>
       <SchemaLayout footer={renderFooter()}>
-        <SchemeForm done={done} form={form} schema={schema} />
+        <SchemeForm done={done} form={form} schema={schema} components={components} />
       </SchemaLayout>
     </Spin>
   );

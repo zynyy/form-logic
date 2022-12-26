@@ -17,7 +17,6 @@ const genOtherStyle: GenerateStyle = (token) => {
     fontSize,
     marginSM,
     controlHeight,
-    lineHeight,
     controlOutlineWidth,
     controlOutline,
     colorPrimaryHover,
@@ -60,6 +59,7 @@ const genOtherStyle: GenerateStyle = (token) => {
     [`${componentCls}-success-help`]: {
       color: `${colorSuccess}`,
     },
+
 
     [componentCls]: {
       '&-success': {

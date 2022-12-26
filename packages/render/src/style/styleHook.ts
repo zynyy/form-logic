@@ -36,6 +36,8 @@ export const genCommonStyle = (token: any, componentPrefixCls: string): CSSObjec
   const rootPrefixSelector = `[class^="${componentPrefixCls}"], [class*=" ${componentPrefixCls}"]`;
 
   return {
+
+
     [rootPrefixSelector]: {
       fontFamily,
       fontSize,

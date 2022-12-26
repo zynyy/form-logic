@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from 'react';
-import { Button, ButtonProps, Upload, UploadProps } from 'antd';
+import { Button, ButtonProps, Upload, UploadProps, Popconfirm } from 'antd';
 import {
   DeleteOutlined,
   DownOutlined,
@@ -16,54 +16,57 @@ import { useField, useFieldSchema } from '@formily/react';
 import cls from 'classnames';
 import BtnTooltipIcon from '@/components/btn-tooltip-icon';
 
-import { ArrayBaseContext, ArrayItemContext, useArrayContext } from './hooks/context';
+import {
+  ArrayBaseContext,
+  ArrayItemContext,
+  ArrayItemValueContext,
+  useArrayContext,
+} from './hooks/context';
 import {
   useArrayBaseStyle,
   useArrayIndex,
   useArrayItemRecord,
 } from '@/components/array-base/hooks';
 import { SortableHandle } from '@/components/drag-sort';
-import { clone } from '@formily/shared';
+import { clone, uid } from '@formily/shared';
 
-interface ArrayAdditionProps extends PropsWithChildren, ButtonProps {
+export interface ArrayAdditionProps extends PropsWithChildren, ButtonProps {
   onLogicClick: (...arg: any) => void;
 }
 
-interface ArrayUploadProps extends PropsWithChildren, UploadProps {
+export interface ArrayUploadProps extends PropsWithChildren, UploadProps {
   onLogicClick: (...arg: any) => void;
 }
 
-interface ArrayCopyProps extends PropsWithChildren, ButtonProps {
+export interface ArrayCopyProps extends PropsWithChildren, ButtonProps {
   onLogicClick: (...arg: any) => void;
 }
 
-interface ArrayRemoveProps extends PropsWithChildren, ButtonProps {
+export interface ArrayRemoveProps extends PropsWithChildren, ButtonProps {
   onLogicClick: (...arg: any) => void;
 }
 
-interface ArrayMoveUpProps extends PropsWithChildren, ButtonProps {
-  onLogicClick: (...arg: any) => void;
-}
-interface ArrayMoveDownProps extends PropsWithChildren, ButtonProps {
+export interface ArrayMoveUpProps extends PropsWithChildren, ButtonProps {
   onLogicClick: (...arg: any) => void;
 }
 
-interface ArrayEditProps extends PropsWithChildren, ButtonProps {
+export interface ArrayMoveDownProps extends PropsWithChildren, ButtonProps {
   onLogicClick: (...arg: any) => void;
 }
 
-interface ArraySortHandleProps extends PropsWithChildren, ButtonProps {
+export interface ArrayEditProps extends PropsWithChildren, ButtonProps {
   onLogicClick: (...arg: any) => void;
 }
 
-interface ArrayPreviewTextProps extends PropsWithChildren, ButtonProps {
+export interface ArraySortHandleProps extends PropsWithChildren, ButtonProps {
+  onLogicClick: (...arg: any) => void;
+}
+
+export interface ArrayPreviewTextProps extends PropsWithChildren, ButtonProps {
   colName?: string;
 }
 
-interface ArrayBaseItemProps extends PropsWithChildren {
-  index: number;
-  record: any;
-}
+export interface ArrayBaseItemProps extends PropsWithChildren, ArrayItemValueContext {}
 
 export type ArrayBaseMixins = {
   Addition?: FC<ArrayAdditionProps>;
@@ -171,7 +174,9 @@ const AdditionButton = ({ className, onClick, onLogicClick, ...restProps }) => {
       return;
     }
 
-    array.field?.push?.({});
+    array.field?.push?.({
+      uid: uid(8)
+    });
   };
 
   if (!array || !['editable', 'disabled'].includes(array.field?.pattern)) {
@@ -233,14 +238,12 @@ const RemoveButton = ({ className, onClick, onLogicClick }) => {
       icon={<DeleteOutlined />}
       tooltip={field.title}
       disabled={field.disabled}
-      className={cls(
-        `${prefixCls}-remove`,
-        field?.disabled ? `${prefixCls}-remove-disabled` : '',
-        className,
-        hashId,
-      )}
+      className={cls(className, hashId, {
+        [`${prefixCls}-remove-disabled`]: field?.disabled,
+        [`${prefixCls}-remove`]: true,
+      })}
       onClick={handleClick}
-    />,
+    />
   );
 };
 
@@ -291,7 +294,7 @@ const EditButton = ({ onClick, className, onLogicClick }) => {
   );
 };
 
-const UploadButton = ({ className, ...restProps }) => {
+const UploadButton = ({ className, value, ...restProps }) => {
   const field = useField();
   const array = useArrayContext();
   const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
@@ -461,6 +464,8 @@ const ArrayBase = Object.assign(InternalArrayBase, {
   Index: ArrayBaseIndex,
   SortHandle,
   Addition: AdditionButton,
+  Edit: EditButton,
+  Upload: UploadButton,
   Copy: CopyButton,
   Remove: RemoveButton,
   MoveDown: MoveDownButton,

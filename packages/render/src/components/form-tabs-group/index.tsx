@@ -7,7 +7,7 @@ import SchemaFragment from '@/components/schema-fragment';
 import { useFormTabsGroupStyle } from '@/components/form-tabs-group/hooks';
 import cls from 'classnames';
 
-interface FormTabsGroupProps extends PropsWithChildren {
+export interface FormTabsGroupProps extends PropsWithChildren {
   activeKey?: string;
   onChange?: (activeKey: string) => void;
 }

@@ -11,6 +11,7 @@ import {
 import MetaDataSorted from '@/transforms/MetaDataSorted';
 import { ISchema } from '@formily/json-schema';
 import { strNumBoolToBoolean } from '@/transforms/utils';
+import { LIST_FILED_CODE } from '@/utils/constant';
 
 export interface TransformsSchemaOptions {
   metaSchema: MetaSchema;
@@ -26,6 +27,7 @@ export interface ListSchema {
   tableLogic: LogicListItem[];
   searchBtnFields: BtnFieldsItem[];
   tableBtnFields: BtnFieldsItem[];
+  searchButtons: MetaSchemaData[];
 }
 
 export interface FormSchema {
@@ -184,7 +186,7 @@ class TransformsSchema extends MetaDataSorted {
   };
 
   private voidSchema = (item: MetaSchemaData, properties?): ISchema => {
-    const { componentProps, component, hidden, name, disabled, type } = item || {};
+    const { componentProps, component, hidden, name, disabled, parentCode, type } = item || {};
 
     const defaultComponent = type?.endsWith('button') ? 'Button' : 'Fragment';
 
@@ -196,6 +198,9 @@ class TransformsSchema extends MetaDataSorted {
       'x-component': component || defaultComponent,
       'x-component-props': componentProps,
       properties: properties,
+      'x-data': {
+        parentCode,
+      },
     };
   };
 
@@ -312,6 +317,7 @@ class TransformsSchema extends MetaDataSorted {
       component,
       code,
       schemaType,
+      parentCode,
     } = item || {};
 
     const modeExtraProp = this.getModeExtraProp(strNumBoolToBoolean(disabled));
@@ -616,17 +622,19 @@ class TransformsSchema extends MetaDataSorted {
   }
 
   private getTableSchema() {
+    const code = LIST_FILED_CODE;
+
     return {
       type: 'object',
       properties: {
-        dataSource: {
+        [code]: {
           type: 'array',
           'x-component': 'ListTable',
-          properties: this.buttonsSchema(this.buttonsArray, 'dataSource'),
+          properties: this.buttonsSchema(this.buttonsArray, code),
           items: this.arrayItemSchema(
             {
               hasSerialNo: true,
-              code: 'dataSource',
+              code,
             },
             this.tableColumnsArray,
             this.tableButtonsArray,
@@ -646,6 +654,7 @@ class TransformsSchema extends MetaDataSorted {
       tableLogic: this.tableLogic,
       searchBtnFields: this.searchBtnFields,
       tableBtnFields: this.tableBtnFields,
+      searchButtons: this.searchButtonsArray,
     };
   };
 

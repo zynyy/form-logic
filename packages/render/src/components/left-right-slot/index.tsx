@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd';
+import { Col, Row, Space } from 'antd';
 import { FC, ReactNode } from 'react';
 
 interface LeftRightSlotProps {
@@ -16,7 +16,7 @@ const LeftRightSlot: FC<LeftRightSlotProps> = ({ left, right }) => {
           textAlign: 'left',
         }}
       >
-        {left}
+        <Space>{left}</Space>
       </Col>
       <Col
         span={12}
@@ -25,7 +25,7 @@ const LeftRightSlot: FC<LeftRightSlotProps> = ({ left, right }) => {
           textAlign: 'right',
         }}
       >
-        {right}
+        <Space>{right}</Space>
       </Col>
     </Row>
   );

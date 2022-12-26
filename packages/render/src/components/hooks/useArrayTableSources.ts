@@ -15,11 +15,19 @@ export interface ObservableColumnSource {
 const useArrayTableSources = () => {
   const arrayField = useField();
   const schema = useFieldSchema();
+
   const parseSources = (schema: Schema): ObservableColumnSource[] => {
-    if (schema['x-component']) {
+    if (arrayField.componentType === schema['x-component'] || !schema['x-component']) {
+      if (schema.properties) {
+        return schema.reduceProperties((buf, schema) => {
+          return buf.concat(parseSources(schema));
+        }, []);
+      }
+    } else {
       if (!schema['name']) {
         return [];
       }
+
       const name = schema['name'].toString();
       const field = arrayField.query(arrayField.address.concat(name)).take();
       const columnProps = field?.component?.[1] || schema['x-component-props'] || {};
@@ -33,16 +41,13 @@ const useArrayTableSources = () => {
           columnProps,
         },
       ];
-    } else if (schema.properties) {
-      return schema.reduceProperties((buf, schema) => {
-        return buf.concat(parseSources(schema));
-      }, []);
     }
   };
 
   const parseArrayItems = (schema: Schema['items']) => {
     const sources: ObservableColumnSource[] = [];
     const items = isArr(schema) ? schema : [schema];
+
     return items.reduce((columns, schema) => {
       const item = parseSources(schema);
       if (item) {

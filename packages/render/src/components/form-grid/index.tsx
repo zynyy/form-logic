@@ -14,7 +14,7 @@ import { useFormLayout } from '../form-layout/hooks';
 import cn from 'classnames';
 import { FormGridContext, FormGridValueContext, useFormGridStyle } from './hooks';
 
-interface FormGridProps extends FormGridValueContext, PropsWithChildren {
+export interface FormGridProps extends FormGridValueContext, PropsWithChildren {
   className?: string;
   style?: CSSProperties;
 }

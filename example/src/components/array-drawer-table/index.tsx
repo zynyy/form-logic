@@ -1,17 +1,26 @@
-import { ArrayTableBase } from '@formlogic/render';
+import { ArrayTableBase, ArrayTableBaseProps, observer } from '@formlogic/render';
 
 
-const ArrayDrawerTable = () => {
-
-
-
-  return <>
-
-    <ArrayTableBase />
-
-
-  </>
+interface ArrayDrawerTableProps extends ArrayTableBaseProps{
 
 }
 
-export default ArrayDrawerTable
+
+const ArrayDrawerTable = observer((...restProps) => {
+
+
+  const onAdd = () => {
+
+
+
+  }
+
+
+  return (
+    <>
+      <ArrayTableBase {...restProps} onAdd={onAdd} />
+    </>
+  );
+});
+
+export default ArrayDrawerTable;

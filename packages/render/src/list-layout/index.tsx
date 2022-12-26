@@ -1,12 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import { AnyObject, EventsObject, LogicConfig, MetaSchema } from '@/interface';
-import { Form, IFormProps, isArrayField, isField, onFieldInit } from '@formily/core';
+import { Form, IFormProps, isField } from '@formily/core';
 import {
   useBindBtnClick,
   useBindLogic,
   useCreateForm,
   useListSchema,
   useTransformsOptions,
+  useTriggerLogic,
 } from '@/hooks';
 import { Button, Space, Spin } from 'antd';
 
@@ -16,6 +17,7 @@ import { ClearOutlined, SearchOutlined } from '@ant-design/icons';
 import SchemeForm from '@/scheme-form';
 import { getSubmitFormValues } from '@/utils/getSubmitFormValues';
 import { requestGet } from '@/utils/request';
+import SchemeTableForm from '@/scheme-table-form';
 
 export interface ListLayoutProps {
   action: string;
@@ -34,30 +36,33 @@ export interface ListLayoutProps {
   };
 }
 
-const ListLayout: FC<ListLayoutProps> = (
-  {
-    metaSchema,
-    pageCode,
-    searchFormConfig,
-    action,
-    getLogicConfig,
-    extraLogicParams,
-    extraSearchParams,
-    transformSearchParams,
-    onSearchMount,
-    onTableMount,
-    events,
-  },
-  ref,
-) => {
+const ListLayout: FC<ListLayoutProps> = ({
+  metaSchema,
+  pageCode,
+  searchFormConfig,
+  action,
+  getLogicConfig,
+  extraLogicParams,
+  extraSearchParams,
+  transformSearchParams,
+  onSearchMount,
+  onTableMount,
+  events,
+}) => {
   const [options] = useTransformsOptions({
     pageCode,
     metaSchema,
   });
 
+  const [dataSource, setDataSource] = useState([]);
+
   const listSchema = useListSchema(options);
 
   const [searchLoading, setSearchLoading] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(30);
+  const [total, setTotal] = useState(0);
 
   const {
     searchSchema,
@@ -65,14 +70,12 @@ const ListLayout: FC<ListLayoutProps> = (
     hasCollapsed,
     searchLogic,
     tableLogic,
-    searchBtnFields,
     tableBtnFields,
+    searchButtons,
   } = listSchema;
 
   const [searchForm] = useCreateForm(searchFormConfig, onSearchMount);
   const [dataTableForm] = useCreateForm({}, onTableMount);
-
-  useBindBtnClick(searchForm, searchBtnFields, getLogicConfig, extraLogicParams, events, () => {});
 
   useBindBtnClick(
     dataTableForm,
@@ -101,10 +104,11 @@ const ListLayout: FC<ListLayoutProps> = (
     () => {},
   );
 
+  const [triggerLogic] = useTriggerLogic(getLogicConfig, () => {});
+
   const initSearch = () => {
     handleSearch();
   };
-
 
   const handleRestClick = () => {
     searchForm.reset();
@@ -123,22 +127,16 @@ const ListLayout: FC<ListLayoutProps> = (
 
   const handleSearch = () => {
     getSubmitFormValues(searchForm).then((formValues) => {
-      setSearchLoading(true);
-
       const params = {
         ...formValues,
         ...extraSearchParams,
       };
-
+      setSearchLoading(true);
       requestGet(action, transformSearchParams?.(params) || params)
         .then((res) => {
           const { data } = res || {};
 
-          dataTableForm.query('dataSource').take((target) => {
-            if (isArrayField(target)) {
-              target.onInput(data).then(() => void 0);
-            }
-          });
+          setDataSource(data);
         })
         .finally(() => {
           setSearchLoading(false);
@@ -146,18 +144,20 @@ const ListLayout: FC<ListLayoutProps> = (
     });
   };
 
-  useEffect(() => {
-    if (dataTableForm?.id) {
-      dataTableForm.addEffects('init', () => {
-        onFieldInit('dataSource', () => {
-          initSearch();
-        });
-      });
+  const handleTableChange = (pagination, filters, sorter, extra) => {
+    const { action } = extra || {};
+
+    if (action === 'paginate') {
+      setCurrentPage(pagination.current);
+      setPageSize(pagination.pageSize);
     }
-    return () => {
-      dataTableForm?.removeEffects('init');
-    };
-  }, [dataTableForm?.id]);
+  };
+
+  useEffect(() => {
+    if (tableDone) {
+      initSearch();
+    }
+  }, [tableDone]);
 
   return (
     <>
@@ -170,6 +170,36 @@ const ListLayout: FC<ListLayoutProps> = (
               hasCollapsed={hasCollapsed}
               buttons={
                 <Space>
+                  {searchButtons.map((item) => {
+                    const { name, logics, eventCode } = item || {};
+
+                    const clickCodes =
+                      logics
+                        ?.filter((item) => item.event === 'onClick')
+                        ?.map((item) => item.logicCode) || [];
+
+                    return (
+                      <Button
+                        key={name}
+                        onClick={(e) => {
+                          if (events?.[eventCode]) {
+                            events[eventCode](e, searchForm);
+                            return;
+                          }
+
+                          if (clickCodes.length) {
+                            triggerLogic(clickCodes, {
+                              params: extraLogicParams,
+                              form: searchForm,
+                            });
+                          }
+                        }}
+                      >
+                        {name}
+                      </Button>
+                    );
+                  })}
+
                   <Button icon={<ClearOutlined />} type="dashed" onClick={handleRestClick}>
                     重置
                   </Button>
@@ -183,7 +213,16 @@ const ListLayout: FC<ListLayoutProps> = (
             </WhereLayout>
           }
         >
-          <SchemeForm done={tableDone} schema={tableSchema} form={dataTableForm} />
+          <SchemeTableForm
+            dataSource={dataSource}
+            form={dataTableForm}
+            done={tableDone}
+            schema={tableSchema}
+            total={total}
+            currentPage={currentPage}
+            pageSize={pageSize}
+            onChange={handleTableChange}
+          />
         </SchemaLayout>
       </Spin>
     </>

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Button, ButtonProps } from 'antd';
 
-interface BtnProps extends ButtonProps {}
+export interface BtnProps extends ButtonProps {}
 
 const Btn: FC<BtnProps> = ({ title, ...btnProps }) => {
   console.log(btnProps, 88);

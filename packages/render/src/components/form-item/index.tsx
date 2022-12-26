@@ -5,7 +5,6 @@ import {
   ReactNode,
   useEffect,
   useMemo,
-  useRef,
   useState,
 } from 'react';
 import cls from 'classnames';
@@ -180,6 +179,7 @@ const BaseItem: FC<FormItemProps> = observer(
     };
 
     useEffect(() => {
+
       if (isFocus || isHover) {
         setVisible(!!errorsMsg);
       } else {

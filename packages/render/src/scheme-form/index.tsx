@@ -1,31 +1,18 @@
-import { forwardRef, useEffect, useImperativeHandle, useMemo } from 'react';
+import { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { Form, setValidateLanguage, IFormProps, JSXComponent } from '@formily/core';
-import { createSchemaField, FormProvider } from '@formily/react';
+import { FormProvider } from '@formily/react';
 import { ISchema } from '@formily/json-schema';
 
-import FormGrid from '../components/form-grid';
-import FormItem from '../components/form-item';
-import FormLayout from '../components/form-layout';
-import FormGroup from '../components/form-group';
+import { Empty, Skeleton } from 'antd';
 
-import { Empty, Space, Input as AntdInput, Skeleton } from 'antd';
-import Input from '@/components/input';
-import Select from '@/components/select';
-import Fragment from '@/components/fragment';
-import ArrayTable from '@/components/array-table';
-import Button from '@/components/button';
-import ArrayBase from '@/components/array-base';
-import FormTabsGroup from '@/components/form-tabs-group';
-import ListTable from '@/components/list-table';
 import { useCreateForm } from '@/hooks';
-
-const { Password } = AntdInput;
+import useCreateSchemaField from '@/hooks/useSchemaField';
 
 export interface SchemeFormProps {
   formConfig?: IFormProps;
   language?: string;
   schema: ISchema;
-  onMount?: (form: Form) => void;
+  onFormMount?: (form: Form) => void;
   done?: boolean;
   form?: Form;
   components?: {
@@ -36,29 +23,10 @@ export interface SchemeFormProps {
 export type SchemeFormRef = Form;
 
 const SchemeForm = forwardRef<SchemeFormRef, SchemeFormProps>(
-  ({ formConfig, done, language, schema, components, onMount, form: propsForm }, ref) => {
-    const [warpForm] = useCreateForm(formConfig, onMount, propsForm);
+  ({ formConfig, done, language, schema, components, onFormMount, form: propsForm }, ref) => {
+    const [warpForm] = useCreateForm(formConfig, onFormMount, propsForm);
 
-    const SchemaField = useMemo(() => {
-      return createSchemaField({
-        components: {
-          FormLayout,
-          FormGroup,
-          FormGrid,
-          FormItem,
-          Input,
-          Select: Select,
-          ArrayTable,
-          Fragment,
-          Button,
-          ArrayBase,
-          Space,
-          FormTabsGroup,
-          ListTable,
-          Password,
-        },
-      });
-    }, []);
+    const SchemaField = useCreateSchemaField();
 
     useImperativeHandle(ref, () => {
       return warpForm;

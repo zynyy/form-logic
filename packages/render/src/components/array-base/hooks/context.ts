@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { ArrayBaseItemProps, ArrayBaseProps } from '@/components/array-base';
+import { ArrayBaseProps } from '@/components/array-base';
 import { ArrayField } from '@formily/core';
 import { Schema } from '@formily/react';
 
@@ -9,9 +9,14 @@ export interface ArrayBaseValueContext {
   schema: Schema;
 }
 
+export interface ArrayItemValueContext {
+  index: number;
+  record: any;
+}
+
 export const ArrayBaseContext = createContext<ArrayBaseValueContext>(null);
 
-export const ArrayItemContext = createContext<ArrayBaseItemProps>(null);
+export const ArrayItemContext = createContext<ArrayItemValueContext>(null);
 
 export const useArrayContext = () => {
   return useContext(ArrayBaseContext);
@@ -20,4 +25,3 @@ export const useArrayContext = () => {
 export const useArrayItemContext = () => {
   return useContext(ArrayItemContext);
 };
-

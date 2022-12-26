@@ -82,6 +82,7 @@ export interface MetaSchemaData {
   wrapperCol?: number; // 组件占比宽度
   defaultValue?: any; // 默认值
   component?: string; // 组件
+  parentCode?: string; // 上一级编码
   logics?: MetaLogic[];
   componentProps?: {
     // 组件属性
@@ -111,5 +112,4 @@ export interface AnyObject {
   [key: string]: any;
 }
 
-
-export type UseStyleReturnType =  [UseComponent, string, string]
+export type UseStyleReturnType = [UseComponent, string, string];

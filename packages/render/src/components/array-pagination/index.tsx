@@ -92,12 +92,7 @@ const ArrayTablePagination: FC<ArrayPaginationProps> = observer(
         </PaginationContext.Provider>
       </>,
     );
-  },
-  {
-    scheduler(request) {
-      requestAnimationFrame(request);
-    },
-  },
+  }
 );
 
 export default ArrayTablePagination;

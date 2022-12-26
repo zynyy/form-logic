@@ -402,7 +402,7 @@ const genLabelStyle: GenerateStyle = (token) => {
 };
 
 const genFormItemStyle: GenerateStyle = (token) => {
-  const { componentCls, fontSize, marginSM } = token;
+  const { componentCls,  fontSize, marginSM } = token;
   return {
     [componentCls]: {
       display: 'flex',
@@ -421,11 +421,6 @@ const genFormItemStyle: GenerateStyle = (token) => {
           [`&-right`]: {
             [`> ${componentCls}-label`]: {
               justifyContent: 'flex-end',
-
-              label: {
-                whiteSpace: 'pre-line',
-                wordBreak: 'break-all',
-              },
             },
           },
         },

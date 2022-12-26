@@ -104,6 +104,33 @@
             "group": "personalInfo",
             "required": "1",
             "component": "Input"
+          },
+          {
+            "code": "name",
+            "name": "学校名称",
+            "type": "table_column",
+            "schemaType": "string",
+            "group": "personalInfo"
+          },
+          {
+            "code": "grade",
+            "name": "年级",
+            "type": "table_column",
+            "schemaType": "string",
+            "group": "personalInfo",
+            "parentCode": "name",
+            "required": "1",
+            "component": "Input"
+          },
+          {
+            "code": "year",
+            "name": "测试",
+            "type": "table_column",
+            "schemaType": "string",
+            "parentCode": "name",
+            "group": "personalInfo",
+            "required": "1",
+            "component": "Input"
           }
         ]
       }
