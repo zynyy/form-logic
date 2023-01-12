@@ -1,6 +1,6 @@
-const { exec } = require('child_process');
+import { exec } from 'child_process';
 
-const {
+import {
   writeFile,
   mkdir,
   unlink,
@@ -9,24 +9,24 @@ const {
   existsSync,
   unlinkSync,
   rmdirSync,
-} = require('fs');
-const { dirname } = require('path');
+} from 'fs';
+import { dirname, resolve } from 'path';
 
 const HYPHEN_DELIMITED = '-';
 
 const LOWER_REG_EXP = new RegExp(`(${HYPHEN_DELIMITED})[a-z]`, 'g');
 const UPPER_REG_EXP = new RegExp(`(^|${HYPHEN_DELIMITED})[a-z]`, 'g');
 
-const camelCaseToHyphen = (str) => {
+export const camelCaseToHyphen = (str) => {
   return str.replace(/([a-z0-9])([A-Z])/g, `$1${HYPHEN_DELIMITED}$2`).toLowerCase();
 };
 
 // capitalize
-const toFirstLowerCase = (str) => {
+export const toFirstLowerCase = (str) => {
   return str.replace(/(^)[A-Z]/, (val) => val.toLocaleLowerCase());
 };
 
-const hyphenToLowerCamelCase = (str) => {
+export const hyphenToLowerCamelCase = (str) => {
   return str
     .toLowerCase()
     .replace(LOWER_REG_EXP, (val) => val.toUpperCase())
@@ -34,7 +34,7 @@ const hyphenToLowerCamelCase = (str) => {
     .join('');
 };
 
-const hyphenToUpperCamelCase = (str) => {
+export const hyphenToUpperCamelCase = (str) => {
   return str
     .toLowerCase()
     .replace(UPPER_REG_EXP, (val) => val.toUpperCase())
@@ -42,11 +42,11 @@ const hyphenToUpperCamelCase = (str) => {
     .join('');
 };
 
-const camelCaseToUppercase = (str) => {
+export const camelCaseToUppercase = (str) => {
   return str.split(HYPHEN_DELIMITED).join('_').toUpperCase();
 };
 
-const generateFile = (filename, content, cb) => {
+export const generateFile = (filename, content, cb) => {
   mkdir(dirname(filename), { recursive: true }, (err) => {
     if (err) throw err;
     writeFile(filename, content, (err) => {
@@ -62,7 +62,7 @@ const generateFile = (filename, content, cb) => {
   });
 };
 
-const deleteFile = (filename, cb) => {
+export const deleteFile = (filename, cb) => {
   unlink(filename, (err) => {
     if (err) throw err;
     exec('git add .');
@@ -73,7 +73,7 @@ const deleteFile = (filename, cb) => {
   });
 };
 
-const deleteDir = (path) => {
+export const deleteDir = (path) => {
   if (existsSync(path)) {
     const files = readdirSync(path);
     files.forEach((file) => {
@@ -92,12 +92,12 @@ const deleteDir = (path) => {
   }
 };
 
-const loaderRouter = (dirPath) => {
+export const loaderRouter = (dirPath) => {
   const dir = readdirSync(dirPath);
 
   let exportData = '';
 
-  const ignoreFile = ['index.tsx'];
+  const ignoreFile = ['index.tsx', 'index.ts'];
 
   const routerContent = dir
     .map((val) => {
@@ -118,14 +118,4 @@ const loaderRouter = (dirPath) => {
   );
 };
 
-module.exports = {
-  camelCaseToHyphen,
-  generateFile,
-  hyphenToLowerCamelCase,
-  hyphenToUpperCamelCase,
-  camelCaseToUppercase,
-  toFirstLowerCase,
-  deleteFile,
-  deleteDir,
-  loaderRouter,
-};
+export const LIST_PAGE_ROUTER_DIR = resolve('./src/router/list-page');

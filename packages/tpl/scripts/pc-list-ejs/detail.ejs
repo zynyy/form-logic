@@ -1,9 +1,11 @@
-import { FormPageLayout } from '@formlogic/render';
-import { getLocalConfig } from '@formlogic/render/lib/service';
-
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {   SchemaPatternEnum,FormPageLayout,useJsonMetaSchema } from '@formlogic/render';
+import getLogicConfig from '@/low-code-meta/logic';
 
-import { <%- fileName %>Config, apiUrl, } from './service'
+import {use<%- fileName %>Detail} from './hooks'
+
+import { <%- fileName %>Config,  } from './service'
 
 interface <%- fileName %>DetailProps {
 
@@ -13,7 +15,27 @@ interface <%- fileName %>DetailProps {
 const <%- fileName %>Create:FC<<%- fileName %>DetailProps> = () => {
 
 
-return <FormPageLayout  pageCode={<%- fileName %>Config.DETAIL} getLogicConfig={getLocalConfig} />
+    const navigate = useNavigate();
+
+    const {metaSchema} = useJsonMetaSchema(<%- fileName %>Config.DETAIL);
+
+    const [formConfig, loading] = use<%- fileName %>Detail();
+
+    const handleBackClick = () => {
+    navigate(-1);
+    };
+
+    return (
+    <FormPageLayout
+      hasGroup
+      pattern={SchemaPatternEnum.DETAIL}
+      loading={loading}
+      formConfig={formConfig}
+      onBackClick={handleBackClick}
+      metaSchema={metaSchema}
+      extraLogicParams={{}}
+      getLogicConfig={getLogicConfig}
+    />)
 
 }
 

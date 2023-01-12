@@ -1,0 +1,23 @@
+import { lazy } from 'react';
+import { RouteObject } from 'react-router-dom';
+
+import lazyLoader from '@/router/lazyLoader';
+
+
+
+const <%- fileName %>Route: RouteObject[] = [
+
+<% routes.forEach(({path, elementPath}) => { %>
+
+    {
+
+    path: '<%= path %>',
+    element: lazyLoader(lazy(() => import('<%= elementPath %>'))),
+
+    },
+
+
+<%})%>
+]
+
+export default <%- fileName %>Route

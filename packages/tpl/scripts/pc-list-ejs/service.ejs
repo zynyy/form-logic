@@ -7,32 +7,46 @@ EDIT = "<%- edit %>",
 LIST = "<%- list %>",
 
 <% if (isLink) { %>
-CREATE_LINK = '<%- link %>/create',
-EDIT_LINK = '<%- link %>/edit',
-DETAIL_LINK = '<%- link %>/detail',
+CREATE_LINK = '/<%- link %>/create',
+EDIT_LINK = '/<%- link %>/edit',
+DETAIL_LINK = '/<%- link %>/detail',
 <% } %>
 
 
 MODEL_CODE='<%- listModelCode %>'
 }
 
-const baseUrl = "";
+const baseUrl = "/<%- link %>";
 
 export const apiUrl = {
 detail: `${baseUrl}/detail`, // 详情
 create: `${baseUrl}/create`, // 新增
 update: `${baseUrl}/update`, // 编辑
+remove: `${baseUrl}/remove`, // 编辑
 page: `${baseUrl}/page`, // 列表接口
 
 };
 
-export interface <%- fileName %>SubmitParams extends DynamicObjectAny {}
+export interface <%- fileName %>SubmitParams {
 
-export interface <%- fileName %>CreateParams  extends DynamicObjectAny{}
+    [key:string]: any
+}
 
-export interface <%- fileName %>DetailParams  extends DynamicObjectAny{}
+export interface <%- fileName %>CreateParams  {
+    [key:string]: any
+}
 
-export interface <%- fileName %>UpdateParams  extends DynamicObjectAny{}
+export interface <%- fileName %>DetailParams  {
+    [key:string]: any
+}
+
+export interface <%- fileName %>UpdateParams  {
+    [key:string]: any
+}
+
+export interface <%- fileName %>RemoveParams {
+    [key:string]: any
+}
 
 
 
@@ -49,4 +63,9 @@ return requestPost(apiUrl.update, params);
 // 详情页
 export const <%- fileNameLower %>Detail = (params: <%- fileName %>DetailParams) => {
 return requestGet(apiUrl.detail, params);
+};
+
+// 详情页
+export const <%- fileNameLower %>Remove = (params: <%- fileName %>RemoveParams) => {
+return requestPost(apiUrl.remove, params);
 };

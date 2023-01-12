@@ -1,22 +1,50 @@
-import { ListLayout } from '@formlogic/render';
+import { ListLayout,useJsonMetaSchema,useReloadFlag } from '@formlogic/render';
+import { useNavigate } from 'react-router-dom';
 
 import getLogicConfig from '@/low-code-meta/logic';
+import { getQueryUrl } from '@/utils/utils';
+import { apiUrl, <%- fileName %>Config, <%- fileNameLower %>Remove } from './service';
 
-import {
-
-apiUrl ,
-<%- fileName %>Config
-} from './service';
 
 const <%- fileName %>List = () => {
 
-return (
-<ListLayout
+const navigate = useNavigate();
+
+const {metaSchema} = useJsonMetaSchema(<%- fileName %>Config.LIST);
+
+const [reloadFlag, refreshReloadFlag] = useReloadFlag();
+
+const handleAddClick = () => {
+navigate(<%- fileName %>Config.CREATE_LINK);
+};
+
+const handleRemoveClick = (index, record) => {
+    const { code } = record || {};
+    <%- fileNameLower %>Remove({ code }).then(() => {
+        refreshReloadFlag();
+    });
+};
+
+const handleEditClick = (index, record) => {
+    const { code, belong } = record || {};
+    navigate(getQueryUrl(<%- fileName %>Config.EDIT_LINK, { code, belong }));
+};
+
+
+return (<ListLayout
         getLogicConfig={getLogicConfig}
-        pageCode={<%- fileName %>Config.LIST}
+        metaSchema={metaSchema}
         action={apiUrl.page}
-/>
-);
+        reloadFlag={reloadFlag}
+
+        events={{
+        onAdd: handleAddClick,
+        onRemove: handleRemoveClick,
+        onEdit: handleEditClick,
+        }}
+
+    />
+    );
 };
 
 export default <%- fileName %>List;

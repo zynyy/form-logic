@@ -1,9 +1,12 @@
-import { FormPageLayout } from '@formlogic/render';
-import { getLocalConfig } from '@formlogic/render/lib/service';
-
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FormPageLayout,useJsonMetaSchema } from '@formlogic/render';
+import getLogicConfig from '@/low-code-meta/logic';
 
-import { <%- fileName %>Config, apiUrl, } from './service'
+import { <%- fileName %>Config, apiUrl, } from './service';
+
+import {validateFormValues,formatFormValues} from './hooks';
+
 
 interface <%- fileName %>CreateProps {
 
@@ -13,7 +16,35 @@ interface <%- fileName %>CreateProps {
 const <%- fileName %>Create:FC<<%- fileName %>CreateProps> = () => {
 
 
-return <FormPageLayout pageCode={<%- fileName %>Config.CREATE} getLogicConfig={getLocalConfig} />
+    const navigate = useNavigate();
+
+    const {metaSchema} = useJsonMetaSchema(<%- fileName %>Config.CREATE);
+
+    const handleBackClick = () => {
+    navigate(-1);
+    };
+
+    const successCallback = () => {
+    handleBackClick();
+    };
+
+
+
+return <FormPageLayout
+            hasGroup
+            metaSchema={metaSchema}
+            getLogicConfig={getLogicConfig}
+            extraLogicParams={{
+            successCallback,
+            action: apiUrl.create,
+            extraParams: {},
+            validateFormValues,formatFormValues
+            }}
+
+            onBackClick={handleBackClick}
+
+
+    />
 
 }
 

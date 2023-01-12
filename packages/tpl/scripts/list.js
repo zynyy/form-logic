@@ -1,18 +1,24 @@
 /* eslint-disable strict */
-const inquirer = require('inquirer');
+import inquirer from 'inquirer';
 
-const { resolve, sep } = require('path');
+import { resolve, sep, dirname } from 'path';
+import { existsSync, readFileSync, readdirSync } from 'fs';
 
-const { existsSync, readFileSync, readdirSync } = require('fs');
-const ejs = require('ejs');
+import { fileURLToPath } from 'url';
 
-const {
-  camelCaseToUppercase,
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+import ejs from 'ejs';
+
+import {
+  LIST_PAGE_ROUTER_DIR,
   hyphenToUpperCamelCase,
   hyphenToLowerCamelCase,
   generateFile,
   loaderRouter,
-} = require('./utils');
+  deleteFile,
+  deleteDir,
+} from './utils';
 
 const prompt = inquirer.prompt;
 
@@ -28,7 +34,6 @@ let isModal = false;
 
 let isDrawer = false;
 
-
 let link = '';
 
 let listModelCode = '';
@@ -42,8 +47,8 @@ const generateService = () => {
     fileNameLower,
     fileName,
     create: `${listModelCode}_C`,
-    detail: `${listModelCode}_D`,
     edit: `${listModelCode}_U`,
+    detail: `${listModelCode}_D`,
     list: `${listModelCode}_L`,
     link,
     listModelCode,
@@ -52,7 +57,7 @@ const generateService = () => {
 
   const content = ejs.render(readFileSync(serviceTempPath, 'utf8'), ejsParams);
 
-  generateFile(`${listPath}/services.ts`, content);
+  generateFile(`${listPath}/service.ts`, content);
 };
 
 const generateEdit = () => {
@@ -60,13 +65,12 @@ const generateEdit = () => {
 
   const ejsParams = {
     fileName,
-    noQueryKeys: isNoQueryKeys,
     fileNameLower,
   };
 
   const content = ejs.render(readFileSync(ejsTempPath, 'utf8'), ejsParams);
 
-  generateFile(`${listPath}/${fileNameLower}Edit.tsx`, content);
+  generateFile(`${listPath}/${fileName}Edit.tsx`, content);
 };
 
 const generateDetail = () => {
@@ -74,13 +78,12 @@ const generateDetail = () => {
 
   const ejsParams = {
     fileName,
-    noQueryKeys: isNoQueryKeys,
     fileNameLower,
   };
 
   const content = ejs.render(readFileSync(ejsTempPath, 'utf8'), ejsParams);
 
-  generateFile(`${listPath}/${fileNameLower}Detail.tsx`, content);
+  generateFile(`${listPath}/${fileName}Detail.tsx`, content);
 };
 
 const generateCreate = () => {
@@ -93,39 +96,20 @@ const generateCreate = () => {
 
   const content = ejs.render(readFileSync(ejsTempPath, 'utf8'), ejsParams);
 
-  generateFile(`${listPath}/${fileNameLower}Create.tsx`, content);
+  generateFile(`${listPath}/${fileName}Create.tsx`, content);
 };
 
 const generateList = () => {
-  const ejsTempPath = isTreeList
-    ? `${__dirname}/pc-list-ejs/treeList.ejs`
-    : `${__dirname}/pc-list-ejs/list.ejs`;
+  const ejsTempPath = `${__dirname}/pc-list-ejs/list.ejs`;
 
   const ejsParams = {
     fileName,
     fileNameLower,
-    isNoModal: isLink,
-    showWay: isModal ? 'modal' : 'drawer',
-    noQueryKeys: isNoQueryKeys,
-    isHist
   };
 
   const content = ejs.render(readFileSync(ejsTempPath, 'utf8'), ejsParams);
 
   generateFile(`${listPath}/index.tsx`, content);
-};
-
-const generateHistoryList = () => {
-  const ejsTempPath = `${__dirname}/pc-list-ejs/hist.ejs`;
-
-  const ejsParams = {
-    fileName,
-    fileNameLower,
-    noQueryKeys: isNoQueryKeys
-  };
-
-  const content = ejs.render(readFileSync(ejsTempPath, 'utf8'), ejsParams);
-  generateFile(`${listPath}/${fileNameLower}Hist.tsx`, content);
 };
 
 const generateHooks = () => {
@@ -143,43 +127,52 @@ const generateHooks = () => {
 
 // 生成 路由相关页面
 const generateRouter = () => {
-  const name = camelCaseToUppercase(fileName);
+  const ejsTempPath = `${__dirname}/tpl/router.ejs`;
 
-  const addRouter = [
+  const routes = [
     {
       path: `${urlPath}`,
-      name: `${fileName}List`,
-      component: `.${urlPath}`,
+      elementPath: `@/pages/${urlPath}`,
     },
   ];
+
   if (isLink) {
-    addRouter.push(
+    routes.push(
       {
         path: `${urlPath}/create`,
-        name: `${fileName}Create`,
-        component: `.${urlPath}/${fileNameLower}Create`,
+        elementPath: `@/pages${urlPath}/${fileName}Create`,
       },
       {
         path: `${urlPath}/edit`,
-        name: `${fileName}Edit`,
-        component: `.${urlPath}/${fileNameLower}Edit`,
+        elementPath: `@/pages${urlPath}/${fileName}Edit`,
       },
       {
         path: `${urlPath}/detail`,
-        name: `${fileName}Detail`,
-        component: `.${urlPath}/${fileNameLower}Detail`,
-      }
+        elementPath: `@/pages${urlPath}/${fileName}Detail`,
+      },
     );
   }
 
-  const content = `
-    const ${name} = ${JSON.stringify(addRouter)};
-    export default ${name}
-  `;
+  const ejsParams = {
+    fileName,
+    routes,
+  };
+
+  const content = ejs.render(readFileSync(ejsTempPath, 'utf8'), ejsParams);
+
   generateFile(`${LIST_PAGE_ROUTER_DIR}/${fileNameLower}.ts`, content, () => {
     loaderRouter(LIST_PAGE_ROUTER_DIR);
     console.log(`文件路径: ${listPath} 按照生成规则。已生成相关文件成功`);
   });
+};
+
+const removeFiles = () => {
+  deleteFile(`${LIST_PAGE_ROUTER_DIR}/${fileNameLower}.ts`, () => {
+    loaderRouter(LIST_PAGE_ROUTER_DIR);
+    console.log(`文件路径: ${listPath} 按照删除规则。已删除相关文件成功`);
+  });
+
+  deleteDir(listPath);
 };
 
 const generateFiles = () => {
@@ -194,19 +187,17 @@ const generateFiles = () => {
   }
 
   generateList();
-  if(isHist){
-    generateHistoryList()
-  }
+
   generateRouter();
 };
 
-const inputPath = () => {
+export const genList = () => {
   prompt([
     {
       type: 'input',
       name: 'path',
       message: '文件夹路径',
-      validate: val => {
+      validate: (val) => {
         if (val) {
           const path = val.startsWith('/') ? val : `/${val}`;
 
@@ -230,7 +221,7 @@ const inputPath = () => {
       name: 'mode',
       message: '请选择列表模式',
       choices: ['跳转 Link', '抽屉 Drawer', '弹窗 Modal', '树形 TreeList'],
-      validate: val => {
+      validate: (val) => {
         if (val) {
           return true;
         }
@@ -241,14 +232,14 @@ const inputPath = () => {
       type: 'input',
       name: 'modelCode',
       message: '列表模型编码',
-      validate: val => {
+      validate: (val) => {
         if (val) {
           return true;
         }
         return '请输入模型编码';
       },
     },
-  ]).then(answers => {
+  ]).then((answers) => {
     const { path, mode, modelCode } = answers;
 
     urlPath = path.startsWith('/') ? path : `/${path}`;
@@ -271,4 +262,51 @@ const inputPath = () => {
   });
 };
 
-inputPath();
+export const removeList = () => {
+  prompt([
+    {
+      type: 'input',
+      name: 'path',
+      message: '文件夹路径',
+      validate: (val) => {
+        if (val) {
+          const path = val.startsWith('/') ? val : `/${val}`;
+
+          const fullPath = resolve(`./src/pages${path}`);
+
+          let files = [];
+
+          if (existsSync(fullPath)) {
+            files = readdirSync(fullPath);
+          }
+
+          return files.length
+            ? true
+            : `文件夹: /src/pages${path} 按照生成规则。该目录不存在无法删除`;
+        }
+        return '请输入文件夹路径';
+      },
+    },
+    {
+      type: 'confirm',
+      name: 'clear',
+      message: `是否确定删除`,
+      default: false,
+    },
+  ]).then((answers) => {
+    const { path, clear } = answers;
+
+    urlPath = path.startsWith('/') ? path : `/${path}`;
+
+    listPath = resolve(`./src/pages${urlPath}`);
+
+    const lastFile = listPath.split(sep).pop();
+
+    fileName = hyphenToUpperCamelCase(lastFile);
+    fileNameLower = hyphenToLowerCamelCase(fileName);
+
+    if (clear) {
+      removeFiles();
+    }
+  });
+};
