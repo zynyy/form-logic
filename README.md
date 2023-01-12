@@ -46,6 +46,7 @@ formlogic 是面向前端开发者的工具，核心解决的是页面、逻辑�
 // low-code-logic
 // ├── example // 使用案例
 // ├── packages // 核心包
+//       ├── component  // 组件包
 //       ├── editor  // 逻辑编排编辑器
 //       ├── render  // 页面布局渲染
 //       ├── server  // 本地开发需要的服务用来生成和更改文件
