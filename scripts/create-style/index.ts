@@ -6,7 +6,7 @@ const { exec } = require('child_process');
 
 const styleSuffix = ['css', 'less'];
 
-export const createStyle = () => {
+export const createStyle = (extraStyle?: string) => {
   const cwd = process.cwd();
 
   const paths = [];
@@ -26,6 +26,7 @@ export const createStyle = () => {
           fs.writeFile(
             filename,
             `// auto generated code
+            ${extraStyle || ""}
       ${paths
         .map((path) => {
           return `import '${path}'\n`;

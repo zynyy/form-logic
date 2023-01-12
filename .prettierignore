@@ -4,3 +4,5 @@
 **/*.html
 package.json
 /node_modules
+
+api-extractor.json

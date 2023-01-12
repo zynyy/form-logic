@@ -10,6 +10,7 @@
   },
   "scripts": {
     "rmBuildDir": "rimraf -rf lib esm dist",
+    "build:link": "pnpm run rmBuildDir && pnpm run create:style  && pnpm run build:esm && pnpm run build:style",
     "build": "pnpm run rmBuildDir && pnpm run create:style && pnpm run build:cjs && pnpm run build:umd && pnpm run build:esm && pnpm run build:style",
     "create:style": "ts-node --project tsconfig.cjs.json ./create-style",
     "build:style": "ts-node  --project tsconfig.cjs.json ./build-style",

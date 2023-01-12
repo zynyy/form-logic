@@ -7,6 +7,7 @@ formlogic 是面向前端开发者的工具，核心解决的是页面、逻辑�
 
 ## 每个包说明
 
+1. `@formlogic/component` 组件包
 1. `@formlogic/render` 渲染层通过定义的 `meta schema` 解析渲染以及执行页面逻辑
 1. `@formlogic/editor` 编辑器可视化逻辑编排
 1. `@formlogic/server` 服务开发需要启动服务生成文件

@@ -2,3 +2,5 @@
 /build
 
 /src/serviceWorker.js
+
+api-extractor.json
