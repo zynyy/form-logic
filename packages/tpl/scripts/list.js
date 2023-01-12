@@ -256,7 +256,7 @@ export const genList = () => {
     link = path.split(sep).join('/');
 
     fileName = hyphenToUpperCamelCase(lastFile);
-    fileNameLower = hyphenToLowerCamelCase(fileName);
+    fileNameLower = hyphenToLowerCamelCase(lastFile);
 
     generateFiles();
   });
@@ -303,7 +303,7 @@ export const removeList = () => {
     const lastFile = listPath.split(sep).pop();
 
     fileName = hyphenToUpperCamelCase(lastFile);
-    fileNameLower = hyphenToLowerCamelCase(fileName);
+    fileNameLower = hyphenToLowerCamelCase(lastFile);
 
     if (clear) {
       removeFiles();
