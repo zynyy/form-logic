@@ -1,11 +1,10 @@
-import {FC} from "react";
-import {Button} from "antd";
+import { FC } from 'react';
+import { Button } from 'antd';
 
-import {Graph} from "@antv/x6";
-import {CodeOutlined} from "@ant-design/icons";
+import { Graph } from '@antv/x6';
+import { CodeOutlined } from '@ant-design/icons';
 
-import {compileCode, downloadZip} from "@/utils";
-
+import { compileCode, downloadZip } from '@/utils';
 
 interface ExportCodeProps {
   graph: Graph;
@@ -16,13 +15,13 @@ const ExportCode: FC<ExportCodeProps> = ({ graph }) => {
     const dsl = graph.toJSON();
     const nodes = graph.getNodes();
 
-    const output = compileCode(dsl,nodes);
+    const output = compileCode(dsl, nodes);
 
-    downloadZip(output, "");
+    downloadZip(output, '');
   };
 
   return (
-    <Button onClick={handleClick} icon={<CodeOutlined />}>
+    <Button onClick={handleClick} icon={<CodeOutlined />} type="text">
       下载代码
     </Button>
   );

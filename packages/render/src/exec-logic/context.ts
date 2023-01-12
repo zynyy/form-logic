@@ -11,8 +11,8 @@ class LogicContext {
   private currentNode = null;
   private prevNode = null;
   private nextNodes = [];
-  private context = {};
   private payload = {};
+  private execInfo = {};
   private lastResult;
 
   constructor(opts: LogicContextOptions) {
@@ -20,10 +20,10 @@ class LogicContext {
   }
 
   init = (opts) => {
-    const { payload } = opts;
+    const { payload, execInfo } = opts;
     this.currentNode = null;
-    this.context = {};
     this.payload = Object.freeze(payload);
+    this.execInfo = Object.freeze(execInfo);
   };
 
   setLastResult = (lastResult) => {
@@ -58,21 +58,12 @@ class LogicContext {
     return this.nextNodes;
   };
 
-  getContext = () => {
-    return this.context;
-  };
-
-  setContext = (data) => {
-    Object.keys(data || {}).forEach((key) => {
-      this.context[key] = data[key];
-    });
-  };
-
   funcCtx = () => {
     return Object.freeze({
+      currentNode: this.currentNode,
       lastResult: this.lastResult,
       payload: this.payload,
-      currentNode: this.currentNode,
+      execInfo: this.execInfo,
     });
   };
 }

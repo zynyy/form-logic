@@ -1,12 +1,7 @@
-import { usePrefixCls } from '@/components/hooks';
 import style from '../style';
 
-import { UseStyleReturnType } from '@/interface';
+import { useComponentStyle } from '@formlogic/component';
 
-export const useFormTabsGroupStyle = (): UseStyleReturnType => {
-  const prefixCls = usePrefixCls("formily-form-tabs-group");
-
-  const [warpSSR, hashId] = style(prefixCls);
-
-  return [warpSSR, hashId, prefixCls];
+export const useFormTabsGroupStyle = () => {
+  return useComponentStyle('form-tabs-group', style);
 };

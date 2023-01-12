@@ -1,14 +1,15 @@
-import { Breadcrumb, Layout } from '@formlogic/render';
+import { Breadcrumb, Layout } from 'antd';
 
 import GlobalHeader from './header/global-header';
 import LeftNav from './sider/left-nav';
-import { FC, PropsWithChildren } from 'react';
+import { FC, PropsWithChildren, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import PageHeader from '@/components/page-header';
 
 const { Content, Header } = Layout;
 
 import './style/index.css';
+import useVisualHeight from '@/layouts/useVisualHeight';
 
 const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
   const location = useLocation();
@@ -18,6 +19,8 @@ const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
     const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
     return <Breadcrumb.Item key={url}>占位</Breadcrumb.Item>;
   });
+
+  const height = useVisualHeight();
 
   return (
     <Layout
@@ -34,8 +37,12 @@ const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
         <Layout>
           <Content className="page-container">
             <PageHeader breadcrumb={<Breadcrumb>{breadcrumbItems}</Breadcrumb>} />
-
-            <div>
+            <div
+              style={{
+                height,
+              }}
+              className="page-content-wrap"
+            >
               <Outlet />
             </div>
           </Content>

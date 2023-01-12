@@ -1,20 +1,11 @@
 import { FC, PropsWithChildren } from 'react';
-import { Button, ButtonProps, Upload, UploadProps, Popconfirm } from 'antd';
-import {
-  DeleteOutlined,
-  DownOutlined,
-  UpOutlined,
-  PlusOutlined,
-  CopyOutlined,
-  EditOutlined,
-  UploadOutlined,
-  DragOutlined,
-} from '@ant-design/icons';
+
 import { ArrayField } from '@formily/core';
-import { useField, useFieldSchema } from '@formily/react';
+import { useField, useFieldSchema, observer } from '@formily/react';
 
 import cls from 'classnames';
-import BtnTooltipIcon from '@/components/btn-tooltip-icon';
+
+import lodashOmit from 'lodash.omit';
 
 import {
   ArrayBaseContext,
@@ -27,70 +18,88 @@ import {
   useArrayIndex,
   useArrayItemRecord,
 } from '@/components/array-base/hooks';
-import { SortableHandle } from '@/components/drag-sort';
-import { clone, uid } from '@formily/shared';
+import {
+  SortableHandle,
+  CustomButtonMode,
+  PlusButton,
+  UpButton,
+  DownButton,
+  EditButton,
+  RemoveButton,
+  DetailButton,
+  UploadButton,
+  CustomButtonProps,
+  UploadButtonProps,
+  CopyButton,
+  CopyButtonProps,
+  RemoveButtonProps,
+  DownButtonProps,
+  UpButtonProps,
+  EditButtonProps,
+  DetailButtonProps,
+} from '@formlogic/component';
+import { clone } from '@formily/shared';
 
-export interface ArrayAdditionProps extends PropsWithChildren, ButtonProps {
+const OmitKey = ['extraParams'];
+
+export interface ArrayAdditionProps extends PropsWithChildren, CustomButtonProps {
   onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
 }
 
-export interface ArrayUploadProps extends PropsWithChildren, UploadProps {
+export interface ArrayUploadProps extends UploadButtonProps {
   onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
+  value?: any;
 }
 
-export interface ArrayCopyProps extends PropsWithChildren, ButtonProps {
+export interface ArrayCopyProps extends CopyButtonProps {
   onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
 }
 
-export interface ArrayRemoveProps extends PropsWithChildren, ButtonProps {
+export interface ArrayRemoveProps extends RemoveButtonProps {
   onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
 }
 
-export interface ArrayMoveUpProps extends PropsWithChildren, ButtonProps {
+export interface ArrayMoveUpProps extends UpButtonProps {
   onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
 }
 
-export interface ArrayMoveDownProps extends PropsWithChildren, ButtonProps {
+export interface ArrayMoveDownProps extends DownButtonProps {
   onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
 }
 
-export interface ArrayEditProps extends PropsWithChildren, ButtonProps {
+export interface ArrayEditProps extends EditButtonProps {
   onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
 }
 
-export interface ArraySortHandleProps extends PropsWithChildren, ButtonProps {
+export interface ArrayDetailProps extends DetailButtonProps {
   onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
 }
 
-export interface ArrayPreviewTextProps extends PropsWithChildren, ButtonProps {
-  colName?: string;
-}
+export interface ArraySortHandleProps extends PropsWithChildren {}
+
+export interface ArrayBaseIndexProps extends PropsWithChildren {}
 
 export interface ArrayBaseItemProps extends PropsWithChildren, ArrayItemValueContext {}
 
-export type ArrayBaseMixins = {
-  Addition?: FC<ArrayAdditionProps>;
-  Upload?: FC<ArrayUploadProps>;
-  Copy?: FC<ArrayCopyProps>;
-  Remove?: FC<ArrayRemoveProps>;
-  MoveUp?: FC<ArrayMoveUpProps>;
-  Edit?: FC<ArrayEditProps>;
-  MoveDown?: FC<ArrayMoveDownProps>;
-  SortHandle?: FC<ArraySortHandleProps>;
-  PreviewText?: FC<ArrayPreviewTextProps>;
-  Index?: FC;
-};
-
-export interface ArrayBaseProps {
+export interface ArrayBaseProps extends PropsWithChildren {
   onAdd?: () => void;
   onEdit?: (index: number, record: any) => void;
   onRemove?: (index: number, record: any) => void;
   onCopy?: (index: number, record: any) => void;
   onMoveDown?: (index: number, record: any) => void;
   onMoveUp?: (index: number, record: any) => void;
+  onDetail?: (index: number, record: any) => void;
 }
 
-const InternalArrayBase = ({ children, ...restProps }) => {
+const InternalArrayBase: FC<ArrayBaseProps> = ({ children, ...restProps }) => {
   const field = useField<ArrayField>();
   const schema = useFieldSchema();
 
@@ -105,17 +114,17 @@ const ArrayBaseItem: FC<ArrayBaseItemProps> = ({ children, ...props }) => {
   return <ArrayItemContext.Provider value={props}>{children}</ArrayItemContext.Provider>;
 };
 
-const ArrayBaseIndex = (props) => {
+const ArrayBaseIndex: FC<ArrayBaseIndexProps> = observer((props) => {
   const index = useArrayIndex();
 
   const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   return warpSSR(
     <span {...props} className={cls(`${prefixCls}-index`, hashId)}>
-      #{index + 1}.
+      #{index + 1}
     </span>,
   );
-};
+});
 
 const PreviewText = ({ value, className, colName }) => {
   const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
@@ -127,34 +136,79 @@ const PreviewText = ({ value, className, colName }) => {
   return warpSSR(<div className={cls(`${prefixCls}-text`, className, hashId)}>{val}</div>);
 };
 
-const SortHandleIcon = SortableHandle(({ className, style, ...restProps }) => {
-  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
-
-  return warpSSR(
-    <DragOutlined
-      {...restProps}
-      className={cls(`${prefixCls}-sort-handle`, hashId, className)}
-      style={style}
-    />,
-  );
-});
-
-const SortHandle = (props) => {
+const SortHandle: FC<ArraySortHandleProps> = observer((props) => {
   const array = useArrayContext();
   if (!array || !['editable'].includes(array.field?.pattern)) {
     return null;
   }
-  return <SortHandleIcon {...props} />;
-};
 
-const AdditionButton = ({ className, onClick, onLogicClick, ...restProps }) => {
+  const dragProps = lodashOmit(props, OmitKey);
+
+  return <SortableHandle {...dragProps} />;
+});
+
+const AdditionButton: FC<ArrayAdditionProps> = observer(
+  ({ className, onClick, onLogicClick, ...restProps }) => {
+    const field = useField();
+    const array = useArrayContext();
+
+    const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
+
+    const handleClick = (e) => {
+      e.stopPropagation();
+      if (field.disabled) {
+        return;
+      }
+
+      if (onLogicClick) {
+        onLogicClick(field);
+        return;
+      }
+
+      if (onClick) {
+        onClick(field, field.form);
+        return;
+      }
+
+      if (array?.props?.onAdd) {
+        array.props.onAdd();
+        return;
+      }
+
+      array.field?.push?.({});
+    };
+
+    if (!array || !['editable', 'disabled'].includes(array.field?.pattern)) {
+      return null;
+    }
+
+    const btnProps = lodashOmit(restProps, OmitKey);
+
+    return warpSSR(
+      <PlusButton
+        type="primary"
+        block
+        {...btnProps}
+        disabled={field?.disabled}
+        className={cls(`${prefixCls}-addition`, hashId, className)}
+        onClick={handleClick}
+        title={field.title}
+      />,
+    );
+  },
+);
+
+export const Detail: FC<ArrayDetailProps> = observer(({ onLogicClick, className, onClick }) => {
   const field = useField();
   const array = useArrayContext();
+  const index = useArrayIndex();
+  const record = useArrayItemRecord();
 
   const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   const handleClick = (e) => {
     e.stopPropagation();
+
     if (field.disabled) {
       return;
     }
@@ -165,40 +219,33 @@ const AdditionButton = ({ className, onClick, onLogicClick, ...restProps }) => {
     }
 
     if (onClick) {
-      onClick(e);
+      onClick(index, record, field, field.form);
       return;
     }
 
-    if (array?.props?.onAdd) {
-      array.props.onAdd();
+    if (array.props?.onDetail) {
+      array.props.onDetail?.(index, record);
       return;
     }
-
-    array.field?.push?.({
-      uid: uid(8)
-    });
   };
 
-  if (!array || !['editable', 'disabled'].includes(array.field?.pattern)) {
+  if (!array) {
     return null;
   }
 
   return warpSSR(
-    <Button
-      type="primary"
-      block
-      {...restProps}
-      disabled={field?.disabled}
-      className={cls(`${prefixCls}-addition`, hashId, className)}
+    <DetailButton
+      hasTooltip
+      mode={CustomButtonMode.icon}
+      disabled={field.disabled}
+      title={field.title}
+      className={cls(`${prefixCls}-detail`, className, hashId)}
       onClick={handleClick}
-      icon={<PlusOutlined />}
-    >
-      {field.title}
-    </Button>,
+    />,
   );
-};
+});
 
-const RemoveButton = ({ className, onClick, onLogicClick }) => {
+const Remove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogicClick }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
   const field = useField();
@@ -217,7 +264,7 @@ const RemoveButton = ({ className, onClick, onLogicClick }) => {
     }
 
     if (onClick) {
-      onClick(e);
+      onClick(index, record, field, field.form);
       return;
     }
 
@@ -234,20 +281,21 @@ const RemoveButton = ({ className, onClick, onLogicClick }) => {
   }
 
   return warpSSR(
-    <BtnTooltipIcon
-      icon={<DeleteOutlined />}
-      tooltip={field.title}
+    <RemoveButton
+      hasPopConfirm
+      hasTooltip
+      mode={CustomButtonMode.icon}
       disabled={field.disabled}
-      className={cls(className, hashId, {
-        [`${prefixCls}-remove-disabled`]: field?.disabled,
-        [`${prefixCls}-remove`]: true,
-      })}
+      title={field.title}
       onClick={handleClick}
-    />
+      className={cls(className, hashId, `${prefixCls}-remove`, {
+        [`${prefixCls}-remove-disabled`]: field?.disabled,
+      })}
+    />,
   );
-};
+});
 
-const EditButton = ({ onClick, className, onLogicClick }) => {
+const Edit: FC<ArrayEditProps> = observer(({ onClick, className, onLogicClick }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
   const field = useField();
@@ -267,7 +315,7 @@ const EditButton = ({ onClick, className, onLogicClick }) => {
     }
 
     if (onClick) {
-      onClick(e);
+      onClick(index, record, field, field.form);
       return;
     }
 
@@ -279,22 +327,19 @@ const EditButton = ({ onClick, className, onLogicClick }) => {
   }
 
   return warpSSR(
-    <BtnTooltipIcon
-      icon={<EditOutlined />}
-      tooltip={field.title}
+    <EditButton
+      hasTooltip
+      title={field.title}
       disabled={field.disabled}
-      className={cls(
-        `${prefixCls}-edit`,
-        field?.disabled ? `${prefixCls}-edit-disabled` : '',
-        className,
-        hashId,
-      )}
+      className={cls(className, hashId, `${prefixCls}-edit`, {
+        [`${prefixCls}-edit-disabled`]: field?.disabled,
+      })}
       onClick={handleClick}
     />,
   );
-};
+});
 
-const UploadButton = ({ className, value, ...restProps }) => {
+const Upload: FC<ArrayUploadProps> = observer(({ className, ...restProps }) => {
   const field = useField();
   const array = useArrayContext();
   const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
@@ -303,18 +348,20 @@ const UploadButton = ({ className, value, ...restProps }) => {
     return null;
   }
 
+  const uploadProps = lodashOmit(restProps, OmitKey.concat('value'));
+
   return warpSSR(
-    <Upload
-      {...restProps}
+    <UploadButton
+      {...uploadProps}
       className={cls(`${prefixCls}-upload`, hashId, className)}
       showUploadList={false}
     >
-      <Button icon={<UploadOutlined />}> {field.title}</Button>
-    </Upload>,
+      {field.title}
+    </UploadButton>,
   );
-};
+});
 
-const CopyButton = ({ className, onClick, onLogicClick }) => {
+const Copy: FC<ArrayCopyProps> = observer(({ className, onClick, onLogicClick }) => {
   const field = useField();
   const array = useArrayContext();
   const index = useArrayIndex();
@@ -335,7 +382,7 @@ const CopyButton = ({ className, onClick, onLogicClick }) => {
     }
 
     if (onClick) {
-      onClick(e);
+      onClick(index, record, field, field.form);
       return;
     }
 
@@ -354,19 +401,20 @@ const CopyButton = ({ className, onClick, onLogicClick }) => {
   }
 
   return warpSSR(
-    <BtnTooltipIcon
+    <CopyButton
+      hasTooltip
+      hasCopyToClipboard={false}
       className={cls(`${prefixCls}-copy`, className, hashId, {
         [`${prefixCls}-copy-disabled`]: field?.disabled,
       })}
       disabled={field.disabled}
-      tooltip={field.title}
-      icon={<CopyOutlined />}
+      title={field.title}
       onClick={handleClick}
     />,
   );
-};
+});
 
-const MoveDownButton = ({ className, onClick, onLogicClick }) => {
+const MoveDownButton: FC<ArrayMoveDownProps> = observer(({ className, onClick, onLogicClick }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
   const field = useField();
@@ -386,7 +434,7 @@ const MoveDownButton = ({ className, onClick, onLogicClick }) => {
     }
 
     if (onClick) {
-      onClick(e);
+      onClick(index, record, field, field.form);
       return;
     }
 
@@ -403,19 +451,20 @@ const MoveDownButton = ({ className, onClick, onLogicClick }) => {
   }
 
   return warpSSR(
-    <BtnTooltipIcon
+    <DownButton
+      hasTooltip
+      mode={CustomButtonMode.icon}
       className={cls(`${prefixCls}-move-down`, className, hashId, {
         [`${prefixCls}-move-down-disabled`]: field?.disabled,
       })}
       disabled={field.disabled}
-      tooltip={field.title}
-      icon={<DownOutlined />}
+      title={field.title}
       onClick={handleClick}
     />,
   );
-};
+});
 
-const MoveUpButton = ({ onClick, className, onLogicClick }) => {
+const MoveUpButton: FC<ArrayMoveUpProps> = observer(({ onClick, className, onLogicClick }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
   const field = useField();
@@ -435,7 +484,7 @@ const MoveUpButton = ({ onClick, className, onLogicClick }) => {
     }
 
     if (onClick) {
-      onClick(e);
+      onClick(index, record, field, field.form);
       return;
     }
 
@@ -447,27 +496,29 @@ const MoveUpButton = ({ onClick, className, onLogicClick }) => {
   }
 
   return warpSSR(
-    <BtnTooltipIcon
+    <UpButton
+      hasTooltip
+      mode={CustomButtonMode.icon}
       className={cls(className, hashId, `${prefixCls}-move-up`, {
         [`${prefixCls}-move-up-disabled`]: field?.disabled,
       })}
-      tooltip={field.title}
+      title={field.title}
       disabled={field.disabled}
-      icon={<UpOutlined />}
       onClick={handleClick}
     />,
   );
-};
+});
 
 const ArrayBase = Object.assign(InternalArrayBase, {
   Item: ArrayBaseItem,
   Index: ArrayBaseIndex,
   SortHandle,
   Addition: AdditionButton,
-  Edit: EditButton,
-  Upload: UploadButton,
-  Copy: CopyButton,
-  Remove: RemoveButton,
+  Edit,
+  Detail,
+  Upload,
+  Copy,
+  Remove,
   MoveDown: MoveDownButton,
   MoveUp: MoveUpButton,
   useArray: useArrayContext,

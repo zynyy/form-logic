@@ -26,6 +26,7 @@ export type TokenWithCommonCls<T> = T & {
   iconCls: string;
   /** Wrap ant prefixCls class with `.` prefix */
   antCls: string;
+  formLogicCls: string
 };
 
 export type GenerateStyle<

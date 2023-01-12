@@ -7,7 +7,7 @@ import cls from 'classnames';
 import Portal from '@rc-component/portal';
 
 import { DragOutlined } from '@ant-design/icons';
-import { useDomHover } from '@/hooks';
+import { useDOMHover } from '@/hooks';
 
 export interface ModalRenderProps {
   hasDrag?: boolean;
@@ -23,7 +23,7 @@ const ModalRender: FC<ModalRenderProps> = ({ hasDrag, dragClassName, modal }) =>
 
   const [draggableDisabled, setDraggableDisabled] = useState(false);
 
-  const [hover, domHoverRef] = useDomHover();
+  const [hover, domHoverRef] = useDOMHover();
 
   const [portalContainer, setPortalContainer] = useState(null);
 

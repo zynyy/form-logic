@@ -1,0 +1,87 @@
+{
+  "code": "com_getComponentConfig",
+  "cells": [
+    {
+      "id": "edge-v9dohjkw",
+      "shape": "edge",
+      "target": { "cell": "end-sl5z6gn2", "port": "a1a42457-a54f-4f4f-b82b-01cde8382531" },
+      "source": { "cell": "data-gmiee8t4", "port": "9d91c7fd-fcad-4e06-9ea7-5bafeb619a06" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "yesEdge-u07z98es",
+      "shape": "edge",
+      "target": { "cell": "data-gmiee8t4", "port": "7d7861cc-8377-45b2-bca8-150b5ed622b6" },
+      "source": { "cell": "yn-k35opqoo", "port": "631a14af-6769-415c-9d85-ca3740146f4b" },
+      "data": { "configValues": { "label": "是", "value": "YES" } }
+    },
+    {
+      "id": "noEdge-5wc3x8wp",
+      "shape": "edge",
+      "target": { "cell": "end-sl5z6gn2", "port": "a1a42457-a54f-4f4f-b82b-01cde8382531" },
+      "source": { "cell": "yn-k35opqoo", "port": "c2911c18-db09-4585-aa5f-c46ca188a531" },
+      "data": { "configValues": { "label": "否", "value": "NO" } }
+    },
+    {
+      "id": "edge-a2oh22sd",
+      "shape": "edge",
+      "target": { "cell": "fn-h0n7pr7b", "port": "cdd9ff6b-b856-4708-80ae-9e98cf812827" },
+      "source": { "cell": "start-c95wp9e8", "port": "443d9226-557b-47bf-8e60-0aecde6c22a7" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-504cq27a",
+      "shape": "edge",
+      "target": { "cell": "yn-k35opqoo", "port": "3d380cbd-c823-47a4-b8fa-8f6796628e2b" },
+      "source": { "cell": "fn-h0n7pr7b", "port": "2f3c825a-5ce4-44ef-9d49-0141f34d18d1" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-c95wp9e8",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" }
+    },
+    {
+      "id": "end-sl5z6gn2",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" }
+    },
+    {
+      "id": "data-gmiee8t4",
+      "shape": "custom-polygon",
+      "data": {
+        "settingConfig": "data-config",
+        "configValues": { "label": "数据" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "dataTemplateCode"
+      }
+    },
+    {
+      "id": "yn-k35opqoo",
+      "shape": "custom-polygon",
+      "data": {
+        "settingConfig": "yesOrNo-config",
+        "codeEditor": true,
+        "configValues": { "label": "判断" },
+        "validateRules": { "inOut": true },
+        "createEdgeConfig": {
+          "rightOut": { "portEdge": "createNoEdge" },
+          "leftOut": { "portEdge": "createYesEdge" }
+        },
+        "templateCode": "yesOrNoTemplate"
+      }
+    },
+    {
+      "id": "fn-h0n7pr7b",
+      "shape": "custom-rect",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      }
+    }
+  ]
+}

@@ -5,18 +5,17 @@ import { observer, useField } from '@formily/react';
 import { ArrayField } from '@formily/core';
 import ArrayTableBase, { ArrayTableBaseProps } from '@/components/array-table-base';
 
-interface ArrayTable extends ArrayTableBaseProps {}
+export interface ArrayTableProps extends ArrayTableBaseProps {}
 
-export const ArrayTable: FC<ArrayTable> = observer((props) => {
+const ArrayTable: FC<ArrayTableProps> = observer((props) => {
   const field = useField<ArrayField>();
 
-  const handleRemove = (record, index) => {
-    field.remove(index);
+  const handleRemove = (index) => {
+    field.remove(index).then(() => void 0);
   };
 
   const handleAdd = () => {
-
-    field.push({});
+    field.push({}).then(() => void 0);
   };
 
   return <ArrayTableBase {...props} onRemove={handleRemove} onAdd={handleAdd} />;

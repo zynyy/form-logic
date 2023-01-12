@@ -1,15 +1,16 @@
 import { CheckOutlined } from '@ant-design/icons';
-import { Button, ButtonProps } from 'antd';
-import { FC } from 'react';
 
-export interface ConfirmButtonProps extends ButtonProps {}
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
 
-const ConfirmButton: FC<ConfirmButtonProps> = ({ children, ...props }) => {
+export interface ConfirmButtonProps extends Omit<CustomButtonProps, 'icon'> {}
+
+const ConfirmButton: FC<ConfirmButtonProps> = forwardRef(({ children, ...props }, ref) => {
   return (
-    <Button type="primary" {...props} icon={<CheckOutlined />}>
-      {children || '确定'}
-    </Button>
+    <CustomButton title="确定" type="primary" {...props} icon={<CheckOutlined />} ref={ref}>
+      {children}
+    </CustomButton>
   );
-};
+});
 
 export default ConfirmButton;

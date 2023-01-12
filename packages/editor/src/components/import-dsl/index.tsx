@@ -34,7 +34,7 @@ const ImportDSL: FC<ImportDSLProps> = ({ graph }) => {
 
   return (
     <Upload accept={'.json'} disabled={disabled} showUploadList={false} beforeUpload={beforeUpload}>
-      <Button icon={<ExportOutlined />}>导入DSL</Button>
+      <Button icon={<ExportOutlined />} type="text">导入DSL</Button>
     </Upload>
   );
 };

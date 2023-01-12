@@ -1,4 +1,4 @@
-import { MonacoEditorLoaderPaths } from '@/interface';
+
 
 export const ECMA_STRING_TAG = {
   error: '[object Error]', // 381
@@ -9,13 +9,3 @@ export const ECMA_STRING_TAG = {
 };
 
 export const MONACO_EDITOR_PATHS_VS = 'https://cdn.staticfile.org/monaco-editor/0.34.1/min/vs';
-
-export const DEFAULT_LOADER_CONFIG = {
-  paths: {
-    vs: MONACO_EDITOR_PATHS_VS,
-  },
-};
-
-export const setMonacoEditorLoaderPath = (loaderPath: MonacoEditorLoaderPaths) => {
-  DEFAULT_LOADER_CONFIG.paths = loaderPath;
-};

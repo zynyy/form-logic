@@ -1,13 +1,27 @@
 import DrawerForm from './index';
-import { useFormSchema } from '@/hooks';
-import { useRef, useState } from 'react';
+import { useJsonMetaSchema, useOpen } from '@/hooks';
+import { useEffect, useState } from 'react';
 import { TransformsSchemaOptions } from '@/transforms';
-import { Form, IFormProps } from '@formily/core';
+import { IFormProps } from '@formily/core';
 
-import User_C from '../low-code-meta/model-page/user/User_C.json';
-import User_Group_C from '../low-code-meta/model-page/user/User_Group_C.json';
-import User_ArrayTable_C from '../low-code-meta/model-page/user/User_ArrayTable_C.json';
-import User_Tabs_C from '../low-code-meta/model-page/user/User_Tabs_C.json';
+import { Button } from 'antd';
+import { SchemaTypeSelect } from '@/components/constant-component';
+import {
+  EffectHookSelect,
+  FieldTypeSelect,
+  GroupModeSelect,
+  RequestMethodSelect,
+  YesNoRadio,
+} from '@/components/constant-component';
+import getLogicConfig from '@/low-code-meta/logic';
+import ArrayDrawerTable from '@/components/array-drawer-table';
+import FormPageLayout from '@/form-page-layout';
+
+import JsonPopover from '@/components/json-popover';
+
+import { requestGet } from '@/utils/request';
+
+import ModelPage_U from '@/low-code-meta/model-page/ModelPage/ModelPage_U.json';
 
 export default {
   /* 👇 The title prop is optional.
@@ -23,75 +37,67 @@ export default {
   },
 };
 
-const Template = ({ hasGroup, schemaMode, metaSchema, ...args }) => {
-  const [options] = useState<TransformsSchemaOptions>(() => {
-    return {
-      metaSchema: metaSchema,
-      hasGroup: hasGroup,
-      schemaMode: schemaMode,
-      buttonsEvent: {},
-      logic: {},
-    };
-  });
+const Template = ({ hasGroup, pattern, code, pageCode, ...args }) => {
+  const [open, show, hidden] = useOpen();
 
-  const [formConfig] = useState<IFormProps>(() => {
-    return {
-      initialValues: {},
-    };
-  });
+  const successCallback = () => {};
+
+  const [loading, setLoading] = useState(false);
+
+  const {metaSchema} = useJsonMetaSchema(pageCode);
+
+  const [formConfig, setFormConfig] = useState<IFormProps>({});
+
+  useEffect(() => {
+    if (code) {
+      setLoading(true);
+
+      requestGet('local-api/model-page/detail', { pageCode: code })
+        .then((res) => {
+          const { data } = res;
+
+          setFormConfig({
+            initialValues: data,
+          });
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }, [code]);
 
   return (
     <>
-      <DrawerForm {...args} options={options} open formConfig={formConfig} />
+      <FormPageLayout
+        loading={loading}
+        hasGroup
+        metaSchema={metaSchema}
+        getLogicConfig={getLogicConfig}
+        components={{
+          ArrayDrawerTable,
+          PageCodeSelect: SchemaTypeSelect,
+          SchemaTypeSelect,
+          FieldTypeSelect,
+          GroupModeSelect,
+          YesNoRadio,
+          RequestMethodSelect,
+          EffectHookSelect,
+          JsonPopover,
+        }}
+        formConfig={formConfig}
+        extraLogicParams={{
+          successCallback,
+          action: '',
+          extraParams: {},
+        }}
+      />
     </>
   );
 };
 
-export const editable = Template.bind({});
+export const basic = Template.bind({});
 
-editable.args = {
-  metaSchema: User_C,
-  schemaMode: 'EDITABLE',
-};
-
-export const disabled = Template.bind({});
-
-disabled.args = {
-  metaSchema: User_C,
-  schemaMode: 'DISABLED',
-};
-
-export const DETAIL = Template.bind({});
-
-DETAIL.args = {
-  metaSchema: User_C,
-  schemaMode: 'DETAIL',
-};
-
-export const noGroup = Template.bind({});
-
-noGroup.args = {
-  metaSchema: User_C,
-  hasGroup: false,
-};
-
-export const group = Template.bind({});
-
-group.args = {
-  metaSchema: User_Group_C,
-  hasGroup: true,
-};
-
-export const arrayTable = Template.bind({});
-
-arrayTable.args = {
-  metaSchema: User_ArrayTable_C,
-  hasGroup: true,
-};
-
-export const tabs = Template.bind({});
-
-tabs.args = {
-  metaSchema: User_Tabs_C,
-  hasGroup: true,
+basic.args = {
+  code: 'ModelPage_Data_C',
+  pageCode: 'ModelPage_U',
 };

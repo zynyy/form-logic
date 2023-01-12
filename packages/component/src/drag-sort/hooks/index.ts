@@ -1,9 +1,17 @@
 import { getDragSortStyle } from '../style';
 import { useComponentStyle } from '@/hooks/useComponentStyle';
 
-export { useSortableItemContext, SortableItemContext } from './context';
+export {
+  useSortableItemContext,
+  SortableItemContext,
 
-export type { SortableItemValueContext } from './context';
+  useSortableBodyContext,
+  SortableBodyContext,
+} from './context';
+
+
+
+export type { SortableItemValueContext,  SortableBodyValueContext } from './context';
 
 export const useDragSortStyle = () => {
   return useComponentStyle('drag-sort', getDragSortStyle);

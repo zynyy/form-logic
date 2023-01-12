@@ -1,13 +1,15 @@
-const fs = require('fs');
+import fs from 'fs';
 
-const axios = require('axios');
+import axios from 'axios';
 
-const md5 = require('md5');
+import md5 from 'md5';
+
 let prevMd5 = {};
+
 const getCode = (path) => {
-  const arrs = path.replace(/\\/g, '/').split('/'); // path.split('/');
-  arrs.shift();
-  return arrs.shift();
+  const arr = path.replace(/\\/g, '/').split('/'); // path.split('/');
+  arr.shift();
+  return arr.shift();
 };
 
 const getCellId = (path) => {
@@ -21,9 +23,6 @@ const sendBackEndUpdate = (url, prams) => {
 };
 
 const watchFile = (filePath, url) => {
-
-
-
   fs.mkdir(filePath, { recursive: true }, (err) => {
     if (err) throw err;
 
@@ -56,4 +55,4 @@ const watchFile = (filePath, url) => {
   });
 };
 
-module.exports = watchFile;
+export default watchFile;

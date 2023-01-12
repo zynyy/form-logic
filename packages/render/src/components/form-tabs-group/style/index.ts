@@ -1,4 +1,4 @@
-import { genStyleHook } from '@/style/styleHook';
+import { genStyleHook } from '@formlogic/component';
 
 export default genStyleHook('form-tabs-group', (token) => {
   const { componentCls, antCls } = token;

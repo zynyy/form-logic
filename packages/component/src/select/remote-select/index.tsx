@@ -28,7 +28,7 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
 
   const [dataSource, setDataSource] = useState<any[]>([]);
 
-  const [prevApi, setPrevApi] = useState<any>(null);
+  const [prevApi, setPrevApi] = useState<any>(apiConfig);
 
   const findRecord = (val: string): undefined | any => {
     return val ? dataSource.find((item) => item.value === val) : undefined;
@@ -79,7 +79,6 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
         const remoteData = getPathValue(res, transformPath(remoteDataPath));
         const newData = remoteData ? transformData(remoteData) : [];
         setDataSource(newData);
-        setPrevApi(apiConfig);
       })
       .catch(() => {
         setLoading(false);
@@ -93,10 +92,21 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
   };
 
   useEffect(() => {
-    if (value && !dataSource.length) {
+    if (!dataSource.length && value) {
       search();
     }
-  }, [dataSource, value]);
+  }, [value, dataSource]);
+
+  useEffect(() => {
+    if (!isEqual(apiConfig, prevApi)) {
+      if (value) {
+        search();
+      } else if (dataSource.length) {
+        setDataSource([]);
+      }
+      setPrevApi(apiConfig);
+    }
+  }, [apiConfig, prevApi, dataSource, value]);
 
   useEffect(() => {
     if (

@@ -1,26 +1,32 @@
-import { useState, useRef, useEffect } from 'react';
-import { useFormLayout } from '../../form-layout/hooks';
+import { useState, useEffect } from 'react';
+import { useFormLayoutContext } from '@/components/form-layout/hooks';
+import { useDOMResizeChange } from '@formlogic/component';
 
 const useOverflow = <Container extends HTMLElement, Content extends HTMLElement>() => {
   const [overflow, setOverflow] = useState(false);
-  const containerRef = useRef<Container>(null);
-  const contentRef = useRef<Content>(null);
-  const layout = useFormLayout();
+
+  const [containerChange, containerRef] = useDOMResizeChange<Container>();
+  const [contentChange, contentRef] = useDOMResizeChange<Content>();
+
+  const layout = useFormLayoutContext();
   const labelCol = JSON.stringify(layout.labelCol);
 
   useEffect(() => {
-    requestAnimationFrame(() => {
-      if (containerRef.current && contentRef.current) {
-        const contentWidth = contentRef.current.getBoundingClientRect().width;
-        const containerWidth = containerRef.current.getBoundingClientRect().width;
-        if (contentWidth && containerWidth && containerWidth < contentWidth) {
-          if (!overflow) setOverflow(true);
-        } else {
-          if (overflow) setOverflow(false);
+    if (contentRef.current && containerRef.current) {
+      const contentWidth = contentRef.current.getBoundingClientRect().width;
+      const containerWidth = containerRef.current.getBoundingClientRect().width;
+
+      if (contentWidth && containerWidth && containerWidth < contentWidth) {
+        if (!overflow) {
+          setOverflow(true);
+        }
+      } else {
+        if (overflow) {
+          setOverflow(false);
         }
       }
-    });
-  }, [labelCol]);
+    }
+  }, [labelCol, containerChange, contentChange]);
 
   return {
     overflow,

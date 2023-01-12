@@ -1,0 +1,37 @@
+.chart-warp {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: 100%;
+}
+
+.chart-loading {
+  height: 100%;
+}
+
+.chart-loading .ant-spin-container {
+  height: 100%;
+}
+
+.chart-body {
+  border-radius: 0;
+  flex-grow: 1;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+
+.chart-body .ant-card-body {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.chart-warp .x6-graph-scroller-content {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-pattern-detail .x6-port {
+  visibility: hidden;
+}

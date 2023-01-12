@@ -1,12 +1,17 @@
-import {Form, Input} from "antd";
+import {Form} from "antd";
 
 import {FC} from "react";
 import {SettingConfigType} from "../interface";
+import { useMode } from '@/hooks';
+
+import {Input} from '@formlogic/component';
 
 export interface ProcessConfigProps extends SettingConfigType {}
 
 const ProcessConfig: FC<ProcessConfigProps> = ({ selected }) => {
   const [form] = Form.useForm();
+
+  const { isDetail } = useMode();
 
   const handleChange = () => {
     if (selected) {
@@ -43,7 +48,7 @@ const ProcessConfig: FC<ProcessConfigProps> = ({ selected }) => {
       initialValues={selected?.data.configValues || {}}
     >
       <Form.Item label="名称" name="label">
-        <Input />
+        <Input readOnly={isDetail} />
       </Form.Item>
     </Form>
   );

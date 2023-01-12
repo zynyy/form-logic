@@ -1,13 +1,14 @@
 import ModalForm from './index';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TransformsSchemaOptions } from '@/transforms';
-import { Form, IFormProps } from '@formily/core';
+import { IFormProps } from '@formily/core';
 
 import User_C from '../low-code-meta/model-page/user/User_C.json';
 import User_Group_C from '../low-code-meta/model-page/user/User_Group_C.json';
 import User_ArrayTable_C from '../low-code-meta/model-page/user/User_ArrayTable_C.json';
 import User_Tabs_C from '../low-code-meta/model-page/user/User_Tabs_C.json';
+import { useOpen } from '@/hooks';
 
 export default {
   /* 👇 The title prop is optional.
@@ -23,19 +24,16 @@ export default {
   },
 };
 
-const Template = ({ hasGroup, schemaMode, metaSchema, ...args }) => {
+const Template = ({ hasGroup, pattern, metaSchema, ...args }) => {
   const [options] = useState<TransformsSchemaOptions>(() => {
     return {
       metaSchema: metaSchema,
       hasGroup: hasGroup,
-      schemaMode: schemaMode,
-      buttonsEvent: {},
-      logic: {},
+      pattern: pattern,
     };
   });
 
-  const [open,setOpen] = useState(false);
-
+  const [open, show, hidden] = useOpen();
 
   const [formConfig] = useState<IFormProps>(() => {
     return {
@@ -45,14 +43,13 @@ const Template = ({ hasGroup, schemaMode, metaSchema, ...args }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      setOpen(true)
-    }, 2000)
-  }, [])
-
+      show();
+    }, 2000);
+  }, []);
 
   return (
     <>
-      <ModalForm {...args} options={options} open={open} formConfig={formConfig} />
+      <ModalForm {...args} options={options} open={open} formConfig={formConfig} onClose={hidden} />
     </>
   );
 };
@@ -61,21 +58,21 @@ export const editable = Template.bind({});
 
 editable.args = {
   metaSchema: User_C,
-  schemaMode: 'EDITABLE',
+  pattern: 'EDITABLE',
 };
 
 export const disabled = Template.bind({});
 
 disabled.args = {
   metaSchema: User_C,
-  schemaMode: 'DISABLED',
+  pattern: 'DISABLED',
 };
 
 export const DETAIL = Template.bind({});
 
 DETAIL.args = {
   metaSchema: User_C,
-  schemaMode: 'DETAIL',
+  pattern: 'DETAIL',
 };
 
 export const noGroup = Template.bind({});

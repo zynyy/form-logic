@@ -1,0 +1,95 @@
+{
+  "code": "Model_Field_L",
+  "name": "模型字段列表",
+  "model": "Model",
+  "group": [
+    {
+      "code": "basicInfo",
+      "name": "基础信息"
+    },
+    {
+      "code": "defaultConfigInfo",
+      "name": "配置信息"
+    }
+  ],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "defaultConfig",
+      "name": "默认配置",
+      "type": "column",
+      "schemaType": "object",
+      "group": "defaultConfigInfo",
+      "pageCode": "Model_Field_DefaultConfig_C",
+      "itemMetaSchema": {
+        "code": "Model_Field_DefaultConfig_C",
+        "name": "模型字段列表",
+        "model": "Model",
+        "group": [],
+        "data": [
+          {
+            "code": "type",
+            "name": "字段类型",
+            "type": "column",
+            "schemaType": "string",
+            "group": "basicInfo"
+          },
+          {
+            "code": "schemaType",
+            "name": "schema类型",
+            "type": "column",
+            "schemaType": "string"
+          },
+          {
+            "code": "required",
+            "name": "是否必填",
+            "type": "column",
+            "schemaType": "string",
+            "wrap": "1"
+          },
+          {
+            "code": "hidden",
+            "name": "是否隐藏",
+            "type": "column",
+            "schemaType": "string"
+          },
+          {
+            "code": "disabled",
+            "name": "是否禁止",
+            "type": "column",
+            "schemaType": "string"
+          },
+          {
+            "code": "component",
+            "name": "组件",
+            "type": "column",
+            "schemaType": "string"
+          },
+          {
+            "code": "componentProps",
+            "name": "组件属性",
+            "type": "column",
+            "schemaType": "string",
+            "colSpan": 3,
+            "labelCol": 2,
+            "wrapperCol": 22,
+            "hiddenName": "1"
+          }
+        ]
+      }
+    }
+  ]
+}

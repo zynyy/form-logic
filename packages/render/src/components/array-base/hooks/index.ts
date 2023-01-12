@@ -1,8 +1,9 @@
 import { useArrayItemContext } from '@/components/array-base/hooks/context';
 
-import { usePrefixCls } from '@/components/hooks';
 import style from '../style';
-import { UseStyleReturnType } from '@/interface';
+
+import { useComponentStyle } from '@formlogic/component';
+import { toJS } from '@formily/reactive';
 
 export const useArrayIndex = () => {
   const ctx = useArrayItemContext();
@@ -11,13 +12,9 @@ export const useArrayIndex = () => {
 
 export const useArrayItemRecord = () => {
   const ctx = useArrayItemContext();
-  return ctx.record || {};
+  return ctx.record ? toJS(ctx.record) : {};
 };
 
-export const useArrayBaseStyle = (): UseStyleReturnType => {
-  const prefixCls = usePrefixCls('formily-array-base');
-
-  const [warpSSR, hashId] = style(prefixCls);
-
-  return [warpSSR, hashId, prefixCls];
+export const useArrayBaseStyle = () => {
+  return useComponentStyle('array-base', style);
 };

@@ -1,7 +1,7 @@
-import { FormLayoutValueContext, useFormLayout } from '@/components/form-layout/hooks';
+import { FormLayoutValueContext, useFormLayoutContext } from '@/components/form-layout/hooks';
 
 const useFormItemLayout = (props: FormLayoutValueContext) => {
-  const layout = useFormLayout();
+  const layout = useFormLayoutContext();
 
   return {
     colon: props.colon ?? layout.colon ?? true,

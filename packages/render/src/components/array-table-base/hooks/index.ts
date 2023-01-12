@@ -1,12 +1,9 @@
-import { usePrefixCls } from '@/components/hooks';
 import style from '../style';
-import { UseStyleReturnType } from '@/interface';
 
+import { useComponentStyle } from '@formlogic/component';
 
-export const useArrayTableBaseStyle = (): UseStyleReturnType => {
-  const prefixCls = usePrefixCls('formily-array-table-base');
+export {SortableContext, useSortableContext} from './context'
 
-  const [warpSSR, hashId] = style(prefixCls);
-
-  return [warpSSR, hashId, prefixCls];
+export const useArrayTableBaseStyle = () => {
+  return useComponentStyle('array-table-base', style);
 };

@@ -1,12 +1,17 @@
-import {Form, Input} from "antd";
+import { Form } from 'antd';
 
-import {FC} from "react";
-import {SettingConfigType} from "../interface";
+import { FC } from 'react';
+import { SettingConfigType } from '../interface';
+
+import {Input} from '@formlogic/component';
+import { useMode } from '@/hooks';
 
 export interface EdgeConfigProps extends SettingConfigType {}
 
 const DataConfig: FC<EdgeConfigProps> = ({ selected }) => {
   const [form] = Form.useForm();
+
+  const { isDetail } = useMode();
 
   const handleChange = () => {
     if (selected) {
@@ -43,11 +48,11 @@ const DataConfig: FC<EdgeConfigProps> = ({ selected }) => {
       initialValues={selected?.data.configValues || {}}
     >
       <Form.Item label="名称" name="label">
-        <Input />
+        <Input readOnly={isDetail} />
       </Form.Item>
 
       <Form.Item label="值" name="code">
-        <Input />
+        <Input readOnly={isDetail} />
       </Form.Item>
     </Form>
   );

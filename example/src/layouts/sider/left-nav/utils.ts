@@ -1,5 +1,5 @@
 import { Key, ReactNode } from 'react';
-import { MenuProps } from '@formlogic/render';
+import { MenuProps } from 'antd';
 import { pathToRegexp } from 'path-to-regexp';
 import { compareSimilarity } from '@/utils/utils';
 

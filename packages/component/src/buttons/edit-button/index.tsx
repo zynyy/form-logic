@@ -1,15 +1,16 @@
-import { Button, ButtonProps } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
+import { CustomButtonMode } from '@/interface';
 
-export interface EditButtonProps extends ButtonProps {}
+export interface EditButtonProps extends Omit<CustomButtonProps, 'icon'> {}
 
-const EditButton: FC<EditButtonProps> = ({ children, ...props }) => {
+const EditButton: FC<EditButtonProps> = forwardRef(({ children, ...props }, ref) => {
   return (
-    <Button type="text" {...props} icon={<EditOutlined />}>
+    <CustomButton mode={CustomButtonMode.icon} {...props} icon={<EditOutlined />} ref={ref}>
       {children}
-    </Button>
+    </CustomButton>
   );
-};
+});
 
 export default EditButton;

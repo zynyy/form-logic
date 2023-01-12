@@ -5,6 +5,7 @@ import {
   ReactNode,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import cls from 'classnames';
@@ -24,7 +25,10 @@ import useFormItemLayout from '@/components/form-item/hooks/useFormItemLayout';
 import useOverflow from '@/components/form-item/hooks/useOverflow';
 import { FormLayoutValueContext } from '@/components/form-layout/hooks';
 
-import { useDomFocus, useDomHover, useFormItemStyle } from '@/components/form-item/hooks';
+import { useFormItemStyle } from '@/components/form-item/hooks';
+import { useDOMHover, useDOMFocus, useDOMResizeChange, useDOMRect } from '@formlogic/component';
+import BigNumber from 'bignumber.js';
+import { replacePx } from '@/utils';
 
 export interface FormItemProps extends FormLayoutValueContext, PropsWithChildren {
   className?: string;
@@ -75,15 +79,51 @@ const BaseItem: FC<FormItemProps> = observer(
       size,
       labelWrap,
       wrapperWrap,
-      tooltipIcon,
       labelStyle,
       wrapperStyle,
     } = formLayout;
 
     const [visible, setVisible] = useState(false);
 
-    const [isHover, domHoverRef] = useDomHover();
-    const [isFocus, domFocusRef] = useDomFocus();
+    const [isHover, domHoverRef] = useDOMHover();
+    const [isFocus, componentDomRef] = useDOMFocus<HTMLDivElement>();
+
+    const [controlContentRect, controlContentDomRef] = useDOMRect<HTMLDivElement>();
+
+    const [rowEnd, setRowEnd] = useState(1);
+
+    const [warpSSR, hashId, prefixCls] = useFormItemStyle();
+
+    const formItemDomRef = useRef<HTMLDivElement>();
+
+    useEffect(() => {
+      if (controlContentRect) {
+        const { height } = controlContentRect;
+
+        if (height > 34) {
+          const { marginBottom } = getComputedStyle(formItemDomRef.current);
+
+          const marginBottomNum = replacePx(marginBottom);
+
+          const { lineHeight } = getComputedStyle(componentDomRef.current);
+
+          const row = new BigNumber(height)
+            .div(new BigNumber(marginBottomNum).plus(replacePx(lineHeight)).toNumber())
+            .toNumber();
+
+          const datumScale = new BigNumber(marginBottomNum)
+            .div(34)
+            .plus(Math.round(row))
+            .toNumber();
+
+          if (datumScale > row) {
+            setRowEnd(Math.ceil(row));
+          } else {
+            setRowEnd(Math.floor(row));
+          }
+        }
+      }
+    }, [controlContentRect]);
 
     const errorsMsg = useMemo(() => {
       if (feedbackText?.length) {
@@ -117,10 +157,6 @@ const BaseItem: FC<FormItemProps> = observer(
       }
     }
 
-    const [warpSSR, hashId, prefixCls] = useFormItemStyle();
-
-    const gridStyles: CSSProperties = {};
-
     const getOverflowTooltip = () => {
       if (overflow) {
         return <div>{label}</div>;
@@ -152,8 +188,8 @@ const BaseItem: FC<FormItemProps> = observer(
       if (tooltip) {
         return (
           <span className={`${prefixCls}-label-tooltip-icon`}>
-            <Tooltip placement="top" align={{ offset: [0, 2] }} title={tooltip}>
-              {tooltipIcon ?? <QuestionCircleOutlined />}
+            <Tooltip align={{ offset: [0, 2] }} title={tooltip}>
+              <QuestionCircleOutlined />
             </Tooltip>
           </span>
         );
@@ -179,7 +215,6 @@ const BaseItem: FC<FormItemProps> = observer(
     };
 
     useEffect(() => {
-
       if (isFocus || isHover) {
         setVisible(!!errorsMsg);
       } else {
@@ -191,7 +226,7 @@ const BaseItem: FC<FormItemProps> = observer(
       <div
         style={{
           ...style,
-          ...gridStyles,
+          gridRowEnd: `span ${rowEnd}`,
         }}
         data-grid-span={gridSpan}
         className={cls(hashId, {
@@ -206,6 +241,7 @@ const BaseItem: FC<FormItemProps> = observer(
           [`${prefixCls}-control-wrap`]: !!wrapperWrap,
           [className]: !!className,
         })}
+        ref={formItemDomRef}
       >
         {renderLabel()}
         <div
@@ -214,13 +250,13 @@ const BaseItem: FC<FormItemProps> = observer(
             [`${prefixCls}-item-col-${wrapperCol}`]: enableCol && !!wrapperCol && label,
           })}
         >
-          <div className={cls(`${prefixCls}-control-content`)}>
+          <div className={cls(`${prefixCls}-control-content`)} ref={controlContentDomRef}>
             <div
               style={wrapperStyle}
               className={cls({
                 [`${prefixCls}-control-content-component`]: true,
               })}
-              ref={domFocusRef}
+              ref={componentDomRef}
             >
               <Popover
                 autoAdjustOverflow
@@ -258,7 +294,6 @@ const FormItem = connect(
       return {
         label: field.title || props.label,
         asterisk: props.asterisk,
-        extra: props.extra || field.description,
       };
     }
 
@@ -307,7 +342,6 @@ const FormItem = connect(
       feedbackStatus: takeFeedbackStatus(),
       feedbackText: takeMessage(),
       asterisk: takeAsterisk(),
-      extra: props.extra || field.description,
     };
   }),
 );

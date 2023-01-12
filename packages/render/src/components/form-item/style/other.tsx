@@ -1,5 +1,5 @@
-import { GenerateStyle } from '@/style/styleHook';
 import { CSSProperties } from 'react';
+import { GenerateStyle } from '@formlogic/component';
 
 const genOtherStyle: GenerateStyle = (token) => {
   const {
@@ -21,6 +21,7 @@ const genOtherStyle: GenerateStyle = (token) => {
     controlOutline,
     colorPrimaryHover,
     colorTextSecondary,
+    formLogicCls,
   } = token;
 
   const controlHeightSM = controlHeight * 0.75;
@@ -59,7 +60,6 @@ const genOtherStyle: GenerateStyle = (token) => {
     [`${componentCls}-success-help`]: {
       color: `${colorSuccess}`,
     },
-
 
     [componentCls]: {
       '&-success': {
@@ -220,6 +220,16 @@ const genOtherStyle: GenerateStyle = (token) => {
             ${antCls}-input-focused,
             ${antCls}-input:focus`]: {
           ...active(colorError),
+        },
+
+        [`${formLogicCls}-popover-container-edit-btn`]: {
+          borderColor: colorError,
+          ['&:not(:disabled):hover']: {
+            borderColor: colorError,
+          },
+          ['&:active']: {
+            borderColor: colorError,
+          },
         },
       },
 
@@ -396,9 +406,6 @@ const genOtherStyle: GenerateStyle = (token) => {
       },
 
       [`${componentCls}-control`]: {
-        flex: 1,
-        maxWidth: '100%',
-
         [`${componentCls}-control-content`]: {
           display: 'flex',
 

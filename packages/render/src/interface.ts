@@ -1,10 +1,58 @@
-import { SchemaTypes } from '@formily/json-schema';
-import { MouseEvent } from 'react';
+import { SchemaTypes } from '@formily/react';
+import { MouseEvent, RefObject } from 'react';
 
 import effectHook from '@/effect-hook';
-import { UseComponent } from '@/style/styleHook';
 
-export type SchemaMode = 'EDITABLE' | 'DETAIL' | 'DISABLED';
+import { Field, Form } from '@formily/core';
+import { STEPS_GROUP_MODE, TABS_GROUP_MODE } from '@/utils/constant';
+
+export enum RequestMethodEnum {
+  get = 'get',
+  post = 'post',
+  put = 'put',
+  delete = 'delete',
+}
+
+export enum SchemaPatternEnum {
+  EDITABLE = 'EDITABLE',
+  DETAIL = 'DETAIL',
+  DISABLED = 'DISABLED',
+}
+
+export type SchemaPattern = keyof typeof SchemaPatternEnum;
+
+export enum MetaDataTypeEnum {
+  column = 'column',
+  table_column = 'table_column',
+  search_column = 'search_column',
+  button = 'button',
+  table_button = 'table_button',
+  search_button = 'search_button',
+  container = 'container',
+}
+
+export enum ComponentTypeEnum {
+  container = 'container',
+  button = 'button',
+  array = 'array',
+  object = 'object',
+  string = 'string',
+}
+
+export type ComponentType = keyof typeof ComponentTypeEnum;
+
+export enum SchemaTypeEnum {
+  string = 'string',
+  object = 'object',
+  array = 'array',
+  void = 'void',
+}
+
+export interface ApiConfig {
+  method: 'post' | 'get';
+  url: string;
+  params: any;
+}
 
 export type MetaDataType = keyof typeof MetaDataTypeEnum;
 
@@ -19,9 +67,11 @@ export type EffectHookItem = {
 };
 
 export interface BtnFieldsItem {
-  filed: string;
+  fieldCode: string;
   clickCodes: string[];
   eventCode: string;
+  pageCode: string;
+  type: MetaDataType;
 }
 
 export interface EventsObject {
@@ -29,28 +79,19 @@ export interface EventsObject {
 }
 
 export type LogicListItem = {
-  filed: string;
+  fieldCode: string;
   logicHooks: EffectHookItem;
+  pageCode: string;
+  type: MetaDataType;
 };
-
-export enum MetaDataTypeEnum {
-  column = 'column',
-  table_column = 'table_column',
-  search_column = 'search_column',
-  button = 'button',
-  table_button = 'table_button',
-  search_button = 'search_button',
-}
 
 export interface MetaSchemaGroup {
   code: string; // 分组编码
   name: string; // 分组名称
   hiddenName?: boolean; // 是否隐藏名称
   component?: string; // 组件
-  hasTabs?: StrNumBool;
-  tabs?: string[];
-  hasStep?: StrNumBool;
-  steps?: string[];
+  mode?: typeof TABS_GROUP_MODE | typeof STEPS_GROUP_MODE;
+  modeCodes?: string[];
   componentProps?: {
     // 组件属性
     [key: string]: any;
@@ -58,7 +99,7 @@ export interface MetaSchemaGroup {
 }
 
 export interface MetaLogic {
-  event: EffectHook;
+  effectHook: EffectHook;
   logicCode: string;
 }
 
@@ -83,6 +124,7 @@ export interface MetaSchemaData {
   defaultValue?: any; // 默认值
   component?: string; // 组件
   parentCode?: string; // 上一级编码
+  pageCode?: string; // 子编码
   logics?: MetaLogic[];
   componentProps?: {
     // 组件属性
@@ -112,4 +154,57 @@ export interface AnyObject {
   [key: string]: any;
 }
 
-export type UseStyleReturnType = [UseComponent, string, string];
+export interface ExecLogicListItem {
+  formId: string;
+  effectHook: EffectHook;
+  pageCode: string;
+  fieldCode: string;
+  logicCode: string;
+  time: number;
+  createTime: string;
+  doneTime: string;
+  uid: string;
+}
+
+export interface LogicPayloadArgs {
+  form: Form;
+  fieldCode: string;
+  effectHook: EffectHook;
+  pageCode: string;
+  [key: string]: any;
+}
+
+export type ExecInfo = Pick<LogicPayloadArgs, 'fieldCode' | 'effectHook' | 'pageCode'> & {
+  logicCode: string;
+  currentExecNum: number;
+  execKey: string;
+  execNumRef: RefObject<{
+    [key: string]: number;
+  }>;
+};
+
+export interface LogicCtxArgs {
+  currentNode: {
+    id: string;
+    shape: string;
+    data: AnyObject;
+  };
+  lastResult: AnyObject;
+  payload: {
+    form: Form;
+    field?: Field;
+    params?: AnyObject;
+  };
+  execInfo: ExecInfo;
+}
+
+export type NextLogicNodeArgs = (nextEdge?: string | number, prevNodeValue?: any) => void;
+
+export type DataIndex = string | number | readonly (string | number)[];
+
+export interface ConstantDataItem {
+  code?: string;
+  name: string;
+  key?: string;
+  options?: ConstantDataItem[];
+}

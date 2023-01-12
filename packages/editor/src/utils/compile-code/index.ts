@@ -32,7 +32,7 @@ export const getFiles = (nodes: Node[]) => {
     const { id, data } = node;
     const { code, templateCode } = data;
     return {
-      fileName: `${id}.js`,
+      fileName: `${id}`,
       content: code || templateCodes.getCode(templateCode) || defaultTpl(),
     };
   });
@@ -62,7 +62,7 @@ const getNodeFns = (nodes: Node[]) => {
 
   files.forEach((item) => {
     const { fileName, content } = item || {};
-    nodeFns[fileName] = content;
+    nodeFns[`${fileName}.js`] = content;
   });
 
   nodeFns['index.js'] = genEntryFile(nodeIds);

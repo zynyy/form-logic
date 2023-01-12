@@ -1,4 +1,4 @@
-import { Button, Col, Row } from '@formlogic/render';
+import { Button, Col, Row } from 'antd';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 

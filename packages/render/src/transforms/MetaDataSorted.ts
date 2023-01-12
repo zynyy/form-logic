@@ -1,5 +1,4 @@
 import { MetaSchema, MetaSchemaData, MetaSchemaGroup } from '@/interface';
-import { strNumBoolToBoolean } from '@/transforms/utils';
 
 interface ResultReturn {
   columns: MetaSchemaData[];
@@ -11,8 +10,8 @@ interface ResultReturn {
 }
 
 class MetaDataSorted {
-  private metaSchema: MetaSchema;
-  private hasGroup: boolean = false;
+  private readonly metaSchema: MetaSchema;
+  private readonly hasGroup: boolean = false;
 
   columnsArray: MetaSchemaData[] = [];
 
@@ -76,23 +75,19 @@ class MetaDataSorted {
     const occupyAllCodes =
       group
         ?.filter((item) => {
-          const { hasStep, hasTabs } = item || {};
-          return strNumBoolToBoolean(hasStep) || strNumBoolToBoolean(hasTabs);
+          const { mode } = item || {};
+          return !!mode;
         })
         ?.reduce((acc, cur) => {
-          const { tabs, code, steps } = cur || {};
-          return acc.concat(code).concat(tabs).concat(steps);
+          const { modeCodes, code } = cur || {};
+          return acc.concat(code).concat(modeCodes);
         }, [])
         .filter((val) => val) || [];
 
     this.groupsOrder =
       group?.filter((item) => {
-        const { hasStep, hasTabs, code } = item || {};
-        return (
-          !occupyAllCodes.includes(code) ||
-          strNumBoolToBoolean(hasStep) ||
-          strNumBoolToBoolean(hasTabs)
-        );
+        const { mode, code } = item || {};
+        return !occupyAllCodes.includes(code) || !!mode;
       }) || [];
   };
 

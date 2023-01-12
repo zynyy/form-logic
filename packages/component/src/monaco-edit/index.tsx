@@ -3,7 +3,7 @@ import { useRef, FC, useEffect } from 'react';
 
 import { MonacoEditorLoaderConfig, MonacoEditorType, MonacoType } from '@/interface';
 
-import { DEFAULT_LOADER_CONFIG } from '@/utils/constant';
+import { DEFAULT_LOADER_CONFIG } from '@/utils';
 
 export interface MonacoEditorProps extends Omit<EditorProps, 'onMount'> {
   language?: 'javascript' | 'json' | 'typescript';

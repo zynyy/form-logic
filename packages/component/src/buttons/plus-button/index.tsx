@@ -1,17 +1,15 @@
-import { Button, ButtonProps } from 'antd';
-import { FC, Ref } from 'react';
+import { FC, forwardRef } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
 
-export interface PlusButtonProps extends ButtonProps {
-  btnRef?: Ref<HTMLElement>;
-}
+export interface PlusButtonProps extends Omit<CustomButtonProps, 'icon'> {}
 
-const PlusButton: FC<PlusButtonProps> = ({ children, btnRef, ...props }) => {
+const PlusButton: FC<PlusButtonProps> = forwardRef(({ children, ...props }, ref) => {
   return (
-    <Button type="text" {...props} icon={<PlusOutlined />} ref={btnRef}>
+    <CustomButton type="text" {...props} icon={<PlusOutlined />} ref={ref}>
       {children}
-    </Button>
+    </CustomButton>
   );
-};
+});
 
 export default PlusButton;

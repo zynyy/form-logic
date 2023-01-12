@@ -1,5 +1,5 @@
 import SchemeTableForm from './index';
-import { useFormSchema, useListSchema } from '@/hooks';
+import { useCreateForm, useFormSchema, useListSchema } from '@/hooks';
 import { useRef, useState } from 'react';
 import { TransformsSchemaOptions } from '@/transforms';
 import { Form, IFormProps } from '@formily/core';
@@ -26,7 +26,7 @@ export default {
   },
 };
 
-const Template = ({ hasGroup, schemaMode, metaSchema, ...args }) => {
+const Template = ({ hasGroup, pattern, metaSchema, ...args }) => {
   const formRef = useRef<Form>();
 
   const [dataSource, setDataSource] = useState([]);
@@ -37,11 +37,13 @@ const Template = ({ hasGroup, schemaMode, metaSchema, ...args }) => {
   const [pageSize, setPageSize] = useState(30);
   const [total, setTotal] = useState(0);
 
+  const [form]=useCreateForm()
+
   const [options] = useState<TransformsSchemaOptions>(() => {
     return {
       metaSchema: metaSchema,
       hasGroup: hasGroup,
-      schemaMode: schemaMode,
+      pattern: pattern,
       buttonsEvent: {},
       logic: {},
     };
@@ -88,29 +90,26 @@ const Template = ({ hasGroup, schemaMode, metaSchema, ...args }) => {
     const { action } = extra || {};
 
     if (action === 'paginate') {
-      flushSync(() => {
-        setCurrentPage(pagination.current);
-        setPageSize(pagination.pageSize);
-      });
+      setCurrentPage(pagination.current);
+      setPageSize(pagination.pageSize);
     }
   };
 
   return (
     <>
       <SchemeTableForm
+        form={form}
         rowSelection={rowSelection}
         selectedRows={values}
         {...args}
         dataSource={dataSource}
         schema={tableSchema}
-        ref={formRef}
         onAdd={handleAddClick}
         onRemove={handleRemoveClick}
         total={total}
         currentPage={currentPage}
         pageSize={pageSize}
-        onChange={handleTableChange}
-      />
+        onChange={handleTableChange}      />
     </>
   );
 };

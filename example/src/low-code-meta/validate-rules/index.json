@@ -1,0 +1,15 @@
+{
+  "list": [
+    {
+      "code": "min",
+      "component": "RemoteSelect",
+      "componentProps": {
+        "apiConfig": { "method": "get", "params": {}, "url": "/test" },
+        "defaultFirstOptionValue": "0",
+        "labelTemplateKey": "{{name}}",
+        "valueTemplateKey": "{{code}}"
+      },
+      "name": "最小值"
+    }
+  ]
+}

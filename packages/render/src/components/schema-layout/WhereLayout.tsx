@@ -1,18 +1,39 @@
-import cn from 'classnames';
-import { CSSProperties, FC, PropsWithChildren, useEffect, useState } from 'react';
+import {
+  CSSProperties,
+  FC,
+  PropsWithChildren,
+  useEffect,
+  useState,
+  MouseEventHandler,
+} from 'react';
 
-import { Divider, Button } from 'antd';
+import { Divider, Button, Space } from 'antd';
 
-import { DownOutlined, SearchOutlined, UpOutlined } from '@ant-design/icons';
+import { ClearOutlined, DownOutlined, SearchOutlined, UpOutlined } from '@ant-design/icons';
+import { useWhereLayoutStyle } from '@/components/schema-layout/hooks';
+import cls from 'classnames';
+import { EventsObject, LogicConfig, MetaSchemaData } from '@/interface';
 
 export interface WhereLayoutProps extends PropsWithChildren {
   title?: React.ReactNode;
-  buttons?: React.ReactNode;
+  buttons?: MetaSchemaData[];
   className?: string;
   style?: CSSProperties;
   collapsed?: boolean;
   hasCollapsed?: boolean;
+  hasRestButton?: boolean;
+  hasSearchButton?: boolean;
   onCollapsedClick?: (collapsed: Boolean) => void;
+  onRestClick?: () => void;
+  onSearchClick?: () => void;
+  onButtonItemClick?: (
+    e: MouseEventHandler<HTMLAnchorElement> | MouseEventHandler<HTMLButtonElement>,
+    code: string,
+    eventCode: string | undefined,
+    clickCodes: string[],
+  ) => void;
+  getLogicConfig?: LogicConfig;
+  events?: EventsObject;
 }
 
 const WhereLayout: FC<WhereLayoutProps> = ({
@@ -24,8 +45,15 @@ const WhereLayout: FC<WhereLayoutProps> = ({
   style,
   collapsed,
   onCollapsedClick,
+  onRestClick,
+  onSearchClick,
+  onButtonItemClick,
+  hasRestButton,
+  hasSearchButton,
 }) => {
   const [expand, setExpand] = useState(false);
+
+  const [warpSSR, hashId, prefixCls] = useWhereLayoutStyle();
 
   const handleClick = () => {
     const nowExpand = !expand;
@@ -43,9 +71,9 @@ const WhereLayout: FC<WhereLayoutProps> = ({
     }
 
     return (
-      <div className="where-layout-content-title">
-        <SearchOutlined className="where-icon" />
-        <span className="where-title">{title}</span>
+      <div className={cls(`${prefixCls}-title-warp`, hashId)}>
+        <SearchOutlined className={cls(`${prefixCls}-icon`, hashId)} />
+        <span className={cls(`${prefixCls}-title`, hashId)}>{title}</span>
       </div>
     );
   };
@@ -74,29 +102,60 @@ const WhereLayout: FC<WhereLayoutProps> = ({
   };
 
   const renderButtons = () => {
-    if (!buttons) {
-      return null;
-    }
-
     return (
-      <div className="where-layout-content-button">
-        {buttons}
-        {renderCollapseButton()}
+      <div className={cls(`${prefixCls}-right-button`, hashId)}>
+        <Space>
+          {buttons.map((item) => {
+            const { name, logics, eventCode, code } = item || {};
+
+            const clickCodes =
+              logics
+                ?.filter((item) => item.effectHook === 'onClick')
+                .map((item) => item.logicCode) || [];
+
+            return (
+              <Button
+                key={code}
+                onClick={(e) => {
+                  onButtonItemClick?.(e, code, eventCode, clickCodes);
+                }}
+              >
+                {name}
+              </Button>
+            );
+          })}
+
+          {hasRestButton ? (
+            <Button icon={<ClearOutlined />} type="dashed" onClick={onRestClick}>
+              重置
+            </Button>
+          ) : null}
+
+          {hasSearchButton ? (
+            <Button icon={<SearchOutlined />} type="primary" onClick={onSearchClick}>
+              搜索
+            </Button>
+          ) : null}
+
+          {renderCollapseButton()}
+        </Space>
       </div>
     );
   };
 
-  return (
-    <div className={cn(className, 'where-layout-content-wrapper')} style={style}>
+  return warpSSR(
+    <div className={cls(className, hashId, `${prefixCls}-wrapper`)} style={style}>
       {renderHeader()}
-      <div className="where-layout-content-body">{children}</div>
+      <div className={cls(`${prefixCls}-body`, hashId)}>{children}</div>
       {renderButtons()}
-    </div>
+    </div>,
   );
 };
 
 WhereLayout.defaultProps = {
   hasCollapsed: true,
+  hasRestButton: true,
+  hasSearchButton: true,
 };
 
 export default WhereLayout;

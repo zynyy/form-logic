@@ -9,5 +9,5 @@ module.exports = {
   ip: '127.0.0.1',
   port: '3200',
   npmRegistry: 'https://registry.npmjs.com/',
-  fileExt:"ts", // 生成相关文件的后缀
+  fileExt: 'ts', // 生成相关文件的后缀
 };

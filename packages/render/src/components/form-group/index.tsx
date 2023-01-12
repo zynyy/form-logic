@@ -1,9 +1,10 @@
 import { FC, PropsWithChildren } from 'react';
 import { Card, Space } from 'antd';
 
-import cn from 'classnames';
 import { RecursionField, useField, useFieldSchema } from '@formily/react';
-import useGroupSchemaBtn from '@/components/hooks/useGroupSchemaBtn';
+import {useGroupSchemaBtn} from '@/hooks';
+import { useFormGroupStyle } from '@/components/form-group/hooks';
+import cls from 'classnames';
 
 export interface FormGroupProps extends PropsWithChildren {
   code?: string;
@@ -18,15 +19,17 @@ const FormGroup: FC<FormGroupProps> = ({ code, hiddenName, className, title }) =
 
   const btn = useGroupSchemaBtn();
 
+  const [warpSSR, hashId, prefixCls] = useFormGroupStyle();
+
   const filterProperties = (propertiesSchema) => {
     return propertiesSchema.name !== 'groupButtons';
   };
 
-  return (
+  return warpSSR(
     <Card
       id={code}
       size="small"
-      className={cn('form-group', className)}
+      className={cls(hashId, prefixCls, className)}
       title={hiddenName ? null : title}
       extra={btn ? <Space>{btn}</Space> : null}
     >
@@ -36,7 +39,7 @@ const FormGroup: FC<FormGroupProps> = ({ code, hiddenName, className, title }) =
         onlyRenderProperties
         filterProperties={filterProperties}
       />
-    </Card>
+    </Card>,
   );
 };
 

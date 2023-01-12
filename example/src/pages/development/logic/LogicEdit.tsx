@@ -1,12 +1,27 @@
-import { FormPageLayout } from '@formlogic/render';
-import { getLocalConfig } from '@formlogic/render/lib/service';
+import { BackButton, Layout } from '@formlogic/component';
+import { FlowChartEditor } from '@formlogic/editor';
 
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
-const LogicEdit = () => {
+const LogicCreate = () => {
+  const [URLSearchParams] = useSearchParams();
 
+  const navigate = useNavigate();
 
-  return <FormPageLayout getLogicConfig={getLocalConfig} />
+  const handleClick = () => {
+    navigate(-1);
+  };
 
-}
+  return (
+    <Layout footer={<BackButton onClick={handleClick} />}>
+      <FlowChartEditor
+        logicProcessConfig={{
+          code: URLSearchParams.get('code'),
+          belongCode: URLSearchParams.get('belong'),
+        }}
+      />
+    </Layout>
+  );
+};
 
-export default LogicEdit
+export default LogicCreate;

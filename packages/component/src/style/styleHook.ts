@@ -11,6 +11,7 @@ import {
   TokenWithCommonCls,
   UseComponentStyleResult,
 } from '@/style/interface';
+import { COMPONENT_PREFIX_CLS } from '@/utils';
 
 export const genCommonStyle = (token: any, componentPrefixCls: string): CSSObject => {
   const { fontFamily, fontSize } = token;
@@ -38,10 +39,6 @@ export const genCommonStyle = (token: any, componentPrefixCls: string): CSSObjec
   };
 };
 
-
-
-
-
 export const genStyleHook = <ComponentName extends OverrideComponent>(
   component: ComponentName,
   styleFn: (token: TokenWithCommonCls<GlobalToken>, info: StyleInfo) => CSSInterpolation,
@@ -57,7 +54,7 @@ export const genStyleHook = <ComponentName extends OverrideComponent>(
           theme,
           token,
           hashId,
-          path: ['formlogic-component', component, prefixCls, iconPrefixCls],
+          path: [COMPONENT_PREFIX_CLS, component, prefixCls, iconPrefixCls],
         },
         () => {
           const componentCls = `.${prefixCls}`;
@@ -66,6 +63,7 @@ export const genStyleHook = <ComponentName extends OverrideComponent>(
             prefixCls,
             iconCls: `.${iconPrefixCls}`,
             antCls: `.${rootPrefixCls}`,
+            formLogicCls: `.${rootPrefixCls}-${COMPONENT_PREFIX_CLS}`
           });
 
           const styleInterpolation = styleFn(mergedToken, {

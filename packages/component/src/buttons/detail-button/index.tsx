@@ -1,15 +1,22 @@
-import { Button, ButtonProps } from 'antd';
 import { EyeOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
+import { CustomButtonMode } from '@/interface';
 
-export interface DetailButtonProps extends ButtonProps {}
+export interface DetailButtonProps extends Omit<CustomButtonProps, 'icon'> {}
 
-const DetailButton: FC<DetailButtonProps> = ({ children, ...props }) => {
+const DetailButton: FC<DetailButtonProps> = forwardRef(({ children, ...props }, ref) => {
   return (
-    <Button type="text" {...props} icon={<EyeOutlined />}>
+    <CustomButton
+      mode={CustomButtonMode.icon}
+      title="详情"
+      {...props}
+      icon={<EyeOutlined />}
+      ref={ref}
+    >
       {children}
-    </Button>
+    </CustomButton>
   );
-};
+});
 
 export default DetailButton;

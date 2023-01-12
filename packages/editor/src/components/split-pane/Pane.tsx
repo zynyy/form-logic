@@ -10,7 +10,7 @@ const Pane: FC<PaneProps> = ({
   eleRef,
   children,
 }) => {
-  const classes = ["Pane", split, className].join(" ");
+  const classes = ["pane", split, className].join(" ");
 
   let style: CSSProperties = {
     flex: 1,

@@ -1,14 +1,11 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { Graph, Node } from '@antv/x6';
-import { Button, Drawer, DrawerProps, Space, notification, Modal, Row, Col } from 'antd';
-import MonacoEditor from '../monaco-editor';
+import { Button, Drawer, DrawerProps, Space, Row, Col } from 'antd';
+import { MonacoEditor, MonacoType, MonacoEditorType } from '@formlogic/component';
 
-import analyzeDeps from '@/utils/analyzeDeps';
 import templateCodes from '@/components/code-editor-drawer/templateCodes';
-import { useOpen } from '@/hooks';
-import { toArray } from '@/utils';
-import * as monacoEditor from 'monaco-editor';
-import { editor } from 'monaco-editor';
+import { useMode, useOpen } from '@/hooks';
+import { useChartLayoutContext } from '@/components/chart-layout/hook';
 
 interface OnEventHandlerArgs {
   node: Node;
@@ -20,8 +17,6 @@ interface CodeEditorDrawerProps extends DrawerProps {
   onClose?: () => void;
 }
 
-const MONACO_ERROR_CODE = ['8002'];
-
 const CodeEditorDrawer: FC<CodeEditorDrawerProps> = ({ defaultValue, onClose, graph }) => {
   const [codeValue, setCodeValue] = useState('');
 
@@ -29,74 +24,18 @@ const CodeEditorDrawer: FC<CodeEditorDrawerProps> = ({ defaultValue, onClose, gr
 
   const [title, setTitle] = useState('');
 
-  const [notice, noticeContextHolder] = notification.useNotification();
-  const [modal, modalContextHolder] = Modal.useModal();
-
-  const editorRef = useRef<monacoEditor.editor.IStandaloneCodeEditor>();
-  const monacoRef = useRef<typeof monacoEditor>();
+  const editorRef = useRef<MonacoEditorType.IStandaloneCodeEditor>();
+  const monacoRef = useRef<MonacoType>();
   const selectedNodeRef = useRef<Node>();
 
+  const { isEditable, isDetail } = useMode();
+
+  const { monacoEditorLoaderConfig } = useChartLayoutContext();
+
   const handleSaveClick = () => {
-    const errors = monacoRef.current.editor.getModelMarkers({}).filter((item: editor.IMarker) => {
-      if (typeof item.code === 'string') {
-        return MONACO_ERROR_CODE.includes(item.code);
-      }
-      return MONACO_ERROR_CODE.includes(item.code.value);
-    });
+    selectedNodeRef.current.updateData({ code: codeValue });
 
-    if (errors.length) {
-      notice.warning({
-        message: '代码中存在语法错误',
-        description: `${errors
-          .map((item) => {
-            const { endLineNumber, startLineNumber } = item || {};
-            return `第${startLineNumber}行到第${endLineNumber}行、`;
-          })
-          .join('\r\n')} 以上几处语法错误`,
-      });
-
-      return false;
-    }
-
-    analyzeDeps(codeValue || '').then((deps) => {
-      const { errorPkg } = deps;
-
-      if (errorPkg.length) {
-        notice.warning({
-          message: '代码中存在错误依赖',
-          description: `${toArray(errorPkg).join('、')} 以上这些依赖无法找到最新版本请修正`,
-        });
-        return;
-      }
-
-      delete deps.errorPkg;
-
-      selectedNodeRef.current.updateData({ code: codeValue });
-
-      const depsStr = JSON.stringify(deps, null, 2);
-
-      if (Object.keys(deps).length) {
-        modal.info({
-          title: '检测到代码有新的依赖',
-          content: (
-            <div
-              style={{
-                height: 300,
-              }}
-            >
-              <MonacoEditor language="json" readOnly value={depsStr} />
-            </div>
-          ),
-          okText: '确认',
-          onOk: () => {
-            selectedNodeRef.current.updateData({ dependencies: depsStr });
-            hiddenDrawer();
-          },
-        });
-      } else {
-        hiddenDrawer();
-      }
-    });
+    hiddenDrawer();
   };
 
   const handleChange = (value) => {
@@ -104,8 +43,8 @@ const CodeEditorDrawer: FC<CodeEditorDrawerProps> = ({ defaultValue, onClose, gr
   };
 
   const handleEditorMount = (
-    editor: monacoEditor.editor.IStandaloneCodeEditor,
-    monaco: typeof monacoEditor,
+    editor: MonacoEditorType.IStandaloneCodeEditor,
+    monaco: MonacoType,
   ) => {
     editorRef.current = editor;
     monacoRef.current = monaco;
@@ -126,7 +65,9 @@ const CodeEditorDrawer: FC<CodeEditorDrawerProps> = ({ defaultValue, onClose, gr
           setCodeValue(code || templateCodes.getCode(templateCode) || '');
 
           setTimeout(() => {
-            editorRef.current?.getAction('editor.action.formatDocument')?.run();
+            editorRef.current
+              ?.getAction('editor.action.formatDocument')
+              ?.run();
           }, 1000);
         }
       });
@@ -141,13 +82,11 @@ const CodeEditorDrawer: FC<CodeEditorDrawerProps> = ({ defaultValue, onClose, gr
 
   return (
     <>
-      {noticeContextHolder}
-      {modalContextHolder}
       <Drawer
         open={isOpenDrawer}
         width="90%"
         onClose={hiddenDrawer}
-        title={`编辑流程节点: ${title}`}
+        title={`编辑流程节点: ${title} ${selectedNodeRef.current?.id}`}
         maskClosable={false}
         footer={
           <Row>
@@ -169,19 +108,23 @@ const CodeEditorDrawer: FC<CodeEditorDrawerProps> = ({ defaultValue, onClose, gr
               }}
             >
               <Space>
-                <Button onClick={handleSaveClick} type="primary">
-                  保存
-                </Button>
+                {isEditable ? (
+                  <Button onClick={handleSaveClick} type="primary">
+                    保存
+                  </Button>
+                ) : null}
               </Space>
             </Col>
           </Row>
         }
       >
         <MonacoEditor
-          language="javascript"
+          language="typescript"
           value={codeValue}
           onChange={handleChange}
           onMount={handleEditorMount}
+          readOnly={isDetail}
+          loaderConfig={monacoEditorLoaderConfig}
         />
       </Drawer>
     </>

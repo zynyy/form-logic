@@ -1,8 +1,9 @@
 import {Graph, Node} from "@antv/x6";
+import { IMAGE_NODE } from '@/utils/constant';
 
 const registerImage = (ports: Node["ports"]) => {
   Graph.registerNode(
-    "custom-image",
+    IMAGE_NODE,
     {
       inherit: "rect",
       width: 52,

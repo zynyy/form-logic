@@ -1,44 +1,51 @@
-import { requestGet, requestPost } from '@/service';
+import { requestDelete, requestGet, requestPost } from '@/service';
 
-export enum ModelConfig {
-  CREATE = 'Model_C',
-  DETAIL = 'Model_D',
-  EDIT = 'Model_U',
-  LIST = 'Model_L',
-  MODEL_CODE = 'Model',
-  CREATE_LINK = '/development/model/create',
-  EDIT_LINK = '/development/model/edit',
-  DETAIL_LINK = '/development/model/detail',
+export enum ComponentConfig {
+  CREATE = 'Component_C',
+  DETAIL = 'Component_D',
+  EDIT = 'Component_U',
+  LIST = 'Component_L',
+  MODEL_CODE = 'Component',
+  CREATE_LINK = '/development/component/create',
+  EDIT_LINK = '/development/component/edit',
+  DETAIL_LINK = '/development/component/detail',
 }
 
-const baseUrl = 'local-api/model';
+const baseUrl = 'local-api/component';
 
 export const apiUrl = {
   detail: `${baseUrl}/detail`, // 详情
   create: `${baseUrl}/create`, // 新增
   update: `${baseUrl}/update`, // 编辑
   page: `${baseUrl}/page`, // 编辑
+  remove: `${baseUrl}/remove`, // 编辑
 };
 
-export interface ModelCreateParams extends DynamicObjectAny {}
+export interface ComponentCreateParams extends DynamicObjectAny {}
 
-export interface ModelSaveParams extends DynamicObjectAny {}
+export interface ComponentUpdateParams extends DynamicObjectAny {}
 
-export interface ModelDetailParams extends DynamicObjectAny {}
+export interface ComponentDetailParams extends DynamicObjectAny {}
 
-export interface ModelUpdateParams extends DynamicObjectAny {}
+export interface ComponentRemoveParams extends DynamicObjectAny {}
+
 
 // 新增
-export const modelCreate = (params: ModelCreateParams) => {
+export const componentCreate = (params: ComponentCreateParams) => {
   return requestPost(apiUrl.create, params);
 };
 
 // 编辑更新
-export const modelUpdate = (params: ModelUpdateParams) => {
+export const componentUpdate = (params: ComponentUpdateParams) => {
   return requestPost(apiUrl.update, params);
 };
 
 // 详情页
-export const modelDetail = (params: ModelDetailParams) => {
+export const componentDetail = (params: ComponentDetailParams) => {
   return requestGet(apiUrl.detail, params);
+};
+
+// 删除
+export const componentRemove = (params: ComponentRemoveParams) => {
+  return requestDelete(apiUrl.remove, params);
 };

@@ -1,32 +1,35 @@
-import { Button, message, Modal, ModalProps, Skeleton, Spin } from 'antd';
+import { Button, message, Space } from 'antd';
 import SchemeForm, { SchemeFormProps } from '@/scheme-form';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState, MouseEvent, useRef } from 'react';
 
 import { TransformsSchemaOptions } from '@/transforms';
 import { AnyObject, EventsObject, LogicConfig } from '@/interface';
+import { usePageForm, useTriggerLogic } from '@/hooks';
+
+import { CheckOutlined } from '@ant-design/icons';
+
 import {
-  useBindBtnClick,
-  useBindLogic,
-  useCreateForm,
-  useFormSchema,
-  useTriggerLogic,
-} from '@/hooks';
-import { getSubmitFormValues } from '@/utils/getSubmitFormValues';
-import * as React from 'react';
-import { CheckOutlined, CloseOutlined } from '@ant-design/icons';
-import { flushSync } from 'react-dom';
-import LeftRightSlot from '@/components/left-right-slot';
+  PageLoading,
+  LeftRightSlot,
+  CloseButton,
+  DraggableModal,
+  DraggableModalProps,
+} from '@formlogic/component';
+import { getSubmitFormValues } from '@/utils/formUtils';
+import { Form, IFormProps } from '@formily/core';
 
 export interface ModalPageFormProps
-  extends Omit<ModalProps, 'onCancel' | 'onOk'>,
-    Pick<SchemeFormProps, 'onFormMount' | 'formConfig' | 'components'> {
+  extends Omit<DraggableModalProps, 'onCancel' | 'onOk'>,
+    Pick<SchemeFormProps, 'language' | 'components'> {
   options: TransformsSchemaOptions;
   getLogicConfig?: LogicConfig;
   extraLogicParams?: AnyObject;
   events?: EventsObject;
   validateFormValues?: (formValues: any) => Promise<string>;
   onConfirm?: (formValues: any) => void;
-  onClose?: (e: React.MouseEvent) => void;
+  onClose?: (e: MouseEvent<HTMLButtonElement>) => void;
+  onFormMount?: (form: Form) => void;
+  formConfig?: IFormProps;
 }
 
 const ModalPageForm: FC<ModalPageFormProps> = ({
@@ -42,24 +45,27 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
   open,
   title,
   components,
+  width,
+  language,
 }) => {
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  const { schema, buttons, logicList, btnFields } = useFormSchema(options);
+  const { schema, buttons, form, formLoading, pattern,refreshForm } = usePageForm({
+    formConfig,
+    onFormMount,
+    options,
+    getLogicConfig,
+    logicParams: extraLogicParams,
+    events,
+  });
 
-  const [form] = useCreateForm(formConfig, onFormMount);
-
-  useBindBtnClick(form, btnFields, getLogicConfig, extraLogicParams, events, () => {});
-
-  const [done] = useBindLogic(form, schema, logicList, getLogicConfig, extraLogicParams, () => {});
+  const nextFormId = useRef<string>(form.id);
 
   const [triggerLogic] = useTriggerLogic(getLogicConfig, () => {
     setSubmitLoading(false);
   });
 
   const handleCloseClick = (e) => {
-    form.reset();
-
     onClose?.(e);
   };
 
@@ -95,17 +101,14 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
   };
 
   const renderFooter = () => {
-    const left = (
-      <Button loading={submitLoading} icon={<CloseOutlined />} onClick={handleCloseClick}>
-        关闭
-      </Button>
-    );
+    const left = <CloseButton loading={submitLoading} onClick={handleCloseClick} />;
 
     const right = buttons.map((item) => {
       const { name, logics, eventCode } = item || {};
 
       const clickCodes =
-        logics?.filter((item) => item.event === 'onClick')?.map((item) => item.logicCode) || [];
+        logics?.filter((item) => item.effectHook === 'onClick')?.map((item) => item.logicCode) ||
+        [];
 
       return (
         <Button
@@ -119,13 +122,14 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
             }
 
             if (clickCodes.length) {
-              flushSync(() => {
-                setSubmitLoading(true);
-              });
+              setSubmitLoading(true);
 
               triggerLogic(clickCodes, {
                 params: extraLogicParams,
                 form,
+                effectHook: 'onClick',
+                fieldCode: name,
+                pageCode: options?.metaSchema?.code,
               });
             }
           }}
@@ -139,7 +143,7 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
       <LeftRightSlot
         left={left}
         right={
-          <>
+          <Space>
             {right}
             <Button
               loading={submitLoading}
@@ -151,14 +155,25 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
             >
               确定
             </Button>
-          </>
+          </Space>
         }
       />
     );
   };
 
+  useEffect(() => {
+    if (open) {
+      setSubmitLoading(false);
+      nextFormId.current = refreshForm(formConfig);
+    }
+  }, [open, formConfig]);
+
+  useEffect(() => {
+    nextFormId.current = form?.id;
+  }, [form?.id]);
+
   return (
-    <Modal
+    <DraggableModal
       title={title || '请填写'}
       maskClosable={false}
       open={open}
@@ -166,22 +181,27 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
       onOk={handleConfirmClick}
       onCancel={handleCloseClick}
       closable={false}
+      width={width || '60%'}
       bodyStyle={{
         overflowY: 'auto',
         maxHeight: 500,
       }}
       footer={renderFooter()}
     >
-      <Spin spinning={submitLoading}>
+      <PageLoading loading={submitLoading}>
         <SchemeForm
           form={form}
-          done={done}
+          loading={formLoading && nextFormId.current !== form.id}
           schema={schema}
-          formConfig={formConfig}
           components={components}
+          pattern={pattern}
+          getLogicConfig={getLogicConfig}
+          events={events}
+          extraLogicParams={extraLogicParams}
+          language={language}
         />
-      </Spin>
-    </Modal>
+      </PageLoading>
+    </DraggableModal>
   );
 };
 

@@ -1,10 +1,13 @@
-import { genStyleHook } from '@/style/styleHook';
+import { genStyleHook } from '@formlogic/component';
 
 export default genStyleHook('array-base', (token) => {
   const { componentCls, colorText, fontSizeLG, colorPrimaryText, colorTextDisabled } = token;
   return {
     [componentCls]: {
-      '&-remove, &-copy': {
+      '&-text': {
+        whiteSpace: 'nowrap',
+      },
+      '&-remove, &-copy, &-edit, &-detail': {
         transition: 'all 0.25s ease-in-out',
         color: colorText,
         fontSize: fontSizeLG,

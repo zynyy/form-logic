@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Result, Space } from '@formlogic/render';
+import { Button, Result, Space } from 'antd';
 
 import { useNavigate } from 'react-router-dom';
 

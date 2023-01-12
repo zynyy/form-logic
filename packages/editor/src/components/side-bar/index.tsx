@@ -5,6 +5,7 @@ import { Skeleton } from 'antd';
 
 import { Stencil } from '@antv/x6-plugin-stencil';
 import generalNodes from './general-nodes';
+import { useMode } from '@/hooks';
 
 export interface SideBarProps {
   graph: Graph | undefined;
@@ -13,8 +14,10 @@ export interface SideBarProps {
 const SideBar: FC<SideBarProps> = ({ graph }) => {
   const sideBarRef = useRef<HTMLDivElement>(null);
 
+  const { isEditable } = useMode();
+
   useEffect(() => {
-    if (graph) {
+    if (graph && isEditable) {
       const newStencil = new Stencil({
         target: graph,
         stencilGraphWidth: 200,
@@ -48,13 +51,13 @@ const SideBar: FC<SideBarProps> = ({ graph }) => {
 
       genNodes();
     }
-  }, [graph]);
+  }, [graph, isEditable]);
 
-  return (
+  return isEditable ? (
     <div id="side-bar-stencil">
       {graph ? <div className="side-bar-stencil" ref={sideBarRef} /> : <Skeleton />}
     </div>
-  );
+  ) : null;
 };
 
 export default SideBar;

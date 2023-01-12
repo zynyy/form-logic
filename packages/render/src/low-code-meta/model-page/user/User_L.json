@@ -60,6 +60,38 @@
       "schemaType": "string",
       "group": "personalInfo",
       "required": "1"
+    },
+    {
+      "code": "add",
+      "name": "新增",
+      "type": "table_button",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "edit",
+      "name": "编辑",
+      "type": "table_button",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "delete",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "remove",
+      "name": "移除",
+      "type": "table_button",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
     }
   ]
 }

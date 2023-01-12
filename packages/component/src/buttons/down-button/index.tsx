@@ -1,15 +1,16 @@
-import { Button, ButtonProps } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
+import { CustomButtonMode } from '@/interface';
 
-export interface DownButtonProps extends ButtonProps {}
+export interface DownButtonProps extends Omit<CustomButtonProps, 'icon'> {}
 
-const DownButton: FC<DownButtonProps> = ({ children, ...props }) => {
+const DownButton: FC<DownButtonProps> = forwardRef(({ children, ...props }, ref) => {
   return (
-    <Button type="text" {...props} icon={<DownOutlined />}>
+    <CustomButton   mode={CustomButtonMode.icon} {...props} icon={<DownOutlined />} ref={ref}>
       {children}
-    </Button>
+    </CustomButton>
   );
-};
+});
 
 export default DownButton;

@@ -1,5 +1,5 @@
 import Context from './context';
-import { AnyObject } from '@/interface';
+import { AnyObject, ExecInfo, LogicCtxArgs, NextLogicNodeArgs } from '@/interface';
 
 export interface ExecLogicOptions {
   dsl: {
@@ -14,9 +14,9 @@ class ExecLogic {
 
   private ctx: Context;
 
-  private payload;
+  private readonly payload;
 
-  private callback;
+  private readonly callback;
 
   constructor(options: ExecLogicOptions, payload?: AnyObject, callback?: (val: any) => void) {
     this.options = options;
@@ -82,8 +82,7 @@ class ExecLogic {
   edgeTip = (edgeValue) => {
     console.error(
       `执行流程编码: ${this.dslCode} 无法找到边值为 ${edgeValue} 的下一个节点`,
-      `有效边值是 ${this.edges
-        .map((item) => item.data?.configValues?.value)
+      `有效边值是 ${Array.from(new Set(this.edges.map((item) => item.data?.configValues?.value)))
         .filter((val) => val)
         .join(' 、')}`,
     );
@@ -144,7 +143,9 @@ class ExecLogic {
               })
             : nextNodes;
 
-          if (isTrue && !execNextNodes.length) {
+          const nextEndNode = nextNodes.filter((cur) => cur.id.startsWith('end'));
+
+          if (isTrue && !execNextNodes.length && nextNodes.length !== nextEndNode.length) {
             this.edgeTip(nextEdge);
           }
 
@@ -162,12 +163,13 @@ class ExecLogic {
     }
   };
 
-  run = async () => {
+  run = async (execInfo: ExecInfo) => {
     const curNode = this.startNode;
     if (!curNode) {
       return Promise.reject(new Error(`执行失败无法找到开始节点`));
     }
-    this.ctx = this.createCtx({ payload: this.payload });
+
+    this.ctx = this.createCtx({ payload: this.payload, execInfo });
 
     await this.execNode(curNode);
   };

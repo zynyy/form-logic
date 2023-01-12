@@ -2,8 +2,6 @@ import './style';
 
 export * from './utils';
 
-export { setMonacoEditorLoaderPath } from './utils/constant';
-
 export { default as Portal } from '@rc-component/portal';
 export type { PortalProps } from '@rc-component/portal';
 

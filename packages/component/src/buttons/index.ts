@@ -37,3 +37,7 @@ export type { SaveButtonProps } from './save-button';
 
 export { default as ConfirmButton } from './confirm-button';
 export type { ConfirmButtonProps } from './confirm-button';
+
+
+export  {default as  CustomButton} from './custom-button'
+export type {CustomButtonProps} from './custom-button'

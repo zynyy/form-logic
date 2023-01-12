@@ -8,7 +8,7 @@ export interface UploadButtonProps extends UploadProps {}
 const UploadButton: FC<UploadButtonProps> = ({ children, ...uploadProps }) => {
   return (
     <Upload {...uploadProps} showUploadList={false}>
-      <Button icon={<UploadOutlined />}> {children}</Button>
+      <Button icon={<UploadOutlined />}>{children}</Button>
     </Upload>
   );
 };

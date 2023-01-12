@@ -13,8 +13,8 @@
     {
       "code": "tabsInfo",
       "name": "标签信息",
-      "hasTabs": "1",
-      "tabs": ["schoolInfo", "personalInfo"]
+      "mode": "tabs",
+      "modeCodes": ["schoolInfo", "personalInfo"]
     },
     {
       "code": "personalInfo",

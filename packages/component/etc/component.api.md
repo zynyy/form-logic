@@ -96,6 +96,9 @@ export interface CloseButtonProps extends ButtonProps {
 }
 
 // @public (undocumented)
+export let COMPONENT_PREFIX_CLS: string;
+
+// @public (undocumented)
 export const ConfirmButton: FC<ConfirmButtonProps>;
 
 // @public (undocumented)
@@ -129,6 +132,13 @@ export interface CreateOptionsArgs {
 
 // @public (undocumented)
 export type DataIndex = string | number | Array<string | number>;
+
+// @public (undocumented)
+export const DEFAULT_LOADER_CONFIG: {
+    paths: {
+        vs: string;
+    };
+};
 
 // @public (undocumented)
 export const DetailButton: FC<DetailButtonProps>;
@@ -200,9 +210,7 @@ export const getDateDefaultFormat: ({ picker, showTime }: {
 // @public (undocumented)
 export const getPathValue: <ValueType, ObjectType extends object>(record: ObjectType, path?: DataIndex) => ValueType;
 
-// Warning: (ae-internal-missing-underscore) The name "getTreeParentKey" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal (undocumented)
+// @public (undocumented)
 export const getTreeParentKey: (key: Key, tree: DataNode[]) => Key;
 
 // @public (undocumented)
@@ -415,6 +423,9 @@ export interface SaveButtonProps extends ButtonProps {
 export const scaleFormatter: (scale: number) => string;
 
 // @public (undocumented)
+export const setComponentPrefixCls: (prefixCls: string) => void;
+
+// @public (undocumented)
 export const setMonacoEditorLoaderPath: (loaderPath: MonacoEditorLoaderPaths) => void;
 
 // Warning: (ae-forgotten-export) The symbol "ReactFC" needs to be exported by the entry point index.d.ts
@@ -569,7 +580,16 @@ export const useAntdThemeToken: () => {
 export const useComponentStyle: (prefix: string, componentStyle: (prefixCls: string) => UseComponentStyleResult) => UseStyleReturnType;
 
 // @public (undocumented)
-export const useDomHover: () => [boolean, MutableRefObject<HTMLElement>];
+export const useDOMFocus: <DOM extends HTMLElement>() => [boolean, MutableRefObject<DOM>];
+
+// @public (undocumented)
+export const useDOMHover: <DOM extends HTMLElement>() => [boolean, MutableRefObject<DOM>];
+
+// @public (undocumented)
+export const useDOMRect: <DOM extends HTMLElement>() => [DOMRectReadOnly, MutableRefObject<DOM>];
+
+// @public (undocumented)
+export const useDOMResizeChange: <DOM extends HTMLElement>() => [number, MutableRefObject<DOM>];
 
 // @public (undocumented)
 export const useDragSortStyle: () => UseStyleReturnType;

@@ -56,7 +56,7 @@
       "group": "schoolInfo",
       "required": "1",
       "hasSerialNo": "1",
-      "hasSort": "0",
+      "hasSort": "1",
       "colSpan": 3,
       "labelCol": 0,
       "wrapperCol": 24,
@@ -88,13 +88,29 @@
             "component": "ArrayBase.Remove"
           },
           {
-            "code": "code",
-            "name": "学校编码",
+            "code": "logicCode",
+            "name": "逻辑编码",
             "type": "table_column",
             "schemaType": "string",
-            "hiddenName": "0",
-            "group": "basicInfo",
-            "disabled": "1"
+            "required": "1",
+            "component": "RemoteSelect",
+            "componentProps": {
+              "labelTemplateKey": "{{code}}-{{name}}",
+              "optionLabelProp": "value",
+              "apiConfig": {
+                "method": "get",
+                "params": {
+                  "model": "ModelPage"
+                },
+                "url": "/local-api/model-logic/list"
+              }
+            },
+            "logics": [
+              {
+                "effectHook": "onFieldInit",
+                "logicCode": "ModelPage_Logic_L_logicCode"
+              }
+            ]
           },
           {
             "code": "name",
@@ -130,7 +146,10 @@
             "parentCode": "name",
             "group": "personalInfo",
             "required": "1",
-            "component": "Input"
+            "component": "Select",
+            "componentProps": {
+              "mode": "multiple"
+            }
           }
         ]
       }

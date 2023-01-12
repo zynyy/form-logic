@@ -1,15 +1,16 @@
 import { SaveOutlined } from '@ant-design/icons';
-import { Button, ButtonProps } from 'antd';
-import { FC } from 'react';
 
-export interface SaveButtonProps extends ButtonProps {}
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
 
-const SaveButton: FC<SaveButtonProps> = ({ children, ...props }) => {
+export interface SaveButtonProps extends CustomButtonProps {}
+
+const SaveButton: FC<SaveButtonProps> = forwardRef(({ children, ...props }, ref) => {
   return (
-    <Button type="primary" {...props} icon={<SaveOutlined />}>
-      {children || '保存'}
-    </Button>
+    <CustomButton title="保存" type="primary" {...props} icon={<SaveOutlined />} ref={ref}>
+      {children}
+    </CustomButton>
   );
-};
+});
 
 export default SaveButton;

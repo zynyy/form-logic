@@ -10,7 +10,6 @@
   background-color: #fff;
 }
 
-
 .editor-flow-warp {
   position: relative;
   display: flex;
@@ -35,6 +34,48 @@
 
 .editor-flow-minimap .x6-widget-minimap-viewport {
   border: 1px solid #e0e0e0;
+}
+
+.editor-header {
+  border: 1px solid #f0f0f0;
+  border-bottom: 0;
+  padding: 12px 12px 0;
+  border-radius: 8px 8px 0 0;
+  background-color: #fff;
+  overflow: auto;
+}
+
+.editor-header .ant-form-item {
+  margin-bottom: 12px;
+}
+
+.setting-bar .ant-card {
+  border-radius: 0;
+  border-right: 0;
+}
+
+.grid-mode-card.ant-card {
+  border-radius: unset;
+  border-left: unset;
+  border-right: unset;
+}
+
+.grid-mode-card .detail-span {
+  padding-left: 12px;
+}
+
+.grid-mode-card.ant-card .ant-card-body {
+  padding: 0;
+}
+
+.chart-mode-grid foreignObject {
+  padding-left: 1px;
+  padding-right: 1px;
+}
+
+.grid-mode-card.ant-card-small > .ant-card-head {
+  min-height: 32px;
+  font-weight: normal;
 }
 
 @keyframes ant-line {

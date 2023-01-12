@@ -1,0 +1,56 @@
+{
+  "code": "ModelPage_Logic_L",
+  "name": "字段绑逻辑列表",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "data": [
+    {
+      "code": "addBtn",
+      "name": "新建",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.Addition"
+    },
+    {
+      "code": "effectHook",
+      "name": "事件",
+      "type": "table_column",
+      "schemaType": "string",
+      "required": "1",
+      "default": "onFieldInputValueChange",
+      "component": "EffectHookSelect",
+      "componentProps": {
+        "optionLabelProp": "value"
+      }
+    },
+    {
+      "code": "logicCode",
+      "name": "逻辑编码",
+      "type": "table_column",
+      "schemaType": "string",
+      "required": "1",
+      "component": "RemoteSelect",
+      "componentProps": {
+        "labelTemplateKey": "{{code}}-{{name}}",
+        "optionLabelProp": "value"
+      },
+      "logics": [
+        {
+          "effectHook": "onFieldInit",
+          "logicCode": "ModelPage_Logic_L_logicCode"
+        }
+      ]
+    },
+    {
+      "code": "removeBtn",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Remove",
+      "eventCode": "onRemove"
+    }
+  ]
+}

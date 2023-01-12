@@ -8,6 +8,8 @@ import NotFound from '@/pages/404';
 
 import development from './development';
 
+import listPage from './list-page';
+
 // @ts-ignore
 const routers = createBrowserRouter(
   [
@@ -15,11 +17,12 @@ const routers = createBrowserRouter(
       path: '/login',
       element: <Login />,
     },
+
     {
       path: '/',
       element: <BasicLayout />,
       errorElement: <NotFound />,
-      children: [...main, ...development],
+      children: [...main, ...development, ...listPage],
     },
   ],
   {},

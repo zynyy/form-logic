@@ -1,0 +1,173 @@
+{
+  "code": "ModelPage_C",
+  "codeSuffix": "C",
+  "name": "模型新增",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    { "code": "basicInfo", "name": "基础信息" },
+    { "code": "groupInfo", "name": "分组信息" },
+    { "code": "dataInfo", "name": "字段信息" }
+  ],
+  "data": [
+    {
+      "code": "model",
+      "name": "模型",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo",
+      "component": "RemoteSelect",
+      "componentProps": {
+        "labelTemplateKey": "{{code}}-{{name}}",
+        "apiConfig": {
+          "url": "/local-api/model-or-page/list",
+          "method": "get",
+          "params": { "type": "model" }
+        }
+      },
+      "logics": [
+        { "effectHook": "onFieldMount", "logicCode": "ModelPage_C_modelToDisabled" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_modelValue" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_C_modelToDisabled" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_dataDrawerExtraLogicParams" }
+      ]
+    },
+    {
+      "code": "codeSuffix",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo",
+      "wrap": "1",
+      "logics": [
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_dataDrawerExtraLogicParams" }
+      ]
+    },
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo",
+      "disabled": "1",
+      "hidden": "1"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    },
+    {
+      "code": "columnLayout",
+      "name": "列布局",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo",
+      "wrap": "1",
+      "logics": [],
+      "component": "InputNumber"
+    },
+    {
+      "code": "labelCol",
+      "name": "标签布局",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "defaultValue": "6",
+      "group": "basicInfo",
+      "logics": [],
+      "component": "InputNumber"
+    },
+    {
+      "code": "wrapperCol",
+      "name": "控件布局",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "defaultValue": "18",
+      "group": "basicInfo",
+      "logics": [],
+      "component": "InputNumber"
+    },
+    {
+      "code": "defaultSearchColumn",
+      "name": "默认搜索",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "defaultValue": "6",
+      "group": "basicInfo",
+      "logics": [],
+      "component": "InputNumber"
+    },
+    {
+      "code": "remark",
+      "name": "备注",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo",
+      "colSpan": 3,
+      "labelCol": 2,
+      "wrapperCol": 22
+    },
+    {
+      "code": "group",
+      "name": "分组信息",
+      "type": "column",
+      "schemaType": "array",
+      "group": "groupInfo",
+      "colSpan": 3,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "hiddenName": "1",
+      "pageCode": "ModelPage_Group_L",
+      "component": "ArrayDrawerTable",
+      "componentProps": { "drawerPageCode": "ModelPage_Group_C" },
+      "logics": [
+        { "effectHook": "onFieldMount", "logicCode": "ModelPage_dataDrawerExtraLogicParams" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_dataDrawerExtraLogicParams" },
+        { "effectHook": "onFieldMount", "logicCode": "ModelPage_groupDrawerExtraLogicParams" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_groupDrawerExtraLogicParams" }
+      ]
+    },
+    {
+      "code": "data",
+      "name": "字段集合",
+      "type": "column",
+      "schemaType": "array",
+      "required": "1",
+      "group": "dataInfo",
+      "colSpan": 3,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "hiddenName": "1",
+      "pageCode": "ModelPage_Data_L",
+      "component": "ArrayDrawerTable",
+      "componentProps": { "drawerPageCode": "ModelPage_Data_C" },
+      "defaultValue": [],
+      "hasSort": 1,
+      "hasSerialNo": 1,
+      "logics": [
+        { "effectHook": "onFieldMount", "logicCode": "ModelPage_dataDrawerExtraLogicParams" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_dataDrawerExtraLogicParams" }
+      ]
+    },
+    {
+      "code": "type",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "string",
+      "required": "1",
+      "logics": [{ "effectHook": "onClick", "logicCode": "com_save" }]
+    }
+  ],
+  "defaultSearchColumn": "6"
+}

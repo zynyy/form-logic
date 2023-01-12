@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Input as AntdInput, InputProps } from '@formlogic/render';
+import { Input, InputProps } from 'antd';
 
 import { UserOutlined } from '@ant-design/icons';
 
@@ -7,7 +7,7 @@ export const UserInput: FC<InputProps> = ({ readOnly, value, ...restProps }) => 
   return readOnly ? (
     <span>{value}</span>
   ) : (
-    <AntdInput
+    <Input
       value={value}
       {...restProps}
       placeholder="请输入用户名"

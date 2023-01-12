@@ -1,43 +1,26 @@
-import React, { CSSProperties, FC, PropsWithChildren } from 'react';
+import { CSSProperties, FC, PropsWithChildren } from 'react';
 
-import { usePrefixCls } from '../hooks';
-import cn from 'classnames';
+import cls from 'classnames';
 
-import { FormLayoutContext, FormLayoutValueContext, useResponsiveFormLayout } from './hooks';
-
-import useStyle from './style';
+import {
+  FormLayoutContext,
+  FormLayoutValueContext,
+  useFormLayoutStyle,
+  useResponsiveFormLayout,
+} from './hooks';
 
 export interface FormLayoutProps extends PropsWithChildren, FormLayoutValueContext {
-  prefixCls?: string;
   className?: string;
   style?: CSSProperties;
 }
 
-const FormLayout: FC<FormLayoutProps> = ({
-  children,
-  prefixCls,
-  className,
-  style,
-  ...otherProps
-}) => {
-  const { ref, props } = useResponsiveFormLayout(otherProps);
-  const formPrefixCls = usePrefixCls('form', { prefixCls });
-  const layoutPrefixCls = usePrefixCls('formily-layout', { prefixCls });
+const FormLayout: FC<FormLayoutProps> = ({ children, className, style, ...otherProps }) => {
+  const { ref } = useResponsiveFormLayout(otherProps);
 
-  const [wrapSSR, hashId] = useStyle(layoutPrefixCls);
-
-  const layoutClassName = cn(
-    layoutPrefixCls,
-    {
-      [`${formPrefixCls}-${props.layout}`]: true,
-      [`${formPrefixCls}-${props.size}`]: props.size,
-    },
-    className,
-    hashId,
-  );
+  const [wrapSSR, hashId, prefixCls] = useFormLayoutStyle();
 
   return wrapSSR(
-    <div ref={ref} className={layoutClassName} style={style}>
+    <div ref={ref} className={cls(prefixCls, className, hashId)} style={style}>
       <FormLayoutContext.Provider value={otherProps}>{children}</FormLayoutContext.Provider>
     </div>,
   );

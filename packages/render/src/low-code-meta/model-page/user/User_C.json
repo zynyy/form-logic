@@ -51,8 +51,70 @@
       "group": "personalInfo",
       "required": "1",
       "component": "Select",
-      "componentProps": {},
+      "componentProps": {
+        "mode": "multiple"
+      },
       "wrap": 1
+    },
+    {
+      "code": "code1",
+      "name": "用户编码",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "disabled": "1"
+    },
+    {
+      "code": "name1",
+      "name": "用户名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "code2",
+      "name": "用户编码",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "disabled": "1"
+    },
+    {
+      "code": "name2",
+      "name": "用户名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "code3",
+      "name": "用户编码",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "disabled": "1"
+    },
+    {
+      "code": "name3",
+      "name": "用户名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "name3",
+      "name": "用户名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1",
+      "colSpan": "3"
     }
   ]
 }

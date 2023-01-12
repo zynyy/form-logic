@@ -1,12 +1,17 @@
-import {Form, Input} from "antd";
+import { Form } from 'antd';
 
-import {FC} from "react";
-import {SettingConfigType} from "../interface";
+import { FC } from 'react';
+import { SettingConfigType } from '../interface';
+import { useMode } from '@/hooks';
+
+import {Input} from '@formlogic/component';
 
 export interface PolicyDecisionConfigProps extends SettingConfigType {}
 
 const PolicyDecisionConfig: FC<PolicyDecisionConfigProps> = ({ selected }) => {
   const [form] = Form.useForm();
+
+  const { isDetail } = useMode();
 
   const handleChange = () => {
     if (selected) {
@@ -16,7 +21,6 @@ const PolicyDecisionConfig: FC<PolicyDecisionConfigProps> = ({ selected }) => {
         });
         const { label } = values || {};
         if (selected.isNode()) {
-
           // @ts-ignore
           selected.label = label;
 
@@ -44,7 +48,7 @@ const PolicyDecisionConfig: FC<PolicyDecisionConfigProps> = ({ selected }) => {
       initialValues={selected?.data.configValues || {}}
     >
       <Form.Item label="名称" name="label">
-        <Input />
+        <Input readOnly={isDetail} />
       </Form.Item>
     </Form>
   );

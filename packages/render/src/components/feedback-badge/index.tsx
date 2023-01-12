@@ -1,10 +1,10 @@
-import { observer, useField } from '@formily/react';
+import { observer, useField,SchemaKey } from '@formily/react';
 import { Badge } from 'antd';
 import React, { FC, PropsWithChildren } from 'react';
-import { SchemaKey } from '@formily/json-schema';
+
 
 interface FeedbackBadgeProps extends PropsWithChildren {
-  name: SchemaKey;
+  name?: SchemaKey;
 }
 
 const FeedbackBadge: FC<FeedbackBadgeProps> = observer(({ name, children }) => {
@@ -12,7 +12,7 @@ const FeedbackBadge: FC<FeedbackBadgeProps> = observer(({ name, children }) => {
 
   const errors = field.form.queryFeedbacks({
     type: 'error',
-    address: `${field.address.concat(name)}.*`,
+    address: `${name ? field.address.concat(name) : field.address}`,
   });
 
   if (errors.length) {

@@ -1,15 +1,16 @@
-import { Button, ButtonProps } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
+import { CustomButtonMode } from '@/interface';
 
-export interface RemoveButtonProps extends ButtonProps {}
+export interface RemoveButtonProps extends Omit<CustomButtonProps, 'icon'> {}
 
-const RemoveButton: FC<RemoveButtonProps> = ({ children, ...props }) => {
+const RemoveButton: FC<RemoveButtonProps> = forwardRef(({ children, ...props }, ref) => {
   return (
-    <Button type="text" {...props} icon={<DeleteOutlined />}>
+    <CustomButton mode={CustomButtonMode.icon} type="text" {...props} icon={<DeleteOutlined />} ref={ref}>
       {children}
-    </Button>
+    </CustomButton>
   );
-};
+});
 
 export default RemoveButton;

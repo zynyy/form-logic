@@ -1,0 +1,41 @@
+{
+  "code": "Model_Field_C",
+  "name": "模型字段新增",
+  "model": "Model",
+  "group": [
+    {
+      "code": "basicInfo",
+      "name": "基础信息"
+    },
+    {
+      "code": "defaultConfigInfo",
+      "name": "配置信息"
+    }
+  ],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo",
+      "required": 1
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo",
+      "required": 1
+    },
+    {
+      "code": "defaultConfig",
+      "name": "默认配置",
+      "type": "column",
+      "schemaType": "object",
+      "group": "defaultConfigInfo",
+      "pageCode": "FieldMeta_DefaultConfig_C"
+    }
+  ]
+}

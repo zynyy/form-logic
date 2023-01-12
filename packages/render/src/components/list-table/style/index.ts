@@ -1,18 +1,28 @@
-import { genStyleHook } from '@/style/styleHook';
+import { genStyleHook } from '@formlogic/component';
 
-export default genStyleHook('array-table-base', (token) => {
-  const { componentCls, antCls } = token;
+export default genStyleHook('list-table', (token) => {
+  const { componentCls, antCls, paddingSM, colorWhite, formLogicCls } = token;
 
   return {
     [componentCls]: {
+      height: '100%',
       [`${antCls}-table`]: {
         td: {
           visibility: 'visible',
         },
       },
-      [`${antCls}-formily-form-item`]: {
+      [`${formLogicCls}-form-item`]: {
         marginBottom: 0,
       },
+      [`${antCls}-table-wrapper ${antCls}-table-pagination${antCls}-pagination`]: {
+        backgroundColor: colorWhite,
+        padding: paddingSM,
+        margin: 0,
+      },
     },
+    [`${componentCls} ${antCls}-table-cell`]: {
+      whiteSpace: 'nowrap',
+    },
+
   };
 });

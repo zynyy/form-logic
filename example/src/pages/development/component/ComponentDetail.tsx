@@ -1,11 +1,12 @@
 import { FormPageLayout } from '@formlogic/render';
-import { getLocalConfig } from '@formlogic/render/lib/service';
+
+import getLogicConfig from '@/low-code-meta/logic';
 
 
 const ComponentDetail = () => {
 
 
-  return <FormPageLayout getLogicConfig={getLocalConfig} />
+  return <FormPageLayout  getLogicConfig={getLogicConfig} />
 
 }
 

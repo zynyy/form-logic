@@ -1,9 +1,9 @@
-import {CSSProperties, FC, MouseEvent, TouchEvent, useEffect, useRef, useState,} from "react";
+import { CSSProperties, FC, MouseEvent, TouchEvent, useEffect, useRef, useState } from 'react';
 
-import Pane from "./Pane";
-import Resizer from "./Resizer";
-import {getDefaultSize, removeNullChildren, unFocus} from "./util";
-import {Size, SplitPaneProps} from "./interface";
+import Pane from './Pane';
+import Resizer from './Resizer';
+import { getDefaultSize, removeNullChildren, unFocus } from './util';
+import { Size, SplitPaneProps } from './interface';
 
 const SplitPane: FC<SplitPaneProps> = ({
   size,
@@ -36,7 +36,7 @@ const SplitPane: FC<SplitPaneProps> = ({
   const [position, setPosition] = useState(0);
 
   const [draggedSize, setDraggedSize] = useState<Size>(0);
-  const [resized, setResized] = useState(false);
+
   const [pane1Size, setPane1Size] = useState<Size | undefined>(undefined);
   const [pane2Size, setPane2Size] = useState<Size | undefined>(undefined);
 
@@ -46,10 +46,8 @@ const SplitPane: FC<SplitPaneProps> = ({
 
   useEffect(() => {
     const initialSize =
-      size !== undefined
-        ? size
-        : getDefaultSize(defaultSize, minSize, maxSize, undefined);
-    const isPanel1Primary = primary === "first";
+      size !== undefined ? size : getDefaultSize(defaultSize, minSize, maxSize, undefined);
+    const isPanel1Primary = primary === 'first';
 
     if (isPanel1Primary) {
       setPane1Size(initialSize);
@@ -72,14 +70,10 @@ const SplitPane: FC<SplitPaneProps> = ({
     if (allowResize) {
       unFocus(document);
 
-      if (typeof onDragStarted === "function") {
+      if (typeof onDragStarted === 'function') {
         onDragStarted();
       }
-      setPosition(
-        split === "vertical"
-          ? event.touches[0].clientX
-          : event.touches[0].clientY
-      );
+      setPosition(split === 'vertical' ? event.touches[0].clientX : event.touches[0].clientY);
       setActive(true);
     }
   };
@@ -94,8 +88,7 @@ const SplitPane: FC<SplitPaneProps> = ({
 
   const onTouchMove = (event: TouchEvent<HTMLSpanElement>) => {
     if (allowResize && active) {
-
-      const isPrimaryFirst = primary === "first";
+      const isPrimaryFirst = primary === 'first';
       const ref = isPrimaryFirst ? pane1Ref.current : pane2Ref.current;
       const ref2 = isPrimaryFirst ? pane2Ref.current : pane1Ref.current;
       if (ref) {
@@ -104,10 +97,8 @@ const SplitPane: FC<SplitPaneProps> = ({
           const width = node.getBoundingClientRect().width;
           const height = node.getBoundingClientRect().height;
           const current =
-            split === "vertical"
-              ? event.touches[0].clientX
-              : event.touches[0].clientY;
-          const size = split === "vertical" ? width : height;
+            split === 'vertical' ? event.touches[0].clientX : event.touches[0].clientY;
+          const size = split === 'vertical' ? width : height;
           let positionDelta = position - current;
           if (step) {
             if (Math.abs(positionDelta) < step) {
@@ -120,9 +111,7 @@ const SplitPane: FC<SplitPaneProps> = ({
           let sizeDelta = isPrimaryFirst ? positionDelta : -positionDelta;
 
           const pane1Order = parseInt(window.getComputedStyle(node).order);
-          const pane2Order = ref2
-            ? parseInt(window.getComputedStyle(ref2).order)
-            : 0;
+          const pane2Order = ref2 ? parseInt(window.getComputedStyle(ref2).order) : 0;
           if (pane1Order > pane2Order) {
             sizeDelta = -sizeDelta;
           }
@@ -131,12 +120,10 @@ const SplitPane: FC<SplitPaneProps> = ({
           if (maxSize !== undefined && maxSize <= 0 && splitPaneRef.current) {
             const splitPane = splitPaneRef.current;
 
-            if (split === "vertical") {
-              newMaxSize =
-                splitPane.getBoundingClientRect().width + Number(maxSize);
+            if (split === 'vertical') {
+              newMaxSize = splitPane.getBoundingClientRect().width + Number(maxSize);
             } else {
-              newMaxSize =
-                splitPane.getBoundingClientRect().height + Number(maxSize);
+              newMaxSize = splitPane.getBoundingClientRect().height + Number(maxSize);
             }
           }
 
@@ -149,7 +136,6 @@ const SplitPane: FC<SplitPaneProps> = ({
             newSize = newMaxSize;
           } else {
             setPosition(newPosition);
-            setResized(true);
           }
 
           onChange?.(newSize);
@@ -168,7 +154,7 @@ const SplitPane: FC<SplitPaneProps> = ({
 
   const onMouseUp = () => {
     if (allowResize && active) {
-      if (typeof onDragFinished === "function") {
+      if (typeof onDragFinished === 'function') {
         onDragFinished(draggedSize);
       }
 
@@ -176,66 +162,66 @@ const SplitPane: FC<SplitPaneProps> = ({
     }
   };
 
-  const disabledClass = allowResize ? "" : "disabled";
+  const disabledClass = allowResize ? '' : 'disabled';
 
   const notNullChildren = removeNullChildren(children);
 
   const style: CSSProperties = {
-    display: "flex",
+    display: 'flex',
     flex: 1,
+    position: 'absolute',
+    outline: 'none',
+    overflow: 'hidden',
+    MozUserSelect: 'text',
+    WebkitUserSelect: 'text',
+    msUserSelect: 'text',
+    userSelect: 'text',
     height: "100%",
-    position: "absolute",
-    outline: "none",
-    overflow: "hidden",
-    MozUserSelect: "text",
-    WebkitUserSelect: "text",
-    msUserSelect: "text",
-    userSelect: "text",
     ...styleProps,
   };
 
-  if (split === "vertical") {
+  if (split === 'vertical') {
     Object.assign(style, {
-      flexDirection: "row",
+      flexDirection: 'row',
       left: 0,
       right: 0,
     });
   } else {
     Object.assign(style, {
       bottom: 0,
-      flexDirection: "column",
-      minHeight: "100%",
+      flexDirection: 'column',
+      minHeight: '100%',
       top: 0,
-      width: "100%",
+      width: '100%',
     });
   }
 
-  const classes = ["SplitPane", className, split, disabledClass];
+  const classes = ['split-pane', className, split, disabledClass];
 
   const pane1Style = { ...paneStyle, ...pane1StyleProps };
   const pane2Style = { ...paneStyle, ...pane2StyleProps };
 
-  const pane1Classes = ["Pane1", paneClassName, pane1ClassName].join(" ");
-  const pane2Classes = ["Pane2", paneClassName, pane2ClassName].join(" ");
+  const pane1Classes = ['pane1', paneClassName, pane1ClassName].join(' ');
+  const pane2Classes = ['pane2', paneClassName, pane2ClassName].join(' ');
 
   useEffect(() => {
-    document.addEventListener("mouseup", onMouseUp);
+    document.addEventListener('mouseup', onMouseUp);
     // @ts-ignore
-    document.addEventListener("mousemove", onMouseMove);
+    document.addEventListener('mousemove', onMouseMove);
     // @ts-ignore
-    document.addEventListener("touchmove", onTouchMove);
+    document.addEventListener('touchmove', onTouchMove);
 
     return () => {
-      document.removeEventListener("mouseup", onMouseUp);
+      document.removeEventListener('mouseup', onMouseUp);
       // @ts-ignore
-      document.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener('mousemove', onMouseMove);
       // @ts-ignore
-      document.removeEventListener("touchmove", onTouchMove);
+      document.removeEventListener('touchmove', onTouchMove);
     };
   }, [active, position]);
 
   return (
-    <div className={classes.join(" ")} ref={splitPaneRef} style={style}>
+    <div className={classes.join(' ')} ref={splitPaneRef} style={style}>
       <Pane
         className={pane1Classes}
         eleRef={(node) => {
@@ -248,13 +234,13 @@ const SplitPane: FC<SplitPaneProps> = ({
         {notNullChildren[0]}
       </Pane>
       <Resizer
-        className={disabledClass}
+        className={[disabledClass, resizerClassName].join(' ')}
         onClick={onResizerClick}
         onDoubleClick={onResizerDoubleClick}
         onMouseDown={onMouseDown}
         onTouchStart={onTouchStart}
         onTouchEnd={onMouseUp}
-        split={split || "vertical"}
+        split={split || 'vertical'}
         style={resizerStyle || {}}
       />
       <Pane
@@ -275,11 +261,11 @@ const SplitPane: FC<SplitPaneProps> = ({
 SplitPane.defaultProps = {
   allowResize: true,
   minSize: 50,
-  primary: "first",
-  split: "vertical",
-  paneClassName: "",
-  pane1ClassName: "",
-  pane2ClassName: "",
+  primary: 'first',
+  split: 'vertical',
+  paneClassName: '',
+  pane1ClassName: '',
+  pane2ClassName: '',
 };
 
 export default SplitPane;

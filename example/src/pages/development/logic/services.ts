@@ -1,44 +1,48 @@
-import { requestGet, requestPost } from '@/service';
+import { requestDelete, requestGet, requestPost } from '@/service';
 
-export enum ModelConfig {
-  CREATE = 'Model_C',
-  DETAIL = 'Model_D',
-  EDIT = 'Model_U',
-  LIST = 'Model_L',
-  MODEL_CODE = 'Model',
-  CREATE_LINK = '/development/model/create',
-  EDIT_LINK = '/development/model/edit',
-  DETAIL_LINK = '/development/model/detail',
+export enum LogicConfig {
+  CREATE = 'Logic_C',
+  DETAIL = 'Logic_D',
+  EDIT = 'Logic_U',
+  LIST = 'Logic_L',
+  MODEL_CODE = 'Logic',
+  CREATE_LINK = '/development/logic/create',
+  EDIT_LINK = '/development/logic/edit',
+  DETAIL_LINK = '/development/logic/detail',
 }
 
-const baseUrl = 'local-api/model';
+const baseUrl = 'local-api/logic';
 
 export const apiUrl = {
   detail: `${baseUrl}/detail`, // 详情
   create: `${baseUrl}/create`, // 新增
   update: `${baseUrl}/update`, // 编辑
   page: `${baseUrl}/page`, // 编辑
+  remove: `${baseUrl}/remove`, // 删除
 };
 
-export interface ModelCreateParams extends DynamicObjectAny {}
+export interface LogicCreateParams extends DynamicObjectAny {}
 
-export interface ModelSaveParams extends DynamicObjectAny {}
+export interface LogicDetailParams extends DynamicObjectAny {}
 
-export interface ModelDetailParams extends DynamicObjectAny {}
-
-export interface ModelUpdateParams extends DynamicObjectAny {}
+export interface LogicUpdateParams extends DynamicObjectAny {}
 
 // 新增
-export const modelCreate = (params: ModelCreateParams) => {
+export const logicCreate = (params: LogicCreateParams) => {
   return requestPost(apiUrl.create, params);
 };
 
 // 编辑更新
-export const modelUpdate = (params: ModelUpdateParams) => {
+export const logicUpdate = (params: LogicUpdateParams) => {
   return requestPost(apiUrl.update, params);
 };
 
 // 详情页
-export const modelDetail = (params: ModelDetailParams) => {
+export const logicDetail = (params: LogicDetailParams) => {
   return requestGet(apiUrl.detail, params);
+};
+
+// 详情页
+export const logicRemove = (params: LogicDetailParams) => {
+  return requestDelete(apiUrl.remove, params);
 };

@@ -1,11 +1,21 @@
+import { FC, RefAttributes } from 'react';
 import { Monaco } from '@monaco-editor/react';
 import * as monacoEditor from 'monaco-editor';
+
+export type FCRef<Props, Ref> = FC<Props & RefAttributes<Ref>>;
 
 export type StrNumBool = '0' | '1' | 1 | 0 | boolean | undefined | null;
 
 export type MonacoType = typeof monacoEditor;
 
 export type { editor as MonacoEditorType } from 'monaco-editor';
+
+export enum CustomButtonMode {
+  icon = 'icon',
+  text = 'text',
+}
+
+export type CustomButtonModeType = keyof typeof CustomButtonMode;
 
 export interface MonacoEditorLoaderPaths {
   vs: string;

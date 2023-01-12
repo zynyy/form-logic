@@ -1,6 +1,6 @@
-import { genStyleHook } from '@/style/styleHook';
+import { genStyleHook } from '@formlogic/component';
 
-const style = genStyleHook('form-layout', (token) => {
+export const formLayoutStyle = genStyleHook('form-layout', (token) => {
   const { componentCls } = token || {};
 
   return {
@@ -12,4 +12,3 @@ const style = genStyleHook('form-layout', (token) => {
   };
 });
 
-export default style;

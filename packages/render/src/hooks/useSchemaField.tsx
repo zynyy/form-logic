@@ -4,17 +4,30 @@ import FormLayout from '@/components/form-layout';
 import FormGroup from '@/components/form-group';
 import FormGrid from '@/components/form-grid';
 import FormItem from '@/components/form-item';
-import Input from '@/components/input';
-import Select from '@/components/select';
+
+import { Space } from 'antd';
+import {
+  Input,
+  StaticSelect,
+  InputNumber,
+  RemoteSelect,
+  TextArea,
+  CustomButton,
+} from '@formlogic/component';
+
 import ArrayTable from '@/components/array-table';
 import Fragment from '@/components/fragment';
-import Button from '@/components/button';
+
 import ArrayBase from '@/components/array-base';
-import { Input as AntdInput, Space } from 'antd';
+
 import FormTabsGroup from '@/components/form-tabs-group';
 import ListTable from '@/components/list-table';
 
-const { Password } = AntdInput;
+import PopoverBtn from '@/components/popover-btn';
+
+import DynamicSchema from '@/components/dynamic-schema';
+import PopoverContainer from '@/components/popover-container';
+import ArrayDrawerTable from '@/components/array-drawer-table';
 
 const useCreateSchemaField = () => {
   return useMemo(() => {
@@ -24,16 +37,22 @@ const useCreateSchemaField = () => {
         FormGroup,
         FormGrid,
         FormItem,
-        Input,
-        Select: Select,
         ArrayTable,
         Fragment,
-        Button,
+        Button: CustomButton,
         ArrayBase,
         Space,
         FormTabsGroup,
         ListTable,
-        Password,
+        StaticSelect,
+        RemoteSelect,
+        Input,
+        InputNumber,
+        TextArea,
+        PopoverBtn,
+        DynamicSchema,
+        PopoverContainer,
+        ArrayDrawerTable
       },
     });
   }, []);

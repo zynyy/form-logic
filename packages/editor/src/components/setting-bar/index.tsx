@@ -1,9 +1,9 @@
-import {createElement, FC, useEffect, useRef, useState} from "react";
-import {Card, Empty} from "antd";
-import {Cell, Graph} from "@antv/x6";
-import {Selection} from "@antv/x6-plugin-selection";
-import settingConfigs from "./configs";
-import {SettingConfigTypeFC} from "./interface";
+import { createElement, FC, useEffect, useRef, useState } from 'react';
+import { Card, Empty } from 'antd';
+import { Cell, Graph } from '@antv/x6';
+import { Selection } from '@antv/x6-plugin-selection';
+import settingConfigs from './configs';
+import { SettingConfigTypeFC } from './interface';
 
 interface SettingBarProps {
   graph: Graph | undefined;
@@ -23,12 +23,12 @@ const SettingBar: FC<SettingBarProps> = ({ graph }) => {
           multiple: false,
           showNodeSelectionBox: true,
           showEdgeSelectionBox: true,
-          pointerEvents: "none",
+          pointerEvents: 'none',
           rubberband: true,
-        })
+        }),
       );
 
-      graph.on("cell:selected", ({ cell }) => {
+      graph.on('cell:selected', ({ cell }) => {
         const { settingConfig } = cell.data || {};
 
         settingConfigRef.current = settingConfigs.getConfig(settingConfig);
@@ -36,15 +36,15 @@ const SettingBar: FC<SettingBarProps> = ({ graph }) => {
         setSelected(cell);
       });
 
-      graph.on("cell:unselected", ({}) => {
+      graph.on('cell:unselected', ({}) => {
         settingConfigRef.current = undefined;
         setSelected(undefined);
       });
     }
 
     return () => {
-      graph?.off("cell:selected");
-      graph?.off("cell:unselected");
+      graph?.off('cell:selected');
+      graph?.off('cell:unselected');
     };
   }, [graph]);
 
@@ -53,18 +53,20 @@ const SettingBar: FC<SettingBarProps> = ({ graph }) => {
       return createElement(settingConfigRef.current, {
         graph,
         selected,
+        key: selected?.id,
       });
     }
 
-    return (
-      <Empty
-        description={selected ? "选中的单元格无须配置" : "暂未发现选中的单元格"}
-      />
-    );
+    return <Empty description={selected ? '选中的单元格无须配置' : '暂未发现选中的单元格'} />;
   };
 
   return (
-    <Card title={selected ? `${selected.id}配置` : "请先选中单元格"}>
+    <Card
+      style={{
+        height: '100%',
+      }}
+      title={selected ? `${selected.id}配置` : '请先选中单元格'}
+    >
       {renderConfigView()}
     </Card>
   );

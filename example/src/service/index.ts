@@ -1,16 +1,18 @@
 // https://github.com/axios/axios#axios-api
 
-import { message } from '@formlogic/render';
+import { message } from 'antd';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import qs from 'qs';
-
 import { isError } from '@/utils/is';
+
+import mustache from 'mustache';
 
 // https://tools.ietf.org/html/rfc2616#section-10
 // https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status
 const HTTPStatusCodeMessage = {
-  404: '请求失败，接口不存在 {{url}}',
+  404: '请求失败，接口不存在 {{&url}}',
+  504: '请求失败 网关超时 {{&url}}',
+  500: '请求失败 后端接口处理出错 {{&url}}',
 };
 
 const serviceInstance = axios.create({
@@ -24,15 +26,6 @@ const serviceInstance = axios.create({
 serviceInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // https://github.com/axios/axios#request-config
-
-    const { method, data } = config;
-
-    if (method === 'post') {
-      config.headers = config.headers || {};
-
-      config.headers['content-type'] = 'application/x-www-form-urlencoded';
-      config.data = qs.stringify(data);
-    }
 
     return config;
   },
@@ -50,8 +43,8 @@ serviceInstance.interceptors.response.use(
     // https://github.com/axios/axios#response-schema
     const { data } = response;
 
-    const { result, message: msg } = data;
-    if (result !== 1) {
+    const { code, msg } = data;
+    if (code !== 200) {
       message.error(msg).then(() => void 0);
       return Promise.reject(data);
     }
@@ -59,10 +52,19 @@ serviceInstance.interceptors.response.use(
     return Promise.resolve(data);
   },
   (error: any) => {
+    if (error?.isAxiosError) {
+      const { config } = error || {};
 
+      const { url } = config || {};
 
+      const code = error.request.status;
 
-    if (isError(error)) {
+      if (Reflect.has(HTTPStatusCodeMessage, code)) {
+        message.error(mustache.render(HTTPStatusCodeMessage[code], { url })).then(() => void 0);
+      } else {
+        message.error(error.message).then(() => void 0);
+      }
+    } else if (isError(error)) {
       const messageArray: Array<string | number> = error.message.split(' ');
 
       const code = messageArray.pop();
@@ -78,34 +80,52 @@ serviceInstance.interceptors.response.use(
       message.error('取消请求').then(() => void 0);
     }
 
-    if (error?.code === "ERR_BAD_REQUEST") {
-      message.error(error.message).then(() => void 0);
-    }
-
-
-
     return Promise.reject(error);
   },
 );
 
-export const requestGet = (url: string, params?: any, config?: AxiosRequestConfig) => {
+export interface BackEndData {
+  code: number;
+  data: any;
+  msg: string;
+}
+
+export type BackEndDataPromise = Promise<BackEndData>;
+
+export const requestGet = (
+  url: string,
+  params?: any,
+  config?: AxiosRequestConfig,
+): BackEndDataPromise => {
   return serviceInstance.get(url, {
     ...config,
     params,
   });
 };
 
-export const requestPost = (url: string, data?: any, config?: AxiosRequestConfig) => {
+export const requestPost = (
+  url: string,
+  data?: any,
+  config?: AxiosRequestConfig,
+): BackEndDataPromise => {
   return serviceInstance.post(url, data, config);
 };
 
-export const requestDelete = (url: string, data?: any, config?: AxiosRequestConfig) => {
+export const requestDelete = (
+  url: string,
+  data?: any,
+  config?: AxiosRequestConfig,
+): BackEndDataPromise => {
   return serviceInstance.delete(url, {
     ...config,
     data,
   });
 };
 
-export const requestPut = (url: string, data?: any, config?: AxiosRequestConfig) => {
+export const requestPut = (
+  url: string,
+  data?: any,
+  config?: AxiosRequestConfig,
+): BackEndDataPromise => {
   return serviceInstance.put(url, data, config);
 };

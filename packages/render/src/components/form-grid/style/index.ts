@@ -1,4 +1,4 @@
-import { genStyleHook } from '@/style/styleHook';
+import { genStyleHook } from '@formlogic/component';
 
 export default genStyleHook('form-grid', (token) => {
   const { componentCls } = token;

@@ -1,5 +1,5 @@
 import SchemeForm from './index';
-import { useFormSchema } from '@/hooks';
+import { useCreateForm, useFormSchema } from '@/hooks';
 import { useRef, useState } from 'react';
 import { TransformsSchemaOptions } from '@/transforms';
 import { Form, IFormProps } from '@formily/core';
@@ -8,6 +8,8 @@ import User_C from '../low-code-meta/model-page/user/User_C.json';
 import User_Group_C from '../low-code-meta/model-page/user/User_Group_C.json';
 import User_ArrayTable_C from '../low-code-meta/model-page/user/User_ArrayTable_C.json';
 import User_Tabs_C from '../low-code-meta/model-page/user/User_Tabs_C.json';
+import User_Object_C from '../low-code-meta/model-page/user/User_Object_C.json';
+import EffectHookSelect from '@/components/constant-component/effect-hook-select';
 
 export default {
   /* 👇 The title prop is optional.
@@ -23,44 +25,38 @@ export default {
   },
 };
 
-const Template = ({ hasGroup, schemaMode, metaSchema, ...args }) => {
-  const formRef = useRef<Form>();
-
+const Template = ({ hasGroup, pattern, metaSchema, ...args }) => {
   const [options] = useState<TransformsSchemaOptions>(() => {
     return {
       metaSchema: metaSchema,
       hasGroup: hasGroup,
-      schemaMode: schemaMode,
-      buttonsEvent: {},
-      logic: {},
+      pattern: pattern,
     };
   });
 
   const [formConfig] = useState<IFormProps>(() => {
     return {
-      initialValues: {
-        school: [
-          {
-            name: 1,
-          },
-          {
-            code: 1,
-          },
-        ],
-      },
+      initialValues: {},
     };
   });
 
   const { schema, buttons } = useFormSchema(options);
 
-  const handleSubmitClick = () => {
-    formRef.current.validate('*');
-  };
+  const [form] = useCreateForm({
+    formConfig
+  });
 
   return (
     <>
       {buttons}
-      <SchemeForm {...args} schema={schema} ref={formRef} formConfig={formConfig} />
+      <SchemeForm
+        {...args}
+        form={form}
+        schema={schema}
+        components={{
+          Select: EffectHookSelect,
+        }}
+      />
     </>
   );
 };
@@ -69,21 +65,21 @@ export const editable = Template.bind({});
 
 editable.args = {
   metaSchema: User_C,
-  schemaMode: 'EDITABLE',
+  pattern: 'EDITABLE',
 };
 
 export const disabled = Template.bind({});
 
 disabled.args = {
   metaSchema: User_C,
-  schemaMode: 'DISABLED',
+  pattern: 'DISABLED',
 };
 
 export const DETAIL = Template.bind({});
 
 DETAIL.args = {
   metaSchema: User_C,
-  schemaMode: 'DETAIL',
+  pattern: 'DETAIL',
 };
 
 export const noGroup = Template.bind({});
@@ -111,5 +107,12 @@ export const tabs = Template.bind({});
 
 tabs.args = {
   metaSchema: User_Tabs_C,
+  hasGroup: true,
+};
+
+export const object = Template.bind({});
+
+object.args = {
+  metaSchema: User_Object_C,
   hasGroup: true,
 };

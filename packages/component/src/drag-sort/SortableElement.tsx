@@ -12,7 +12,6 @@ const SortableElement = <T extends HTMLAttributes<HTMLElement>>(
   Component: FC<T>,
 ): FC<T & SortableElementProps> => {
   return ({ index = 0, lockAxis, ...props }) => {
-
     const sortable = useSortable({
       id: index + 1,
     });

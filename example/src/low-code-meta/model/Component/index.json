@@ -1,0 +1,115 @@
+{
+  "code": "Component",
+  "name": "组件模型",
+  "metas": [
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "code",
+      "name": "组件编码"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "name",
+      "name": "组件名称"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "1",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "RemoteSelect"
+      },
+      "code": "componentPropsPageCode",
+      "name": "属性编码"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "componentProps",
+      "name": "组件属性"
+    },
+    {
+      "code": "componentPropsJson",
+      "name": "组件合并属性",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "JsonMonacoEditor"
+      }
+    },
+    {
+      "code": "remoteDataPath",
+      "name": "数据源路径",
+      "defaultConfig": { "schemaType": "array", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "valueTemplateKey",
+      "name": "选项值",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "defaultFirstOptionValue",
+      "name": "默认第一个值",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "YesNoSelect"
+      }
+    },
+    {
+      "code": "labelTemplateKey",
+      "name": "选项标签",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "apiConfig",
+      "name": "接口配置",
+      "defaultConfig": { "schemaType": "object", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "optionLabelProp",
+      "name": "属性值",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "explain",
+      "name": "示例说明",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "TextArea"
+      }
+    },
+    {
+      "code": "type",
+      "name": "类型",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "pageCode",
+      "name": "页面编码",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "RemoteSelect",
+        "componentProps": {
+          "defaultFirstOptionValue": "0",
+          "apiConfig": {
+            "method": "get",
+            "params": { "type": "page" },
+            "url": "/local-api/model-or-page/list"
+          },
+          "labelTemplateKey": "{{code}}-{{name}}"
+        }
+      }
+    }
+  ]
+}

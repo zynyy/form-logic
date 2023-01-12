@@ -3,25 +3,32 @@ import { Space, Table, TableProps } from 'antd';
 
 import { observer, useField } from '@formily/react';
 
-import { useArrayTableColumns, useArrayTableSources, useSchemaBtn } from '../hooks';
-import ArrayBase from '../array-base';
+import { useArrayTableColumns, useArrayTableSources, useSchemaBtn } from '@/hooks';
+import ArrayBase, { ArrayBaseProps } from '../array-base';
 import { ArrayField } from '@formily/core';
 import SchemaFragment from '@/components/schema-fragment';
 import { useListTableStyle } from '@/components/list-table/hooks';
 import cls from 'classnames';
 import { DEFAULT_TABLE_PAGINATION } from '@/utils/constant';
 
-export interface ListTableProps extends TableProps<any> {
+export interface ListTableProps extends TableProps<any>, ArrayBaseProps {
   scrollY?: number;
-  onAdd?: () => void;
-  onEdit?: (record: any, index: number) => void;
-  onRemove?: (record: any, index: number) => void;
   rowKey?: string;
   onTableChange: TableProps<any>['onChange'];
 }
 
 const ListTable: FC<ListTableProps> = observer(
-  ({ scrollY, onAdd, onEdit, onRemove, rowKey, onTableChange, pagination, ...restProps }) => {
+  ({
+    scrollY,
+    onAdd,
+    onEdit,
+    onDetail,
+    onRemove,
+    rowKey,
+    onTableChange,
+    pagination,
+    ...restProps
+  }) => {
     const field = useField<ArrayField>();
     const [warpSSR, hashId, prefixCls] = useListTableStyle();
     const dataSource = Array.isArray(field.value) ? field.value.slice() : [];
@@ -36,10 +43,10 @@ const ListTable: FC<ListTableProps> = observer(
 
     return warpSSR(
       <div className={cls(prefixCls, hashId)}>
-        <ArrayBase onAdd={onAdd} onEdit={onEdit} onRemove={onRemove}>
+        <ArrayBase onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} onDetail={onDetail}>
           <Table
-            size="small"
             {...restProps}
+            size="small"
             onChange={onTableChange}
             rowKey={defaultRowKey}
             title={
@@ -58,7 +65,6 @@ const ListTable: FC<ListTableProps> = observer(
             }}
             pagination={{
               ...DEFAULT_TABLE_PAGINATION,
-              size: 'small',
               ...pagination,
             }}
           />

@@ -1,10 +1,10 @@
-import { Button, ButtonProps } from 'antd';
 import { RollbackOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
 
-export interface BackButtonProps extends ButtonProps {}
+export interface BackButtonProps extends Omit<CustomButtonProps, 'icon'> {}
 
-const BackButton: FC<BackButtonProps> = ({ children, onClick, ...restProps }) => {
+const BackButton: FC<BackButtonProps> = forwardRef(({ children, onClick, ...restProps }, ref) => {
   const handleBackClick = (e) => {
     if (onClick) {
       onClick(e);
@@ -14,10 +14,16 @@ const BackButton: FC<BackButtonProps> = ({ children, onClick, ...restProps }) =>
   };
 
   return (
-    <Button {...restProps} onClick={handleBackClick} icon={<RollbackOutlined />}>
-      {children || '返回'}
-    </Button>
+    <CustomButton
+      title="返回"
+      {...restProps}
+      onClick={handleBackClick}
+      icon={<RollbackOutlined />}
+      ref={ref}
+    >
+      {children}
+    </CustomButton>
   );
-};
+});
 
 export default BackButton;

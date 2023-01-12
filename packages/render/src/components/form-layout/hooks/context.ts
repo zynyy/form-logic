@@ -24,6 +24,6 @@ export interface FormLayoutValueContext {
 
 export const FormLayoutContext = createContext<FormLayoutValueContext>(null);
 
-export const useFormLayout = () => {
+export const useFormLayoutContext = () => {
   return useContext(FormLayoutContext) || {};
 };

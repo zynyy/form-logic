@@ -1,39 +1,33 @@
-import SchemaLayout from '@/components/schema-layout/SchemaLayout';
 import SchemeForm, { SchemeFormProps } from '@/scheme-form';
-import { FC, useState, MouseEvent } from 'react';
-import { Button, Spin } from 'antd';
-import { RollbackOutlined } from '@ant-design/icons';
-import LeftRightSlot from '@/components/left-right-slot';
-import {
-  TransformsOptionsArgs,
-  useBindBtnClick,
-  useBindLogic,
-  useCreateForm,
-  useFormSchema,
-  useTransformsOptions,
-  useTriggerLogic,
-} from '@/hooks';
+import { FC, useState, useEffect } from 'react';
+import { Button } from 'antd';
+
+import { TransformsOptionsArgs, usePageForm, useTransformsOptions, useTriggerLogic } from '@/hooks';
 import { AnyObject, EventsObject, LogicConfig } from '@/interface';
 
-import { flushSync } from 'react-dom';
+import { LeftRightSlot, BackButton, Layout } from '@formlogic/component';
+import { Form, IFormProps } from '@formily/core';
 
 export interface FormPageLayoutProps
   extends TransformsOptionsArgs,
-    Pick<SchemeFormProps, 'onFormMount' | 'formConfig' | 'components'> {
+    Pick<SchemeFormProps, 'language' | 'components'> {
+  formConfig?: IFormProps;
+  onFormMount?: (form: Form) => void;
   getLogicConfig: LogicConfig;
   extraLogicParams?: AnyObject;
   events?: EventsObject;
   hasBackBtn?: boolean;
   hasFooter?: boolean;
   hasButton?: boolean;
-  onBackClick?: (e: MouseEvent<HTMLElement>) => void;
+  loading?: boolean;
+  onBackClick?: (e) => void;
 }
 
 const FormPageLayout: FC<FormPageLayoutProps> = ({
   pageCode,
   metaSchema,
   hasGroup,
-  schemaMode,
+  pattern,
   onFormMount,
   formConfig,
   getLogicConfig,
@@ -44,51 +38,48 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
   hasButton,
   onBackClick,
   components,
+  loading,
+  language,
 }) => {
   const [options] = useTransformsOptions({
     pageCode,
     metaSchema,
     hasGroup,
-    schemaMode,
+    pattern,
   });
-
-  const { schema, logicList, btnFields, buttons } = useFormSchema(options);
 
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  const [form] = useCreateForm(formConfig, onFormMount);
-
-  useBindBtnClick(form, btnFields, getLogicConfig, extraLogicParams, events, () => {});
-
-  const [done] = useBindLogic(form, schema, logicList, getLogicConfig, extraLogicParams, () => {});
+  const { schema, buttons, form, formLoading } = usePageForm({
+    formConfig,
+    onFormMount,
+    autoRefreshForm: true,
+    options,
+    getLogicConfig,
+    logicParams: extraLogicParams,
+    events,
+  });
 
   const [triggerLogic] = useTriggerLogic(getLogicConfig, () => {
     setSubmitLoading(false);
   });
 
-  const handleBackClick = (e: MouseEvent<HTMLElement>) => {
-    if (onBackClick) {
-      onBackClick(e);
-      return;
-    }
-    history.back();
-  };
+  useEffect(() => {
+    setSubmitLoading(!!loading);
+  }, [loading]);
 
   const renderFooter = () => {
     if (hasFooter) {
-      const left = hasBackBtn ? (
-        <Button icon={<RollbackOutlined />} onClick={handleBackClick}>
-          返回
-        </Button>
-      ) : null;
+      const left = hasBackBtn ? <BackButton onClick={onBackClick} /> : null;
 
       const right = hasButton
         ? buttons.map((item) => {
             const { name, logics, eventCode } = item || {};
 
             const clickCodes =
-              logics?.filter((item) => item.event === 'onClick')?.map((item) => item.logicCode) ||
-              [];
+              logics
+                ?.filter((item) => item.effectHook === 'onClick')
+                ?.map((item) => item.logicCode) || [];
 
             return (
               <Button
@@ -102,13 +93,14 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
                   }
 
                   if (clickCodes.length) {
-                    flushSync(() => {
-                      setSubmitLoading(true);
-                    });
+                    setSubmitLoading(true);
 
                     triggerLogic(clickCodes, {
                       params: extraLogicParams,
                       form,
+                      effectHook: 'onClick',
+                      fieldCode: name,
+                      pageCode: options?.metaSchema?.code,
                     });
                   }
                 }}
@@ -126,11 +118,19 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
   };
 
   return (
-    <Spin spinning={submitLoading}>
-      <SchemaLayout footer={renderFooter()}>
-        <SchemeForm done={done} form={form} schema={schema} components={components} />
-      </SchemaLayout>
-    </Spin>
+    <Layout loading={submitLoading} footer={renderFooter()}>
+      <SchemeForm
+        loading={formLoading}
+        form={form}
+        schema={schema}
+        components={components}
+        pattern={pattern}
+        getLogicConfig={getLogicConfig}
+        extraLogicParams={extraLogicParams}
+        events={events}
+        language={language}
+      />
+    </Layout>
   );
 };
 

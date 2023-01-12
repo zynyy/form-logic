@@ -1,25 +1,25 @@
 import { FC, useEffect, useState } from 'react';
-import { AnyObject, EventsObject, LogicConfig, MetaSchema } from '@/interface';
+import { AnyObject, EventsObject, LogicConfig, MetaSchema, SchemaPatternEnum } from '@/interface';
 import { Form, IFormProps, isField } from '@formily/core';
-import {
-  useBindBtnClick,
-  useBindLogic,
-  useCreateForm,
-  useListSchema,
-  useTransformsOptions,
-  useTriggerLogic,
-} from '@/hooks';
-import { Button, Space, Spin } from 'antd';
+import { useTransformsOptions, useTriggerLogic } from '@/hooks';
 
-import SchemaLayout from '@/components/schema-layout/SchemaLayout';
 import WhereLayout from '@/components/schema-layout/WhereLayout';
-import { ClearOutlined, SearchOutlined } from '@ant-design/icons';
-import SchemeForm from '@/scheme-form';
-import { getSubmitFormValues } from '@/utils/getSubmitFormValues';
-import { requestGet } from '@/utils/request';
-import SchemeTableForm from '@/scheme-table-form';
 
-export interface ListLayoutProps {
+import SchemeForm from '@/scheme-form';
+
+import { requestGet } from '@/utils/request';
+import SchemeTableForm, { SchemeTableFormProps } from '@/scheme-table-form';
+import { ListLayoutContent } from '@/list-layout/hooks/content';
+
+import { getSubmitFormValues } from '@/utils/formUtils';
+import { Layout } from '@formlogic/component';
+import useListPageForm from '@/hooks/useListPageForm';
+
+export interface ListLayoutProps
+  extends Omit<
+    SchemeTableFormProps,
+    'form' | 'done' | 'schema' | 'total' | 'currentPage' | 'onChange' | 'pageSize' | 'dataSource'
+  > {
   action: string;
   pageCode?: string;
   metaSchema?: MetaSchema;
@@ -31,6 +31,7 @@ export interface ListLayoutProps {
   onSearchMount?: (form: Form) => void;
   extraSearchParams?: AnyObject;
   transformSearchParams?: (searchParams: AnyObject) => AnyObject;
+  reloadFlag?: number;
   extraLogicParams?: {
     [key: string]: any;
   };
@@ -48,6 +49,10 @@ const ListLayout: FC<ListLayoutProps> = ({
   onSearchMount,
   onTableMount,
   events,
+  reloadFlag,
+  components,
+  language,
+  ...tableProps
 }) => {
   const [options] = useTransformsOptions({
     pageCode,
@@ -55,63 +60,67 @@ const ListLayout: FC<ListLayoutProps> = ({
   });
 
   const [dataSource, setDataSource] = useState([]);
-
-  const listSchema = useListSchema(options);
-
   const [searchLoading, setSearchLoading] = useState(false);
+
+  const {
+    searchForm,
+    hasCollapsed,
+    tableFormLoading,
+    tableSchema,
+    searchSchema,
+    searchButtons,
+    dataTableForm,
+    searchFormLoading,
+  } = useListPageForm({
+    options,
+    events,
+    getLogicConfig,
+    logicParams: {
+      ...extraSearchParams,
+      setSearchLoading,
+      cb: () => {
+        search(currentPage, pageSize);
+      },
+    },
+  });
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(30);
   const [total, setTotal] = useState(0);
 
-  const {
-    searchSchema,
-    tableSchema,
-    hasCollapsed,
-    searchLogic,
-    tableLogic,
-    tableBtnFields,
-    searchButtons,
-  } = listSchema;
-
-  const [searchForm] = useCreateForm(searchFormConfig, onSearchMount);
-  const [dataTableForm] = useCreateForm({}, onTableMount);
-
-  useBindBtnClick(
-    dataTableForm,
-    tableBtnFields,
-    getLogicConfig,
-    extraLogicParams,
-    events,
-    () => {},
-  );
-
-  const [searchDone] = useBindLogic(
-    searchForm,
-    searchSchema,
-    searchLogic,
-    getLogicConfig,
-    extraLogicParams,
-    () => {},
-  );
-
-  const [tableDone] = useBindLogic(
-    dataTableForm,
-    tableSchema,
-    tableLogic,
-    getLogicConfig,
-    extraLogicParams,
-    () => {},
-  );
+  const [prevReload, setPrevReloadFlag] = useState(reloadFlag);
 
   const [triggerLogic] = useTriggerLogic(getLogicConfig, () => {});
 
+  const handleButtonItemClick = (
+    e,
+    code: string,
+    eventCode: string | undefined,
+    clickCodes: string[],
+  ) => {
+    if (eventCode && events?.[eventCode]) {
+      events[eventCode](e, searchForm);
+      return;
+    }
+
+    if (clickCodes.length) {
+      triggerLogic(clickCodes, {
+        params: extraLogicParams,
+        form: searchForm,
+        effectHook: 'onClick',
+        fieldCode: code,
+        pageCode: metaSchema?.code,
+      });
+    }
+  };
+
   const initSearch = () => {
-    handleSearch();
+    search(1, pageSize);
   };
 
   const handleRestClick = () => {
-    searchForm.reset();
+    searchForm.reset().then(() => void 0);
+    search(1, pageSize);
   };
 
   const handleCollapsedClick = (collapsed: boolean) => {
@@ -119,24 +128,33 @@ const ListLayout: FC<ListLayoutProps> = ({
       if (isField(target) && target?.data?.hiddenSearchColumn) {
         target.setDisplay(collapsed ? 'visible' : 'hidden');
         if (collapsed) {
-          target.reset();
+          target.reset().then(() => void 0);
         }
       }
     });
   };
 
-  const handleSearch = () => {
+  const search = (nextCurrent: number, nextPageSize: number) => {
     getSubmitFormValues(searchForm).then((formValues) => {
       const params = {
         ...formValues,
         ...extraSearchParams,
+        current: nextCurrent ?? currentPage,
+        pageSize: nextPageSize ?? pageSize,
       };
       setSearchLoading(true);
       requestGet(action, transformSearchParams?.(params) || params)
         .then((res) => {
           const { data } = res || {};
 
-          setDataSource(data);
+          const { list, total, current, pageSize } = data || {};
+
+          setCurrentPage(current);
+          setPageSize(pageSize);
+
+          setTotal(total);
+
+          setDataSource(list);
         })
         .finally(() => {
           setSearchLoading(false);
@@ -144,88 +162,87 @@ const ListLayout: FC<ListLayoutProps> = ({
     });
   };
 
+  const handleSearch = () => {
+    search(1, pageSize);
+  };
+
+  const callbackSearch = () => {
+    search(currentPage, pageSize);
+  };
+
   const handleTableChange = (pagination, filters, sorter, extra) => {
     const { action } = extra || {};
 
     if (action === 'paginate') {
-      setCurrentPage(pagination.current);
-      setPageSize(pagination.pageSize);
+      const { current: nextCurrent, pageSize: nextPageSize } = pagination || {};
+      setCurrentPage(nextCurrent);
+      setPageSize(nextPageSize);
+      search(nextCurrent, nextPageSize);
     }
   };
 
   useEffect(() => {
-    if (tableDone) {
+    if (!tableFormLoading) {
       initSearch();
     }
-  }, [tableDone]);
+  }, [tableFormLoading]);
+
+  useEffect(() => {
+    if (reloadFlag > 0 && prevReload !== reloadFlag) {
+      setPrevReloadFlag(reloadFlag);
+      search(1, pageSize);
+    }
+  }, [reloadFlag, pageSize, prevReload]);
 
   return (
-    <>
-      <Spin spinning={searchLoading}>
-        <SchemaLayout
-          header={
-            <WhereLayout
-              title="搜索条件"
-              onCollapsedClick={handleCollapsedClick}
-              hasCollapsed={hasCollapsed}
-              buttons={
-                <Space>
-                  {searchButtons.map((item) => {
-                    const { name, logics, eventCode } = item || {};
-
-                    const clickCodes =
-                      logics
-                        ?.filter((item) => item.event === 'onClick')
-                        ?.map((item) => item.logicCode) || [];
-
-                    return (
-                      <Button
-                        key={name}
-                        onClick={(e) => {
-                          if (events?.[eventCode]) {
-                            events[eventCode](e, searchForm);
-                            return;
-                          }
-
-                          if (clickCodes.length) {
-                            triggerLogic(clickCodes, {
-                              params: extraLogicParams,
-                              form: searchForm,
-                            });
-                          }
-                        }}
-                      >
-                        {name}
-                      </Button>
-                    );
-                  })}
-
-                  <Button icon={<ClearOutlined />} type="dashed" onClick={handleRestClick}>
-                    重置
-                  </Button>
-                  <Button icon={<SearchOutlined />} type="primary" onClick={handleSearch}>
-                    搜索
-                  </Button>
-                </Space>
-              }
-            >
-              <SchemeForm done={searchDone} schema={searchSchema} form={searchForm} />
-            </WhereLayout>
-          }
-        >
-          <SchemeTableForm
-            dataSource={dataSource}
-            form={dataTableForm}
-            done={tableDone}
-            schema={tableSchema}
-            total={total}
-            currentPage={currentPage}
-            pageSize={pageSize}
-            onChange={handleTableChange}
-          />
-        </SchemaLayout>
-      </Spin>
-    </>
+    <ListLayoutContent.Provider
+      value={{
+        loading: searchLoading,
+        setLoading: setSearchLoading,
+        cb: callbackSearch,
+      }}
+    >
+      <Layout
+        loading={searchLoading}
+        header={
+          <WhereLayout
+            title="搜索条件"
+            onCollapsedClick={handleCollapsedClick}
+            hasCollapsed={hasCollapsed}
+            buttons={searchButtons}
+            onRestClick={handleRestClick}
+            onSearchClick={handleSearch}
+            onButtonItemClick={handleButtonItemClick}
+          >
+            <SchemeForm
+              loading={searchFormLoading}
+              schema={searchSchema}
+              form={searchForm}
+              pattern={SchemaPatternEnum.EDITABLE}
+              getLogicConfig={getLogicConfig}
+              extraLogicParams={extraLogicParams}
+              events={events}
+              components={components}
+              language={language}
+            />
+          </WhereLayout>
+        }
+      >
+        <SchemeTableForm
+          {...tableProps}
+          dataSource={dataSource}
+          form={dataTableForm}
+          loading={tableFormLoading}
+          schema={tableSchema}
+          total={total}
+          currentPage={currentPage}
+          pageSize={pageSize}
+          onChange={handleTableChange}
+          components={components}
+          language={language}
+        />
+      </Layout>
+    </ListLayoutContent.Provider>
   );
 };
 

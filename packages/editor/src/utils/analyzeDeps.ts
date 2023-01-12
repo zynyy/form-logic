@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-import {getPathValue} from "./index";
+import { getPathValue } from './getPathValue';
 
 const regex = /import\s([\s\S]*?)\sfrom\s('|")((@\w[\w\.\-]+\/)?(\w[\w\.\-]+))(\/[\w\.\-]+)*\2/gm;
 
@@ -19,51 +19,46 @@ const getPkg = (code: string, excludePkg: string[]): string[] => {
 const getPkgLatestVersion = (pkg: string): Promise<string[]> => {
   return axios
     .get(`/${pkg}`, {
-      baseURL: "https://registry.npmjs.com/",
+      baseURL: 'https://registry.npmjs.com/',
     })
     .then((res: any) => {
-      return [
-        pkg,
-        getPathValue<string, any>(res, ["data", "dist-tags", "latest"]) || "*",
-      ];
+      return [pkg, getPathValue<string, any>(res, ['data', 'dist-tags', 'latest']) || '*'];
     })
     .catch(() => {
-      return [pkg, "*"];
+      return [pkg, '*'];
     });
 };
 
 const analyzeDeps = (
   code: string,
-  excludePkg?: string[]
+  excludePkg?: string[],
 ): Promise<{ [pkgName: string]: string }> => {
   const pkgArr = getPkg(code, excludePkg || []);
-  return Promise.allSettled(pkgArr.map((pkg) => getPkgLatestVersion(pkg))).then(
-    (settledResult) => {
-      const record: {
-        [key: string]: any;
-      } = {};
+  return Promise.allSettled(pkgArr.map((pkg) => getPkgLatestVersion(pkg))).then((settledResult) => {
+    const record: {
+      [key: string]: any;
+    } = {};
 
-      const errorPkg: string[] = [];
+    const errorPkg: string[] = [];
 
-      settledResult.forEach((res) => {
-        if (res.status === "fulfilled") {
-          const [pkg, version] = res.value || [];
-          if (version !== "*") {
-            record[pkg] = `^${version}`;
-          } else {
-            errorPkg.push(pkg);
-          }
+    settledResult.forEach((res) => {
+      if (res.status === 'fulfilled') {
+        const [pkg, version] = res.value || [];
+        if (version !== '*') {
+          record[pkg] = `^${version}`;
         } else {
-          const [pkg] = res.reason || [];
           errorPkg.push(pkg);
         }
-      });
+      } else {
+        const [pkg] = res.reason || [];
+        errorPkg.push(pkg);
+      }
+    });
 
-      record["errorPkg"] = errorPkg;
+    record['errorPkg'] = errorPkg;
 
-      return record;
-    }
-  );
+    return record;
+  });
 };
 
 export default analyzeDeps;

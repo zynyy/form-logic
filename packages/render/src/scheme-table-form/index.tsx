@@ -1,199 +1,181 @@
-import { forwardRef, Key, memo, useEffect, useImperativeHandle, useMemo, useState } from 'react';
-import { Form, setValidateLanguage, IFormProps, JSXComponent } from '@formily/core';
+import { FC, Key, memo, useEffect, useMemo, useState } from 'react';
+import { Form, setValidateLanguage, JSXComponent } from '@formily/core';
 import { FormProvider } from '@formily/react';
 
-import { Empty, Skeleton, TableProps } from 'antd';
+import { Empty, Skeleton } from 'antd';
 
-import { useCreateForm } from '@/hooks';
 import useCreateSchemaField from '@/hooks/useSchemaField';
 
-import { ISchema } from '@formily/json-schema';
+import { ISchema } from '@formily/react';
 import { toArray } from '@/utils';
 import { LIST_FILED_CODE } from '@/utils/constant';
 import { ListTableProps } from '@/components/list-table';
 
+import { useDOMRect } from '@formlogic/component';
+import { RowSelectionType } from 'antd/es/table/interface';
+
 export interface SchemeTableFormProps extends Omit<ListTableProps, 'onTableChange'> {
-  formConfig?: IFormProps;
-  language?: string;
-  schema?: ISchema;
-  onFormMount?: (form: Form) => void;
-  done?: boolean;
-  form?: Form;
+  schema: ISchema;
+  form: Form;
   dataSource: any[];
-  defaultSelectValue?: any[];
-  selectedRows?: any[];
+  currentPage: number;
+  total: number;
+  pageSize: number;
+  language?: string;
+  loading?: boolean;
   rowKey?: string;
   hasRowSelection?: boolean;
-  currentPage?: number;
-  total?: number;
-  pageSize?: number;
+  selectedRows?: any[];
+  rowSelectionType?: RowSelectionType;
   components?: {
     [key: string]: JSXComponent;
   };
 }
 
-export type SchemeTableFormRef = Form;
+const SchemeTableForm: FC<SchemeTableFormProps> = ({
+  schema,
+  loading,
+  language,
+  components,
+  dataSource,
+  form,
+  selectedRows: defaultSelectedRows,
+  rowKey,
+  hasRowSelection,
+  rowSelection,
+  onChange,
+  currentPage,
+  total,
+  pageSize,
+  rowSelectionType,
+  ...restProps
+}) => {
+  const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
 
-const SchemeTableForm = forwardRef<SchemeTableFormRef, SchemeTableFormProps>(
-  (
-    {
-      formConfig,
-      schema,
-      done,
-      language,
-      components,
-      dataSource,
-      onFormMount,
-      form: propsForm,
-      defaultSelectValue,
-      selectedRows: propsSelectedRows,
-      rowKey,
-      hasRowSelection,
-      rowSelection,
-      onChange,
-      currentPage,
-      total,
-      pageSize,
-      ...restProps
-    },
-    ref,
-  ) => {
-    const [warpForm] = useCreateForm(formConfig, onFormMount, propsForm);
+  const [selectedRows, setSelectedRows] = useState<any[]>([]);
 
-    const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
+  const SchemaField = useCreateSchemaField();
 
-    const [selectValue, setSelectValue] = useState<any[]>([]);
+  const [scrollY, setScrollY] = useState(450);
 
-    const SchemaField = useCreateSchemaField();
+  const [contentRect, domRef] = useDOMRect<HTMLDivElement>();
 
-    const tableRowKey = useMemo(() => {
-      return rowKey || 'id';
-    }, [rowKey]);
+  const tableRowKey = useMemo(() => {
+    return rowKey || 'id';
+  }, [rowKey]);
 
-    useImperativeHandle(ref, () => {
-      return warpForm;
-    });
+  useEffect(() => {
+    if (contentRect) {
+      const { height } = contentRect;
+      setScrollY(height - 140);
+    }
+  }, [contentRect]);
 
-    useEffect(() => {
-      setValidateLanguage(language ?? 'zh-CN');
-    }, [language]);
+  useEffect(() => {
+    setValidateLanguage(language ?? 'zh-CN');
+  }, [language]);
 
-    useEffect(() => {
-      if (warpForm.id) {
-        warpForm.setValuesIn(LIST_FILED_CODE, dataSource);
-      }
-    }, [warpForm?.id, dataSource]);
+  useEffect(() => {
+    if (form.id) {
+      form.setValuesIn(LIST_FILED_CODE, dataSource);
+    }
+  }, [form?.id, dataSource]);
 
-    useEffect(() => {
-      setSelectedRowKeys(defaultSelectValue?.map((item: any) => item[tableRowKey]) || []);
-      setSelectValue(defaultSelectValue || []);
-    }, [defaultSelectValue, tableRowKey]);
+  useEffect(() => {
+    setSelectedRowKeys(defaultSelectedRows?.map((item: any) => item[tableRowKey]) || []);
+    setSelectedRows(defaultSelectedRows || []);
+  }, [defaultSelectedRows, tableRowKey]);
 
-    const getRowSelectionConfig = () => {
-      if (hasRowSelection) {
-        return {
-          ...rowSelection,
-          selectedRowKeys,
-          onChange: (rowKeys: Key[], selectedRows: any[], info) => {
-            const allDataSourceKey =
-              toArray(dataSource).map((item: any, index) => item[tableRowKey] || index) || [];
+  const handleRowSelectionChange = (rowKeys: Key[], changeSelectedRows: any[], info) => {
+    if (rowSelectionType === 'radio') {
+      setSelectedRows(changeSelectedRows);
+      setSelectedRowKeys(rowKeys);
 
-            selectedRows = selectedRows.map((item) => {
-              const key = item[tableRowKey];
+      rowSelection?.onChange?.(rowKeys, changeSelectedRows, info);
+    } else {
+      const allDataSourceKey =
+        toArray(dataSource).map((item: any, index) => item[tableRowKey] || index) || [];
 
-              const isDefaultValue = (defaultSelectValue || []).find(
-                (defaultValueItem) => defaultValueItem[tableRowKey] === key,
-              );
+      // 更新旧值选中的数据
+      const selectedRowsMap = toArray(defaultSelectedRows).map((item: any) => {
+        const record = changeSelectedRows.find(
+          (current) => current[tableRowKey] === item[tableRowKey],
+        );
+        if (record) {
+          return record;
+        }
+        return item;
+      });
 
-              const isDataSourceValue = (dataSource || []).find(
-                (dataSourceItem: any) => dataSourceItem[tableRowKey] === key,
-              );
+      const nextSelectedRows = selectedRowsMap
+        .filter((item: any) => !allDataSourceKey.includes(item[tableRowKey]))
+        .concat(changeSelectedRows.filter((item) => allDataSourceKey.includes(item[tableRowKey])));
 
-              if (!isDefaultValue && isDataSourceValue) {
-                item = {
-                  ...isDataSourceValue,
-                };
-              } else {
-                item = {
-                  ...isDefaultValue,
-                };
-              }
-              return item;
-            });
+      const nextSelectedRowKeys = nextSelectedRows.map((item: any) => item[tableRowKey]);
 
-            setSelectValue(
-              rowSelection?.type === 'radio'
-                ? selectedRows
-                : selectedRows
-                    .concat(
-                      selectValue.filter((item: any) => {
-                        return !selectedRows.find(
-                          (current) => current[tableRowKey] === item[tableRowKey],
-                        );
-                      }),
-                    )
-                    .filter((val) => val),
-            );
+      setSelectedRows(nextSelectedRows);
 
-            const mapValue = toArray(propsSelectedRows)
-              .map((item: any) => {
-                return selectValue.find((current) => current[tableRowKey] === item[tableRowKey]);
-              })
-              .filter((val: any) => val);
+      setSelectedRowKeys(nextSelectedRowKeys);
 
-            const changeValue = mapValue
-              .filter((item: any) => !allDataSourceKey.includes(item[tableRowKey]))
-              .concat(selectedRows.filter((item) => allDataSourceKey.includes(item[tableRowKey])));
+      rowSelection?.onChange?.(nextSelectedRowKeys, nextSelectedRows, info);
+    }
+  };
 
-            setSelectedRowKeys(changeValue.map((item: any) => item[tableRowKey]));
+  const getRowSelectionConfig = () => {
+    if (hasRowSelection) {
+      return {
+        ...rowSelection,
+        selectedRowKeys,
+        selectedRows,
+        type: rowSelectionType ?? 'checkbox',
+        onChange: handleRowSelectionChange,
+      };
+    }
+    return null;
+  };
 
-            rowSelection?.onChange?.(
-              changeValue.map((item: any) => item[tableRowKey]),
-              changeValue,
-              info,
-            );
+  useEffect(() => {
+    if (form) {
+      form.query(LIST_FILED_CODE).take((target) => {
+        target.setComponentProps({
+          ...restProps,
+          rowKey: tableRowKey,
+          rowSelection: getRowSelectionConfig(),
+          onTableChange: onChange,
+          scrollY,
+          pagination: {
+            current: Number(currentPage),
+            total,
+            pageSize: Number(pageSize),
           },
-        };
-      }
-      return null;
-    };
-
-    useEffect(() => {
-      if (warpForm) {
-        warpForm.query(LIST_FILED_CODE).take((target) => {
-          target.setComponentProps({
-            ...restProps,
-            rowKey: tableRowKey,
-            rowSelection: getRowSelectionConfig(),
-            onTableChange: onChange,
-            pagination: {
-              current: currentPage,
-              total,
-              pageSize,
-            },
-          });
         });
-      }
-    });
+      });
+    }
+  });
 
-    return (
-      <Skeleton loading={!done}>
-        <FormProvider form={warpForm}>
-          <form className={`form-id-${warpForm.id}`}>
-            {schema ? (
-              <SchemaField schema={schema} components={components} />
-            ) : (
-              <Empty description="暂无数据" />
-            )}
-          </form>
-        </FormProvider>
-      </Skeleton>
-    );
-  },
-);
+  return (
+    <Skeleton loading={!!loading}>
+      <FormProvider form={form}>
+        <div
+          className={`form-id-${form?.id}`}
+          style={{
+            height: '100%',
+          }}
+          ref={domRef}
+        >
+          {schema ? (
+            <SchemaField schema={schema} components={components} />
+          ) : (
+            <Empty description="暂无数据" />
+          )}
+        </div>
+      </FormProvider>
+    </Skeleton>
+  );
+};
 
 SchemeTableForm.defaultProps = {
-  done: true,
+  loading: false,
   rowKey: 'id',
 };
 

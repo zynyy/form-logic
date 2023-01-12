@@ -1,13 +1,13 @@
-import {FC, useEffect, useState} from "react";
-import {ZoomInOutlined, ZoomOutOutlined} from "@ant-design/icons";
-import {Space} from "antd";
+import { FC, useEffect, useState } from 'react';
+import { ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons';
+import { Space } from 'antd';
 
-import BtnTooltipIcon from "@/components/btn-tooltip-icon";
-import {scaleFormatter} from '@/utils';
-import {Graph} from "@antv/x6";
-import {MAX_ZOOM, MIN_ZOOM, ZOOM_STEP} from '@/utils/constant';
+import BtnTooltipIcon from '@/components/btn-tooltip-icon';
+import { scaleFormatter } from '@/utils';
+import { Graph } from '@antv/x6';
+import { MAX_ZOOM, MIN_ZOOM, ZOOM_STEP } from '@/utils/constant';
 
-import {Keyboard} from "@antv/x6-plugin-keyboard";
+import { Keyboard } from '@antv/x6-plugin-keyboard';
 
 interface ZoomProps {
   graph: Graph | undefined;
@@ -21,18 +21,18 @@ const Zoom: FC<ZoomProps> = ({ graph }) => {
       new Keyboard({
         enabled: true,
         global: true,
-      })
+      }),
     );
 
-    graph?.on("scale", () => {
+    graph?.on('scale', () => {
       setScale(graph.zoom());
     });
 
-    graph?.bindKey("meta + shift + +", () => {
+    graph?.bindKey('meta + shift + +', () => {
       handleZoomInOutClick();
     });
 
-    graph?.bindKey("meta + shift + -", () => {
+    graph?.bindKey('meta + shift + -', () => {
       handleZoomOutClick();
     });
   }, [graph]);

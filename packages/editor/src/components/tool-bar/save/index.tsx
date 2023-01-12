@@ -3,21 +3,20 @@ import { SaveOutlined } from '@ant-design/icons';
 
 import { Graph } from '@antv/x6';
 import { localSave } from '@/service';
-import { Button, message, Popconfirm } from 'antd';
+import { Button, FormInstance, message, Popconfirm } from 'antd';
 import { getFiles } from '@/utils';
 
 interface SaveParams {
-  code: string;
-  pageCode?: string;
   [key: string]: any;
 }
 
 export interface SaveProps {
   graph: Graph | undefined;
   saveParams: SaveParams;
+  form: FormInstance;
 }
 
-const Save: FC<SaveProps> = ({ graph, saveParams }) => {
+const Save: FC<SaveProps> = ({ graph, saveParams, form }) => {
   const handleSave = () => {
     const nodes = graph.getNodes();
 
@@ -25,13 +24,35 @@ const Save: FC<SaveProps> = ({ graph, saveParams }) => {
 
     const dsl = graph.toJSON();
 
-    localSave({
-      dsl,
-      files,
-      ...saveParams,
-    }).then((res) => {
-      message.success('保存成功').then(() => void 0);
-    });
+    const { cells } = dsl || {};
+
+    const isLegal =
+      cells.filter((item) => {
+        const { id } = item || {};
+        return id?.startsWith('start') || id?.startsWith('end');
+      }).length === 2;
+
+    if (isLegal) {
+
+      form.validateFields().then((formValues) => {
+        const { suffix, before } = formValues || {};
+
+        localSave({
+          dsl,
+          files,
+          ...saveParams,
+          ...formValues,
+          code: `${before}${suffix}`,
+        }).then(() => {
+          message.success('保存成功').then(() => void 0);
+          history.back();
+        });
+      }).catch(err => {
+        console.error(err)
+      });
+    } else {
+      message.warning('无法找到开始节点和结束节点').then(() => void 0);
+    }
   };
 
   return (

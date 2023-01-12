@@ -1,7 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+import queryType from 'query-types';
 
-const { DEFAULT_EXPRESS_PORT } = require('./index');
+import {DEFAULT_EXPRESS_PORT} from './constant.cjs';
 
 const createServer = (port) => {
   const app = express();
@@ -10,7 +11,13 @@ const createServer = (port) => {
 
   app.use(bodyParser.json({ limit: '50mb' }));
 
-  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(
+    bodyParser.urlencoded({
+      extended: false,
+    }),
+  );
+
+  app.use(queryType.middleware());
 
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -24,4 +31,4 @@ const createServer = (port) => {
   return app;
 };
 
-module.exports = createServer;
+export default createServer;

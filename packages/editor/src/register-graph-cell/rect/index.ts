@@ -1,8 +1,9 @@
 import {Graph} from '@antv/x6';
+import { RECT_NODE } from '@/utils/constant';
 
 const registerRect = () => {
   Graph.registerNode(
-    'custom-rect',
+    RECT_NODE,
     {
       inherit: 'rect',
       width: 66,

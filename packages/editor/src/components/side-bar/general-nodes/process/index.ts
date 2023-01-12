@@ -2,13 +2,14 @@ import { Graph } from '@antv/x6';
 import { PortsPosition } from '../interface';
 import { portsBottom, portsLeft, portsRight, portsTop } from '../ports';
 import { getGraphId } from '@/utils';
+import { RECT_NODE } from '@/utils/constant';
 
 
 
 const processNode = (graph: Graph) => {
   return graph.createNode({
     id: getGraphId('fn'),
-    shape: 'custom-rect',
+    shape: RECT_NODE,
     label: '函数',
     data: {
       settingConfig: 'process-config',

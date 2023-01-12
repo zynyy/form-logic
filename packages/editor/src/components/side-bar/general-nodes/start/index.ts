@@ -2,6 +2,7 @@ import { Graph } from '@antv/x6';
 import { PortsPosition } from '../interface';
 import { portsBottom, portsRight } from '../ports';
 import { getGraphId } from '@/utils';
+import { RECT_NODE } from '@/utils/constant';
 
 
 const startNode = (graph: Graph) => {
@@ -11,7 +12,7 @@ const startNode = (graph: Graph) => {
 
   return graph.createNode({
     id,
-    shape: 'custom-rect',
+    shape: RECT_NODE,
     label: '开始',
     attrs: {
       body: {

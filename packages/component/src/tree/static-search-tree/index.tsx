@@ -48,10 +48,11 @@ const StaticSearchTree: FC<StaticSearchTreeProps> = ({ treeData, ...restProps })
             <span>{strTitle}</span>
           );
         if (item.children) {
-          return { title, key: item.key, children: loop(item.children) };
+          return { ...item, title, key: item.key, children: loop(item.children) };
         }
 
         return {
+          ...item,
           title,
           key: item.key,
         };

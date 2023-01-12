@@ -5,6 +5,7 @@
 ```js
 // 目录结构
 // low-code-meta
+// ├── component 组件集合
 // ├── field-meta 字段集合
 // ├── logic 所有逻辑流程代码
 //       ├── public  // 公共逻辑
@@ -14,6 +15,7 @@
 // └── model-page 由 model 模型组成的每个页面配置
 //       └── [model-code]
 //               └── [page-code] // 命名规则 [model]_xx_C(创建)、U(更新)、D(详情)、L(列表)
+
 ```
 
 

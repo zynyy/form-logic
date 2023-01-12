@@ -1,0 +1,87 @@
+{
+  "code": "FormValidateRules_L",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "table_column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "code",
+      "component": "",
+      "name": "编码"
+    },
+    {
+      "type": "table_column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "name",
+      "component": "",
+      "name": "名称"
+    },
+    {
+      "type": "table_column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "defaultValue",
+      "component": "",
+      "name": "默认值"
+    },
+    {
+      "type": "search_column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "code",
+      "component": "",
+      "name": "编码"
+    },
+    {
+      "type": "search_column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "name",
+      "component": "",
+      "name": "名称"
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "addBtn",
+      "component": "ArrayBase.Addition",
+      "name": "新增",
+      "eventCode": "onAdd"
+    }
+  ],
+  "model": "FormValidateRules",
+  "codeSuffix": "L",
+  "name": "表单验证规则列表",
+  "columnLayout": 3
+}

@@ -1,16 +1,8 @@
-import {
-  Alert,
-  Button,
-  Checkbox,
-  Col,
-  Row,
-  SchemeForm,
-  Form,
-  getSubmitFormValues,
-  FormilyForm
-} from '@formlogic/render';
+import { SchemeForm, getSubmitFormValues, useCreateForm } from '@formlogic/render';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Alert, Button, Checkbox, Col, Row } from 'antd';
+
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +22,7 @@ import UserInput from '@/components/user-input';
 import './style/index.css';
 
 const Login = () => {
-  const formRef = useRef<FormilyForm>();
+  const [form] = useCreateForm();
 
   const navigate = useNavigate();
 
@@ -40,7 +32,7 @@ const Login = () => {
   const [visible, setVisible] = useState(false);
 
   const handleSubmit = () => {
-    getSubmitFormValues(formRef.current)
+    getSubmitFormValues(form)
       .then((formValues) => {
         const { username, password } = formValues;
 
@@ -107,7 +99,7 @@ const Login = () => {
         <title>登陆页面</title>
       </Helmet>
 
-      <div className="main">
+      <div className="login-wrap">
         <div className="login">
           {visible ? (
             <Alert
@@ -125,7 +117,8 @@ const Login = () => {
               components={{
                 UserInput,
               }}
-              ref={formRef}
+              pattern="EDITABLE"
+              form={form}
             />
 
             <Col className="btn">

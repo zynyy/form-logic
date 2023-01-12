@@ -16,30 +16,35 @@ export default {
 
 const Template = (args) => <FlowChartEditor {...args} />;
 
-export const Init = Template.bind({});
+export const EDITABLE = Template.bind({});
 
-Init.args = {
-  config: {
-    processConfig: {
-      pageCode: 'User_C',
-      code: 'User_C_code',
-      name: '',
-      detailApi: '',
-      updateApi: '',
-    },
+EDITABLE.args = {
+  pattern: 'EDITABLE',
+  logicProcessConfig: {
+    belongCode: '',
+    code: '',
+    name: '',
   },
 };
 
-export const Common = Template.bind({});
+export const Edit = Template.bind({});
 
-Common.args = {
-  config: {
-    processConfig: {
-      pageCode: '',
-      code: 'com_userCode',
-      name: '',
-      detailApi: '',
-      updateApi: '',
-    },
+Edit.args = {
+  pattern: 'EDITABLE',
+  logicProcessConfig: {
+    belongCode: '',
+    code: 'com_save',
+    name: '保存',
+  },
+};
+
+export const DETAIL = Template.bind({});
+
+DETAIL.args = {
+  pattern: 'DETAIL',
+  logicProcessConfig: {
+    belongCode: '',
+    code: 'com_save',
+    name: '保存',
   },
 };

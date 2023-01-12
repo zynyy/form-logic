@@ -1,15 +1,16 @@
-import { Button, ButtonProps } from 'antd';
 import { UpOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
+import { CustomButtonMode } from '@/interface';
 
-export interface UpButtonProps extends ButtonProps {}
+export interface UpButtonProps extends CustomButtonProps {}
 
-const UpButton: FC<UpButtonProps> = ({ children, ...props }) => {
+const UpButton: FC<UpButtonProps> = forwardRef(({ children, ...props }, ref) => {
   return (
-    <Button type="text" {...props} icon={<UpOutlined />}>
+    <CustomButton mode={CustomButtonMode.icon} {...props} icon={<UpOutlined />}>
       {children}
-    </Button>
+    </CustomButton>
   );
-};
+});
 
 export default UpButton;

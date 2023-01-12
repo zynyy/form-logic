@@ -1,6 +1,6 @@
 import { FC, memo } from 'react';
-import { RecursionField } from '@formily/react';
-import { ISchema } from '@formily/json-schema';
+import { RecursionField,ISchema } from '@formily/react';
+
 
 interface SchemaSourceItem {
   name: string;

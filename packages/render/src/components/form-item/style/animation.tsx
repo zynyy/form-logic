@@ -1,5 +1,4 @@
-import { Keyframes } from '@ant-design/cssinjs';
-import { GenerateStyle } from '@/style/styleHook';
+import { GenerateStyle, Keyframes } from '@formlogic/component';
 
 const antShowHelpIn = new Keyframes('antShowHelpIn', {
   '0%': {

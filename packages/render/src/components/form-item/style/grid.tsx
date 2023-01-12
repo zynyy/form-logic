@@ -1,4 +1,4 @@
-import { GenerateStyle } from '@/style/styleHook';
+import { GenerateStyle } from '@formlogic/component';
 
 const getGridStyle: GenerateStyle = (token) => {
   const { componentCls } = token;

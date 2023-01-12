@@ -1,0 +1,51 @@
+{
+  "code": "Model_D",
+  "name": "模型编辑",
+  "model": "Model",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    { "code": "basicInfo", "name": "基础信息" },
+    { "code": "metaInfo", "name": "字段信息" }
+  ],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo",
+      "disabled": "1"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    },
+    {
+      "code": "metas",
+      "name": "字段集合",
+      "type": "column",
+      "schemaType": "array",
+      "required": "1",
+      "group": "metaInfo",
+      "colSpan": 3,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "hiddenName": "1",
+      "pageCode": "Model_Field_L",
+      "component": "ArrayTable",
+      "componentProps": { "drawerPageCode": "Model_Field_C" },
+      "defaultValue": [],
+      "hasSort": 1,
+      "hasSerialNo": 1,
+      "logics": []
+    }
+  ],
+  "defaultSearchColumn": "6"
+}

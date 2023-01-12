@@ -1,5 +1,5 @@
 import { isUrl } from '@/utils/is';
-import { Layout, Menu, MenuProps } from '@formlogic/render';
+import { Layout, Menu, MenuProps } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 
 import React, { useEffect, useState, memo } from 'react';
@@ -83,10 +83,10 @@ const LeftNavSider = () => {
           id: '1',
         },
         {
-          name: '菜单',
-          path: '/setting/menu',
+          name: '测试',
+          path: '/setting/test',
           pid: '1',
-          id: '1-1',
+          id: '1-2',
         },
         {
           name: '数据管理',
@@ -94,8 +94,8 @@ const LeftNavSider = () => {
           id: '3',
         },
         {
-          name: '元数据',
-          path: '/development/meta',
+          name: '元字段',
+          path: '/development/field-meta',
 
           id: '3-1',
           pid: '3',
@@ -109,7 +109,7 @@ const LeftNavSider = () => {
         },
         {
           name: '页面配置',
-          path: '/development/page-config',
+          path: '/development/model-page',
           id: '3-3',
           pid: '3',
         },
@@ -123,6 +123,12 @@ const LeftNavSider = () => {
           name: 'UI组件',
           path: '/development/component',
           id: '3-5',
+          pid: '3',
+        },
+        {
+          name: '验证规则',
+          path: '/development/validate-rules',
+          id: '3-6',
           pid: '3',
         },
 

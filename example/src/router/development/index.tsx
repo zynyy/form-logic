@@ -22,20 +22,20 @@ const DevelopmentRoute: RouteObject[] = [
   },
 
   {
-    path: 'development/meta',
-    element: lazyLoader(lazy(() => import('@/pages/development/meta'))),
+    path: 'development/field-meta',
+    element: lazyLoader(lazy(() => import('@/pages/development/field-meta'))),
   },
   {
-    path: 'development/meta/create',
-    element: lazyLoader(lazy(() => import('@/pages/development/meta/MetaCreate'))),
+    path: 'development/field-meta/create',
+    element: lazyLoader(lazy(() => import('@/pages/development/field-meta/MetaCreate'))),
   },
   {
-    path: 'development/meta/detail',
-    element: lazyLoader(lazy(() => import('@/pages/development/meta/MetaDetail'))),
+    path: 'development/field-meta/detail',
+    element: lazyLoader(lazy(() => import('@/pages/development/field-meta/MetaDetail'))),
   },
   {
-    path: 'development/meta/edit',
-    element: lazyLoader(lazy(() => import('@/pages/development/meta/MetaEdit'))),
+    path: 'development/field-meta/edit',
+    element: lazyLoader(lazy(() => import('@/pages/development/field-meta/MetaEdit'))),
   },
 
   {
@@ -73,20 +73,20 @@ const DevelopmentRoute: RouteObject[] = [
   },
 
   {
-    path: 'development/page-config',
-    element: lazyLoader(lazy(() => import('@/pages/development/page-config'))),
+    path: 'development/model-page',
+    element: lazyLoader(lazy(() => import('@/pages/development/model-page'))),
   },
   {
-    path: 'development/page-config/create',
-    element: lazyLoader(lazy(() => import('@/pages/development/page-config/PageConfigCreate'))),
+    path: 'development/model-page/create',
+    element: lazyLoader(lazy(() => import('@/pages/development/model-page/ModelPageCreate'))),
   },
   {
-    path: 'development/page-config/detail',
-    element: lazyLoader(lazy(() => import('@/pages/development/page-config/PageConfigDetail'))),
+    path: 'development/model-page/detail',
+    element: lazyLoader(lazy(() => import('@/pages/development/model-page/ModelPageDetail'))),
   },
   {
-    path: 'development/page-config/edit',
-    element: lazyLoader(lazy(() => import('@/pages/development/page-config/PageConfigEdit'))),
+    path: 'development/model-page/edit',
+    element: lazyLoader(lazy(() => import('@/pages/development/model-page/ModelPageEdit'))),
   },
 ];
 

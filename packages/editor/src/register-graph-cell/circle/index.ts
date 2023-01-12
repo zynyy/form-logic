@@ -1,8 +1,9 @@
 import {Graph, Node} from "@antv/x6";
+import { CIRCLE_NODE } from '@/utils/constant';
 
 const registerCircle = (ports: Node["ports"]) => {
   Graph.registerNode(
-    "custom-circle",
+    CIRCLE_NODE,
     {
       inherit: "circle",
       width: 45,

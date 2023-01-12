@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HelmetProvider } from 'react-helmet-async';
-import { ConfigProvider } from '@formlogic/render';
+import { ConfigProvider } from 'antd';
 
 import './assets/css/index.css';
 

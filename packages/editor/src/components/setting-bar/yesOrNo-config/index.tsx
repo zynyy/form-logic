@@ -1,12 +1,17 @@
-import {Form, Input} from "antd";
+import { Form } from 'antd';
 
-import {FC} from "react";
-import {SettingConfigType} from "../interface";
+import { FC } from 'react';
+import { SettingConfigType } from '../interface';
+import { useMode } from '@/hooks';
+
+import {Input} from '@formlogic/component';
 
 export interface YesOrNoConfigProps extends SettingConfigType {}
 
 const YesOrNoConfig: FC<YesOrNoConfigProps> = ({ selected }) => {
   const [form] = Form.useForm();
+
+  const { isDetail } = useMode();
 
   const handleChange = () => {
     if (selected) {
@@ -41,10 +46,10 @@ const YesOrNoConfig: FC<YesOrNoConfigProps> = ({ selected }) => {
       wrapperCol={{
         span: 20,
       }}
-      initialValues={selected?.data.configValues|| {}}
+      initialValues={selected?.data.configValues || {}}
     >
       <Form.Item label="名称" name="label">
-        <Input />
+        <Input readOnly={isDetail} />
       </Form.Item>
     </Form>
   );

@@ -1,4 +1,4 @@
-import { requestGet, requestPost } from '@/service';
+import { requestDelete, requestGet, requestPost } from '@/service';
 
 export enum ModelConfig {
   CREATE = 'Model_C',
@@ -18,11 +18,12 @@ export const apiUrl = {
   create: `${baseUrl}/create`, // 新增
   update: `${baseUrl}/update`, // 编辑
   page: `${baseUrl}/page`, // 编辑
+  remove: `${baseUrl}/remove`, // 删除
 };
 
 export interface ModelCreateParams extends DynamicObjectAny {}
 
-export interface ModelSaveParams extends DynamicObjectAny {}
+export interface ModelRemoveParams extends DynamicObjectAny {}
 
 export interface ModelDetailParams extends DynamicObjectAny {}
 
@@ -41,4 +42,10 @@ export const modelUpdate = (params: ModelUpdateParams) => {
 // 详情页
 export const modelDetail = (params: ModelDetailParams) => {
   return requestGet(apiUrl.detail, params);
+};
+
+
+// 删除
+export const modelRemove = (params: ModelRemoveParams) => {
+  return requestDelete(apiUrl.remove, params);
 };

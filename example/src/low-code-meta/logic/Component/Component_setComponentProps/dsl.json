@@ -1,0 +1,40 @@
+{
+  "code": "Component_setComponentProps",
+  "cells": [
+    {
+      "id": "edge-ykyr1wc4",
+      "shape": "edge",
+      "target": { "cell": "fn-veo1jldx", "port": "2f38203f-7aff-4e54-b2bc-0090d07058ab" },
+      "source": { "cell": "start-20kpxnpo", "port": "7c2c0d06-c5b0-4dfe-8bef-600da619ac5a" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-y6bj2as0",
+      "shape": "edge",
+      "target": { "cell": "end-8swo5b07", "port": "cdb3e711-12ed-4272-b24e-4ab6c3d99635" },
+      "source": { "cell": "fn-veo1jldx", "port": "9ef5428b-cc26-4a89-b8aa-f8f48eb3dfe8" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-20kpxnpo",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" }
+    },
+    {
+      "id": "end-8swo5b07",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" }
+    },
+    {
+      "id": "fn-veo1jldx",
+      "shape": "custom-rect",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      }
+    }
+  ]
+}

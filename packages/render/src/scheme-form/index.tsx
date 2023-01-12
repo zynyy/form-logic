@@ -1,59 +1,77 @@
-import { forwardRef, useEffect, useImperativeHandle } from 'react';
-import { Form, setValidateLanguage, IFormProps, JSXComponent } from '@formily/core';
+import { FC, useEffect, memo, useState } from 'react';
+import { Form, setValidateLanguage, JSXComponent } from '@formily/core';
 import { FormProvider } from '@formily/react';
-import { ISchema } from '@formily/json-schema';
+import { ISchema } from '@formily/react';
 
 import { Empty, Skeleton } from 'antd';
 
-import { useCreateForm } from '@/hooks';
+import { useDevEnv } from '@/hooks';
 import useCreateSchemaField from '@/hooks/useSchemaField';
 
-export interface SchemeFormProps {
-  formConfig?: IFormProps;
+import { SchemeFormContent, SchemeFormValueContent } from '@/scheme-form/hooks';
+
+import SettingDrawer from '@/components/setting-drawer';
+import { clone } from '@formily/shared';
+
+export interface SchemeFormProps extends SchemeFormValueContent {
   language?: string;
   schema: ISchema;
-  onFormMount?: (form: Form) => void;
-  done?: boolean;
-  form?: Form;
+  loading?: boolean;
+  form: Form;
   components?: {
     [key: string]: JSXComponent;
   };
 }
 
-export type SchemeFormRef = Form;
+const SchemeForm: FC<SchemeFormProps> = ({
+  getLogicConfig,
+  extraLogicParams,
+  events,
+  pattern,
+  loading,
+  language,
+  schema,
+  components,
+  form,
+}) => {
+  const SchemaField = useCreateSchemaField();
 
-const SchemeForm = forwardRef<SchemeFormRef, SchemeFormProps>(
-  ({ formConfig, done, language, schema, components, onFormMount, form: propsForm }, ref) => {
-    const [warpForm] = useCreateForm(formConfig, onFormMount, propsForm);
+  const isDev = useDevEnv();
 
-    const SchemaField = useCreateSchemaField();
+  useEffect(() => {
+    setValidateLanguage(language ?? 'zh-CN');
+  }, [language]);
 
-    useImperativeHandle(ref, () => {
-      return warpForm;
-    });
-
-    useEffect(() => {
-      setValidateLanguage(language ?? 'zh-CN');
-    }, [language]);
-
-    return (
-      <Skeleton loading={!done}>
-        <FormProvider form={warpForm}>
-          <form className={`form-id-${warpForm.id}`}>
-            {schema ? (
-              <SchemaField schema={schema} components={components} />
-            ) : (
-              <Empty description="暂无数据" />
-            )}
-          </form>
+  return (
+    <>
+      <Skeleton loading={!!loading}>
+        <FormProvider form={form}>
+          <SchemeFormContent.Provider
+            value={{
+              pattern,
+              getLogicConfig,
+              extraLogicParams,
+              events,
+            }}
+          >
+            <form className={`form-id-${form.id}`}>
+              {schema ? (
+                <SchemaField schema={clone(schema)} components={components ?? {}} />
+              ) : (
+                <Empty description="暂无数据" />
+              )}
+            </form>
+          </SchemeFormContent.Provider>
         </FormProvider>
       </Skeleton>
-    );
-  },
-);
 
-SchemeForm.defaultProps = {
-  done: true,
+      {isDev ? <SettingDrawer form={form} /> : null}
+    </>
+  );
 };
 
-export default SchemeForm;
+SchemeForm.defaultProps = {
+  loading: false,
+};
+
+export default memo(SchemeForm);

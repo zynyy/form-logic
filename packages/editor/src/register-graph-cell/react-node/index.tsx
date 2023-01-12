@@ -1,29 +1,30 @@
-import { register } from "@antv/x6-react-shape";
+import { register } from '@antv/x6-react-shape';
 
-import ModelPage from "./model-page";
-import PageElement from "./page-element";
-import ElementEvent from "./element-event";
-import EventProcess from "./event-process";
+import ModelPage from './model-page';
+import PageData from './page-data';
+import EffectHook from './effect-hook';
+import LogicProcess from './logic-process';
+import { EFFECT_HOOK_NODE, LOGIC_PROCESS_NODE, MODEL_PAGE_NODE, PAGE_DATA_NODE } from '@/utils/constant';
 
 const registerReactNode = () => {
   register({
-    shape: "model-page-select-art-table",
+    shape: MODEL_PAGE_NODE,
     component: ModelPage,
   });
 
   register({
-    shape: "page-element-select",
-    component: PageElement,
+    shape: PAGE_DATA_NODE,
+    component: PageData,
   });
 
   register({
-    shape: "element-event-select",
-    component: ElementEvent,
+    shape: EFFECT_HOOK_NODE,
+    component: EffectHook,
   });
 
   register({
-    shape: "event-process-select",
-    component: EventProcess,
+    shape: LOGIC_PROCESS_NODE,
+    component: LogicProcess,
   });
 };
 

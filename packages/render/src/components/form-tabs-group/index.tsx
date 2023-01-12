@@ -2,7 +2,7 @@ import { FC, PropsWithChildren, useEffect, useState } from 'react';
 import { Card, Tabs } from 'antd';
 import { useField, RecursionField, observer } from '@formily/react';
 import FeedbackBadge from '@/components/feedback-badge';
-import { usePropertiesSources } from '@/components/hooks';
+import { usePropertiesSources } from '@/hooks';
 import SchemaFragment from '@/components/schema-fragment';
 import { useFormTabsGroupStyle } from '@/components/form-tabs-group/hooks';
 import cls from 'classnames';

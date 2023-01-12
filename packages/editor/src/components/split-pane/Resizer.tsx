@@ -1,6 +1,6 @@
-import {FC} from "react";
+import { FC } from 'react';
 
-import {ResizerProps} from "./interface";
+import { ResizerProps } from './interface';
 
 const Resizer: FC<ResizerProps> = ({
   style,
@@ -13,7 +13,7 @@ const Resizer: FC<ResizerProps> = ({
   onClick,
   onDoubleClick,
 }) => {
-  const classes = ["Resizer", split, className].join(" ");
+  const classes = ['resizer', split, className].join(' ');
 
   return (
     <span
@@ -29,7 +29,6 @@ const Resizer: FC<ResizerProps> = ({
         event.preventDefault();
         onTouchEnd(event);
       }}
-
       onClick={(event) => {
         if (onClick) {
           event.preventDefault();

@@ -1,7 +1,7 @@
 import getAnimationStyle from './animation';
 import getGridStyle from './grid';
 import genOtherStyle from './other';
-import { GenerateStyle, genStyleHook } from '@/style/styleHook';
+import { GenerateStyle, genStyleHook } from '@formlogic/component';
 
 const genSmallStyle: GenerateStyle = (token) => {
   const { componentCls, antCls, controlHeight, marginLG, fontSizeSM } = token;
@@ -303,8 +303,6 @@ const genLabelStyle: GenerateStyle = (token) => {
   const { componentCls, controlHeight, marginLG, marginSM } = token;
 
   const controlHeightSM = controlHeight * 0.75;
-  const controlHeightXS = controlHeight * 0.5;
-  const controlHeightLG = controlHeight * 1.25;
 
   return {
     lineHeight: `${controlHeight}px`,
@@ -324,12 +322,8 @@ const genLabelStyle: GenerateStyle = (token) => {
     },
 
     '&-tooltip': {
-      cursor: 'help',
       '*': {
         cursor: 'help',
-      },
-      label: {
-        borderBottom: '1px dashed currentColor',
       },
     },
 
@@ -354,9 +348,6 @@ const genLabelStyle: GenerateStyle = (token) => {
     },
 
     '&-control': {
-      flex: 1,
-      maxWidth: '100%',
-
       [`&.${componentCls}-control-content`]: {
         display: 'flex',
 
@@ -402,7 +393,7 @@ const genLabelStyle: GenerateStyle = (token) => {
 };
 
 const genFormItemStyle: GenerateStyle = (token) => {
-  const { componentCls,  fontSize, marginSM } = token;
+  const { componentCls, fontSize, marginSM } = token;
   return {
     [componentCls]: {
       display: 'flex',

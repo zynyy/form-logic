@@ -1,25 +1,55 @@
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { FC } from 'react';
-import { Button, ButtonProps, message } from 'antd';
+import { FC, forwardRef } from 'react';
+import { message } from 'antd';
 
 import { CopyOutlined } from '@ant-design/icons';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
+import { CustomButtonMode } from '@/interface';
 
-export interface CopyButtonProps extends ButtonProps {
-  text: string;
+export interface CopyButtonProps extends CustomButtonProps {
+  text?: string;
+  hasCopyToClipboard?: boolean;
 }
 
-const CopyButton: FC<CopyButtonProps> = ({ text, children, ...btnProps }) => {
-  const handleCopy = () => {
-    message.success(`${text} 复制成功`).then(() => void 0);
-  };
+const CopyButton: FC<CopyButtonProps> = forwardRef(
+  ({ text, children, hasCopyToClipboard, ...btnProps }, ref) => {
+    const handleCopy = () => {
+      message.success(`${text} 复制成功`).then(() => void 0);
+    };
 
-  return (
-    <CopyToClipboard text={text} onCopy={handleCopy}>
-      <Button type="text" {...btnProps} icon={<CopyOutlined />}>
+    if (hasCopyToClipboard) {
+      return (
+        <CopyToClipboard text={text} onCopy={handleCopy}>
+          <CustomButton
+            hasTooltip
+            mode={CustomButtonMode.icon}
+            title={`点击复制 ${text}`}
+            {...btnProps}
+            icon={<CopyOutlined />}
+            ref={ref}
+          >
+            {children}
+          </CustomButton>
+        </CopyToClipboard>
+      );
+    }
+
+    return (
+      <CustomButton
+        hasTooltip
+        mode={CustomButtonMode.icon}
+        {...btnProps}
+        icon={<CopyOutlined />}
+        ref={ref}
+      >
         {children}
-      </Button>
-    </CopyToClipboard>
-  );
+      </CustomButton>
+    );
+  },
+);
+
+CopyButton.defaultProps = {
+  hasCopyToClipboard: true,
 };
 
 export default CopyButton;

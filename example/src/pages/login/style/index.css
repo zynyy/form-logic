@@ -1,4 +1,4 @@
-.main {
+.login-wrap {
   width: 368px;
   margin: 0 auto;
   height: 100%;
@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.main .icon {
+.login-wrap .icon {
   margin-left: 16px;
   color: rgba(0, 0, 0, 0.2);
   font-size: 24px;
@@ -17,37 +17,37 @@
   transition: color 0.3s;
 }
 
-.main .icon:hover {
+.login-wrap .icon:hover {
   color: #1677ff;
 }
 
-.main .other {
+.login-wrap .other {
   margin-top: 24px;
   line-height: 22px;
   text-align: left;
 }
 
-.main .other .register {
+.login-wrap .other .register {
   float: right;
 }
 
-.main .login .prefixIcon {
+.login-wrap .login .prefixIcon {
   color: #d9d9d9;
   font-size: 14px;
 }
 
-.main .login .submit {
+.login-wrap .login .submit {
   width: 100%;
   margin-top: 24px;
 }
 
-.main .btn {
+.login-wrap .btn {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
 
-.main .btn .ant-btn-link {
+.login-wrap .btn .ant-btn-link {
   padding-right: 0;
 }

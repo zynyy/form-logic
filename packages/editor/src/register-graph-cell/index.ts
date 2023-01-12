@@ -2,6 +2,8 @@ import registerRect from './rect';
 import registerPolygon from './polygon';
 import registerImage from './image';
 import registerCircle from './circle';
+import registerReactNode from '@/register-graph-cell/react-node';
+import registerLane from '@/register-graph-cell/lane';
 
 // #region 初始化图形
 const ports = {
@@ -89,6 +91,9 @@ const registerGraphNode = () => {
   registerImage(ports);
 
   registerCircle(ports);
+
+  registerReactNode()
+  registerLane()
 };
 
 export default registerGraphNode;

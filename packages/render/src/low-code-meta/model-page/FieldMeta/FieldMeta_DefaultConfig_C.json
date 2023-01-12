@@ -1,0 +1,66 @@
+{
+  "code": "FieldMeta_DefaultConfig_C",
+  "name": "模型字段列表",
+  "model": "FieldMeta",
+  "group": [],
+  "data": [
+    {
+      "code": "schemaType",
+      "name": "模式类型",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "string",
+      "component": "SchemaTypeSelect"
+    },
+    {
+      "code": "required",
+      "name": "是否必填",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "0",
+      "component": "YesNoRadio",
+      "wrap": "1"
+    },
+    {
+      "code": "hidden",
+      "name": "是否隐藏",
+      "type": "column",
+      "defaultValue": "0",
+      "schemaType": "string",
+      "component": "YesNoRadio"
+    },
+    {
+      "code": "disabled",
+      "name": "是否禁止",
+      "type": "column",
+      "defaultValue": "0",
+      "schemaType": "string",
+      "component": "YesNoRadio"
+    },
+    {
+      "code": "component",
+      "name": "组件",
+      "type": "column",
+      "schemaType": "string",
+      "logics": [],
+      "wrap": "1",
+      "component": "RemoteSelect",
+      "componentProps": {
+        "labelTemplateKey": "{{code}}-{{name}}",
+        "apiConfig": { "method": "get", "url": "/local-api/component/list", "params": {} }
+      }
+    },
+    {
+      "code": "componentProps",
+      "name": "组件属性",
+      "type": "column",
+      "schemaType": "string",
+      "colSpan": 3,
+      "labelCol": 2,
+      "wrapperCol": 22
+    }
+  ],
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6"
+}

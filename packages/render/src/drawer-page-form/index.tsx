@@ -1,29 +1,28 @@
-import { Button, Drawer, DrawerProps, Spin, message } from 'antd';
+import { Button, Drawer, DrawerProps, message, Space } from 'antd';
 import SchemeForm, { SchemeFormProps } from '@/scheme-form';
-import { FC, useState } from 'react';
-import {
-  useBindBtnClick,
-  useBindLogic,
-  useCreateForm,
-  useFormSchema,
-  useTriggerLogic,
-} from '@/hooks';
+import { FC, useEffect, useMemo, useState } from 'react';
+import { usePageForm, useTriggerLogic } from '@/hooks';
 import { TransformsSchemaOptions } from '@/transforms';
 import { AnyObject, EventsObject, LogicConfig } from '@/interface';
-import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
-import { flushSync } from 'react-dom';
-import LeftRightSlot from '@/components/left-right-slot';
-import { getSubmitFormValues } from '@/utils/getSubmitFormValues';
+import { CheckOutlined } from '@ant-design/icons';
+
+import { CloseButton, LeftRightSlot, PageLoading } from '@formlogic/component';
+
+import { getSubmitFormValues } from '@/utils/formUtils';
+import { Form, IFormProps } from '@formily/core';
 
 export interface DrawerPageFormProps
   extends DrawerProps,
-    Pick<SchemeFormProps, 'onFormMount' | 'formConfig' | 'components'> {
+    Pick<SchemeFormProps, 'language' | 'components'> {
   options: TransformsSchemaOptions;
   getLogicConfig?: LogicConfig;
   extraLogicParams?: AnyObject;
   events?: EventsObject;
   onConfirm?: (formValues: any) => void;
+  onClose?: () => void;
   validateFormValues?: (formValues: any) => Promise<string>;
+  onFormMount?: (form: Form) => void;
+  formConfig?: IFormProps;
 }
 
 const DrawerPageForm: FC<DrawerPageFormProps> = ({
@@ -39,31 +38,37 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
   title,
   components,
   validateFormValues,
+  language,
 }) => {
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  const { schema, buttons, logicList, btnFields } = useFormSchema(options);
+  const { schema, buttons, form, formLoading, pattern, refreshForm } = usePageForm({
+    formConfig,
+    onFormMount,
+    options,
+    getLogicConfig,
+    logicParams: extraLogicParams,
+    events,
+    autoRefreshForm: false,
+  });
 
-  const [form] = useCreateForm(formConfig, onFormMount);
-
-  useBindBtnClick(form, btnFields, getLogicConfig, extraLogicParams, events, () => {});
-
-  const [done] = useBindLogic(form, schema, logicList, getLogicConfig, extraLogicParams, () => {});
+  const [loadingDone, setLoadingDone] = useState(false);
 
   const [triggerLogic] = useTriggerLogic(getLogicConfig, () => {
     setSubmitLoading(false);
   });
 
-  const handleCloseClick = (e) => {
-    form.reset();
-
-    onClose?.(e);
+  const handleCloseClick = () => {
+    refreshForm({});
+    onClose?.();
   };
 
   const submit = (formValues: any) => {
     onConfirm?.(formValues);
 
     setSubmitLoading(false);
+
+    handleCloseClick();
   };
 
   const handleConfirmClick = () => {
@@ -91,19 +96,24 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
       });
   };
 
+  useEffect(() => {
+    if (open) {
+      setSubmitLoading(false);
+      refreshForm(formConfig);
+    }
+  }, [open, formConfig]);
+
   const renderFooter = () => {
-    const left = (
-      <Button loading={submitLoading} icon={<CloseOutlined />} onClick={handleCloseClick}>
-        关闭
-      </Button>
-    );
+    const left = <CloseButton loading={submitLoading} onClick={handleCloseClick} />;
 
     const right = buttons.map((item) => {
       const { name, logics, eventCode } = item || {};
 
       const clickCodes =
-        logics?.filter((item) => item.event === 'onClick')?.map((item) => item.logicCode) || [];
+        logics?.filter((item) => item.effectHook === 'onClick')?.map((item) => item.logicCode) ||
+        [];
 
+      // todo 待优化
       return (
         <Button
           loading={submitLoading}
@@ -116,13 +126,14 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
             }
 
             if (clickCodes.length) {
-              flushSync(() => {
-                setSubmitLoading(true);
-              });
+              setSubmitLoading(true);
 
               triggerLogic(clickCodes, {
                 params: extraLogicParams,
                 form,
+                effectHook: 'onClick',
+                fieldCode: name,
+                pageCode: options?.metaSchema?.code,
               });
             }
           }}
@@ -136,7 +147,7 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
       <LeftRightSlot
         left={left}
         right={
-          <>
+          <Space>
             {right}
             <Button
               loading={submitLoading}
@@ -148,11 +159,15 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
             >
               确定
             </Button>
-          </>
+          </Space>
         }
       />
     );
   };
+
+  const loading = useMemo(() => {
+    return formLoading || !open || !loadingDone;
+  }, [formLoading, open, loadingDone]);
 
   return (
     <Drawer
@@ -162,18 +177,29 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
       width="90%"
       maskClosable={false}
       footer={renderFooter()}
-      destroyOnClose
       closable={false}
+      destroyOnClose
+      afterOpenChange={(open) => {
+        if (open) {
+          setLoadingDone(true);
+        } else {
+          setLoadingDone(false);
+        }
+      }}
     >
-      <Spin spinning={submitLoading}>
+      <PageLoading loading={submitLoading}>
         <SchemeForm
           form={form}
-          done={done}
+          loading={loading}
           schema={schema}
-          formConfig={formConfig}
+          pattern={pattern}
           components={components}
+          getLogicConfig={getLogicConfig}
+          events={events}
+          extraLogicParams={extraLogicParams}
+          language={language}
         />
-      </Spin>
+      </PageLoading>
     </Drawer>
   );
 };

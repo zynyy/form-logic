@@ -1,9 +1,24 @@
-
 import mustache from 'mustache';
-import { DataIndex, StrNumBool } from '@/interface';
+import { DataIndex, MonacoEditorLoaderPaths, StrNumBool } from '@/interface';
+import { MONACO_EDITOR_PATHS_VS } from '@/utils/constant';
 
-export * from './tree'
+export * from './tree';
 
+export let COMPONENT_PREFIX_CLS = 'form-logic';
+
+export const DEFAULT_LOADER_CONFIG = {
+  paths: {
+    vs: MONACO_EDITOR_PATHS_VS,
+  },
+};
+
+export const setMonacoEditorLoaderPath = (loaderPath: MonacoEditorLoaderPaths) => {
+  DEFAULT_LOADER_CONFIG.paths = loaderPath;
+};
+
+export const setComponentPrefixCls = (prefixCls: string) => {
+  COMPONENT_PREFIX_CLS = prefixCls;
+};
 
 export const strNumBoolToBoolean = (val?: StrNumBool) => {
   return val === undefined ? false : Boolean(Number(val));
@@ -50,8 +65,7 @@ export const uid = (len?: number) => {
     str += HEX[(Math.random() * 36) | 0];
   }
   return str;
-}
-
+};
 
 export const getPathValue = <ValueType, ObjectType extends object>(
   record: ObjectType,

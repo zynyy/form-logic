@@ -1,15 +1,18 @@
-import { Button, ButtonProps } from 'antd';
 import { CloseOutlined } from '@ant-design/icons';
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
+import CustomButton, { CustomButtonProps } from '@/buttons/custom-button';
 
-export interface CloseButtonProps extends ButtonProps {}
 
-const CloseButton: FC<CloseButtonProps> = ({ children, ...restProps }) => {
-  return (
-    <Button {...restProps} icon={<CloseOutlined />}>
-      {children || "关闭"}
-    </Button>
-  );
-};
+export interface CloseButtonProps extends Omit<CustomButtonProps, 'icon'> {}
+
+const CloseButton: FC<CloseButtonProps> = forwardRef(
+  ({ children, ...restProps }, ref) => {
+    return (
+      <CustomButton title="关闭" {...restProps} icon={<CloseOutlined />} ref={ref}>
+        {children}
+      </CustomButton>
+    );
+  },
+);
 
 export default CloseButton;

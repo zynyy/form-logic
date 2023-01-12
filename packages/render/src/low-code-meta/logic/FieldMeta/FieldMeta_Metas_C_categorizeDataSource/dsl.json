@@ -1,0 +1,40 @@
+{
+  "code": "FieldMeta_Metas_C_categorizeDataSource",
+  "cells": [
+    {
+      "id": "edge-ugippxa9",
+      "shape": "edge",
+      "target": { "cell": "data-edkiduar", "port": "2cb03373-9994-4038-b1ca-a4ad6cb3fb58" },
+      "source": { "cell": "start-z0l5kewx", "port": "58415352-7c74-4a2f-b64b-3d94729e8718" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-3dvfhpfp",
+      "shape": "edge",
+      "target": { "cell": "end-d3gfp3qu", "port": "4b27b9fa-8d47-4978-8863-36a1ec46ef74" },
+      "source": { "cell": "data-edkiduar", "port": "98cc8211-9b49-4c95-934c-c2301103daf7" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-z0l5kewx",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" }
+    },
+    {
+      "id": "end-d3gfp3qu",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" }
+    },
+    {
+      "id": "data-edkiduar",
+      "shape": "custom-polygon",
+      "data": {
+        "settingConfig": "data-config",
+        "configValues": { "label": "数据" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "dataTemplateCode"
+      }
+    }
+  ]
+}

@@ -1,8 +1,9 @@
 import {Graph, Node} from "@antv/x6";
+import { POLYGON_NODE } from '@/utils/constant';
 
 const registerPolygon = (ports: Node["ports"]) => {
   Graph.registerNode(
-    "custom-polygon",
+    POLYGON_NODE,
     {
       inherit: "polygon",
       width: 66,

@@ -10,7 +10,7 @@ import { markRaw } from '@formily/reactive';
 import { observer } from '@formily/react';
 import { Grid } from '@formily/grid';
 
-import { useFormLayout } from '../form-layout/hooks';
+import { useFormLayoutContext } from '@/components/form-layout/hooks';
 import cn from 'classnames';
 import { FormGridContext, FormGridValueContext, useFormGridStyle } from './hooks';
 
@@ -20,7 +20,7 @@ export interface FormGridProps extends FormGridValueContext, PropsWithChildren {
 }
 
 const FormGrid: FC<FormGridProps> = observer(({ className, style, children, ...props }) => {
-  const layout = useFormLayout();
+  const layout = useFormLayoutContext();
   const options = {
     columnGap: layout?.gridColumnGap ?? 8,
     rowGap: layout?.gridRowGap ?? 4,

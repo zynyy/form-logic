@@ -1,0 +1,88 @@
+{
+  "code": "ModelPage_Group_C",
+  "name": "页面配置分组新增",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    { "code": "basicInfo", "name": "基础信息" },
+    { "code": "componentInfo", "name": "组件信息" }
+  ],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    },
+    {
+      "code": "hiddenName",
+      "name": "名称隐藏",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo",
+      "defaultValue": "0",
+      "component": "YesNoRadio"
+    },
+    {
+      "code": "mode",
+      "name": "分组模式",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo",
+      "wrap": "1",
+      "component": "GroupModeSelect",
+      "logics": [
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_Group_C_modeVisibleAndDataSource"
+        },
+        { "effectHook": "onFieldMount", "logicCode": "ModelPage_Group_C_modeVisibleAndDataSource" }
+      ]
+    },
+    {
+      "code": "modeCodes",
+      "name": "分组",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo",
+      "component": "StaticSelect",
+      "componentProps": { "mode": "multiple" },
+      "logics": [],
+      "hidden": "0",
+      "disabled": "0",
+      "hasSerialNo": "0",
+      "hasSort": "0",
+      "hiddenName": "0",
+      "wrap": "0"
+    },
+    {
+      "code": "component",
+      "name": "组件",
+      "type": "column",
+      "schemaType": "string",
+      "group": "componentInfo"
+    },
+    {
+      "code": "componentProps",
+      "name": "组件属性",
+      "type": "column",
+      "schemaType": "string",
+      "wrap": "1",
+      "group": "componentInfo"
+    }
+  ],
+  "defaultSearchColumn": "6"
+}
