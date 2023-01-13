@@ -34,11 +34,9 @@ const ValidateRulesList = () => {
       metaSchema={metaSchema}
       action={apiUrl.page}
       reloadFlag={reloadFlag}
-      events={{
-        onAdd: handleAddClick,
-        onRemove: handleRemoveClick,
-        onEdit: handleEditClick,
-      }}
+      onEdit={handleEditClick}
+      onAdd={handleAddClick}
+      onRemove={handleRemoveClick}
     />
   );
 };

@@ -1,12 +1,13 @@
 import { createContext, useContext } from 'react';
 import { ArrayBaseProps } from '@/components/array-base';
-import { ArrayField } from '@formily/core';
-import { Schema } from '@formily/react';
+
+import { useForm } from '@formily/react';
+import { FormPath } from '@formily/shared';
+import { ArrayField, isArrayField } from '@formily/core';
 
 export interface ArrayBaseValueContext {
+  fieldAddress: FormPath;
   props: ArrayBaseProps;
-  field: ArrayField;
-  schema: Schema;
 }
 
 export interface ArrayItemValueContext {
@@ -18,8 +19,22 @@ export const ArrayBaseContext = createContext<ArrayBaseValueContext>(null);
 
 export const ArrayItemContext = createContext<ArrayItemValueContext>(null);
 
-export const useArrayContext = () => {
-  return useContext(ArrayBaseContext);
+export interface ArrayContext extends ArrayBaseValueContext {
+  field: ArrayField;
+}
+
+export const useArrayContext = (): ArrayContext => {
+  const arrayBaseContext = useContext(ArrayBaseContext);
+  const form = useForm();
+
+  const { fieldAddress } = arrayBaseContext || {};
+
+  const target = form.query(fieldAddress).take();
+
+  return {
+    ...arrayBaseContext,
+    field: isArrayField(target) ? target : null,
+  };
 };
 
 export const useArrayItemContext = () => {

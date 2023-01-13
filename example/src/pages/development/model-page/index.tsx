@@ -33,11 +33,9 @@ const PageConfig = () => {
       getLogicConfig={getLogicConfig}
       metaSchema={metaSchema}
       action={apiUrl.page}
-      events={{
-        onAdd: handleAddClick,
-        onRemove: handleRemoveClick,
-        onEdit: handleEditClick,
-      }}
+      onEdit={handleEditClick}
+      onAdd={handleAddClick}
+      onRemove={handleRemoveClick}
       reloadFlag={reloadFlag}
     />
   );

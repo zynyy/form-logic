@@ -51,21 +51,6 @@
       "disabled": "0",
       "hiddenName": "0",
       "wrap": "0",
-      "componentProps": {},
-      "logics": [],
-      "code": "defaultValue",
-      "component": "",
-      "name": "默认值",
-      "group": "basicInfo"
-    },
-    {
-      "type": "column",
-      "schemaType": "string",
-      "required": "0",
-      "hidden": "0",
-      "disabled": "0",
-      "hiddenName": "0",
-      "wrap": "0",
       "componentProps": {
         "apiConfig": { "method": "get", "params": {}, "url": "/local-api/component/list" },
         "defaultFirstOptionValue": "0",
@@ -95,6 +80,21 @@
       "code": "componentProps",
       "component": "DynamicSchema",
       "name": "组件属性",
+      "group": "valueComponentInfo"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "defaultValue",
+      "component": "",
+      "name": "默认值",
       "group": "valueComponentInfo"
     },
     {

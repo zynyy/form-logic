@@ -40,12 +40,10 @@ const Model = () => {
       getLogicConfig={getLogicConfig}
       metaSchema={metaSchema}
       action={apiUrl.page}
-      events={{
-        onAdd: handleAddClick,
-        onRemove: handleRemoveClick,
-        onEdit: handleEditClick,
-        onDetail: handleDetailClick,
-      }}
+      onEdit={handleEditClick}
+      onAdd={handleAddClick}
+      onRemove={handleRemoveClick}
+      onDetail={handleDetailClick}
       reloadFlag={reloadFlag}
     />
   );

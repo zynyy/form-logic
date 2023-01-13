@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 
 import { ArrayField } from '@formily/core';
-import { useField, useFieldSchema, observer } from '@formily/react';
+import { useField,  observer } from '@formily/react';
 
 import cls from 'classnames';
 
@@ -101,10 +101,9 @@ export interface ArrayBaseProps extends PropsWithChildren {
 
 const InternalArrayBase: FC<ArrayBaseProps> = ({ children, ...restProps }) => {
   const field = useField<ArrayField>();
-  const schema = useFieldSchema();
 
   return (
-    <ArrayBaseContext.Provider value={{ field, schema, props: restProps }}>
+    <ArrayBaseContext.Provider value={{ fieldAddress: field.address, props: restProps }}>
       {children}
     </ArrayBaseContext.Provider>
   );

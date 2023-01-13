@@ -30,6 +30,11 @@ const handleEditClick = (index, record) => {
     navigate(getQueryUrl(<%- fileName %>Config.EDIT_LINK, { code, belong }));
 };
 
+const handleDetailClick = () => {
+const { code, belong } = record || {};
+navigate(getQueryUrl(<%- fileName %>Config.DETAIL_LINK, { code, belong }));
+}
+
 
 return (<ListLayout
         getLogicConfig={getLogicConfig}
@@ -37,11 +42,10 @@ return (<ListLayout
         action={apiUrl.page}
         reloadFlag={reloadFlag}
 
-        events={{
-        onAdd: handleAddClick,
-        onRemove: handleRemoveClick,
-        onEdit: handleEditClick,
-        }}
+        onEdit={handleEditClick}
+        onAdd={handleAddClick}
+        onRemove={handleRemoveClick}
+        onDetail={handleDetailClick}
 
     />
     );
