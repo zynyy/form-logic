@@ -7,7 +7,7 @@ export type { FieldTypeSelectProps } from './field-type-select';
 export { default as GroupModeSelect } from './group-mode-select';
 export type { GroupModeSelectProps } from './group-mode-select';
 
-export { default as YseNoSelect } from './yes-no-select';
+export { default as YesNoSelect } from './yes-no-select';
 export type { YesNoSelectProps } from './yes-no-select';
 
 export { default as RequestMethodSelect } from './request-method';

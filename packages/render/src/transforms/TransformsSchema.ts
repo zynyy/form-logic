@@ -123,38 +123,44 @@ class TransformsSchema extends MetaDataSorted {
     if ((logics && logics.length) || eventCode) {
       const field = prefixField ? `${prefixField}.${code}` : code;
 
-      const logicHooks = {};
-
       const clickCodes = [];
 
+      const fieldCodes = {};
+
       logics?.forEach((cur) => {
-        const { effectHook, logicCode } = cur || {};
+        const { effectHook, logicCode, hasChildren } = cur || {};
+
+        const execField = strNumBoolToBoolean(hasChildren) ? `${field}.*` : field;
 
         if (effectHook === 'onClick') {
           clickCodes.push(logicCode);
         } else {
-          if (Reflect.has(logicHooks, effectHook)) {
-            if (!logicHooks[effectHook].includes(logicCode)) {
-              logicHooks[effectHook] = logicHooks[effectHook].concat(logicCode);
+          if (Reflect.has(fieldCodes, execField)) {
+            const record = fieldCodes[execField];
+
+            if (Reflect.has(record, effectHook)) {
+              if (!record[effectHook].includes(logicCode)) {
+                fieldCodes[execField][effectHook] =
+                  fieldCodes[execField][effectHook].concat(logicCode);
+              }
+            } else {
+              fieldCodes[execField][effectHook] = [logicCode];
             }
           } else {
-            logicHooks[effectHook] = [logicCode];
+            fieldCodes[execField] = {
+              [effectHook]: [logicCode],
+            };
           }
         }
       });
 
-      const record = {
-        fieldCode: field,
-        logicHooks,
-        pageCode: this.options?.metaSchema?.code,
-        type,
-      };
+      const pageCode = this.options?.metaSchema?.code;
 
       const btnRecord = {
         fieldCode: field,
         clickCodes,
         eventCode,
-        pageCode: this.options?.metaSchema?.code,
+        pageCode,
         type,
       };
 
@@ -175,29 +181,42 @@ class TransformsSchema extends MetaDataSorted {
             }
           }
         }
-
-        if (Object.keys(logicHooks).length) {
-          switch (item.type) {
-            case MetaDataTypeEnum.search_column:
-            case MetaDataTypeEnum.search_button: {
-              this.searchLogic.push(record);
-              break;
-            }
-            default: {
-              this.tableLogic.push(record);
-              break;
-            }
-          }
-        }
       } else {
-        if (Object.keys(logicHooks).length) {
-          this.logicList.push(record);
-        }
-
         if (clickCodes.length || eventCode) {
           this.btnFields.push(btnRecord);
         }
       }
+
+      Object.keys(fieldCodes).forEach((fieldCode) => {
+        const logicHooks = fieldCodes[fieldCode];
+
+        const record = {
+          fieldCode: fieldCode,
+          logicHooks,
+          pageCode,
+          type,
+        };
+
+        if (this.runSchema === RunSchemaEnum.listSchema) {
+          if (Object.keys(logicHooks).length) {
+            switch (item.type) {
+              case MetaDataTypeEnum.search_column:
+              case MetaDataTypeEnum.search_button: {
+                this.searchLogic.push(record);
+                break;
+              }
+              default: {
+                this.tableLogic.push(record);
+                break;
+              }
+            }
+          }
+        } else {
+          if (Object.keys(logicHooks).length) {
+            this.logicList.push(record);
+          }
+        }
+      });
     }
   };
 
@@ -527,6 +546,8 @@ class TransformsSchema extends MetaDataSorted {
 
     const gridIndex = [];
 
+    let nextGridWrap = false;
+
     grids.forEach((item, index) => {
       const { wrap, code, schemaType } = item || {};
 
@@ -539,14 +560,17 @@ class TransformsSchema extends MetaDataSorted {
 
         objectProperties[idx] = properties;
         gridIndex.push(idx);
+
+        nextGridWrap = true;
       } else {
         if (properties) {
-          if (strNumBoolToBoolean(wrap) || !wrapProperties.length) {
+          if (strNumBoolToBoolean(wrap) || !wrapProperties.length || nextGridWrap) {
             wrapProperties.push({
               [code]: properties,
             });
             const index = wrapProperties.length - 1;
             gridIndex.push(`grid_${index || ''}`);
+            nextGridWrap = false;
           } else {
             const lastIndex = wrapProperties.length - 1;
             wrapProperties[lastIndex][code] = properties;

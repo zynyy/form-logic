@@ -101,6 +101,7 @@ export interface MetaSchemaGroup {
 export interface MetaLogic {
   effectHook: EffectHook;
   logicCode: string;
+  hasChildren: StrNumBool
 }
 
 export interface MetaSchemaData {

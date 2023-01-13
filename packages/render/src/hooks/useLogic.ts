@@ -27,7 +27,7 @@ export const useTriggerLogic = (
 
       const { fieldCode, pageCode, effectHook, form, ...restPayload } = payload || {};
 
-      const execKey = `${effectHook}_${fieldCode}`;
+      const execKey = `${logicCode}_${effectHook}_${fieldCode}_${form.id}`;
 
       if (execNumRef.current[execKey]) {
         execNumRef.current[execKey] = execNumRef.current[execKey] + 1;
@@ -79,6 +79,7 @@ export const useTriggerLogic = (
       });
     });
   };
+
   return [triggerLogic];
 };
 
