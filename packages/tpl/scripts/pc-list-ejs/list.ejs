@@ -30,7 +30,7 @@ const handleEditClick = (index, record) => {
     navigate(getQueryUrl(<%- fileName %>Config.EDIT_LINK, { code, belong }));
 };
 
-const handleDetailClick = () => {
+const handleDetailClick = (index, record) => {
 const { code, belong } = record || {};
 navigate(getQueryUrl(<%- fileName %>Config.DETAIL_LINK, { code, belong }));
 }
