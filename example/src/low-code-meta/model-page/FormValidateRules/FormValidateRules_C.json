@@ -59,13 +59,18 @@
       },
       "logics": [
         { "effectHook": "onFieldMount", "logicCode": "com_getComponentConfig" },
-        { "effectHook": "onFieldInputValueChange", "logicCode": "com_getComponentConfig" }
+        { "effectHook": "onFieldInputValueChange", "logicCode": "com_getComponentConfig" },
+        { "effectHook": "onFieldMount", "logicCode": "FormValidateRules_setDefaultValueComponent" },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "FormValidateRules_setDefaultValueComponent"
+        }
       ],
       "code": "component",
       "component": "RemoteSelect",
       "name": "值组件",
       "group": "valueComponentInfo",
-      "defaultValue": ""
+      "defaultValue": "Input"
     },
     {
       "type": "column",
@@ -76,7 +81,18 @@
       "hiddenName": "0",
       "wrap": "0",
       "componentProps": {},
-      "logics": [],
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "FormValidateRules_setDefaultValueComponentProps",
+          "hasChildren": "1"
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "FormValidateRules_setDefaultValueComponentProps",
+          "hasChildren": "1"
+        }
+      ],
       "code": "componentProps",
       "component": "DynamicSchema",
       "name": "组件属性",

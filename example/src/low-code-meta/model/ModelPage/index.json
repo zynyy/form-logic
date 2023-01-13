@@ -185,6 +185,18 @@
         "disabled": "0",
         "component": "JsonMonacoEditor"
       }
+    },
+    {
+      "code": "hasChildren",
+      "name": "监听子项",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "YesNoSelect"
+      }
     }
   ]
 }

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormPageLayout, useJsonMetaSchema } from '@formlogic/render';
+import { FormPageLayout, JsonPopover, RequestMethodSelect, useJsonMetaSchema, YesNoRadio } from '@formlogic/render';
 import getLogicConfig from '@/low-code-meta/logic';
 
 import { ValidateRulesConfig, apiUrl } from './service';
@@ -33,8 +33,14 @@ const ValidateRulesCreate: FC<ValidateRulesCreateProps> = () => {
         extraParams: {},
         validateFormValues,
         formatFormValues,
+
       }}
       onBackClick={handleBackClick}
+      components={{
+        JsonPopover,
+        RequestMethodSelect,
+        YesNoRadio
+      }}
     />
   );
 };

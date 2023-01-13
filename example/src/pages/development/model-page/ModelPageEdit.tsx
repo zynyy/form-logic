@@ -5,7 +5,7 @@ import {
   GroupModeSelect, JsonPopover,
   RequestMethodSelect,
   SchemaTypeSelect,
-  YesNoRadio,
+  YesNoRadio, YesNoSelect,
 } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
 import { useMetaSchema } from '@/hooks';
@@ -47,6 +47,7 @@ const ModelPageEdit = () => {
         RequestMethodSelect,
         EffectHookSelect,
         JsonPopover,
+        YesNoSelect
       }}
       formConfig={formConfig}
       extraLogicParams={{

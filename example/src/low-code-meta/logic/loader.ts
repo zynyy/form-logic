@@ -5,6 +5,10 @@ export default {
     import('./FieldMeta/FieldMeta_Metas_C_categorizeDataSource'),
   FieldMeta_metasDrawerExtraLogicParams: () =>
     import('./FieldMeta/FieldMeta_metasDrawerExtraLogicParams'),
+  FormValidateRules_setDefaultValueComponent: () =>
+    import('./FormValidateRules/FormValidateRules_setDefaultValueComponent'),
+  FormValidateRules_setDefaultValueComponentProps: () =>
+    import('./FormValidateRules/FormValidateRules_setDefaultValueComponentProps'),
   ModelPage_C_modelToDisabled: () => import('./ModelPage/ModelPage_C_modelToDisabled'),
   ModelPage_Data_C_codeDataSource: () => import('./ModelPage/ModelPage_Data_C_codeDataSource'),
   ModelPage_Data_C_codeWithTarget: () => import('./ModelPage/ModelPage_Data_C_codeWithTarget'),

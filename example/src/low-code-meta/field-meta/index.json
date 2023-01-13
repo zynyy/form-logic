@@ -8,6 +8,20 @@
   ],
   "metas": [
     {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "YesNoSelect"
+      },
+      "code": "hasChildren",
+      "componentProps": {},
+      "name": "监听子项",
+      "categorize": "configInfo"
+    },
+    {
       "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
       "code": "type",
       "name": "类型",

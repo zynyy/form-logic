@@ -7,6 +7,7 @@ import {
   RequestMethodSelect,
   EffectHookSelect,
   JsonPopover,
+  YesNoSelect
 } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,6 +50,7 @@ const ModelPageCreate = () => {
           RequestMethodSelect,
           EffectHookSelect,
           JsonPopover,
+          YesNoSelect
         }}
         extraLogicParams={{
           successCallback,
