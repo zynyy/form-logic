@@ -1,8 +1,46 @@
-import { FormPageLayout } from '@formlogic/render';
+import {
+  FormPageLayout,
+  JsonPopover,
+  RequestMethodSelect, SchemaPatternEnum,
+  SchemaTypeSelect,
+  useJsonMetaSchema,
+  YesNoRadio,
+} from '@formlogic/render';
 import getLogicConfig from '@/low-code-meta/logic';
+import { useNavigate } from 'react-router-dom';
+import { FieldMetaConfig } from '@/pages/development/field-meta/services';
+import { useFieldMetaDetail } from '@/pages/development/field-meta/hooks';
 
 const MetaDetail = () => {
-  return <FormPageLayout getLogicConfig={getLogicConfig} />;
+  const navigate = useNavigate();
+
+  const { metaSchema } = useJsonMetaSchema(FieldMetaConfig.DETAIL);
+
+  const [formConfig, loading] = useFieldMetaDetail();
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
+  return (
+    <>
+      <FormPageLayout
+        pattern={SchemaPatternEnum.DETAIL}
+        loading={loading}
+        onBackClick={handleBackClick}
+        formConfig={formConfig}
+        hasGroup
+        metaSchema={metaSchema}
+        getLogicConfig={getLogicConfig}
+        components={{
+          SchemaTypeSelect,
+          YesNoRadio,
+          JsonPopover,
+          RequestMethodSelect,
+        }}
+      />
+    </>
+  );
 };
 
 export default MetaDetail;

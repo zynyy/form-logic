@@ -3,22 +3,42 @@
   "labelCol": "6",
   "wrapperCol": "18",
   "defaultSearchColumn": "6",
-  "group": [],
+  "model": "Void",
+  "codeSuffix": "test",
+  "name": "测试",
+  "group": [{ "code": "propsInfo", "name": "属性信息" }],
   "data": [
     {
       "type": "column",
       "schemaType": "string",
-      "required": "0",
+      "required": "1",
       "hidden": "0",
       "disabled": "0",
       "hiddenName": "0",
       "wrap": "0",
       "logics": [],
       "code": "code",
-      "name": "编码"
+      "name": "组件编码",
+      "group": "basicInfo"
+    },
+    {
+      "code": "metas",
+      "name": "字段集合",
+      "type": "column",
+      "schemaType": "array",
+      "required": "1",
+      "group": "propsInfo",
+      "colSpan": 3,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "hiddenName": "1",
+      "pageCode": "Model_Field_L",
+      "component": "MetaTreeArrayDrawerTable",
+      "componentProps": { "drawerPageCode": "Model_Field_C" },
+      "defaultValue": [],
+      "hasSort": 1,
+      "hasSerialNo": 1,
+      "logics": []
     }
-  ],
-  "model": "Void",
-  "codeSuffix": "test",
-  "name": "测试"
+  ]
 }

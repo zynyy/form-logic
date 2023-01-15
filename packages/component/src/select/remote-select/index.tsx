@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 import { getPathValue, transformToOptions } from '@/utils';
 import { getData } from '@/service';
@@ -24,11 +24,11 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
   defaultFirstOptionValue,
   ...restProps
 }) => {
-  const [loading, setLoading] = useState(false);
-
   const [dataSource, setDataSource] = useState<any[]>([]);
 
   const [prevApi, setPrevApi] = useState<any>(apiConfig);
+
+  const loadingRef = useRef(false);
 
   const findRecord = (val: string): undefined | any => {
     return val ? dataSource.find((item) => item.value === val) : undefined;
@@ -67,21 +67,21 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
   };
 
   const search = () => {
-    if (!apiConfig || !(apiConfig && apiConfig.url)) {
+    if (!apiConfig || !(apiConfig && apiConfig.url) || loadingRef.current) {
       return;
     }
 
-    setLoading(true);
+    loadingRef.current = true;
     getData(apiConfig)
       .then((res) => {
-        setLoading(false);
+        loadingRef.current = false;
 
         const remoteData = getPathValue(res, transformPath(remoteDataPath));
         const newData = remoteData ? transformData(remoteData) : [];
         setDataSource(newData);
       })
       .catch(() => {
-        setLoading(false);
+        loadingRef.current = false;
       });
   };
 
@@ -126,7 +126,7 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
       value={value}
       onChange={onChange}
       data={dataSource}
-      loading={loading}
+      loading={loadingRef.current}
       onFocus={handleFocus}
     />
   );

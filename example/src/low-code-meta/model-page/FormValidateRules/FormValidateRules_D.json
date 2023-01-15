@@ -1,0 +1,130 @@
+{
+  "code": "FormValidateRules_D",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [
+    { "hiddenName": "0", "componentProps": {}, "code": "basicInfo", "name": "基础信息" },
+    {
+      "hiddenName": "0",
+      "componentProps": {},
+      "code": "valueComponentInfo",
+      "name": "值组件配置信息"
+    }
+  ],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "code",
+      "component": "",
+      "name": "编码",
+      "group": "basicInfo"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "name",
+      "component": "",
+      "name": "名称",
+      "group": "basicInfo"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {
+        "apiConfig": { "method": "get", "params": {}, "url": "/local-api/component/list" },
+        "defaultFirstOptionValue": "0",
+        "labelTemplateKey": "{{code}}-{{name}}",
+        "valueTemplateKey": "{{code}}"
+      },
+      "logics": [
+        { "effectHook": "onFieldMount", "logicCode": "com_getComponentConfig" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "com_getComponentConfig" },
+        { "effectHook": "onFieldMount", "logicCode": "FormValidateRules_setDefaultValueComponent" },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "FormValidateRules_setDefaultValueComponent"
+        }
+      ],
+      "code": "component",
+      "component": "RemoteSelect",
+      "name": "值组件",
+      "group": "valueComponentInfo",
+      "defaultValue": "Input"
+    },
+    {
+      "type": "column",
+      "schemaType": "object",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "FormValidateRules_setDefaultValueComponentProps",
+          "hasChildren": "1"
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "FormValidateRules_setDefaultValueComponentProps",
+          "hasChildren": "1"
+        }
+      ],
+      "code": "componentProps",
+      "component": "DynamicSchema",
+      "name": "组件属性",
+      "group": "valueComponentInfo"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "defaultValue",
+      "component": "",
+      "name": "默认值",
+      "group": "valueComponentInfo"
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [{ "effectHook": "onClick", "logicCode": "com_save" }],
+      "code": "saveBtn",
+      "component": "",
+      "name": "保存"
+    }
+  ],
+  "model": "FormValidateRules",
+  "codeSuffix": "D",
+  "name": "表单验证规则新增",
+  "columnLayout": "3"
+}

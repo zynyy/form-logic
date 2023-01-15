@@ -175,9 +175,9 @@ const ListLayout: FC<ListLayoutProps> = ({
 
     if (action === 'paginate') {
       const { current: nextCurrent, pageSize: nextPageSize } = pagination || {};
+      search(nextCurrent, nextPageSize);
       setCurrentPage(nextCurrent);
       setPageSize(nextPageSize);
-      search(nextCurrent, nextPageSize);
     }
   };
 

@@ -67,8 +67,8 @@ export const getButtonMeta = ({ outputPath }) => {
       return categorize === 'button';
     })
     .map((item) => {
-      const { code, name } = item || {};
-      return { code, name };
+      const { code, name,defaultConfig } = item || {};
+      return { code, name,defaultConfig };
     });
 };
 
@@ -80,8 +80,8 @@ export const getContainerMeta = ({ outputPath }) => {
       return categorize === 'container';
     })
     .map((item) => {
-      const { code, name } = item || {};
-      return { code, name };
+      const { code, name,defaultConfig } = item || {};
+      return { code, name,defaultConfig };
     });
 };
 

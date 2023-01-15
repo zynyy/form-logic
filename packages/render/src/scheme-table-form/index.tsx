@@ -1,4 +1,4 @@
-import { FC, Key, memo, useEffect, useMemo, useState } from 'react';
+import { FC, Key, useEffect, useMemo,memo, useState } from 'react';
 import { Form, setValidateLanguage, JSXComponent } from '@formily/core';
 import { FormProvider } from '@formily/react';
 
@@ -11,7 +11,7 @@ import { toArray } from '@/utils';
 import { LIST_FILED_CODE } from '@/utils/constant';
 import { ListTableProps } from '@/components/list-table';
 
-import { useDOMRect } from '@formlogic/component';
+import { useDeepEffect, useDOMRect } from '@formlogic/component';
 import { RowSelectionType } from 'antd/es/table/interface';
 
 export interface SchemeTableFormProps extends Omit<ListTableProps, 'onTableChange'> {
@@ -134,13 +134,15 @@ const SchemeTableForm: FC<SchemeTableFormProps> = ({
     return null;
   };
 
-  useEffect(() => {
+  const nextRowSelection = getRowSelectionConfig();
+
+  useDeepEffect(() => {
     if (form) {
       form.query(LIST_FILED_CODE).take((target) => {
         target.setComponentProps({
           ...restProps,
           rowKey: tableRowKey,
-          rowSelection: getRowSelectionConfig(),
+          rowSelection: nextRowSelection,
           onTableChange: onChange,
           scrollY,
           pagination: {
@@ -151,7 +153,17 @@ const SchemeTableForm: FC<SchemeTableFormProps> = ({
         });
       });
     }
-  });
+  }, [
+    form?.id,
+    currentPage,
+    total,
+    pageSize,
+    onChange,
+    tableRowKey,
+    restProps,
+    nextRowSelection,
+    scrollY,
+  ]);
 
   return (
     <Skeleton loading={!!loading}>

@@ -59,7 +59,6 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
   });
 
   const handleCloseClick = () => {
-    refreshForm({});
     onClose?.();
   };
 
@@ -179,13 +178,7 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
       footer={renderFooter()}
       closable={false}
       destroyOnClose
-      afterOpenChange={(open) => {
-        if (open) {
-          setLoadingDone(true);
-        } else {
-          setLoadingDone(false);
-        }
-      }}
+      afterOpenChange={setLoadingDone}
     >
       <PageLoading loading={submitLoading}>
         <SchemeForm

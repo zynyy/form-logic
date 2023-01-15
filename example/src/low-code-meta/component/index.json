@@ -1,5 +1,15 @@
 {
   "list": [
+    {
+      "code": "ArrayBase.PreviewText",
+      "name": "列表文本",
+      "componentPropsPageCode": "Component_PreviewText",
+      "componentProps": {}
+    },
+    { "code": "ArrayBase.Upload", "name": "上传" },
+    { "code": "ArrayBase.Edit", "name": "编辑" },
+    { "code": "ArrayBase.Copy", "name": "复制" },
+    { "code": "ArrayBase.Remove", "name": "列表删除" },
     { "code": "ArrayBase.Addition", "name": "新增按钮" },
     { "code": "YesNoRadio", "name": "是否单选框" },
     { "code": "ArrayCheckDrawerTable", "name": "抽屉选择数据" },
@@ -16,7 +26,12 @@
     { "code": "ArrayDrawerTable", "name": "抽屉表格" },
     { "code": "FieldTypeSelect", "name": "字段类型下拉框" },
     { "code": "EffectHookSelect", "name": "事件勾子下拉框" },
-    { "code": "Input", "name": "文本输入框" },
+    {
+      "code": "Input",
+      "name": "文本输入框",
+      "componentPropsPageCode": "Component_Input",
+      "componentProps": {}
+    },
     { "code": "Password", "name": "密码输入框" },
     {
       "code": "RemoteSelect",

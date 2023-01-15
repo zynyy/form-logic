@@ -197,6 +197,34 @@
         "componentProps": {},
         "component": "YesNoSelect"
       }
+    },
+    {
+      "code": "validatorRule",
+      "name": "验证规则",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {
+          "apiConfig": { "method": "get", "params": {}, "url": "/local-api/validate-rules/list" },
+          "defaultFirstOptionValue": "0",
+          "labelTemplateKey": "{{code}}-{{name}}",
+          "valueTemplateKey": "{{code}}"
+        },
+        "component": "RemoteSelect"
+      }
+    },
+    {
+      "code": "validatorRuleValue",
+      "name": "规则值",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {}
+      }
     }
   ]
 }

@@ -44,6 +44,7 @@ serviceInstance.interceptors.response.use(
     const { data } = response;
 
     const { code, msg } = data;
+
     if (code !== 200) {
       message.error(msg).then(() => void 0);
       return Promise.reject(data);

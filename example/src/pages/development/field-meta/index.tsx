@@ -28,6 +28,11 @@ const FieldMeta = () => {
     navigate(getQueryUrl(FieldMetaConfig.EDIT_LINK, { code, belong }));
   };
 
+  const handleDetailClick = (index, record) => {
+    const { code, belong } = record || {};
+    navigate(getQueryUrl(FieldMetaConfig.DETAIL_LINK, { code, belong }));
+  };
+
   return (
     <ListLayout
       getLogicConfig={getLogicConfig}
@@ -36,6 +41,7 @@ const FieldMeta = () => {
       onEdit={handleEditClick}
       onAdd={handleAddClick}
       onRemove={handleRemoveClick}
+      onDetail={handleDetailClick}
       reloadFlag={reloadFlag}
     />
   );

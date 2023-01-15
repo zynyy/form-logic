@@ -239,6 +239,7 @@ const BaseItem: FC<FormItemProps> = observer(
           [`${prefixCls}-control-align-${wrapperAlign}`]: true,
           [`${prefixCls}-label-wrap`]: !!labelWrap,
           [`${prefixCls}-control-wrap`]: !!wrapperWrap,
+          [`form-item-${feedbackStatus}`]: !!feedbackStatus,
           [className]: !!className,
         })}
         ref={formItemDomRef}

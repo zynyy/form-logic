@@ -21,6 +21,8 @@ export default {
   ModelPage_Group_C_modeVisibleAndDataSource: () =>
     import('./ModelPage/ModelPage_Group_C_modeVisibleAndDataSource'),
   ModelPage_Logic_L_logicCode: () => import('./ModelPage/ModelPage_Logic_L_logicCode'),
+  ModelPage_Validator_L_setValueComponent: () =>
+    import('./ModelPage/ModelPage_Validator_L_setValueComponent'),
   ModelPage_dataDrawerExtraLogicParams: () =>
     import('./ModelPage/ModelPage_dataDrawerExtraLogicParams'),
   ModelPage_groupDrawerExtraLogicParams: () =>

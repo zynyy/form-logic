@@ -194,6 +194,7 @@ importers:
       crypto-js: ^4.1.1
       customize-cra: ^1.0.0
       http-proxy-middleware: ^2.0.6
+      lodash-es: ^4.17.21
       mustache: ^4.2.0
       path-to-regexp: ^6.2.1
       qs: ^6.11.0
@@ -226,6 +227,7 @@ importers:
       classnames: 2.3.2
       crypto-js: 4.1.1
       http-proxy-middleware: 2.0.6
+      lodash-es: 4.17.21
       mustache: 4.2.0
       path-to-regexp: 6.2.1
       qs: 6.11.0

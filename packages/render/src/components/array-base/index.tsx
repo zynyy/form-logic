@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from 'react';
 
 import { ArrayField } from '@formily/core';
-import { useField,  observer } from '@formily/react';
+import { useField, observer } from '@formily/react';
 
 import cls from 'classnames';
 
@@ -39,6 +39,7 @@ import {
   DetailButtonProps,
 } from '@formlogic/component';
 import { clone } from '@formily/shared';
+import { UploadChangeParam } from 'antd/es/upload/interface';
 
 const OmitKey = ['extraParams'];
 
@@ -83,6 +84,11 @@ export interface ArrayDetailProps extends DetailButtonProps {
   onClick?: (...arg: any) => void;
 }
 
+export interface ArrayPreviewTextProps {
+  colDataIndex: string;
+  value?: any;
+}
+
 export interface ArraySortHandleProps extends PropsWithChildren {}
 
 export interface ArrayBaseIndexProps extends PropsWithChildren {}
@@ -97,13 +103,14 @@ export interface ArrayBaseProps extends PropsWithChildren {
   onMoveDown?: (index: number, record: any) => void;
   onMoveUp?: (index: number, record: any) => void;
   onDetail?: (index: number, record: any) => void;
+  onUpload?: (info: UploadChangeParam) => void;
 }
 
 const InternalArrayBase: FC<ArrayBaseProps> = ({ children, ...restProps }) => {
   const field = useField<ArrayField>();
 
   return (
-    <ArrayBaseContext.Provider value={{ fieldAddress: field.address, props: restProps }}>
+    <ArrayBaseContext.Provider value={{ fieldAddress: field.address.toString(), props: restProps }}>
       {children}
     </ArrayBaseContext.Provider>
   );
@@ -125,14 +132,14 @@ const ArrayBaseIndex: FC<ArrayBaseIndexProps> = observer((props) => {
   );
 });
 
-const PreviewText = ({ value, className, colName }) => {
+const PreviewText: FC<ArrayPreviewTextProps> = ({ value, colDataIndex }) => {
   const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
   const record = useArrayItemRecord();
 
-  const val = colName ? record[colName] : value;
+  const val = colDataIndex ? record[colDataIndex] : value;
 
-  return warpSSR(<div className={cls(`${prefixCls}-text`, className, hashId)}>{val}</div>);
+  return warpSSR(<div className={cls(`${prefixCls}-text`, hashId)}>{val}</div>);
 };
 
 const SortHandle: FC<ArraySortHandleProps> = observer((props) => {
@@ -351,6 +358,7 @@ const Upload: FC<ArrayUploadProps> = observer(({ className, ...restProps }) => {
 
   return warpSSR(
     <UploadButton
+      onChange={array.props?.onUpload}
       {...uploadProps}
       className={cls(`${prefixCls}-upload`, hashId, className)}
       showUploadList={false}

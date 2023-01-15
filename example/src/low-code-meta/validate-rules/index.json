@@ -1,15 +1,48 @@
 {
   "list": [
     {
-      "code": "min",
-      "component": "RemoteSelect",
-      "componentProps": {
-        "apiConfig": { "method": "get", "params": {}, "url": "/test" },
-        "defaultFirstOptionValue": "0",
-        "labelTemplateKey": "{{name}}",
-        "valueTemplateKey": "{{code}}"
-      },
-      "name": "最小值"
-    }
+      "code": "enum",
+      "component": "JsonPopover",
+      "componentProps": {},
+      "name": "枚举",
+      "defaultValue": []
+    },
+    { "code": "const", "component": "Input", "componentProps": {}, "name": "常量" },
+    { "code": "whitespace", "componentProps": {}, "name": "排除纯空白字符" },
+    { "code": "max", "component": "InputNumber", "componentProps": {}, "name": "最大长度" },
+    { "code": "len", "component": "InputNumber", "componentProps": {}, "name": "长度" },
+    {
+      "code": "exclusiveMinimum",
+      "component": "InputNumber",
+      "componentProps": {},
+      "name": "最小值包含本身",
+      "defaultValue": 0
+    },
+    {
+      "code": "minimum",
+      "component": "InputNumber",
+      "componentProps": {},
+      "name": "最小值",
+      "defaultValue": 0
+    },
+    {
+      "code": "exclusiveMaximum",
+      "component": "InputNumber",
+      "componentProps": {},
+      "name": "最大值包含本身"
+    },
+    { "code": "maximum", "component": "InputNumber", "componentProps": {}, "name": "最大值" },
+    { "code": "date", "componentProps": {}, "name": "日期" },
+    { "code": "integer", "componentProps": {}, "name": "整数" },
+    { "code": "number", "componentProps": {}, "name": "数字" },
+    { "code": "email", "component": "Input", "componentProps": {}, "name": "邮箱" },
+    { "code": "url", "componentProps": {}, "name": "url" },
+    {
+      "code": "pattern",
+      "component": "Input",
+      "componentProps": { "addonBefore": "/", "addonAfter": "/" },
+      "name": "正则表达式"
+    },
+    { "code": "min", "component": "InputNumber", "componentProps": {}, "name": "最小值长度" }
   ]
 }

@@ -41,7 +41,6 @@ const ModelPageCreate = () => {
         metaSchema={metaSchema}
         getLogicConfig={getLogicConfig}
         components={{
-
           PageCodeSelect,
           SchemaTypeSelect,
           FieldTypeSelect,

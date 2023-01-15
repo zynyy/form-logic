@@ -14,6 +14,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import effectHook, { BIND_LOGIC_END, BIND_LOGIC_START, EXEC_LOGIC_DONE } from '@/effect-hook';
 import { uid } from '@formily/shared';
 import { nowTime } from '@/utils';
+import { useDeepEffect } from '@formlogic/component';
 
 export const useTriggerLogic = (
   getLogicConfig,
@@ -25,9 +26,18 @@ export const useTriggerLogic = (
     logicCodes?.forEach((logicCode) => {
       const { timeFormat: createTime } = nowTime();
 
-      const { fieldCode, pageCode, effectHook, form, ...restPayload } = payload || {};
+      const { fieldCode, pageCode, effectHook, form, field, ...restPayload } = payload || {};
 
-      const execKey = `${logicCode}_${effectHook}_${fieldCode}_${form.id}`;
+      let execKey = `${logicCode}_${effectHook}_${fieldCode}_${form.id}`;
+
+      if (field) {
+        const address = field.address.toString();
+
+        const fieldCodeIndex = Object.keys(form.indexes).find(
+          (index) => form.indexes[index] === address,
+        );
+        execKey = `${logicCode}_${effectHook}_${fieldCodeIndex}_${form.id}`;
+      }
 
       if (execNumRef.current[execKey]) {
         execNumRef.current[execKey] = execNumRef.current[execKey] + 1;
@@ -43,6 +53,7 @@ export const useTriggerLogic = (
             result.default,
             {
               form,
+              field,
               ...restPayload,
             },
             (...args) => {
@@ -73,6 +84,9 @@ export const useTriggerLogic = (
               execKey,
               execNumRef,
               currentExecNum,
+              clearExecNum: () => {
+                execNumRef.current[execKey] = 0;
+              },
             })
             .then(() => void 0);
         }
@@ -103,9 +117,8 @@ export const useBindLogic = (options: BindLogicOptions): [string] => {
     return `logic_${uid(8)}`;
   }, []);
 
-  useEffect(() => {
+  useDeepEffect(() => {
     if (form?.id && autoLogic) {
-      form.removeEffects(effectId);
       form.addEffects(effectId, () => {
         logicList.forEach((item) => {
           const { fieldCode, logicHooks, pageCode } = item;
@@ -175,7 +188,7 @@ export const useBindBtnClick = (options: BindBtnClickOptions): [string] => {
     return `btnClickEvent_${uid(8)}`;
   }, []);
 
-  useEffect(() => {
+  useDeepEffect(() => {
     if (form?.id && autoLogic) {
       form.addEffects(effectId, () => {
         btnList?.forEach((item) => {

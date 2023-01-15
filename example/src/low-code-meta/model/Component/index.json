@@ -110,6 +110,42 @@
           "labelTemplateKey": "{{code}}-{{name}}"
         }
       }
+    },
+    {
+      "code": "addonAfter",
+      "name": "后置标签",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "Input"
+      }
+    },
+    {
+      "code": "addonBefore",
+      "name": "前置标签",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "Input"
+      }
+    },
+    {
+      "code": "colDataIndex",
+      "name": "表格列表索引",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "Input"
+      }
     }
   ]
 }

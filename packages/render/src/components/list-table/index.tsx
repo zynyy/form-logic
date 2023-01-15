@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import { Space, Table, TableProps } from 'antd';
 
 import { observer, useField } from '@formily/react';
@@ -25,6 +25,7 @@ const ListTable: FC<ListTableProps> = observer(
     onDetail,
     onRemove,
     rowKey,
+    onCopy,
     onTableChange,
     pagination,
     ...restProps
@@ -37,15 +38,32 @@ const ListTable: FC<ListTableProps> = observer(
 
     const btn = useSchemaBtn();
 
+    const tableRef = useRef<HTMLDivElement>();
+
     const defaultRowKey = (record: any) => {
       return record[rowKey] ?? dataSource.indexOf(record);
     };
 
+    useEffect(() => {
+      const tableBodyDom: HTMLDivElement = tableRef.current.querySelector('.ant-table-body');
+
+      if (tableBodyDom) {
+        tableBodyDom.style.height = `${scrollY}px`;
+      }
+    }, [scrollY]);
+
     return warpSSR(
       <div className={cls(prefixCls, hashId)}>
-        <ArrayBase onAdd={onAdd} onEdit={onEdit} onRemove={onRemove} onDetail={onDetail}>
+        <ArrayBase
+          onAdd={onAdd}
+          onEdit={onEdit}
+          onRemove={onRemove}
+          onDetail={onDetail}
+          onCopy={onCopy}
+        >
           <Table
             {...restProps}
+            ref={tableRef}
             size="small"
             onChange={onTableChange}
             rowKey={defaultRowKey}

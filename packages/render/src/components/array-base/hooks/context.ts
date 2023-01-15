@@ -2,11 +2,10 @@ import { createContext, useContext } from 'react';
 import { ArrayBaseProps } from '@/components/array-base';
 
 import { useForm } from '@formily/react';
-import { FormPath } from '@formily/shared';
 import { ArrayField, isArrayField } from '@formily/core';
 
 export interface ArrayBaseValueContext {
-  fieldAddress: FormPath;
+  fieldAddress: string;
   props: ArrayBaseProps;
 }
 

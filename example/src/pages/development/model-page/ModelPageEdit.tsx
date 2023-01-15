@@ -38,7 +38,6 @@ const ModelPageEdit = () => {
       metaSchema={metaSchema}
       getLogicConfig={getLogicConfig}
       components={{
-
         PageCodeSelect,
         SchemaTypeSelect,
         FieldTypeSelect,

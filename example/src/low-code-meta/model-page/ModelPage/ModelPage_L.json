@@ -7,18 +7,8 @@
   "columnLayout": 3,
   "group": [],
   "data": [
-    {
-      "code": "code",
-      "name": "编码",
-      "type": "search_column",
-      "schemaType": "string"
-    },
-    {
-      "code": "name",
-      "name": "名称",
-      "type": "search_column",
-      "schemaType": "string"
-    },
+    { "code": "code", "name": "编码", "type": "search_column", "schemaType": "string" },
+    { "code": "name", "name": "名称", "type": "search_column", "schemaType": "string" },
     {
       "code": "addBtn",
       "name": "新建",
@@ -27,18 +17,8 @@
       "component": "ArrayBase.Addition",
       "eventCode": "onAdd"
     },
-    {
-      "code": "code",
-      "name": "编码",
-      "type": "table_column",
-      "schemaType": "string"
-    },
-    {
-      "code": "name",
-      "name": "名称",
-      "type": "table_column",
-      "schemaType": "string"
-    },
+    { "code": "code", "name": "编码", "type": "table_column", "schemaType": "string" },
+    { "code": "name", "name": "名称", "type": "table_column", "schemaType": "string" },
     {
       "code": "editBtn",
       "name": "编辑",
@@ -54,6 +34,16 @@
       "schemaType": "void",
       "component": "ArrayBase.Remove",
       "eventCode": "onRemove"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "copyBtn",
+      "component": "ArrayBase.Copy",
+      "name": "复制"
     }
-  ]
+  ],
+  "defaultSearchColumn": "6"
 }

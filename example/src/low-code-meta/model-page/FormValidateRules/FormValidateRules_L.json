@@ -78,6 +78,33 @@
       "component": "ArrayBase.Addition",
       "name": "新增",
       "eventCode": "onAdd"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "editBtn",
+      "component": "ArrayBase.Edit",
+      "name": "编辑"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "removeBtn",
+      "component": "ArrayBase.Remove",
+      "name": "删除"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "detailBtn",
+      "component": "ArrayBase.Detail",
+      "name": "详情"
     }
   ],
   "model": "FormValidateRules",

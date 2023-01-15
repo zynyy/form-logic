@@ -265,12 +265,22 @@
       "code": "validator",
       "name": "校验器",
       "type": "column",
-      "schemaType": "string",
+      "schemaType": "array",
       "group": "validatorInfo",
       "colSpan": 3,
       "labelCol": 0,
       "wrapperCol": 24,
-      "hiddenName": "1"
+      "hiddenName": "1",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "component": "ArrayTable",
+      "hasSerialNo": "0",
+      "hasSort": "0",
+      "pageCode": "ModelPage_Validator_L"
     }
   ],
   "defaultSearchColumn": "6"

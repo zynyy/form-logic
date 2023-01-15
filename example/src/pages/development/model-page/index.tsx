@@ -1,16 +1,22 @@
-import { ListLayout, useReloadFlag } from '@formlogic/render';
+import { ListLayout, useOpen, useReloadFlag } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
 import { useMetaSchema } from '@/hooks';
 import { apiUrl, ModelPageConfig, modelPageRemove } from './services';
 import getLogicConfig from '@/low-code-meta/logic';
 import { getQueryUrl } from '@/utils/utils';
+import CopyModelPageDrawer from '@/pages/development/model-page/component/copy-model-page-drawer';
+import { useState } from 'react';
 
 const PageConfig = () => {
   const navigate = useNavigate();
 
+  const [open, show, hidden] = useOpen();
+
   const [metaSchema] = useMetaSchema(ModelPageConfig.LIST);
 
   const [reloadFlag, refreshReloadFlag] = useReloadFlag();
+
+  const [pageCode, setPageCode] = useState('');
 
   const handleAddClick = () => {
     navigate(ModelPageConfig.CREATE_LINK);
@@ -28,16 +34,31 @@ const PageConfig = () => {
     navigate(getQueryUrl(ModelPageConfig.EDIT_LINK, { code }));
   };
 
+  const handleCopy = (index, record) => {
+    show();
+    setPageCode(record?.code);
+  };
+
+  const handleClose = () => {
+    hidden();
+    refreshReloadFlag();
+  };
+
   return (
-    <ListLayout
-      getLogicConfig={getLogicConfig}
-      metaSchema={metaSchema}
-      action={apiUrl.page}
-      onEdit={handleEditClick}
-      onAdd={handleAddClick}
-      onRemove={handleRemoveClick}
-      reloadFlag={reloadFlag}
-    />
+    <>
+      <ListLayout
+        getLogicConfig={getLogicConfig}
+        metaSchema={metaSchema}
+        action={apiUrl.page}
+        onEdit={handleEditClick}
+        onAdd={handleAddClick}
+        onRemove={handleRemoveClick}
+        onCopy={handleCopy}
+        reloadFlag={reloadFlag}
+      />
+
+      <CopyModelPageDrawer pageCode={pageCode} open={open} onClose={handleClose} />
+    </>
   );
 };
 

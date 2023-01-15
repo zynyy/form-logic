@@ -7,7 +7,7 @@ import { useLabelOptions } from '@/hooks';
 export interface StaticSelectProps<V = any> extends Omit<SelectProps<any>, 'onChange'> {
   valueTemplateKey?: string;
   labelTemplateKey?: string;
-  filterData?: string;
+  filterData?: string[];
   readOnly?: boolean;
   data?: any[];
   onChange?: (value: V, record?: any) => void;

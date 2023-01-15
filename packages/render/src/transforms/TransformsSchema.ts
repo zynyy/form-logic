@@ -227,7 +227,6 @@ class TransformsSchema extends MetaDataSorted {
       componentProps,
       component,
       hidden,
-      validator,
       name,
       disabled,
       hiddenName,
@@ -266,7 +265,7 @@ class TransformsSchema extends MetaDataSorted {
       ...modeExtraProp,
       'x-index': index,
       'x-hidden': hiddenBool,
-      'x-validator': validator,
+      'x-validator': this.getValidator(item),
       'x-decorator': 'FormItem',
       'x-decorator-props': {
         ...this.getItemColProp(item),
@@ -297,6 +296,7 @@ class TransformsSchema extends MetaDataSorted {
     return {
       type: 'object',
       ...extra,
+      'x-validator': this.getValidator(item),
       properties: this.gridProperties(columns, code),
     };
   };
@@ -330,6 +330,21 @@ class TransformsSchema extends MetaDataSorted {
       },
       'x-compile-omitted': xCompileOmitted,
     };
+  };
+
+  private getValidator = (item: MetaSchemaData) => {
+    const { validator } = item;
+
+    const record = {};
+
+    if (validator) {
+      validator.forEach((cur) => {
+        const { validatorRule, validatorRuleValue } = cur || {};
+        record[validatorRule] = validatorRuleValue ?? true;
+      });
+    }
+
+    return record;
   };
 
   private buttonsSchema = (buttons: MetaSchemaData[], prefixField?: string) => {
@@ -375,7 +390,6 @@ class TransformsSchema extends MetaDataSorted {
       required,
       componentProps,
       hidden,
-      validator,
       name,
       disabled,
       component,
@@ -398,7 +412,7 @@ class TransformsSchema extends MetaDataSorted {
         default: defaultValue,
         ...modeExtraProp,
         'x-hidden': strNumBoolToBoolean(hidden),
-        'x-validator': validator,
+        'x-validator': this.getValidator(item),
         'x-decorator': 'FormItem',
         'x-decorator-props': {
           ...this.getItemColProp(item),

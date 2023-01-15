@@ -48,6 +48,15 @@
       "schemaType": "void",
       "component": "ArrayBase.Remove",
       "eventCode": "onRemove"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "detailBtn",
+      "component": "ArrayBase.Detail",
+      "name": "详情"
     }
   ],
   "defaultSearchColumn": "6"

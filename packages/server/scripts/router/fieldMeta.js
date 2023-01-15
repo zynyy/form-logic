@@ -23,7 +23,6 @@ const fieldMetaDetail = async (req, res) => {
     return sendJson(res, false, `code 不能为空`);
   }
 
-  const { outputPath } = this.config || {};
 
   const record = getFieldMetaDetail({ outputPath, code });
 
@@ -128,7 +127,7 @@ const fieldMetaRemove = async (req, res) => {
     return sendJson(res, false, `code 不能为空`);
   }
 
-  const { outputPath } = this.config || {};
+
 
   removeFieldMeta({ outputPath, code });
 

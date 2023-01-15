@@ -56,7 +56,7 @@ export const getSubmitFormValues = (form: Form) => {
     .catch((err) => {
       console.error(err);
 
-      const selector = `.form-id-${form.id} .ant-formily-form-item-error`;
+      const selector = `.form-id-${form.id} .form-item-error`;
 
       scrollToField(selector);
 
@@ -156,7 +156,6 @@ export const fieldSum = (
 
 export const fieldDestroy = (field: GeneralField, forceClear = true) => {
   if (isGeneralField(field)) {
-
     field.dispose();
   }
 

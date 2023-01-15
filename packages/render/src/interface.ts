@@ -5,6 +5,7 @@ import effectHook from '@/effect-hook';
 
 import { Field, Form } from '@formily/core';
 import { STEPS_GROUP_MODE, TABS_GROUP_MODE } from '@/utils/constant';
+import validateRules from '../../../example/src/router/list-page/validateRules';
 
 export enum RequestMethodEnum {
   get = 'get',
@@ -101,7 +102,12 @@ export interface MetaSchemaGroup {
 export interface MetaLogic {
   effectHook: EffectHook;
   logicCode: string;
-  hasChildren: StrNumBool
+  hasChildren: StrNumBool;
+}
+
+export interface ValidateRules {
+  validatorRule: string;
+  validatorRuleValue?: string;
 }
 
 export interface MetaSchemaData {
@@ -131,10 +137,7 @@ export interface MetaSchemaData {
     // 组件属性
     [key: string]: any;
   };
-  validator?: {
-    // 组件验证器
-    [key: string]: any;
-  };
+  validator?: ValidateRules[];
   itemMetaSchema?: MetaSchema;
 }
 
@@ -172,6 +175,7 @@ export interface LogicPayloadArgs {
   fieldCode: string;
   effectHook: EffectHook;
   pageCode: string;
+  field?: Field;
   [key: string]: any;
 }
 
@@ -179,6 +183,7 @@ export type ExecInfo = Pick<LogicPayloadArgs, 'fieldCode' | 'effectHook' | 'page
   logicCode: string;
   currentExecNum: number;
   execKey: string;
+  clearExecNum: () => void;
   execNumRef: RefObject<{
     [key: string]: number;
   }>;

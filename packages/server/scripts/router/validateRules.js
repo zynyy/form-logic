@@ -57,11 +57,12 @@ const validateRulesConfig = async (req, res) => {
   const record = getValidateRulesDetail({ outputPath, code: validateRules });
 
   if (record) {
-    const { component, componentProps } = record || {};
+    const { component, componentProps,defaultValue } = record || {};
 
     return sendJson(res, {
       component,
       componentProps: componentProps || {},
+      defaultValue
     });
   }
 
@@ -134,6 +135,6 @@ validateRulesRouter.post('/local-api/validate-rules/create', validateRulesCreate
 validateRulesRouter.get('/local-api/validate-rules/detail', validateRulesDetail);
 validateRulesRouter.get('/local-api/validate-rules/list', validateRulesList);
 validateRulesRouter.get('/local-api/validate-rules/page', validateRulesPage);
-validateRulesRouter.get('/local-api/validate-rules/validateRulesConfig', validateRulesConfig);
+validateRulesRouter.get('/local-api/validate-rules/validateRuleConfig', validateRulesConfig);
 validateRulesRouter.post('/local-api/validate-rules/update', validateRulesUpdate);
 validateRulesRouter.delete('/local-api/validate-rules/remove', validateRulesRemove);
