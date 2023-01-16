@@ -43,7 +43,7 @@
       "wrap": "0",
       "logics": [],
       "code": "defaultFirstOptionValue",
-      "component": "YesNoRadio",
+      "component": "YesOrNoCheckbox",
       "name": "默认第一个值",
       "defaultValue": "0"
     },

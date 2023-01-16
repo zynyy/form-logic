@@ -1,12 +1,12 @@
 import { FC, useEffect, useRef, useState } from 'react';
 
-import { getPathValue, transformToOptions } from '@/utils';
+import { getPathValue, strNumBoolToBoolean } from '@/utils';
 import { getData } from '@/service';
 import isEqual from 'lodash.isequal';
 import { ApiConfig, DataIndex } from '@/interface';
 import StaticSelect, { StaticSelectProps } from '@/select/static-select';
 import { isNumber } from '@/utils/is';
-import { strNumBoolToBoolean } from '@/utils';
+import { BackEndData } from '@/utils/request';
 
 export interface RemoteSelectProps<V = any> extends Omit<StaticSelectProps, 'data'> {
   remoteDataPath?: DataIndex;
@@ -15,9 +15,6 @@ export interface RemoteSelectProps<V = any> extends Omit<StaticSelectProps, 'dat
 }
 
 const RemoteSelect: FC<RemoteSelectProps> = ({
-  valueTemplateKey,
-  labelTemplateKey,
-  onChange,
   value,
   remoteDataPath,
   apiConfig,
@@ -29,26 +26,6 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
   const [prevApi, setPrevApi] = useState<any>(apiConfig);
 
   const loadingRef = useRef(false);
-
-  const findRecord = (val: string): undefined | any => {
-    return val ? dataSource.find((item) => item.value === val) : undefined;
-  };
-
-  const triggerChange = (changedValue: any) => {
-    const record = Array.isArray(changedValue)
-      ? changedValue
-          .map((val) => {
-            return findRecord(val);
-          })
-          .filter((val) => val)
-      : findRecord(changedValue);
-
-    onChange?.(changedValue, record);
-  };
-
-  const transformData = (data: any): any[] => {
-    return transformToOptions(data, labelTemplateKey, valueTemplateKey);
-  };
 
   const transformPath = (path: DataIndex): Array<string | number> => {
     if (Array.isArray(path)) {
@@ -75,9 +52,8 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
     getData(apiConfig)
       .then((res) => {
         loadingRef.current = false;
-
-        const remoteData = getPathValue(res, transformPath(remoteDataPath));
-        const newData = remoteData ? transformData(remoteData) : [];
+        const remoteData = getPathValue<any[], BackEndData>(res, transformPath(remoteDataPath));
+        const newData = remoteData ? remoteData : [];
         setDataSource(newData);
       })
       .catch(() => {
@@ -99,35 +75,24 @@ const RemoteSelect: FC<RemoteSelectProps> = ({
 
   useEffect(() => {
     if (!isEqual(apiConfig, prevApi)) {
+      setDataSource([]);
       if (value) {
         search();
-      } else if (dataSource.length) {
-        setDataSource([]);
       }
       setPrevApi(apiConfig);
     }
-  }, [apiConfig, prevApi, dataSource, value]);
-
-  useEffect(() => {
-    if (
-      strNumBoolToBoolean(defaultFirstOptionValue) &&
-      value !== 0 &&
-      !value &&
-      dataSource.length &&
-      isEqual(apiConfig, prevApi)
-    ) {
-      triggerChange(dataSource[0].value);
-    }
-  }, [defaultFirstOptionValue, dataSource, apiConfig, prevApi, value]);
+  }, [apiConfig, prevApi, value]);
 
   return (
     <StaticSelect
       {...restProps}
       value={value}
-      onChange={onChange}
       data={dataSource}
       loading={loadingRef.current}
       onFocus={handleFocus}
+      defaultFirstOptionValue={
+        strNumBoolToBoolean(defaultFirstOptionValue) && isEqual(apiConfig, prevApi)
+      }
     />
   );
 };

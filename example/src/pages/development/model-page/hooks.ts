@@ -1,7 +1,36 @@
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { FormConfigProps } from '@formlogic/render';
+import {
+  EffectHookSelect,
+  FieldTypeSelect,
+  FormConfigProps,
+  GroupModeSelect,
+  JsonPopover,
+  RequestMethodSelect,
+  SchemaTypeSelect,
+
+  FormPageLayoutProps,
+} from '@formlogic/render';
 import { modelPageDetail } from './services';
+import PageCodeSelect from '@/components/page-code-select';
+import PagePreviewButton from '@/pages/development/model-page/component/page-preview-button';
+import PageSortButton from '@/pages/development/model-page/component/sort-button';
+import BatchAddModelPageField from '@/pages/development/model-page/component/batch-add';
+
+export const components: FormPageLayoutProps['components'] = {
+  PageCodeSelect,
+  SchemaTypeSelect,
+  FieldTypeSelect,
+  GroupModeSelect,
+
+  RequestMethodSelect,
+  EffectHookSelect,
+  JsonPopover,
+
+  PagePreviewButton,
+  PageSortButton,
+  BatchAddModelPageField,
+};
 
 export const useModelPageDetail = (): [FormConfigProps, boolean] => {
   const [URLSearchParams] = useSearchParams();

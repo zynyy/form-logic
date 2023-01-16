@@ -148,6 +148,29 @@ export const REQUEST_METHOD = [
   },
 ];
 
+export const ROW_SELECTION_TYPE = [
+  {
+    code: 'checkbox',
+    name: '多选',
+  },
+  {
+    code: 'radio',
+    name: '单选',
+  },
+];
+
+export const SELECT_MODE = [
+  {
+    code: 'multiple',
+    name: '多选',
+  },
+  {
+    code: 'tags',
+    name: '标签',
+  },
+];
+
+
 export const EFFECT_HOOK_GROUP: ConstantDataItem[] = [
   {
     name: '字段事件',

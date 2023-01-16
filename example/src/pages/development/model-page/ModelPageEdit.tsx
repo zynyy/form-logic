@@ -1,19 +1,9 @@
-import {
-  EffectHookSelect,
-  FieldTypeSelect,
-  FormPageLayout,
-  GroupModeSelect, JsonPopover,
-  RequestMethodSelect,
-  SchemaTypeSelect,
-  YesNoRadio, YesNoSelect,
-} from '@formlogic/render';
+import { FormPageLayout } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
 import { useMetaSchema } from '@/hooks';
 import { apiUrl, ModelPageConfig } from './services';
-import { useModelPageDetail } from './hooks';
+import { components, useModelPageDetail } from './hooks';
 import getLogicConfig from '@/low-code-meta/logic';
-
-import PageCodeSelect from '@/components/page-code-select';
 
 const ModelPageEdit = () => {
   const navigate = useNavigate();
@@ -37,17 +27,7 @@ const ModelPageEdit = () => {
       hasGroup
       metaSchema={metaSchema}
       getLogicConfig={getLogicConfig}
-      components={{
-        PageCodeSelect,
-        SchemaTypeSelect,
-        FieldTypeSelect,
-        GroupModeSelect,
-        YesNoRadio,
-        RequestMethodSelect,
-        EffectHookSelect,
-        JsonPopover,
-        YesNoSelect
-      }}
+      components={components}
       formConfig={formConfig}
       extraLogicParams={{
         successCallback,

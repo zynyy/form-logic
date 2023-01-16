@@ -1,4 +1,4 @@
-import { FormPageLayout, JsonPopover, RequestMethodSelect, SchemaTypeSelect, YesNoRadio } from '@formlogic/render';
+import { FormPageLayout, JsonPopover, RequestMethodSelect, SchemaTypeSelect } from '@formlogic/render';
 import {  useNavigate } from 'react-router-dom';
 
 import { apiUrl, ModelConfig } from './services';
@@ -31,7 +31,7 @@ const ModelCreate = () => {
         components={{
           MetaTreeArrayDrawerTable,
           SchemaTypeSelect,
-          YesNoRadio,
+
           JsonPopover,
           RequestMethodSelect
         }}

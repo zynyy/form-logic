@@ -4,7 +4,6 @@ import {
   RequestMethodSelect,
   SchemaTypeSelect,
   useJsonMetaSchema,
-  YesNoRadio
 } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
 import { apiUrl, FieldMetaConfig } from './services';
@@ -38,7 +37,7 @@ const MetaEdit = () => {
         getLogicConfig={getLogicConfig}
         components={{
           SchemaTypeSelect,
-          YesNoRadio,
+
           JsonPopover,
           RequestMethodSelect
         }}

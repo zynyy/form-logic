@@ -11,7 +11,7 @@ import {
   FieldTypeSelect,
   GroupModeSelect,
   RequestMethodSelect,
-  YesNoRadio,
+
 } from '@/components/constant-component';
 import getLogicConfig from '@/low-code-meta/logic';
 import ArrayDrawerTable from '@/components/array-drawer-table';
@@ -79,7 +79,7 @@ const Template = ({ hasGroup, pattern, code, pageCode, ...args }) => {
           SchemaTypeSelect,
           FieldTypeSelect,
           GroupModeSelect,
-          YesNoRadio,
+
           RequestMethodSelect,
           EffectHookSelect,
           JsonPopover,

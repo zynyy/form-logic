@@ -1,5 +1,9 @@
 {
   "list": [
+    { "code": "BatchAddModelPageField", "name": "批量添加字段" },
+    { "code": "ArrayBase.BatchRemove", "name": "批量删除" },
+    { "code": "PageSortButton", "name": "页面排序" },
+    { "code": "PagePreviewButton", "name": "页面预览按钮" },
     {
       "code": "ArrayBase.PreviewText",
       "name": "列表文本",
@@ -11,19 +15,28 @@
     { "code": "ArrayBase.Copy", "name": "复制" },
     { "code": "ArrayBase.Remove", "name": "列表删除" },
     { "code": "ArrayBase.Addition", "name": "新增按钮" },
-    { "code": "YesNoRadio", "name": "是否单选框" },
+    { "code": "YesOrNoCheckbox", "name": "是否选框" },
     { "code": "ArrayCheckDrawerTable", "name": "抽屉选择数据" },
     { "code": "RequestMethodSelect", "name": "请求方式" },
     { "code": "JsonPopover", "name": "json气泡卡片编辑" },
     { "code": "TextArea", "name": "文本域" },
-    { "code": "YesNoSelect", "name": "是否选择框" },
-    { "code": "ArrayTable", "name": "数组表格" },
+    {
+      "code": "ArrayTable",
+      "name": "数组表格",
+      "componentPropsPageCode": "Component_ArrayTable",
+      "componentProps": { "hasRowSelection": "0", "hasPagination": "0" }
+    },
     { "code": "ArrayBase.Detail", "name": "详情按钮" },
     { "code": "DynamicSchema", "name": "动态字段" },
     { "code": "MetaTreeArrayDrawerTable", "name": "字段树形表格抽屉" },
     { "code": "PageCodeSelect", "name": "页面编码下拉框" },
     { "code": "JsonMonacoEditor", "name": "json编辑器" },
-    { "code": "ArrayDrawerTable", "name": "抽屉表格" },
+    {
+      "code": "ArrayDrawerTable",
+      "name": "抽屉表格",
+      "componentPropsPageCode": "Component_ArrayDrawerTable",
+      "componentProps": { "hasRowSelection": "0", "hasPagination": "0" }
+    },
     { "code": "FieldTypeSelect", "name": "字段类型下拉框" },
     { "code": "EffectHookSelect", "name": "事件勾子下拉框" },
     {
@@ -45,6 +58,11 @@
       }
     },
     { "code": "InputNumber", "name": "数字输入框" },
-    { "code": "StaticSelect", "name": "静态选择框" }
+    {
+      "code": "StaticSelect",
+      "name": "静态选择框",
+      "componentPropsPageCode": "Component_StaticSelect",
+      "componentProps": { "data": [] }
+    }
   ]
 }

@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from 'react';
+import { Dispatch, FC, Key, PropsWithChildren, SetStateAction } from 'react';
 
 import { ArrayField } from '@formily/core';
 import { useField, observer } from '@formily/react';
@@ -64,6 +64,11 @@ export interface ArrayRemoveProps extends RemoveButtonProps {
   onClick?: (...arg: any) => void;
 }
 
+export interface ArrayBatchRemoveProps extends RemoveButtonProps {
+  onLogicClick: (...arg: any) => void;
+  onClick?: (...arg: any) => void;
+}
+
 export interface ArrayMoveUpProps extends UpButtonProps {
   onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
@@ -95,10 +100,18 @@ export interface ArrayBaseIndexProps extends PropsWithChildren {}
 
 export interface ArrayBaseItemProps extends PropsWithChildren, ArrayItemValueContext {}
 
-export interface ArrayBaseProps extends PropsWithChildren {
+export interface RowSelected {
+  selectedRowKeys: Key[];
+  selectedRows: any[];
+  setSelectedRowKeys: Dispatch<SetStateAction<any>>;
+  setSelectedRows: Dispatch<SetStateAction<any>>;
+}
+
+export interface ArrayBaseProps extends PropsWithChildren, RowSelected {
   onAdd?: () => void;
   onEdit?: (index: number, record: any) => void;
   onRemove?: (index: number, record: any) => void;
+  onBatchRemove?: (rowSelected: RowSelected) => void;
   onCopy?: (index: number, record: any) => void;
   onMoveDown?: (index: number, record: any) => void;
   onMoveUp?: (index: number, record: any) => void;
@@ -167,7 +180,7 @@ const AdditionButton: FC<ArrayAdditionProps> = observer(
       }
 
       if (onLogicClick) {
-        onLogicClick(field);
+        onLogicClick(field, field.form);
         return;
       }
 
@@ -220,7 +233,7 @@ export const Detail: FC<ArrayDetailProps> = observer(({ onLogicClick, className,
     }
 
     if (onLogicClick) {
-      onLogicClick(field);
+      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -265,7 +278,7 @@ const Remove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogicClic
     }
 
     if (onLogicClick) {
-      onLogicClick(field);
+      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -301,6 +314,79 @@ const Remove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogicClic
   );
 });
 
+const BatchRemove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogicClick }) => {
+  const field = useField();
+  const array = useArrayContext();
+
+  const { props, field: arrayField } = array || {};
+
+  const { selectedRows, selectedRowKeys, onBatchRemove, setSelectedRows, setSelectedRowKeys } =
+    props || {};
+
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
+
+  const disabled = field.disabled || !selectedRowKeys.length;
+
+  const rowSelected = {
+    selectedRowKeys,
+    selectedRows,
+    setSelectedRows,
+    setSelectedRowKeys,
+  };
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    if (disabled) {
+      return;
+    }
+
+    if (onLogicClick) {
+      return onLogicClick(rowSelected, field);
+    }
+
+    if (onClick) {
+      return onClick(rowSelected, field, field.form);
+    }
+
+    if (onBatchRemove) {
+      return onBatchRemove(rowSelected);
+    }
+
+    const data = arrayField.value;
+
+    const index = selectedRows.map((item) => {
+      return data.indexOf(item);
+    });
+
+    arrayField.onInput(
+      data.filter((item, idx) => {
+        return !index.includes(idx);
+      }),
+    );
+
+    setSelectedRows([]);
+    setSelectedRowKeys([]);
+  };
+
+  if (!array || !['editable'].includes(array.field?.pattern)) {
+    return null;
+  }
+
+  return warpSSR(
+    <RemoveButton
+      hasPopConfirm
+      mode={CustomButtonMode.text}
+      disabled={disabled}
+      type="default"
+      title={field.title}
+      onClick={handleClick}
+      className={cls(className, hashId, `${prefixCls}-batch-remove`, {
+        [`${prefixCls}-batch-remove-disabled`]: disabled,
+      })}
+    />,
+  );
+});
+
 const Edit: FC<ArrayEditProps> = observer(({ onClick, className, onLogicClick }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
@@ -316,7 +402,7 @@ const Edit: FC<ArrayEditProps> = observer(({ onClick, className, onLogicClick })
     }
 
     if (onLogicClick) {
-      onLogicClick(field);
+      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -384,7 +470,7 @@ const Copy: FC<ArrayCopyProps> = observer(({ className, onClick, onLogicClick })
     }
 
     if (onLogicClick) {
-      onLogicClick(field);
+      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -436,7 +522,7 @@ const MoveDownButton: FC<ArrayMoveDownProps> = observer(({ className, onClick, o
     }
 
     if (onLogicClick) {
-      onLogicClick(field);
+      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -486,7 +572,7 @@ const MoveUpButton: FC<ArrayMoveUpProps> = observer(({ onClick, className, onLog
     }
 
     if (onLogicClick) {
-      onLogicClick(field);
+      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -526,6 +612,7 @@ const ArrayBase = Object.assign(InternalArrayBase, {
   Upload,
   Copy,
   Remove,
+  BatchRemove,
   MoveDown: MoveDownButton,
   MoveUp: MoveUpButton,
   useArray: useArrayContext,

@@ -9,6 +9,7 @@ import User_Group_C from '../low-code-meta/model-page/user/User_Group_C.json';
 import User_ArrayTable_C from '../low-code-meta/model-page/user/User_ArrayTable_C.json';
 import User_Tabs_C from '../low-code-meta/model-page/user/User_Tabs_C.json';
 import { useOpen } from '@/hooks';
+import getLogicConfig from '@/low-code-meta/logic';
 
 export default {
   /* 👇 The title prop is optional.
@@ -49,7 +50,7 @@ const Template = ({ hasGroup, pattern, metaSchema, ...args }) => {
 
   return (
     <>
-      <ModalForm {...args} options={options} open={open} formConfig={formConfig} onClose={hidden} />
+      <ModalForm getLogicConfig={getLogicConfig} {...args} options={options} open={open} formConfig={formConfig} onClose={hidden} />
     </>
   );
 };

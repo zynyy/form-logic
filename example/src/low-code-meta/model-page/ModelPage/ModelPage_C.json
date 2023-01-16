@@ -32,7 +32,10 @@
         { "effectHook": "onFieldMount", "logicCode": "ModelPage_C_modelToDisabled" },
         { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_modelValue" },
         { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_C_modelToDisabled" },
-        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_dataDrawerExtraLogicParams" }
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_dataDrawerExtraLogicParams"
+        }
       ]
     },
     {
@@ -44,7 +47,10 @@
       "group": "basicInfo",
       "wrap": "1",
       "logics": [
-        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_dataDrawerExtraLogicParams" }
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_dataDrawerExtraLogicParams"
+        }
       ]
     },
     {
@@ -133,9 +139,15 @@
       "componentProps": { "drawerPageCode": "ModelPage_Group_C" },
       "logics": [
         { "effectHook": "onFieldMount", "logicCode": "ModelPage_dataDrawerExtraLogicParams" },
-        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_dataDrawerExtraLogicParams" },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_dataDrawerExtraLogicParams"
+        },
         { "effectHook": "onFieldMount", "logicCode": "ModelPage_groupDrawerExtraLogicParams" },
-        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_groupDrawerExtraLogicParams" }
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_groupDrawerExtraLogicParams"
+        }
       ]
     },
     {
@@ -151,14 +163,25 @@
       "hiddenName": "1",
       "pageCode": "ModelPage_Data_L",
       "component": "ArrayDrawerTable",
-      "componentProps": { "drawerPageCode": "ModelPage_Data_C" },
+      "componentProps": {
+        "drawerPageCode": "ModelPage_Data_C",
+        "hasRowSelection": "1",
+        "hasPagination": "0"
+      },
       "defaultValue": [],
       "hasSort": 1,
       "hasSerialNo": 1,
       "logics": [
         { "effectHook": "onFieldMount", "logicCode": "ModelPage_dataDrawerExtraLogicParams" },
-        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_dataDrawerExtraLogicParams" }
-      ]
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_dataDrawerExtraLogicParams"
+        }
+      ],
+      "hidden": "0",
+      "disabled": "0",
+      "wrap": "0",
+      "validator": []
     },
     {
       "code": "type",

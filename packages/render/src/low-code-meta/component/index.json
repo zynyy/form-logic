@@ -1,6 +1,6 @@
 {
   "list": [
-    { "code": "YesNoRadio", "name": "是否单选框" },
+
     { "code": "ArrayCheckDrawerTable", "name": "抽屉选择数据" },
     { "code": "RequestMethodSelect", "name": "请求方式" },
     { "code": "JsonPopover", "name": "json气泡卡片编辑" },

@@ -40,6 +40,7 @@ export * from './select';
 export * from './radio';
 
 export * from './buttons';
+export * from './checkbox';
 
 export * from './interface';
 

@@ -5,6 +5,7 @@ export enum ModelPageConfig {
   DETAIL = 'ModelPage_D',
   EDIT = 'ModelPage_U',
   LIST = 'ModelPage_L',
+  BATCH_ADD_FIELD = 'ModelPage_BatchAdd_C',
   MODEL_CODE = 'ModelPage',
   CREATE_LINK = '/development/model-page/create',
   EDIT_LINK = '/development/model-page/edit',

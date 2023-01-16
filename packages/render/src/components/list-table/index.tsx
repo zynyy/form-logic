@@ -28,6 +28,10 @@ const ListTable: FC<ListTableProps> = observer(
     onCopy,
     onTableChange,
     pagination,
+    selectedRowKeys,
+    setSelectedRowKeys,
+    selectedRows,
+    setSelectedRows,
     ...restProps
   }) => {
     const field = useField<ArrayField>();
@@ -60,6 +64,10 @@ const ListTable: FC<ListTableProps> = observer(
           onRemove={onRemove}
           onDetail={onDetail}
           onCopy={onCopy}
+          selectedRowKeys={selectedRowKeys}
+          setSelectedRowKeys={setSelectedRowKeys}
+          selectedRows={selectedRows}
+          setSelectedRows={setSelectedRows}
         >
           <Table
             {...restProps}

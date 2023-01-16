@@ -33,7 +33,7 @@
       "schemaType": "string",
       "group": "basicInfo",
       "defaultValue": "0",
-      "component": "YesNoRadio"
+      "component": "YesOrNoCheckbox"
     },
     {
       "code": "mode",

@@ -135,6 +135,8 @@ const ListLayout: FC<ListLayoutProps> = ({
   };
 
   const search = (nextCurrent: number, nextPageSize: number) => {
+    if (!action) return;
+
     getSubmitFormValues(searchForm).then((formValues) => {
       const params = {
         ...formValues,
@@ -143,6 +145,7 @@ const ListLayout: FC<ListLayoutProps> = ({
         pageSize: nextPageSize ?? pageSize,
       };
       setSearchLoading(true);
+
       requestGet(action, transformSearchParams?.(params) || params)
         .then((res) => {
           const { data } = res || {};
@@ -240,6 +243,7 @@ const ListLayout: FC<ListLayoutProps> = ({
           onChange={handleTableChange}
           components={components}
           language={language}
+          hasClearSelectedRows
         />
       </Layout>
     </ListLayoutContent.Provider>

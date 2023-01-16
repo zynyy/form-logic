@@ -51,7 +51,7 @@
       "componentProps": {},
       "logics": [],
       "code": "hasChildren",
-      "component": "YesNoSelect",
+      "component": "YesOrNoCheckbox",
       "name": "监听子项"
     }
   ],

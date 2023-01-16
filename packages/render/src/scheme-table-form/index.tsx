@@ -1,4 +1,4 @@
-import { FC, Key, useEffect, useMemo,memo, useState } from 'react';
+import { FC, Key, useEffect, useMemo, memo, useState } from 'react';
 import { Form, setValidateLanguage, JSXComponent } from '@formily/core';
 import { FormProvider } from '@formily/react';
 
@@ -14,7 +14,11 @@ import { ListTableProps } from '@/components/list-table';
 import { useDeepEffect, useDOMRect } from '@formlogic/component';
 import { RowSelectionType } from 'antd/es/table/interface';
 
-export interface SchemeTableFormProps extends Omit<ListTableProps, 'onTableChange'> {
+export interface SchemeTableFormProps
+  extends Omit<
+    ListTableProps,
+    'selectedRowKeys' | 'setSelectedRowKeys' | 'selectedRows' | 'setSelectedRows' | 'onTableChange'
+  > {
   schema: ISchema;
   form: Form;
   dataSource: any[];
@@ -25,6 +29,7 @@ export interface SchemeTableFormProps extends Omit<ListTableProps, 'onTableChang
   loading?: boolean;
   rowKey?: string;
   hasRowSelection?: boolean;
+  hasClearSelectedRows?: boolean;
   selectedRows?: any[];
   rowSelectionType?: RowSelectionType;
   components?: {
@@ -48,6 +53,7 @@ const SchemeTableForm: FC<SchemeTableFormProps> = ({
   total,
   pageSize,
   rowSelectionType,
+  hasClearSelectedRows,
   ...restProps
 }) => {
   const [selectedRowKeys, setSelectedRowKeys] = useState<Key[]>([]);
@@ -78,8 +84,13 @@ const SchemeTableForm: FC<SchemeTableFormProps> = ({
   useEffect(() => {
     if (form.id) {
       form.setValuesIn(LIST_FILED_CODE, dataSource);
+
+      if (hasClearSelectedRows) {
+        setSelectedRows([]);
+        setSelectedRowKeys([]);
+      }
     }
-  }, [form?.id, dataSource]);
+  }, [form?.id, dataSource, hasClearSelectedRows]);
 
   useEffect(() => {
     setSelectedRowKeys(defaultSelectedRows?.map((item: any) => item[tableRowKey]) || []);
@@ -144,6 +155,10 @@ const SchemeTableForm: FC<SchemeTableFormProps> = ({
           rowKey: tableRowKey,
           rowSelection: nextRowSelection,
           onTableChange: onChange,
+          selectedRowKeys,
+          setSelectedRowKeys,
+          selectedRows,
+          setSelectedRows,
           scrollY,
           pagination: {
             current: Number(currentPage),
@@ -163,6 +178,8 @@ const SchemeTableForm: FC<SchemeTableFormProps> = ({
     restProps,
     nextRowSelection,
     scrollY,
+    selectedRowKeys,
+    selectedRows,
   ]);
 
   return (

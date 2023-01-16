@@ -2,7 +2,7 @@ import {
   FormPageLayout,
   RequestMethodSelect,
   useJsonMetaSchema,
-  YesNoRadio,
+
   JsonPopover,
 } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +36,7 @@ const ComponentCreate = () => {
         components={{
           PageCodeSelect,
           JsonPopover,
-          YesNoRadio,
+
           RequestMethodSelect,
           JsonMonacoEditor
         }}

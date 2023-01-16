@@ -3,7 +3,7 @@ import {
   JsonPopover,
   RequestMethodSelect,
   SchemaTypeSelect,
-  YesNoRadio,
+
 } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
 import { useMetaSchema } from '@/hooks';
@@ -38,7 +38,7 @@ const ModelEdit = () => {
       components={{
         MetaTreeArrayDrawerTable,
         SchemaTypeSelect,
-        YesNoRadio,
+
         JsonPopover,
         RequestMethodSelect,
       }}

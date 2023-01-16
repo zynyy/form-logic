@@ -353,7 +353,7 @@ class TransformsSchema extends MetaDataSorted {
     const popoverProperties = {};
 
     buttons.forEach((item, index) => {
-      const { code, name } = item;
+      const { code, name, type } = item;
       const btnProperties = this.voidSchema(item, index);
 
       const codeProperties = {
@@ -364,7 +364,7 @@ class TransformsSchema extends MetaDataSorted {
         },
       };
 
-      if (index > 2) {
+      if (index > 2 && type === MetaDataTypeEnum.table_button) {
         this.pushLogic(item, `${prefixField}.popover`);
         popoverProperties[code] = codeProperties;
       } else {

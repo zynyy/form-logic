@@ -11,6 +11,220 @@
       "defaultConfig": {
         "schemaType": "string",
         "required": "0",
+        "hidden": true,
+        "disabled": "0",
+        "componentProps": {}
+      },
+      "code": "batchConfig",
+      "name": "批量配置",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {}
+      },
+      "code": "data",
+      "name": "数据源",
+      "categorize": "componentInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "YesOrNoCheckbox"
+      },
+      "code": "labelInValue",
+      "componentProps": {},
+      "name": "值对象格式",
+      "categorize": "componentInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "void",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {}
+      },
+      "code": "batchAddBtn",
+      "name": "批量添加",
+      "categorize": "button"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "StaticSelect"
+      },
+      "code": "mode",
+      "name": "模式",
+      "componentProps": {},
+      "categorize": "configInfo"
+    },
+    {
+      "code": "batchRemoveBtn",
+      "defaultConfig": {
+        "schemaType": "void",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "ArrayBase.BatchRemove"
+      },
+      "name": "批量删除",
+      "componentProps": {},
+      "categorize": "button"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "JsonPopover"
+      },
+      "code": "drawerFormConfig",
+      "name": "表单配置",
+      "componentProps": {},
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "JsonPopover"
+      },
+      "code": "drawerExtraLogicParams",
+      "name": "额外参数",
+      "componentProps": {},
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {
+          "apiConfig": {
+            "method": "get",
+            "params": { "type": "page" },
+            "url": "/local-api/model-or-page/list"
+          },
+          "defaultFirstOptionValue": "0",
+          "labelTemplateKey": "{{code}}-{{name}}",
+          "valueTemplateKey": "{{code}}"
+        },
+        "component": "RemoteSelect"
+      },
+      "code": "drawerPageCode",
+      "name": "页面编码",
+      "categorize": "configInfo",
+      "componentProps": {
+        "apiConfig": { "method": "get", "params": {}, "url": "/test" },
+        "defaultFirstOptionValue": "0",
+        "labelTemplateKey": "{{name}}",
+        "valueTemplateKey": "{{code}}"
+      }
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "object",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {}
+      },
+      "code": "pagination",
+      "name": "分页配置",
+      "categorize": "basicInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "Input"
+      },
+      "code": "rowKey",
+      "name": "表格行key",
+      "componentProps": {},
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "YesOrNoCheckbox"
+      },
+      "code": "hasPagination",
+      "name": "分页",
+      "categorize": "configInfo",
+      "componentProps": {}
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "InputNumber"
+      },
+      "code": "scrollY",
+      "name": "滚动高度",
+      "categorize": "configInfo",
+      "componentProps": {}
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {},
+        "component": "YesOrNoCheckbox"
+      },
+      "code": "hasRowSelection",
+      "name": "行选择",
+      "componentProps": {},
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "void",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {}
+      },
+      "code": "sortBtn",
+      "categorize": "button",
+      "name": "排序"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
         "hidden": "0",
         "disabled": "0",
         "componentProps": {},
@@ -106,7 +320,7 @@
         "hidden": "0",
         "disabled": "0",
         "componentProps": {},
-        "component": "YesNoSelect"
+        "component": "YesOrNoCheckbox"
       },
       "code": "hasChildren",
       "componentProps": {},
@@ -168,7 +382,7 @@
         "required": "0",
         "hidden": "0",
         "disabled": "0",
-        "component": "YesNoSelect"
+        "component": "YesOrNoCheckbox"
       },
       "name": "默认第一个值",
       "categorize": "componentInfo"
@@ -362,7 +576,7 @@
     {
       "code": "removeBtn",
       "defaultConfig": {
-        "schemaType": "string",
+        "schemaType": "void",
         "required": "0",
         "hidden": "0",
         "disabled": "0",
@@ -401,8 +615,14 @@
       "categorize": "button"
     },
     {
-      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
       "code": "previewBtn",
+      "defaultConfig": {
+        "schemaType": "void",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {}
+      },
       "name": "预览",
       "categorize": "button"
     },
@@ -425,9 +645,15 @@
       "categorize": "basicInfo"
     },
     {
-      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
-      "categorize": "button",
       "code": "saveBtn",
+      "defaultConfig": {
+        "schemaType": "void",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {}
+      },
+      "categorize": "button",
       "name": "保存"
     },
     {

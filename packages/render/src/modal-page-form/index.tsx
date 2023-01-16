@@ -1,6 +1,6 @@
 import { Button, message, Space } from 'antd';
 import SchemeForm, { SchemeFormProps } from '@/scheme-form';
-import { FC, useEffect, useState, MouseEvent, useRef } from 'react';
+import { FC, useEffect, useState, MouseEvent, useMemo } from 'react';
 
 import { TransformsSchemaOptions } from '@/transforms';
 import { AnyObject, EventsObject, LogicConfig } from '@/interface';
@@ -22,14 +22,14 @@ export interface ModalPageFormProps
   extends Omit<DraggableModalProps, 'onCancel' | 'onOk'>,
     Pick<SchemeFormProps, 'language' | 'components'> {
   options: TransformsSchemaOptions;
-  getLogicConfig?: LogicConfig;
+  getLogicConfig: LogicConfig;
+  formConfig?: IFormProps;
   extraLogicParams?: AnyObject;
   events?: EventsObject;
   validateFormValues?: (formValues: any) => Promise<string>;
   onConfirm?: (formValues: any) => void;
   onClose?: (e: MouseEvent<HTMLButtonElement>) => void;
   onFormMount?: (form: Form) => void;
-  formConfig?: IFormProps;
 }
 
 const ModalPageForm: FC<ModalPageFormProps> = ({
@@ -50,16 +50,17 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
 }) => {
   const [submitLoading, setSubmitLoading] = useState(false);
 
-  const { schema, buttons, form, formLoading, pattern,refreshForm } = usePageForm({
+  const { schema, buttons, form, formLoading, pattern, refreshForm } = usePageForm({
     formConfig,
     onFormMount,
     options,
     getLogicConfig,
     logicParams: extraLogicParams,
     events,
+    autoRefreshForm: false,
   });
 
-  const nextFormId = useRef<string>(form.id);
+  const [loadingDone, setLoadingDone] = useState(false);
 
   const [triggerLogic] = useTriggerLogic(getLogicConfig, () => {
     setSubmitLoading(false);
@@ -161,16 +162,37 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
     );
   };
 
+  const loading = useMemo(() => {
+    return formLoading || !open || !loadingDone;
+  }, [formLoading, open, loadingDone]);
+
   useEffect(() => {
     if (open) {
       setSubmitLoading(false);
-      nextFormId.current = refreshForm(formConfig);
+      refreshForm(formConfig);
     }
   }, [open, formConfig]);
 
+  const handleAfterClose = () => {
+    setLoadingDone(false);
+  };
+
   useEffect(() => {
-    nextFormId.current = form?.id;
-  }, [form?.id]);
+    let timer = null;
+
+    if (open) {
+      timer = requestIdleCallback(
+        () => {
+          setLoadingDone(true);
+        },
+        { timeout: 1000 },
+      );
+    }
+
+    return () => {
+      cancelIdleCallback(timer);
+    };
+  }, [open]);
 
   return (
     <DraggableModal
@@ -185,13 +207,16 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
       bodyStyle={{
         overflowY: 'auto',
         maxHeight: 500,
+        minHeight: 200,
       }}
       footer={renderFooter()}
+      destroyOnClose
+      afterClose={handleAfterClose}
     >
       <PageLoading loading={submitLoading}>
         <SchemeForm
           form={form}
-          loading={formLoading && nextFormId.current !== form.id}
+          loading={loading}
           schema={schema}
           components={components}
           pattern={pattern}

@@ -1,8 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { Select, SelectProps } from 'antd';
 
-import { transformToOptions } from '@/utils';
-import { useLabelOptions } from '@/hooks';
+import { strNumBoolToBoolean, transformToOptions } from '@/utils';
+import { useDeepEffect, useLabelOptions } from '@/hooks';
+import { StrNumBool } from '@/interface';
 
 export interface StaticSelectProps<V = any> extends Omit<SelectProps<any>, 'onChange'> {
   valueTemplateKey?: string;
@@ -11,6 +12,7 @@ export interface StaticSelectProps<V = any> extends Omit<SelectProps<any>, 'onCh
   readOnly?: boolean;
   data?: any[];
   onChange?: (value: V, record?: any) => void;
+  defaultFirstOptionValue?: StrNumBool;
 }
 
 const StaticSelect: FC<StaticSelectProps> = ({
@@ -21,14 +23,27 @@ const StaticSelect: FC<StaticSelectProps> = ({
   data,
   readOnly,
   filterData,
+  labelInValue,
+  defaultFirstOptionValue,
+  mode,
   ...restProps
 }) => {
   const [options, setOptions] = useState<any[]>([]);
 
   const [dataSource, setDataSource] = useState<any[]>([]);
 
-  const findRecord = (val: string): undefined | any => {
-    return val ? dataSource.find((item) => item.value === val) : undefined;
+  const isMultiple = useMemo(() => {
+    return ['multiple', 'tags'].includes(mode);
+  }, [mode]);
+
+  const findRecord = (val: any): undefined | any => {
+    let value = val;
+
+    if (labelInValue) {
+      value = val.value;
+    }
+
+    return value ? dataSource.find((item) => item.value === value) : undefined;
   };
 
   const triggerChange = (changedValue: any) => {
@@ -40,7 +55,7 @@ const StaticSelect: FC<StaticSelectProps> = ({
           .filter((val) => val)
       : findRecord(changedValue);
 
-    onChange?.(changedValue, record);
+    onChange?.(labelInValue ? record : changedValue, record);
   };
 
   const transformData = (data: any): any[] => {
@@ -79,6 +94,22 @@ const StaticSelect: FC<StaticSelectProps> = ({
     }
   }, [data]);
 
+  useDeepEffect(() => {
+    if (
+      strNumBoolToBoolean(defaultFirstOptionValue) &&
+      value !== 0 &&
+      !value &&
+      !value.length &&
+      dataSource.length
+    ) {
+      const firstRecord = dataSource[0];
+
+      const val = labelInValue ? firstRecord : firstRecord.value;
+
+      triggerChange(isMultiple ? [val] : val);
+    }
+  }, [defaultFirstOptionValue, dataSource, value, labelInValue, isMultiple]);
+
   const detailValue = useLabelOptions(dataSource, value);
 
   return readOnly ? (
@@ -89,6 +120,8 @@ const StaticSelect: FC<StaticSelectProps> = ({
       showSearch
       {...restProps}
       value={value}
+      mode={mode}
+      labelInValue={labelInValue}
       style={{ width: '100%' }}
       onSearch={handleSearch}
       filterOption={false}

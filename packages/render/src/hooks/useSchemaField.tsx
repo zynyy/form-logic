@@ -13,6 +13,7 @@ import {
   RemoteSelect,
   TextArea,
   CustomButton,
+  YesOrNoCheckbox
 } from '@formlogic/component';
 
 import ArrayTable from '@/components/array-table';
@@ -52,7 +53,8 @@ const useCreateSchemaField = () => {
         PopoverBtn,
         DynamicSchema,
         PopoverContainer,
-        ArrayDrawerTable
+        ArrayDrawerTable,
+        YesOrNoCheckbox
       },
     });
   }, []);

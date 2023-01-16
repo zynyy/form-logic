@@ -35,6 +35,9 @@ const CreateCopyPageConfig: FC<CreateCopyPageConfigProps> = ({ pageCode, modelCo
             .then((res) => {
               setLoading(false);
               message.success(`${nowPageCode} 页面模型创建成功`).then(() => void 0);
+
+              form.resetFields(["codeSuffix"])
+
             })
             .catch(() => {
               message.warning(`新增页面编码: ${nowPageCode} 新增失败`).then(() => void 0);

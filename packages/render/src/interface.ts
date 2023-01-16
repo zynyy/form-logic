@@ -5,7 +5,6 @@ import effectHook from '@/effect-hook';
 
 import { Field, Form } from '@formily/core';
 import { STEPS_GROUP_MODE, TABS_GROUP_MODE } from '@/utils/constant';
-import validateRules from '../../../example/src/router/list-page/validateRules';
 
 export enum RequestMethodEnum {
   get = 'get',

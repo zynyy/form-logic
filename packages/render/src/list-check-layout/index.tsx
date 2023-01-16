@@ -149,6 +149,8 @@ const ListCheckLayout: FC<ListCheckLayoutProps> = ({
   };
 
   const search = (nextCurrent: number, nextPageSize: number) => {
+    if (!action) return;
+
     getSubmitFormValues(searchForm).then((formValues) => {
       const params = hasPageQuery
         ? {

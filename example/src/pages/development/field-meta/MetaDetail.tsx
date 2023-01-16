@@ -4,7 +4,7 @@ import {
   RequestMethodSelect, SchemaPatternEnum,
   SchemaTypeSelect,
   useJsonMetaSchema,
-  YesNoRadio,
+
 } from '@formlogic/render';
 import getLogicConfig from '@/low-code-meta/logic';
 import { useNavigate } from 'react-router-dom';
@@ -34,7 +34,7 @@ const MetaDetail = () => {
         getLogicConfig={getLogicConfig}
         components={{
           SchemaTypeSelect,
-          YesNoRadio,
+
           JsonPopover,
           RequestMethodSelect,
         }}

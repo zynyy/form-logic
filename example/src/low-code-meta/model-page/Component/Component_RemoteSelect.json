@@ -43,7 +43,7 @@
       "wrap": "0",
       "logics": [],
       "code": "defaultFirstOptionValue",
-      "component": "YesNoRadio",
+      "component": "YesOrNoCheckbox",
       "name": "默认第一个值",
       "defaultValue": "0"
     },
@@ -59,6 +59,36 @@
       "code": "apiConfig",
       "name": "接口配置",
       "pageCode": "Api_C"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [{ "effectHook": "onFieldMount", "logicCode": "com_SelectModeDataSource" }],
+      "validator": [],
+      "code": "mode",
+      "component": "StaticSelect",
+      "name": "模式"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "validator": [],
+      "code": "labelInValue",
+      "component": "YesOrNoCheckbox",
+      "name": "值对象格式"
     }
   ],
   "model": "Component",

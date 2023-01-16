@@ -23,6 +23,7 @@ const ArrayTablePagination: FC<ArrayPaginationProps> = observer(
     pageSize: propsPageSize,
     size: propsSize,
     dataSource: propsDataSource,
+    onChange,
     children,
     ...restProps
   }) => {
@@ -47,6 +48,7 @@ const ArrayTablePagination: FC<ArrayPaginationProps> = observer(
 
     const handleChange = (current: number) => {
       setCurrent(current);
+      onChange?.(current, pageSize);
     };
 
     useEffect(() => {
@@ -92,7 +94,7 @@ const ArrayTablePagination: FC<ArrayPaginationProps> = observer(
         </PaginationContext.Provider>
       </>,
     );
-  }
+  },
 );
 
 export default ArrayTablePagination;

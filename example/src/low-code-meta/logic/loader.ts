@@ -28,6 +28,7 @@ export default {
   ModelPage_groupDrawerExtraLogicParams: () =>
     import('./ModelPage/ModelPage_groupDrawerExtraLogicParams'),
   ModelPage_modelValue: () => import('./ModelPage/ModelPage_modelValue'),
+  com_SelectModeDataSource: () => import('./common/com_SelectModeDataSource'),
   com_getComponentConfig: () => import('./common/com_getComponentConfig'),
   com_save: () => import('./common/com_save'),
   com_targetWithValues: () => import('./common/com_targetWithValues'),

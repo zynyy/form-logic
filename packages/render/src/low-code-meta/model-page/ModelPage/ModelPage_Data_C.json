@@ -94,7 +94,7 @@
       "type": "column",
       "schemaType": "string",
       "defaultValue": "0",
-      "component": "YesNoRadio",
+      "component": "YesOrNoCheckbox",
       "group": "configInfo"
     },
     {
@@ -103,7 +103,7 @@
       "type": "column",
       "defaultValue": "0",
       "schemaType": "string",
-      "component": "YesNoRadio",
+      "component": "YesOrNoCheckbox",
       "group": "configInfo"
     },
     {
@@ -112,7 +112,7 @@
       "type": "column",
       "schemaType": "string",
       "defaultValue": "0",
-      "component": "YesNoRadio",
+      "component": "YesOrNoCheckbox",
       "group": "configInfo"
     },
     {
@@ -122,7 +122,7 @@
       "schemaType": "string",
       "group": "configInfo",
       "defaultValue": "0",
-      "component": "YesNoRadio"
+      "component": "YesOrNoCheckbox"
     },
     {
       "code": "hasSort",
@@ -131,7 +131,7 @@
       "schemaType": "string",
       "group": "configInfo",
       "defaultValue": "0",
-      "component": "YesNoRadio"
+      "component": "YesOrNoCheckbox"
     },
     {
       "code": "pageCode",
@@ -162,7 +162,7 @@
       "schemaType": "string",
       "group": "layoutInfo",
       "defaultValue": "0",
-      "component": "YesNoRadio"
+      "component": "YesOrNoCheckbox"
     },
     {
       "code": "wrap",
@@ -171,7 +171,7 @@
       "schemaType": "string",
       "group": "layoutInfo",
       "defaultValue": "0",
-      "component": "YesNoRadio"
+      "component": "YesOrNoCheckbox"
     },
     {
       "code": "group",
