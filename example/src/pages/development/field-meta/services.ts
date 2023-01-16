@@ -1,4 +1,4 @@
-import { requestGet, requestPost } from '@/service';
+import { requestDelete, requestGet, requestPost } from '@/service';
 
 export enum FieldMetaConfig {
   CREATE = 'FieldMeta_C',
@@ -49,7 +49,7 @@ export const fieldMetaDetail = (params: FieldMetaDetailParams) => {
 
 // 删除
 export const fieldMetaRemove = (params: FieldMetaRemoveParams) => {
-  return requestGet(apiUrl.remove, params);
+  return requestDelete(apiUrl.remove, params);
 };
 
 // 树形

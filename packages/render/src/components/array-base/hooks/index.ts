@@ -1,9 +1,13 @@
-import { useArrayItemContext } from '@/components/array-base/hooks/context';
+import { useArrayItemContext } from './context';
 
 import style from '../style';
 
 import { useComponentStyle } from '@formlogic/component';
 import { toJS } from '@formily/reactive';
+
+export { useArrayContext } from './context';
+
+export type { ArrayBaseValueContext, ArrayItemValueContext, ArrayContext } from './context';
 
 export const useArrayIndex = () => {
   const ctx = useArrayItemContext();

@@ -69,6 +69,14 @@ class TransformsSchema extends MetaDataSorted {
   private getDefaultValue = (item: MetaSchemaData) => {
     const { defaultValue } = item || {};
 
+    if (defaultValue === 0) {
+      return defaultValue;
+    }
+
+    if (defaultValue === '') {
+      return undefined;
+    }
+
     return defaultValue;
   };
 

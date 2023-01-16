@@ -54,6 +54,15 @@
       "name": "批量添加"
     },
     {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "batchSettingConfigBtn",
+      "component": "BatchSettingModelPageField",
+      "name": "批量配置"
+    },
+    {
       "code": "editBtn",
       "name": "编辑",
       "type": "table_button",

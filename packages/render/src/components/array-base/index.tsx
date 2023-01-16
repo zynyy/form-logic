@@ -325,7 +325,7 @@ const BatchRemove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogi
 
   const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
-  const disabled = field.disabled || !selectedRowKeys.length;
+  const disabled = field.disabled || !selectedRowKeys?.length;
 
   const rowSelected = {
     selectedRowKeys,

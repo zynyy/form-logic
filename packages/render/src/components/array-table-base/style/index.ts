@@ -6,6 +6,9 @@ export default genStyleHook('array-table-base', (token) => {
   return {
     [componentCls]: {
       [`${antCls}-table`]: {
+        [`${antCls}-table-title`]: {
+          overflow: 'auto',
+        },
         td: {
           visibility: 'visible',
         },

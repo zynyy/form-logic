@@ -9,6 +9,8 @@ export default {
     import('./FormValidateRules/FormValidateRules_setDefaultValueComponent'),
   FormValidateRules_setDefaultValueComponentProps: () =>
     import('./FormValidateRules/FormValidateRules_setDefaultValueComponentProps'),
+  ModelPage_BatchSetting_C_typeToVisible: () =>
+    import('./ModelPage/ModelPage_BatchSetting_C_typeToVisible'),
   ModelPage_C_modelToDisabled: () => import('./ModelPage/ModelPage_C_modelToDisabled'),
   ModelPage_Data_C_codeDataSource: () => import('./ModelPage/ModelPage_Data_C_codeDataSource'),
   ModelPage_Data_C_codeWithTarget: () => import('./ModelPage/ModelPage_Data_C_codeWithTarget'),
@@ -29,6 +31,7 @@ export default {
     import('./ModelPage/ModelPage_groupDrawerExtraLogicParams'),
   ModelPage_modelValue: () => import('./ModelPage/ModelPage_modelValue'),
   com_SelectModeDataSource: () => import('./common/com_SelectModeDataSource'),
+  com_YesOrNoDataSource: () => import('./common/com_YesOrNoDataSource'),
   com_getComponentConfig: () => import('./common/com_getComponentConfig'),
   com_save: () => import('./common/com_save'),
   com_targetWithValues: () => import('./common/com_targetWithValues'),

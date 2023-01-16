@@ -2,15 +2,15 @@ import { Button, Drawer } from 'antd';
 import { EyeOutlined } from '@ant-design/icons';
 import {
   FormPageLayout,
-  ListLayout,
-  useOpen,
-  useSchemeFormContent,
-  useForm,
   getFormValues,
-  toArray,
+  ListLayout,
   MetaDataTypeEnum,
-  useSchemaComponentsContext,
   observer,
+  toArray,
+  useForm,
+  useOpen,
+  useSchemaComponentsContext,
+  useSchemeFormContent,
 } from '@formlogic/render';
 import { FC, useState } from 'react';
 import { getItemMetaSchema } from '@/hooks';
@@ -39,8 +39,10 @@ const PagePreviewButton: FC<PagePreviewButtonProps> = observer(() => {
     getFormValues(form).then((formValues) => {
       const { group, data } = formValues || {};
 
+      const list = [MetaDataTypeEnum.search_column, MetaDataTypeEnum.table_column];
+
       setHasGroup(!!toArray(group).length);
-      setHasSearch(!!toArray(data).find((item) => item.type === MetaDataTypeEnum.search_column));
+      setHasSearch(!!toArray(data).find((item) => list.includes(item.type)));
 
       getItemMetaSchema(formValues).then((nextMetaSchema) => {
         setMetaSchema({

@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { filterCodeAndName,  sendJson, sendJsonPage } from '../utils';
+import { filterCodeAndName, sendJson, sendJsonPage } from '../utils';
 import {
   checkFieldMeta,
   generateFieldMetaContent,
@@ -22,7 +22,6 @@ const fieldMetaDetail = async (req, res) => {
   if (!code) {
     return sendJson(res, false, `code 不能为空`);
   }
-
 
   const record = getFieldMetaDetail({ outputPath, code });
 
@@ -126,8 +125,6 @@ const fieldMetaRemove = async (req, res) => {
   if (!code) {
     return sendJson(res, false, `code 不能为空`);
   }
-
-
 
   removeFieldMeta({ outputPath, code });
 

@@ -52,9 +52,9 @@ const pageConfigBatchDetail = async (req, res) => {
 };
 
 const pageConfigPage = async (req, res) => {
-  const { current = 1, pageSize = 30, code, name } = req.query;
+  const { current = 1, pageSize = 30, code, name, model } = req.query;
 
-  const pageConfigData = filterCodeAndName(getModelPageAllData({ outputPath }), code, name);
+  const pageConfigData = filterCodeAndName(getModelPageAllData({ outputPath, model }), code, name);
 
   return sendJsonPage(res, {
     current,

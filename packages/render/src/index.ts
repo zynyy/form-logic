@@ -10,6 +10,13 @@ export * from './utils/formUtils';
 
 export * from '@/utils';
 
+export { useArrayContext, useArrayItemRecord, useArrayIndex } from '@/components/array-base/hooks';
+export type {
+  ArrayBaseValueContext,
+  ArrayItemValueContext,
+  ArrayContext,
+} from '@/components/array-base/hooks';
+
 export { default as SchemeForm } from './scheme-form';
 
 export type { SchemeFormProps } from './scheme-form';

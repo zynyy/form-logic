@@ -10,7 +10,7 @@ export interface TextAreaProps extends AntdTextAreaProps {
 }
 
 const TextArea: FC<TextAreaProps> = ({ readOnly, value, ...restProps }) => {
-  return readOnly ? <span>{value}</span> : <AntdTextArea value={value} {...restProps} />;
+  return readOnly ? <span>{value}</span> : <AntdTextArea value={value} allowClear {...restProps} />;
 };
 
 export default TextArea;

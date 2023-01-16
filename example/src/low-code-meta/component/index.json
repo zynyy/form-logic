@@ -1,5 +1,6 @@
 {
   "list": [
+    { "code": "BatchSettingModelPageField", "name": "批量设置" },
     { "code": "BatchAddModelPageField", "name": "批量添加字段" },
     { "code": "ArrayBase.BatchRemove", "name": "批量删除" },
     { "code": "PageSortButton", "name": "页面排序" },

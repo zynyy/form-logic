@@ -16,6 +16,7 @@ import PageCodeSelect from '@/components/page-code-select';
 import PagePreviewButton from '@/pages/development/model-page/component/page-preview-button';
 import PageSortButton from '@/pages/development/model-page/component/sort-button';
 import BatchAddModelPageField from '@/pages/development/model-page/component/batch-add';
+import BatchSettingModelPageField from '@/pages/development/model-page/component/batch-setting-config';
 
 export const components: FormPageLayoutProps['components'] = {
   PageCodeSelect,
@@ -30,6 +31,7 @@ export const components: FormPageLayoutProps['components'] = {
   PagePreviewButton,
   PageSortButton,
   BatchAddModelPageField,
+  BatchSettingModelPageField
 };
 
 export const useModelPageDetail = (): [FormConfigProps, boolean] => {

@@ -9,7 +9,7 @@ export default async function (ctx) {
 
   switch (schemaType) {
     case 'string': {
-      fieldVisible(form, true, [ 'required', 'disabled', ], ['pageCode', 'hasSerialNo', 'hasSort']);
+      fieldVisible(form, true, ['required', 'disabled'], ['pageCode', 'hasSerialNo', 'hasSort']);
       break;
     }
     case 'void': {
@@ -18,7 +18,7 @@ export default async function (ctx) {
     }
 
     case 'array': {
-      fieldVisible(form, true, [ 'required', 'disabled','pageCode', 'hasSerialNo', 'hasSort'], []);
+      fieldVisible(form, true, ['required', 'disabled', 'pageCode', 'hasSerialNo', 'hasSort'], []);
       break;
     }
     case 'object': {
@@ -28,6 +28,7 @@ export default async function (ctx) {
     }
 
     default: {
+     break;
     }
   }
 
