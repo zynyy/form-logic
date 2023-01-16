@@ -10,11 +10,14 @@ import {
   toArray,
   MetaDataTypeEnum,
   useSchemaComponentsContext,
+  observer,
 } from '@formlogic/render';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { getItemMetaSchema } from '@/hooks';
 
-const PagePreviewButton = () => {
+interface PagePreviewButtonProps {}
+
+const PagePreviewButton: FC<PagePreviewButtonProps> = observer(() => {
   const [open, show, hidden] = useOpen();
 
   const [metaSchema, setMetaSchema] = useState(null);
@@ -28,6 +31,10 @@ const PagePreviewButton = () => {
 
   const components = useSchemaComponentsContext();
 
+  const { code, codeSuffix, model, data } = form.values;
+
+  const pageCode = code ?? `${model}_${codeSuffix}`;
+
   const handleClick = () => {
     getFormValues(form).then((formValues) => {
       const { group, data } = formValues || {};
@@ -36,21 +43,28 @@ const PagePreviewButton = () => {
       setHasSearch(!!toArray(data).find((item) => item.type === MetaDataTypeEnum.search_column));
 
       getItemMetaSchema(formValues).then((nextMetaSchema) => {
-        setMetaSchema(nextMetaSchema);
+        setMetaSchema({
+          ...nextMetaSchema,
+          code: pageCode,
+        });
         show();
       });
     });
   };
 
-  const code = form.getValuesIn('code');
-
   return (
     <>
-      <Button onClick={handleClick} icon={<EyeOutlined />}>
-         预览
+      <Button disabled={!toArray(data).length} onClick={handleClick} icon={<EyeOutlined />}>
+        预览
       </Button>
 
-      <Drawer title={`${code} 页面预览`} open={open} width="90%" onClose={hidden}>
+      <Drawer
+        title={`${pageCode} 页面预览`}
+        open={open}
+        width="90%"
+        onClose={hidden}
+        destroyOnClose
+      >
         {hasSearch ? (
           <ListLayout
             action=""
@@ -70,6 +84,6 @@ const PagePreviewButton = () => {
       </Drawer>
     </>
   );
-};
+});
 
 export default PagePreviewButton;
