@@ -10,13 +10,18 @@ export interface CustomButtonProps<Ref = HTMLElement> extends ButtonProps, RefAt
 }
 
 const CustomButton: FC<CustomButtonProps> = forwardRef(
-  ({ title, hasTooltip, hasPopConfirm, onClick, mode, children, ...btnProps }, ref) => {
+  ({ title, hasTooltip, hasPopConfirm, onClick, mode, children, disabled, ...btnProps }, ref) => {
     const [popConfirmOpen, setPopConfirmOpen] = useState(false);
     const [tooltipOpen, setToolTipOpen] = useState(false);
 
     const handleConfirmOpenChange = (open) => {
       setToolTipOpen(false);
-      setPopConfirmOpen(open);
+
+      if (!disabled) {
+        setPopConfirmOpen(open);
+      } else {
+        setPopConfirmOpen(false);
+      }
     };
 
     const handleTooltipOpenChange = (open) => {
@@ -33,6 +38,7 @@ const CustomButton: FC<CustomButtonProps> = forwardRef(
           <Button
             type="text"
             {...btnProps}
+            disabled={disabled}
             onClick={hasPopConfirm ? undefined : onClick}
             ref={ref}
           />
@@ -40,7 +46,13 @@ const CustomButton: FC<CustomButtonProps> = forwardRef(
       }
 
       return (
-        <Button type="dashed" {...btnProps} onClick={hasPopConfirm ? undefined : onClick} ref={ref}>
+        <Button
+          type="dashed"
+          {...btnProps}
+          disabled={disabled}
+          onClick={hasPopConfirm ? undefined : onClick}
+          ref={ref}
+        >
           {children ?? title}
         </Button>
       );
@@ -52,6 +64,7 @@ const CustomButton: FC<CustomButtonProps> = forwardRef(
           onOpenChange={handleConfirmOpenChange}
           title={`是否确定${title}`}
           onConfirm={onClick}
+          open={popConfirmOpen}
         >
           <span>
             <Tooltip title={title} open={tooltipOpen} onOpenChange={handleTooltipOpenChange}>
@@ -68,7 +81,12 @@ const CustomButton: FC<CustomButtonProps> = forwardRef(
 
     if (hasPopConfirm) {
       return (
-        <Popconfirm title={`是否确定${title}`} onConfirm={onClick}>
+        <Popconfirm
+          title={`是否确定${title}`}
+          onOpenChange={handleConfirmOpenChange}
+          onConfirm={onClick}
+          open={popConfirmOpen}
+        >
           {renderButton()}
         </Popconfirm>
       );

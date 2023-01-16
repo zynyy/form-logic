@@ -43,7 +43,7 @@ const ModalRender: FC<ModalRenderProps> = ({ hasDrag, dragClassName, modal }) =>
 
   useEffect(() => {
     if (draggableRef.current) {
-      setPortalContainer(draggableRef.current.querySelector(':scope .ant-modal-content'));
+      setPortalContainer(draggableRef.current.querySelector('.ant-modal-content'));
     }
   }, []);
 
@@ -52,7 +52,7 @@ const ModalRender: FC<ModalRenderProps> = ({ hasDrag, dragClassName, modal }) =>
   }, [hover]);
 
   return warpSSR(
-    <Draggable disabled={draggableDisabled} bounds={bounds} onStart={handleStart}>
+    <Draggable nodeRef={draggableRef} disabled={draggableDisabled} bounds={bounds} onStart={handleStart}>
       <div ref={draggableRef}>
         {hasDrag ? (
           <Portal open getContainer={portalContainer}>
