@@ -1,4 +1,4 @@
-import { requestGet, requestPost } from '@/service';
+import { requestDelete, requestGet, requestPost } from '@/service';
 
 export enum LinkConfig {
   CREATE = 'Link_C',
@@ -56,5 +56,5 @@ export const linkDetail = (params: LinkDetailParams) => {
 
 // 详情页
 export const linkRemove = (params: LinkRemoveParams) => {
-  return requestPost(apiUrl.remove, params);
+  return requestDelete(apiUrl.remove, params);
 };

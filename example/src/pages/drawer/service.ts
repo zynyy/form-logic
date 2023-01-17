@@ -1,4 +1,4 @@
-import { requestGet, requestPost } from '@/service';
+import { requestDelete, requestGet, requestPost } from '@/service';
 
 export enum DrawerConfig {
   CREATE = 'Drawer_C',
@@ -52,5 +52,5 @@ export const drawerDetail = (params: DrawerDetailParams) => {
 
 // 详情页
 export const drawerRemove = (params: DrawerRemoveParams) => {
-  return requestPost(apiUrl.remove, params);
+  return requestDelete(apiUrl.remove, params);
 };

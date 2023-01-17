@@ -1,4 +1,4 @@
-import { requestGet, requestPost } from '@/service';
+import { requestDelete, requestGet, requestPost } from '@/service';
 
 export enum ModalConfig {
   CREATE = 'Modal_C',
@@ -52,5 +52,5 @@ export const modalDetail = (params: ModalDetailParams) => {
 
 // 详情页
 export const modalRemove = (params: ModalRemoveParams) => {
-  return requestPost(apiUrl.remove, params);
+  return requestDelete(apiUrl.remove, params);
 };
