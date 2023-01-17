@@ -1,0 +1,139 @@
+import { useState } from 'react';
+import {
+    DrawerPageForm,
+    FormConfigProps,
+    ListLayout,
+    TransformsSchemaOptions,
+    useJsonMetaSchema,
+    useOpen,
+    useReloadFlag,
+    getJsonMetaSchema,
+    SchemaPatternEnum,
+} from '@formlogic/render';
+
+
+import getLogicConfig from '@/low-code-meta/logic';
+
+import { apiUrl, <%- fileName %>Config, <%- fileNameLower %>Remove,<%- fileNameLower %>Detail } from './service';
+
+import { formatFormValues, validateFormValues,components } from './hooks';
+
+const <%- fileName %>List = () => {
+
+const { metaSchema } = useJsonMetaSchema(<%- fileName %>Config.LIST);
+
+const [options, setOptions] = useState<TransformsSchemaOptions>(null);
+    const [open, showDrawer, hiddenDrawer] = useOpen();
+
+    const [formConfig, setFormConfig] = useState<FormConfigProps>({});
+
+    const [reloadFlag, refreshReloadFlag] = useReloadFlag();
+
+    const [action, setAction] = useState(apiUrl.create);
+
+    const handleAddClick = () => {
+        setAction(apiUrl.create);
+
+        showDrawer();
+
+        getJsonMetaSchema(<%- fileName %>Config.CREATE).then((metaSchema) => {
+            setOptions({
+                metaSchema,
+                hasGroup: true,
+            });
+        });
+
+    };
+
+    const handleRemoveClick = (index, record) => {
+        const { code } = record || {};
+        <%- fileNameLower %>Remove({ code }).then(() => {
+            refreshReloadFlag();
+        });
+    };
+
+    const handleEditClick = (index, record) => {
+        setAction(apiUrl.update);
+        showDrawer();
+
+        getJsonMetaSchema(<%- fileName %>Config.EDIT).then((metaSchema) => {
+            setOptions({
+                metaSchema,
+                hasGroup: true,
+            });
+        });
+
+        const { code } = record || {};
+        <%- fileNameLower %>Detail({ code }).then((res) => {
+            const { data } = res;
+            setFormConfig({
+                initialValues: data,
+            });
+        });
+
+    };
+
+    const handleDetailClick = (index, record) => {
+        setAction('');
+        showDrawer();
+
+        getJsonMetaSchema(<%- fileName %>Config.DETAIL).then((metaSchema) => {
+            setOptions({
+                metaSchema,
+                hasGroup: true,
+                pattern: SchemaPatternEnum.DETAIL,
+            });
+        });
+
+        const { code } = record || {};
+        <%- fileNameLower %>Detail({ code }).then((res) => {
+            const { data } = res;
+            setFormConfig({
+                initialValues: data,
+            });
+        });
+
+    };
+
+    const successCallback = () => {
+        setOptions(null);
+        refreshReloadFlag();
+        hiddenDrawer();
+    };
+
+
+    return (
+        <>
+            <ListLayout
+                getLogicConfig={getLogicConfig}
+                metaSchema={metaSchema}
+                action={apiUrl.page}
+                reloadFlag={reloadFlag}
+                onEdit={handleEditClick}
+                onAdd={handleAddClick}
+                onRemove={handleRemoveClick}
+                onDetail={handleDetailClick}
+            />
+
+            <DrawerPageForm
+                open={open}
+                options={options}
+                onClose={hiddenDrawer}
+                getLogicConfig={getLogicConfig}
+                formConfig={formConfig}
+                extraLogicParams={{
+                    successCallback,
+                    action,
+                    extraParams: {},
+                    validateFormValues,
+                    formatFormValues,
+                }}
+                components={components}
+                hasConfirmButton={false}
+            />
+
+        </>
+    );
+};
+
+export default <%- fileName %>List;

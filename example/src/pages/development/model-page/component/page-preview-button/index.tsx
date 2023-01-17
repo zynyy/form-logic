@@ -11,9 +11,9 @@ import {
   useOpen,
   useSchemaComponentsContext,
   useSchemeFormContent,
+  getItemJsonMetaSchema,
 } from '@formlogic/render';
 import { FC, useState } from 'react';
-import { getItemMetaSchema } from '@/hooks';
 
 interface PagePreviewButtonProps {}
 
@@ -44,7 +44,7 @@ const PagePreviewButton: FC<PagePreviewButtonProps> = observer(() => {
       setHasGroup(!!toArray(group).length);
       setHasSearch(!!toArray(data).find((item) => list.includes(item.type)));
 
-      getItemMetaSchema(formValues).then((nextMetaSchema) => {
+      getItemJsonMetaSchema(formValues).then((nextMetaSchema) => {
         setMetaSchema({
           ...nextMetaSchema,
           code: pageCode,

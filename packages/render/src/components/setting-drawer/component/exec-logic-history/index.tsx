@@ -6,7 +6,7 @@ import { ExecLogicListItem } from '@/interface';
 
 import { EyeOutlined } from '@ant-design/icons';
 import { useOpen } from '@/hooks';
-import { DEFAULT_TABLE_PAGINATION } from '@/utils/constant';
+
 import { ColumnProps } from 'antd/es/table';
 import { useSettingDrawerStyle } from '@/components/setting-drawer/hooks';
 import cls from 'classnames';
@@ -138,7 +138,12 @@ const ExecLogicHistory: FC<ExecLogicHistoryProps> = ({ dataSource }) => {
         }}
         size="small"
         bordered
-        pagination={DEFAULT_TABLE_PAGINATION}
+        pagination={{
+          showSizeChanger: true,
+          pageSizeOptions: ['20', '30', '50'],
+          size: 'small',
+          showTotal: (total, range) => `总计${total}条; 当前页第${range[0]}到${range[1]}条`,
+        }}
         className={cls(hashId, `${prefixCls}-exec-logic-history-table`)}
       />
 

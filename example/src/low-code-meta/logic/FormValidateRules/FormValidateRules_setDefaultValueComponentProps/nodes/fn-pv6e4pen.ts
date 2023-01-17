@@ -10,12 +10,11 @@ export default async function (ctx: LogicCtxArgs) {
   form.query('defaultValue').take((target) => {
 
 
-
-
     target.setComponentProps(componentProps);
-  });
 
-  console.log(componentProps, 77);
+
+
+  });
 
   return {};
 }

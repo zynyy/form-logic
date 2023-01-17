@@ -100,7 +100,13 @@ const generateCreate = () => {
 };
 
 const generateList = () => {
-  const ejsTempPath = `${__dirname}/pc-list-ejs/list.ejs`;
+  let ejsTempPath = `${__dirname}/pc-list-ejs/list.ejs`;
+
+  if (isDrawer) {
+    ejsTempPath = `${__dirname}/pc-list-ejs/drawerList.ejs`;
+  } else if (isModal) {
+    ejsTempPath = `${__dirname}/pc-list-ejs/modalList.ejs`;
+  }
 
   const ejsParams = {
     fileName,
@@ -220,7 +226,7 @@ export const genList = () => {
       type: 'list',
       name: 'mode',
       message: '请选择列表模式',
-      choices: ['跳转 Link', '抽屉 Drawer', '弹窗 Modal', '树形 TreeList'],
+      choices: ['跳转 Link', '抽屉 Drawer', '弹窗 Modal'],
       validate: (val) => {
         if (val) {
           return true;

@@ -1,6 +1,6 @@
-import { ListLayout, useOpen, useReloadFlag } from '@formlogic/render';
+import { ListLayout, useJsonMetaSchema, useOpen, useReloadFlag } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
-import { useMetaSchema } from '@/hooks';
+
 import { apiUrl, ModelPageConfig, modelPageRemove } from './services';
 import getLogicConfig from '@/low-code-meta/logic';
 import { getQueryUrl } from '@/utils/utils';
@@ -12,7 +12,7 @@ const PageConfig = () => {
 
   const [open, show, hidden] = useOpen();
 
-  const [metaSchema] = useMetaSchema(ModelPageConfig.LIST);
+  const {metaSchema} = useJsonMetaSchema(ModelPageConfig.LIST);
 
   const [reloadFlag, refreshReloadFlag] = useReloadFlag();
 

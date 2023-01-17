@@ -11,9 +11,9 @@ export default async function (ctx: LogicCtxArgs) {
     target.componentProps = {};
     target.setComponent(component || 'Input', {});
 
-    target.setState({
-      disabled: !component,
-    });
+    if (target.pattern !== 'readOnly') {
+      target.disabled = !component;
+    }
   });
 
   if (field.modified) {

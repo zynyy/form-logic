@@ -1,15 +1,16 @@
-import { Button, Drawer, DrawerProps, message, Space } from 'antd';
+import { Drawer, DrawerProps, message } from 'antd';
 import SchemeForm, { SchemeFormProps } from '@/scheme-form';
 import { FC, useEffect, useMemo, useState } from 'react';
 import { usePageForm, useTriggerLogic } from '@/hooks';
 import { TransformsSchemaOptions } from '@/transforms';
-import { AnyObject, EventsObject, LogicConfig } from '@/interface';
-import { CheckOutlined } from '@ant-design/icons';
+import { AnyObject, EventsObject, LogicConfig, SchemaPatternEnum } from '@/interface';
 
-import { CloseButton, LeftRightSlot, PageLoading } from '@formlogic/component';
+import { PageLoading } from '@formlogic/component';
 
 import { getSubmitFormValues } from '@/utils/formUtils';
 import { Form, IFormProps } from '@formily/core';
+import { ClickRecord } from '@/components/buttons';
+import DrawerModalFooter from '@/components/drawer-modal-footer';
 
 export interface DrawerPageFormProps
   extends DrawerProps,
@@ -23,6 +24,7 @@ export interface DrawerPageFormProps
   validateFormValues?: (formValues: any) => Promise<string>;
   onFormMount?: (form: Form) => void;
   formConfig?: IFormProps;
+  hasConfirmButton?: boolean;
 }
 
 const DrawerPageForm: FC<DrawerPageFormProps> = ({
@@ -39,6 +41,7 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
   components,
   validateFormValues,
   language,
+  hasConfirmButton,
 }) => {
   const [submitLoading, setSubmitLoading] = useState(false);
 
@@ -102,66 +105,29 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
     }
   }, [open, formConfig]);
 
-  const renderFooter = () => {
-    const left = <CloseButton loading={submitLoading} onClick={handleCloseClick} />;
+  const handleButtonItemClick = (e, record: ClickRecord) => {
+    const { eventCode, clickCodes, code } = record;
 
-    const right = buttons.map((item) => {
-      const { name, logics, eventCode } = item || {};
+    if (events?.[eventCode]) {
+      events[eventCode](e, {
+        form,
+        setSubmitLoading,
+        code,
+      });
+      return;
+    }
 
-      const clickCodes =
-        logics?.filter((item) => item.effectHook === 'onClick')?.map((item) => item.logicCode) ||
-        [];
+    if (clickCodes.length) {
+      setSubmitLoading(true);
 
-      // todo 待优化
-      return (
-        <Button
-          loading={submitLoading}
-          disabled={submitLoading}
-          key={name}
-          onClick={(e) => {
-            if (events?.[eventCode]) {
-              events[eventCode](e, form, setSubmitLoading);
-              return;
-            }
-
-            if (clickCodes.length) {
-              setSubmitLoading(true);
-
-              triggerLogic(clickCodes, {
-                params: extraLogicParams,
-                form,
-                effectHook: 'onClick',
-                fieldCode: name,
-                pageCode: options?.metaSchema?.code,
-              });
-            }
-          }}
-        >
-          {name}
-        </Button>
-      );
-    });
-
-    return (
-      <LeftRightSlot
-        left={left}
-        right={
-          <Space>
-            {right}
-            <Button
-              loading={submitLoading}
-              disabled={submitLoading}
-              onClick={handleConfirmClick}
-              type="primary"
-              icon={<CheckOutlined />}
-              key="confirmBtn"
-            >
-              确定
-            </Button>
-          </Space>
-        }
-      />
-    );
+      triggerLogic(clickCodes, {
+        params: extraLogicParams,
+        form,
+        effectHook: 'onClick',
+        fieldCode: code,
+        pageCode: options?.metaSchema?.code,
+      });
+    }
   };
 
   const loading = useMemo(() => {
@@ -175,7 +141,18 @@ const DrawerPageForm: FC<DrawerPageFormProps> = ({
       onClose={handleCloseClick}
       width="90%"
       maskClosable={false}
-      footer={renderFooter()}
+      footer={
+        <DrawerModalFooter
+          buttons={buttons}
+          hasConfirmButton={hasConfirmButton ?? options?.pattern !== SchemaPatternEnum.DETAIL}
+          onClick={handleButtonItemClick}
+          onConfirmClick={handleConfirmClick}
+          onCloseCLick={handleCloseClick}
+          loading={submitLoading}
+          disabled={submitLoading}
+          components={components}
+        />
+      }
       closable={false}
       destroyOnClose
       afterOpenChange={setLoadingDone}

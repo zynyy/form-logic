@@ -112,15 +112,6 @@
       "component": "",
       "name": "默认值",
       "group": "valueComponentInfo"
-    },
-    {
-      "type": "button",
-      "schemaType": "void",
-      "componentProps": {},
-      "logics": [{ "effectHook": "onClick", "logicCode": "com_save" }],
-      "code": "saveBtn",
-      "component": "",
-      "name": "保存"
     }
   ],
   "model": "FormValidateRules",

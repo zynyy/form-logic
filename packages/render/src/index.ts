@@ -76,4 +76,5 @@ export type {
   Form as FormilyForm,
   IFormProps as FormConfigProps,
   Field as FormilyField,
+  JSXComponent
 } from '@formily/core';

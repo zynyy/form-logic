@@ -4,6 +4,8 @@ import mustache from 'mustache';
 import { Key } from 'react';
 import type { DataNode } from 'antd/es/tree';
 
+export * from './jsonMetaSchema'
+
 export const toArray = <T>(arr: T | readonly T[]): T[] => {
   if (arr === undefined || arr === null) {
     return [];

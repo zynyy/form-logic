@@ -1,4 +1,4 @@
-import { CloseOutlined, SaveOutlined, SettingOutlined } from '@ant-design/icons';
+import { SaveOutlined, SettingOutlined } from '@ant-design/icons';
 import { useOpen } from '@/hooks';
 import { useSettingDrawerStyle } from '@/components/setting-drawer/hooks';
 import { Alert, Button, Drawer, DrawerProps, Space, Tabs } from 'antd';
@@ -12,7 +12,7 @@ import ExecLogicHistory from '@/components/setting-drawer/component/exec-logic-h
 import SchemaData from '@/components/setting-drawer/component/schema-data';
 import LogicTabs, { LogicTabsRef } from '@/components/setting-drawer/component/logic-tabs';
 import ModelPageTabs from '@/components/setting-drawer/component/model-page-tabs';
-import { LeftRightSlot, Portal } from '@formlogic/component';
+import { CloseButton, LeftRightSlot, Portal } from '@formlogic/component';
 import { Form, isForm } from '@formily/core';
 
 import { onExecLogicDone, onTransformOptionsChange } from '@/effect-hook';
@@ -26,10 +26,13 @@ export enum TabsItemKey {
 
 export interface SettingDrawerProps extends DrawerProps {
   form: Form;
+  renderDone: boolean;
 }
 
-const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
+const SettingDrawer: FC<SettingDrawerProps> = ({ form, renderDone }) => {
   const [open, show, hidden] = useOpen();
+
+  const [reload, setReload] = useState(false);
 
   const [warpSSR, hashId, prefixCls] = useSettingDrawerStyle();
 
@@ -60,7 +63,6 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
     const formId = form.id;
     const modalNode = document.querySelector(`.ant-modal-content .form-id-${formId}`);
     const drawerNode = document.querySelector(`.ant-drawer-content .form-id-${formId}`);
-
     if (modalNode) {
       return checkParentNode(modalNode.parentElement, 'ant-modal-content');
     } else if (drawerNode) {
@@ -70,10 +72,10 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
   };
 
   useEffect(() => {
-    if (form?.id) {
+    if (form?.id && renderDone) {
       setPortalContainer(getPortalContainer());
     }
-  }, [form?.id]);
+  }, [form?.id, renderDone]);
 
   const handleLogicPatternChange = (pattern) => {
     setShowSaveBtn(pattern === ChartPattern.EDITABLE);
@@ -81,6 +83,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
 
   const handleTabsChange = (nextActive) => {
     setActiveKey(nextActive);
+    setShowSaveBtn(false);
   };
 
   const handleSaveClick = () => {
@@ -92,6 +95,8 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
         });
       }
     }
+
+    setReload(true)
   };
 
   useEffect(() => {
@@ -122,11 +127,20 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
     show();
   };
 
+  const handleClose = () => {
+    hidden();
+    if (reload) {
+      history.go(0);
+    }
+  };
+
   const items = [
     {
       label: '页面配置',
       key: TabsItemKey.modelPageConfig,
-      children: <ModelPageTabs options={options} />,
+      children: (
+        <ModelPageTabs options={options} isActive={TabsItemKey.modelPageConfig === activeKey} />
+      ),
     },
     {
       label: '页面逻辑',
@@ -136,6 +150,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
           options={options}
           ref={logicTabsRef}
           onPatternChange={handleLogicPatternChange}
+          isActive={TabsItemKey.logicList === activeKey}
         />
       ),
     },
@@ -154,7 +169,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
   return warpSSR(
     <>
       {portalContainer ? (
-        <Portal open getContainer={portalContainer}>
+        <Portal open={renderDone} getContainer={portalContainer}>
           <div className={cls(`${prefixCls}-handle`, hashId)} onClick={handleClick}>
             <SettingOutlined />
           </div>
@@ -172,9 +187,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
           <LeftRightSlot
             left={
               <Space>
-                <Button icon={<CloseOutlined />} onClick={hidden}>
-                  关闭
-                </Button>
+                <CloseButton onClick={handleClose} />
               </Space>
             }
             right={
@@ -185,6 +198,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form }) => {
                     disabled={loading}
                     icon={<SaveOutlined />}
                     onClick={handleSaveClick}
+                    type="primary"
                   >
                     保存
                   </Button>

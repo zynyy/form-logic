@@ -1,5 +1,5 @@
 import { FC, Key, useEffect, useMemo, memo, useState } from 'react';
-import { Form, setValidateLanguage, JSXComponent } from '@formily/core';
+import { Form, setValidateLanguage } from '@formily/core';
 import { FormProvider } from '@formily/react';
 
 import { Empty, Skeleton } from 'antd';
@@ -13,6 +13,7 @@ import { ListTableProps } from '@/components/list-table';
 
 import { useDeepEffect, useDOMRect } from '@formlogic/component';
 import { RowSelectionType } from 'antd/es/table/interface';
+import { Components } from '@/interface';
 
 export interface SchemeTableFormProps
   extends Omit<
@@ -32,9 +33,7 @@ export interface SchemeTableFormProps
   hasClearSelectedRows?: boolean;
   selectedRows?: any[];
   rowSelectionType?: RowSelectionType;
-  components?: {
-    [key: string]: JSXComponent;
-  };
+  components?: Components;
 }
 
 const SchemeTableForm: FC<SchemeTableFormProps> = ({

@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import {FormilyForm,FormConfigProps} from '@formlogic/render';
+import type {FormilyForm,FormConfigProps,Components} from '@formlogic/render';
 import { useSearchParams } from 'react-router-dom';
 
 import {  <%- fileNameLower %>Detail } from './service';
 
 
+export const components:Components = {
 
+}
 
 // 验证表单值
 export const validateFormValues: (formValues: any,form:FormilyForm) => Promise<boolean> = async () => {
@@ -16,7 +18,7 @@ export const validateFormValues: (formValues: any,form:FormilyForm) => Promise<b
 
 
 // 处理提交给后端的参数
-export const formatFormValues: (formValues: any,form:FormilyForm) => any = (formValues, form) => {
+export const formatFormValues: (formValues: any,form:FormilyForm) => any = (formValues) => {
 
 
 
@@ -34,26 +36,25 @@ export const use<%- fileName %>Detail = (): [FormConfigProps, boolean] => {
 
     const [formConfig, setFormConfig] = useState<FormConfigProps>({});
 
-        const code = URLSearchParams.get('code');
+    const code = URLSearchParams.get('code');
 
-        useEffect(() => {
+    useEffect(() => {
         if (code) {
-        setLoading(true);
+            setLoading(true);
 
-        <%- fileNameLower %>Detail({ code })
-        .then((res) => {
-        const { data } = res;
+            <%- fileNameLower %>Detail({ code })
+            .then((res) => {
+                const { data } = res;
 
-        setFormConfig({
-        initialValues: data,
-        });
-        })
-        .finally(() => {
-        setLoading(false);
-        });
+                setFormConfig({
+                    initialValues: data,
+                });
+            })
+            .finally(() => {
+                setLoading(false);
+            });
         }
-        }, [code]);
+    }, [code]);
 
-        return [formConfig, loading];
-
+    return [formConfig, loading];
 }

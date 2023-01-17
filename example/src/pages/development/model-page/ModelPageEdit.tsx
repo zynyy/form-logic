@@ -1,6 +1,6 @@
-import { FormPageLayout } from '@formlogic/render';
+import { FormPageLayout, useJsonMetaSchema } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
-import { useMetaSchema } from '@/hooks';
+
 import { apiUrl, ModelPageConfig } from './services';
 import { components, useModelPageDetail } from './hooks';
 import getLogicConfig from '@/low-code-meta/logic';
@@ -8,7 +8,7 @@ import getLogicConfig from '@/low-code-meta/logic';
 const ModelPageEdit = () => {
   const navigate = useNavigate();
 
-  const [metaSchema] = useMetaSchema(ModelPageConfig.EDIT);
+  const {metaSchema} = useJsonMetaSchema(ModelPageConfig.EDIT);
 
   const [formConfig, loading] = useModelPageDetail();
 

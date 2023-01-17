@@ -1,6 +1,6 @@
-import { ListLayout, useReloadFlag } from '@formlogic/render';
+import { ListLayout, useJsonMetaSchema, useReloadFlag } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
-import { useMetaSchema } from '@/hooks';
+
 import { apiUrl, FieldMetaConfig, fieldMetaRemove } from './services';
 import getLogicConfig from '@/low-code-meta/logic';
 import { getQueryUrl } from '@/utils/utils';
@@ -8,7 +8,7 @@ import { getQueryUrl } from '@/utils/utils';
 const FieldMeta = () => {
   const navigate = useNavigate();
 
-  const [metaSchema] = useMetaSchema(FieldMetaConfig.LIST);
+  const {metaSchema} = useJsonMetaSchema(FieldMetaConfig.LIST);
 
   const [reloadFlag, refreshReloadFlag] = useReloadFlag();
 

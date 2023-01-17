@@ -1,5 +1,12 @@
 {
   "list": [
+    { "code": "test1", "component": "Input", "componentProps": {}, "name": "123543" },
+    {
+      "code": "test",
+      "component": "Input",
+      "componentProps": { "addonBefore": "12", "addonAfter": "12" },
+      "name": "测试"
+    },
     {
       "code": "enum",
       "component": "JsonPopover",
@@ -33,7 +40,7 @@
     },
     { "code": "maximum", "component": "InputNumber", "componentProps": {}, "name": "最大值" },
     { "code": "date", "componentProps": {}, "name": "日期" },
-    { "code": "integer", "componentProps": {}, "name": "整数" },
+    { "code": "integer", "componentProps": {}, "name": "整数", "component": "InputNumber" },
     { "code": "number", "componentProps": {}, "name": "数字" },
     { "code": "email", "component": "Input", "componentProps": {}, "name": "邮箱" },
     { "code": "url", "componentProps": {}, "name": "url" },

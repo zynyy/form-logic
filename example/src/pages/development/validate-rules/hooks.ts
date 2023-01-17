@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
-import { FormilyForm, FormConfigProps } from '@formlogic/render';
+import { FormilyForm, FormConfigProps, Components } from '@formlogic/render';
 import { useSearchParams } from 'react-router-dom';
 
 import { validateRulesDetail } from './service';
+
+
+export const components:Components = {
+
+}
+
 
 // 验证表单值
 export const validateFormValues: (

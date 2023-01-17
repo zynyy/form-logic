@@ -92,15 +92,16 @@ const ListLayout: FC<ListLayoutProps> = ({
 
   const [triggerLogic] = useTriggerLogic(getLogicConfig, () => {});
 
-  const handleButtonItemClick = (
-    e,
-    code: string,
-    eventCode: string | undefined,
-    clickCodes: string[],
-  ) => {
+  const handleButtonItemClick = (e, record) => {
+    const { eventCode, code, clickCodes } = record;
+
     if (eventCode && events?.[eventCode]) {
-      events[eventCode](e, searchForm);
-      return;
+      return events[eventCode](e, {
+        code,
+        searchForm,
+        tableForm: dataTableForm,
+        setSearchLoading,
+      });
     }
 
     if (clickCodes.length) {

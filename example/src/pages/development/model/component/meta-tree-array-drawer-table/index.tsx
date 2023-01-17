@@ -8,10 +8,10 @@ import {
   isArrayField,
   FormConfigProps,
   AnyObject,
-  findMultiArray, DrawerPageForm, useSchemaComponentsContext,
+  findMultiArray, DrawerPageForm, useSchemaComponentsContext, useJsonMetaSchema, useOpen,
 } from '@formlogic/render';
 import { FC, useState } from 'react';
-import { useMetaSchema, useOpen } from '@/hooks';
+
 import getLogicConfig from '@/low-code-meta/logic';
 
 import { Row, Col } from 'antd';
@@ -37,7 +37,7 @@ const MetaTreeArrayDrawerTable: FC<MetaTreeArrayDrawerTableProps> = observer(
 
     const [formConfig, setFormConfig] = useState<FormConfigProps>({});
 
-    const [metaSchema] = useMetaSchema(drawerPageCode);
+    const {metaSchema} = useJsonMetaSchema(drawerPageCode);
 
     const components = useSchemaComponentsContext()
 

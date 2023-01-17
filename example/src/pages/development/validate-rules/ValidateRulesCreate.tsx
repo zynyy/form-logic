@@ -33,13 +33,11 @@ const ValidateRulesCreate: FC<ValidateRulesCreateProps> = () => {
         extraParams: {},
         validateFormValues,
         formatFormValues,
-
       }}
       onBackClick={handleBackClick}
       components={{
         JsonPopover,
         RequestMethodSelect,
-
       }}
     />
   );

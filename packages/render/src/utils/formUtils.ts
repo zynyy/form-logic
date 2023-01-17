@@ -122,7 +122,9 @@ export const fieldVisible = (form: Form, when: boolean, fulfill: string[], other
 export const fieldDisabled = (form: Form, disabled, fields: FormPathPattern[]) => {
   toArray(fields).forEach((key) => {
     form.setFieldState(key, (state) => {
-      state.disabled = disabled;
+      if (state.pattern !== 'readOnly') {
+        state.disabled = disabled;
+      }
     });
   });
 };

@@ -10,7 +10,7 @@ import {
   LogicListItem,
   LogicPayloadArgs,
 } from '@/interface';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import effectHook, { BIND_LOGIC_END, BIND_LOGIC_START, EXEC_LOGIC_DONE } from '@/effect-hook';
 import { uid } from '@formily/shared';
 import { nowTime } from '@/utils';
@@ -28,15 +28,17 @@ export const useTriggerLogic = (
 
       const { fieldCode, pageCode, effectHook, form, field, ...restPayload } = payload || {};
 
-      let execKey = `${logicCode}_${effectHook}_${fieldCode}_${form.id}`;
+      let execKey = `${logicCode}_${effectHook}_${fieldCode}`;
+
+      let execFieldCode = fieldCode;
 
       if (field) {
         const address = field.address.toString();
 
-        const fieldCodeIndex = Object.keys(form.indexes).find(
-          (index) => form.indexes[index] === address,
-        );
-        execKey = `${logicCode}_${effectHook}_${fieldCodeIndex}_${form.id}`;
+        execFieldCode =
+          Object.keys(form.indexes).find((index) => form.indexes[index] === address) || fieldCode;
+
+        execKey = `${logicCode}_${effectHook}_${execFieldCode}`;
       }
 
       if (execNumRef.current[execKey]) {
@@ -61,7 +63,7 @@ export const useTriggerLogic = (
               form?.notify(EXEC_LOGIC_DONE, [
                 {
                   logicCode,
-                  fieldCode,
+                  fieldCode: execFieldCode,
                   pageCode,
                   effectHook,
                   formId: form?.id,

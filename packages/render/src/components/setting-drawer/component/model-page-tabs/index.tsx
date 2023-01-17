@@ -7,6 +7,7 @@ import { toArray } from '@/utils';
 
 export interface ModelPageTabsProps {
   options: TransformsSchemaOptions;
+  isActive: boolean;
 }
 
 const ModelPageTabs: FC<ModelPageTabsProps> = ({ options }) => {

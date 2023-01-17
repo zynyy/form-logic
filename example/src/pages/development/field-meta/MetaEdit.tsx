@@ -37,7 +37,6 @@ const MetaEdit = () => {
         getLogicConfig={getLogicConfig}
         components={{
           SchemaTypeSelect,
-
           JsonPopover,
           RequestMethodSelect
         }}

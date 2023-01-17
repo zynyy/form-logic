@@ -3,21 +3,21 @@ import {
   JsonPopover,
   RequestMethodSelect,
   SchemaPatternEnum,
-  SchemaTypeSelect,
+  SchemaTypeSelect, useJsonMetaSchema,
 
 } from '@formlogic/render';
 
 import getLogicConfig from '@/low-code-meta/logic';
 import { ModelConfig } from '@/pages/development/model/services';
 import { useNavigate } from 'react-router-dom';
-import { useMetaSchema } from '@/hooks';
+
 import { useModelDetail } from '@/pages/development/model/hooks';
 import MetaTreeArrayDrawerTable from '@/pages/development/model/component/meta-tree-array-drawer-table';
 
 const ModelDetail = () => {
   const navigate = useNavigate();
 
-  const [metaSchema] = useMetaSchema(ModelConfig.DETAIL);
+  const {metaSchema} = useJsonMetaSchema(ModelConfig.DETAIL);
 
   const [formConfig, loading] = useModelDetail();
 

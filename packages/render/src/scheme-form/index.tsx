@@ -1,5 +1,5 @@
 import { FC, memo, useEffect } from 'react';
-import { Form, setValidateLanguage, JSXComponent } from '@formily/core';
+import { Form, setValidateLanguage } from '@formily/core';
 import { FormProvider } from '@formily/react';
 import { ISchema } from '@formily/react';
 
@@ -12,15 +12,14 @@ import { SchemeFormContent, SchemeFormValueContent } from '@/scheme-form/hooks';
 
 import SettingDrawer from '@/components/setting-drawer';
 import { clone } from '@formily/shared';
+import { Components } from '@/interface';
 
 export interface SchemeFormProps extends SchemeFormValueContent {
   language?: string;
   schema: ISchema;
   loading?: boolean;
   form: Form;
-  components?: {
-    [key: string]: JSXComponent;
-  };
+  components?: Components;
 }
 
 const SchemeForm: FC<SchemeFormProps> = ({
@@ -28,7 +27,7 @@ const SchemeForm: FC<SchemeFormProps> = ({
   extraLogicParams,
   events,
   pattern,
-  loading,
+  loading: propsLoading,
   language,
   schema,
   components,
@@ -42,9 +41,11 @@ const SchemeForm: FC<SchemeFormProps> = ({
     setValidateLanguage(language ?? 'zh-CN');
   }, [language]);
 
+  const loading = !!propsLoading;
+
   return (
     <>
-      <Skeleton loading={!!loading}>
+      <Skeleton loading={loading}>
         <FormProvider form={form}>
           <SchemeFormContent.Provider
             value={{
@@ -65,7 +66,7 @@ const SchemeForm: FC<SchemeFormProps> = ({
         </FormProvider>
       </Skeleton>
 
-      {isDev ? <SettingDrawer form={form} /> : null}
+      {isDev ? <SettingDrawer form={form} renderDone={!loading} /> : null}
     </>
   );
 };

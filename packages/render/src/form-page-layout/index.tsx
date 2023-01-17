@@ -1,12 +1,12 @@
 import SchemeForm, { SchemeFormProps } from '@/scheme-form';
 import { FC, useState, useEffect } from 'react';
-import { Button } from 'antd';
 
 import { TransformsOptionsArgs, usePageForm, useTransformsOptions, useTriggerLogic } from '@/hooks';
 import { AnyObject, EventsObject, LogicConfig } from '@/interface';
 
 import { LeftRightSlot, BackButton, Layout } from '@formlogic/component';
 import { Form, IFormProps } from '@formily/core';
+import Buttons, { ClickRecord } from '@/components/buttons';
 
 export interface FormPageLayoutProps
   extends TransformsOptionsArgs,
@@ -68,50 +68,47 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
     setSubmitLoading(!!loading);
   }, [loading]);
 
+  const handleButtonItemClick = (e, record: ClickRecord) => {
+    const { eventCode, clickCodes, code } = record;
+
+    if (events?.[eventCode]) {
+      return events[eventCode](e, {
+        code,
+        form,
+        setSubmitLoading,
+      });
+    }
+
+    if (clickCodes.length) {
+      setSubmitLoading(true);
+      triggerLogic(clickCodes, {
+        params: extraLogicParams,
+        form,
+        effectHook: 'onClick',
+        fieldCode: code,
+        pageCode: options?.metaSchema?.code,
+      });
+    }
+  };
+
   const renderFooter = () => {
     if (hasFooter) {
       const left = hasBackBtn ? <BackButton onClick={onBackClick} /> : null;
 
-      const right = hasButton
-        ? buttons.map((item) => {
-            const { name, logics, eventCode } = item || {};
-
-            const clickCodes =
-              logics
-                ?.filter((item) => item.effectHook === 'onClick')
-                ?.map((item) => item.logicCode) || [];
-
-            return (
-              <Button
-                loading={submitLoading}
-                disabled={submitLoading}
-                key={name}
-                onClick={(e) => {
-                  if (events?.[eventCode]) {
-                    events[eventCode](e, form, setSubmitLoading);
-                    return;
-                  }
-
-                  if (clickCodes.length) {
-                    setSubmitLoading(true);
-
-                    triggerLogic(clickCodes, {
-                      params: extraLogicParams,
-                      form,
-                      effectHook: 'onClick',
-                      fieldCode: name,
-                      pageCode: options?.metaSchema?.code,
-                    });
-                  }
-                }}
-              >
-                {name}
-              </Button>
-            );
-          })
-        : null;
-
-      return <LeftRightSlot left={left} right={right} />;
+      return (
+        <LeftRightSlot
+          left={left}
+          right={
+            <Buttons
+              buttons={buttons}
+              loading={submitLoading}
+              disabled={submitLoading}
+              onClick={handleButtonItemClick}
+              components={components}
+            />
+          }
+        />
+      );
     }
 
     return null;

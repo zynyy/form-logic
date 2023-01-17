@@ -2,11 +2,11 @@ import {
   FormPageLayout,
   JsonPopover,
   RequestMethodSelect,
-  SchemaTypeSelect,
+  SchemaTypeSelect, useJsonMetaSchema,
 
 } from '@formlogic/render';
 import { useNavigate } from 'react-router-dom';
-import { useMetaSchema } from '@/hooks';
+
 import { apiUrl, ModelConfig } from '@/pages/development/model/services';
 import getLogicConfig from '@/low-code-meta/logic';
 
@@ -16,7 +16,7 @@ import MetaTreeArrayDrawerTable from '@/pages/development/model/component/meta-t
 const ModelEdit = () => {
   const navigate = useNavigate();
 
-  const [metaSchema] = useMetaSchema(ModelConfig.EDIT);
+  const {metaSchema} = useJsonMetaSchema(ModelConfig.EDIT);
 
   const [formConfig, loading] = useModelDetail();
 

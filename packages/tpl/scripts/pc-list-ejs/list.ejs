@@ -8,46 +8,45 @@ import { apiUrl, <%- fileName %>Config, <%- fileNameLower %>Remove } from './ser
 
 const <%- fileName %>List = () => {
 
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
-const {metaSchema} = useJsonMetaSchema(<%- fileName %>Config.LIST);
+    const {metaSchema} = useJsonMetaSchema(<%- fileName %>Config.LIST);
 
-const [reloadFlag, refreshReloadFlag] = useReloadFlag();
+    const [reloadFlag, refreshReloadFlag] = useReloadFlag();
 
-const handleAddClick = () => {
-navigate(<%- fileName %>Config.CREATE_LINK);
-};
+    const handleAddClick = () => {
+        navigate(<%- fileName %>Config.CREATE_LINK);
+    };
 
-const handleRemoveClick = (index, record) => {
-    const { code } = record || {};
-    <%- fileNameLower %>Remove({ code }).then(() => {
-        refreshReloadFlag();
-    });
-};
+    const handleRemoveClick = (index, record) => {
+        const { code } = record || {};
+        <%- fileNameLower %>Remove({ code }).then(() => {
+            refreshReloadFlag();
+        });
+    };
 
-const handleEditClick = (index, record) => {
-    const { code, belong } = record || {};
-    navigate(getQueryUrl(<%- fileName %>Config.EDIT_LINK, { code, belong }));
-};
+    const handleEditClick = (index, record) => {
+        const { code, } = record || {};
+        navigate(getQueryUrl(<%- fileName %>Config.EDIT_LINK, { code }));
+    };
 
-const handleDetailClick = (index, record) => {
-const { code, belong } = record || {};
-navigate(getQueryUrl(<%- fileName %>Config.DETAIL_LINK, { code, belong }));
-}
+    const handleDetailClick = (index, record) => {
+        const { code } = record || {};
+        navigate(getQueryUrl(<%- fileName %>Config.DETAIL_LINK, { code }));
+    }
 
 
-return (<ListLayout
-        getLogicConfig={getLogicConfig}
-        metaSchema={metaSchema}
-        action={apiUrl.page}
-        reloadFlag={reloadFlag}
-
-        onEdit={handleEditClick}
-        onAdd={handleAddClick}
-        onRemove={handleRemoveClick}
-        onDetail={handleDetailClick}
-
-    />
+    return (
+        <ListLayout
+            getLogicConfig={getLogicConfig}
+            metaSchema={metaSchema}
+            action={apiUrl.page}
+            reloadFlag={reloadFlag}
+            onEdit={handleEditClick}
+            onAdd={handleAddClick}
+            onRemove={handleRemoveClick}
+            onDetail={handleDetailClick}
+        />
     );
 };
 

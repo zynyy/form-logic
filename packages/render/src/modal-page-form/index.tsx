@@ -1,22 +1,16 @@
-import { Button, message, Space } from 'antd';
+import { message } from 'antd';
 import SchemeForm, { SchemeFormProps } from '@/scheme-form';
 import { FC, useEffect, useState, MouseEvent, useMemo } from 'react';
 
 import { TransformsSchemaOptions } from '@/transforms';
-import { AnyObject, EventsObject, LogicConfig } from '@/interface';
+import { AnyObject, EventsObject, LogicConfig, SchemaPatternEnum } from '@/interface';
 import { usePageForm, useTriggerLogic } from '@/hooks';
 
-import { CheckOutlined } from '@ant-design/icons';
-
-import {
-  PageLoading,
-  LeftRightSlot,
-  CloseButton,
-  DraggableModal,
-  DraggableModalProps,
-} from '@formlogic/component';
+import { PageLoading, DraggableModal, DraggableModalProps } from '@formlogic/component';
 import { getSubmitFormValues } from '@/utils/formUtils';
 import { Form, IFormProps } from '@formily/core';
+import { ClickRecord } from '@/components/buttons';
+import DrawerModalFooter from '@/components/drawer-modal-footer';
 
 export interface ModalPageFormProps
   extends Omit<DraggableModalProps, 'onCancel' | 'onOk'>,
@@ -30,6 +24,7 @@ export interface ModalPageFormProps
   onConfirm?: (formValues: any) => void;
   onClose?: (e: MouseEvent<HTMLButtonElement>) => void;
   onFormMount?: (form: Form) => void;
+  hasConfirmButton?: boolean;
 }
 
 const ModalPageForm: FC<ModalPageFormProps> = ({
@@ -47,6 +42,7 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
   components,
   width,
   language,
+  hasConfirmButton,
 }) => {
   const [submitLoading, setSubmitLoading] = useState(false);
 
@@ -101,65 +97,28 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
       });
   };
 
-  const renderFooter = () => {
-    const left = <CloseButton loading={submitLoading} onClick={handleCloseClick} />;
+  const handleButtonItemClick = (e, record: ClickRecord) => {
+    const { eventCode, clickCodes, code } = record;
 
-    const right = buttons.map((item) => {
-      const { name, logics, eventCode } = item || {};
+    if (events?.[eventCode]) {
+      return events[eventCode](e, {
+        form,
+        setSubmitLoading,
+        code,
+      });
+    }
 
-      const clickCodes =
-        logics?.filter((item) => item.effectHook === 'onClick')?.map((item) => item.logicCode) ||
-        [];
+    if (clickCodes.length) {
+      setSubmitLoading(true);
 
-      return (
-        <Button
-          loading={submitLoading}
-          disabled={submitLoading}
-          key={name}
-          onClick={(e) => {
-            if (events?.[eventCode]) {
-              events[eventCode](e, form, setSubmitLoading);
-              return;
-            }
-
-            if (clickCodes.length) {
-              setSubmitLoading(true);
-
-              triggerLogic(clickCodes, {
-                params: extraLogicParams,
-                form,
-                effectHook: 'onClick',
-                fieldCode: name,
-                pageCode: options?.metaSchema?.code,
-              });
-            }
-          }}
-        >
-          {name}
-        </Button>
-      );
-    });
-
-    return (
-      <LeftRightSlot
-        left={left}
-        right={
-          <Space>
-            {right}
-            <Button
-              loading={submitLoading}
-              disabled={submitLoading}
-              onClick={handleConfirmClick}
-              type="primary"
-              icon={<CheckOutlined />}
-              key="confirmBtn"
-            >
-              确定
-            </Button>
-          </Space>
-        }
-      />
-    );
+      triggerLogic(clickCodes, {
+        params: extraLogicParams,
+        form,
+        effectHook: 'onClick',
+        fieldCode: code,
+        pageCode: options?.metaSchema?.code,
+      });
+    }
   };
 
   const loading = useMemo(() => {
@@ -209,7 +168,18 @@ const ModalPageForm: FC<ModalPageFormProps> = ({
         maxHeight: 500,
         minHeight: 200,
       }}
-      footer={renderFooter()}
+      footer={
+        <DrawerModalFooter
+          buttons={buttons}
+          hasConfirmButton={hasConfirmButton ?? options?.pattern !== SchemaPatternEnum.DETAIL}
+          onClick={handleButtonItemClick}
+          onConfirmClick={handleConfirmClick}
+          onCloseCLick={handleCloseClick}
+          loading={submitLoading}
+          disabled={submitLoading}
+          components={components}
+        />
+      }
       destroyOnClose
       afterClose={handleAfterClose}
     >

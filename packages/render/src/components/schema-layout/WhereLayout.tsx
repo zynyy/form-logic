@@ -1,11 +1,4 @@
-import {
-  CSSProperties,
-  FC,
-  PropsWithChildren,
-  useEffect,
-  useState,
-  MouseEventHandler,
-} from 'react';
+import { CSSProperties, FC, PropsWithChildren, useEffect, useState } from 'react';
 
 import { Divider, Button, Space } from 'antd';
 
@@ -13,6 +6,7 @@ import { ClearOutlined, DownOutlined, SearchOutlined, UpOutlined } from '@ant-de
 import { useWhereLayoutStyle } from '@/components/schema-layout/hooks';
 import cls from 'classnames';
 import { EventsObject, LogicConfig, MetaSchemaData } from '@/interface';
+import Buttons, { ButtonsProps } from '@/components/buttons';
 
 export interface WhereLayoutProps extends PropsWithChildren {
   title?: React.ReactNode;
@@ -26,12 +20,7 @@ export interface WhereLayoutProps extends PropsWithChildren {
   onCollapsedClick?: (collapsed: Boolean) => void;
   onRestClick?: () => void;
   onSearchClick?: () => void;
-  onButtonItemClick?: (
-    e: MouseEventHandler<HTMLAnchorElement> | MouseEventHandler<HTMLButtonElement>,
-    code: string,
-    eventCode: string | undefined,
-    clickCodes: string[],
-  ) => void;
+  onButtonItemClick?: ButtonsProps['onClick'];
   getLogicConfig?: LogicConfig;
   events?: EventsObject;
 }
@@ -105,25 +94,7 @@ const WhereLayout: FC<WhereLayoutProps> = ({
     return (
       <div className={cls(`${prefixCls}-right-button`, hashId)}>
         <Space>
-          {buttons.map((item) => {
-            const { name, logics, eventCode, code } = item || {};
-
-            const clickCodes =
-              logics
-                ?.filter((item) => item.effectHook === 'onClick')
-                .map((item) => item.logicCode) || [];
-
-            return (
-              <Button
-                key={code}
-                onClick={(e) => {
-                  onButtonItemClick?.(e, code, eventCode, clickCodes);
-                }}
-              >
-                {name}
-              </Button>
-            );
-          })}
+          <Buttons buttons={buttons} onClick={onButtonItemClick} />
 
           {hasRestButton ? (
             <Button icon={<ClearOutlined />} type="dashed" onClick={onRestClick}>
