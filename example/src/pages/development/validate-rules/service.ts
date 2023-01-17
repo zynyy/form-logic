@@ -1,4 +1,4 @@
-import { requestGet, requestPost } from '@/service';
+import { requestDelete, requestGet, requestPost } from '@/service';
 
 export enum ValidateRulesConfig {
   CREATE = 'FormValidateRules_C',
@@ -58,5 +58,5 @@ export const validateRulesDetail = (params: ValidateRulesDetailParams) => {
 
 // 详情页
 export const validateRulesRemove = (params: ValidateRulesRemoveParams) => {
-  return requestPost(apiUrl.remove, params);
+  return requestDelete(apiUrl.remove, params);
 };

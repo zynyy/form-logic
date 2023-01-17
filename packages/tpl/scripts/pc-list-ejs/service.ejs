@@ -1,4 +1,4 @@
-import { requestGet, requestPost } from '@/service';
+import { requestGet, requestPost,requestDelete } from '@/service';
 
 export enum <%- fileName %>Config {
 CREATE = "<%- create %>",
@@ -63,5 +63,5 @@ return requestGet(apiUrl.detail, params);
 
 // 详情页
 export const <%- fileNameLower %>Remove = (params: <%- fileName %>RemoveParams) => {
-return requestPost(apiUrl.remove, params);
+return requestDelete(apiUrl.remove, params);
 };
