@@ -8,7 +8,6 @@ import {
   JsonPopover,
   RequestMethodSelect,
   SchemaTypeSelect,
-
   FormPageLayoutProps,
 } from '@formlogic/render';
 import { modelPageDetail } from './services';
@@ -23,11 +22,9 @@ export const components: FormPageLayoutProps['components'] = {
   SchemaTypeSelect,
   FieldTypeSelect,
   GroupModeSelect,
-
   RequestMethodSelect,
   EffectHookSelect,
   JsonPopover,
-
   PagePreviewButton,
   PageSortButton,
   BatchAddModelPageField,

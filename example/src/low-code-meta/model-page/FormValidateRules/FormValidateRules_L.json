@@ -6,6 +6,72 @@
   "group": [],
   "data": [
     {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "addBtn",
+      "component": "ArrayBase.Addition",
+      "name": "新增",
+      "eventCode": "onAdd"
+    },
+    {
+      "type": "search_column",
+      "schemaType": "string",
+      "required": false,
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "code",
+      "component": "",
+      "name": "编码",
+      "validator": []
+    },
+    {
+      "type": "search_column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "name",
+      "component": "",
+      "name": "名称"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "editBtn",
+      "component": "ArrayBase.Edit",
+      "name": "编辑"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "removeBtn",
+      "component": "ArrayBase.Remove",
+      "name": "删除"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "detailBtn",
+      "component": "ArrayBase.Detail",
+      "name": "详情"
+    },
+    {
       "type": "table_column",
       "schemaType": "string",
       "required": "0",
@@ -40,71 +106,6 @@
       "code": "defaultValue",
       "component": "",
       "name": "默认值"
-    },
-    {
-      "type": "search_column",
-      "schemaType": "string",
-      "required": "0",
-      "hidden": "0",
-      "disabled": "0",
-      "hiddenName": "0",
-      "wrap": "0",
-      "componentProps": {},
-      "logics": [],
-      "code": "code",
-      "component": "",
-      "name": "编码"
-    },
-    {
-      "type": "search_column",
-      "schemaType": "string",
-      "required": "0",
-      "hidden": "0",
-      "disabled": "0",
-      "hiddenName": "0",
-      "wrap": "0",
-      "componentProps": {},
-      "logics": [],
-      "code": "name",
-      "component": "",
-      "name": "名称"
-    },
-    {
-      "type": "button",
-      "schemaType": "void",
-      "componentProps": {},
-      "logics": [],
-      "code": "addBtn",
-      "component": "ArrayBase.Addition",
-      "name": "新增",
-      "eventCode": "onAdd"
-    },
-    {
-      "type": "table_button",
-      "schemaType": "void",
-      "componentProps": {},
-      "logics": [],
-      "code": "editBtn",
-      "component": "ArrayBase.Edit",
-      "name": "编辑"
-    },
-    {
-      "type": "table_button",
-      "schemaType": "void",
-      "componentProps": {},
-      "logics": [],
-      "code": "removeBtn",
-      "component": "ArrayBase.Remove",
-      "name": "删除"
-    },
-    {
-      "type": "table_button",
-      "schemaType": "void",
-      "componentProps": {},
-      "logics": [],
-      "code": "detailBtn",
-      "component": "ArrayBase.Detail",
-      "name": "详情"
     }
   ],
   "model": "FormValidateRules",

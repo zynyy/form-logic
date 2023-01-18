@@ -5,10 +5,10 @@ export const settingDrawerStyle = genStyleHook('setting-drawer', (token) => {
     token || {};
 
   return {
-    [`${antCls}-tabs.setting-drawer-tabs ${antCls}-tabs-tabpane`]: {
+    [`${componentCls}-tabs ${antCls}-tabs-tabpane`]: {
       height: '100%',
     },
-    [`${antCls}-tabs.setting-drawer-tabs ${antCls}-tabs-content`]: {
+    [`${componentCls}-tabs ${antCls}-tabs-content`]: {
       height: '100%',
     },
 

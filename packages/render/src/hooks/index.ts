@@ -29,6 +29,8 @@ export { default as useSchemaComponentsContext } from './useSchemaComponentsCont
 export { default as usePageForm} from './usePageForm'
 export { default as useForceUpdate} from './useForceUpdate'
 
+export { default as useCacheWhere} from './useCacheWhere'
+
 
 export const useLatestFn = (handlerFn: (...arg: any) => void) => {
   const handlerRef = useRef((..._arg: any) => {});

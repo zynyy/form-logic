@@ -12,7 +12,7 @@ const PageConfig = () => {
 
   const [open, show, hidden] = useOpen();
 
-  const {metaSchema} = useJsonMetaSchema(ModelPageConfig.LIST);
+  const { metaSchema } = useJsonMetaSchema(ModelPageConfig.LIST);
 
   const [reloadFlag, refreshReloadFlag] = useReloadFlag();
 
@@ -34,6 +34,11 @@ const PageConfig = () => {
     navigate(getQueryUrl(ModelPageConfig.EDIT_LINK, { code }));
   };
 
+  const handleDetailClick = (index, record) => {
+    const { code } = record || {};
+    navigate(getQueryUrl(ModelPageConfig.DETAIL_LINK, { code }));
+  };
+
   const handleCopy = (index, record) => {
     show();
     setPageCode(record?.code);
@@ -53,6 +58,7 @@ const PageConfig = () => {
         onEdit={handleEditClick}
         onAdd={handleAddClick}
         onRemove={handleRemoveClick}
+        onDetail={handleDetailClick}
         onCopy={handleCopy}
         reloadFlag={reloadFlag}
       />

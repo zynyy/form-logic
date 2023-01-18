@@ -3,9 +3,13 @@ import { SortAscendingOutlined } from '@ant-design/icons';
 
 import { sortBy } from 'lodash-es';
 import { getFormValues, toArray, useForm, isField } from '@formlogic/render';
+import { FC } from 'react';
 
-const PageSortButton = () => {
+export interface PageSortButtonProps {}
+
+const PageSortButton: FC<PageSortButtonProps> = () => {
   const form = useForm();
+
 
   const handleClick = () => {
     getFormValues(form).then((formValues) => {

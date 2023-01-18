@@ -1,7 +1,6 @@
-import { RecursionField, useFieldSchema ,Schema} from '@formily/react';
+import { RecursionField, useFieldSchema, Schema } from '@formily/react';
 
-import { createElement, FunctionComponentElement, ReactNode } from 'react';
-
+import { createElement, FunctionComponentElement } from 'react';
 
 const useSchemaBtn = (): FunctionComponentElement<any>[] | null => {
   const arraySchema = useFieldSchema();
@@ -14,7 +13,7 @@ const useSchemaBtn = (): FunctionComponentElement<any>[] | null => {
         return btn.concat(parseSources(curSchema));
       }
 
-      if (name && ['editable', 'disabled'].includes(curSchema['x-pattern'])) {
+      if (name) {
         return btn.concat(
           createElement<any>(RecursionField, {
             schema: curSchema,

@@ -18,9 +18,11 @@ import { Button, ButtonProps } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import { strNumBoolToBoolean } from '@formlogic/component';
 
-interface BatchSettingModelPageFieldProps extends ButtonProps {}
+interface BatchSettingModelPageFieldProps extends ButtonProps {
+  readOnly?: boolean
+}
 
-const BatchSettingModelPageField: FC<BatchSettingModelPageFieldProps> = observer(({ disabled }) => {
+const BatchSettingModelPageField: FC<BatchSettingModelPageFieldProps> = observer(({ disabled,readOnly }) => {
   const [open, show, hidden] = useOpen();
 
   const form = useForm();
@@ -95,7 +97,7 @@ const BatchSettingModelPageField: FC<BatchSettingModelPageFieldProps> = observer
 
   const { group, data } = form?.values || {};
 
-  return (
+  return readOnly ? null :(
     <>
       <Button
         disabled={disabled || !toArray(selectedRowKeys).length}

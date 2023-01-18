@@ -62,6 +62,15 @@
       "schemaType": "void",
       "componentProps": {},
       "logics": [],
+      "code": "detailBtn",
+      "component": "ArrayBase.Detail",
+      "name": "详情"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
       "code": "copyBtn",
       "component": "ArrayBase.Copy",
       "name": "复制"

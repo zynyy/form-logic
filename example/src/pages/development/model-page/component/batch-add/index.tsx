@@ -18,10 +18,11 @@ import { ModelPageConfig } from '@/pages/development/model-page/services';
 
 interface BatchAddModelPageFieldProps extends PlusButtonProps {
   modalExtraLogicParams?: AnyObject;
+  readOnly ?: boolean;
 }
 
 const BatchAddModelPageField: FC<BatchAddModelPageFieldProps> = observer(
-  ({ disabled, modalExtraLogicParams }) => {
+  ({ disabled, modalExtraLogicParams,readOnly }) => {
     const [open, show, hidden] = useOpen();
 
     const form = useForm();
@@ -75,7 +76,7 @@ const BatchAddModelPageField: FC<BatchAddModelPageFieldProps> = observer(
 
     const { model, group } = form?.values || {};
 
-    return (
+    return readOnly ? null :(
       <>
         <PlusButton disabled={disabled || !model} onClick={handleClick} type="default">
           批量添加

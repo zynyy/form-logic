@@ -15,6 +15,7 @@ import effectHook, { BIND_LOGIC_END, BIND_LOGIC_START, EXEC_LOGIC_DONE } from '@
 import { uid } from '@formily/shared';
 import { nowTime } from '@/utils';
 import { useDeepEffect } from '@formlogic/component';
+import { getFieldIndexes } from '@/utils/formUtils';
 
 export const useTriggerLogic = (
   getLogicConfig,
@@ -33,10 +34,7 @@ export const useTriggerLogic = (
       let execFieldCode = fieldCode;
 
       if (field) {
-        const address = field.address.toString();
-
-        execFieldCode =
-          Object.keys(form.indexes).find((index) => form.indexes[index] === address) || fieldCode;
+        execFieldCode = getFieldIndexes(field, fieldCode);
 
         execKey = `${logicCode}_${effectHook}_${execFieldCode}`;
       }
@@ -225,8 +223,8 @@ export const useBindBtnClick = (options: BindBtnClickOptions): [string] => {
     }
 
     return () => {
-      form?.removeEffects(effectId);
       setDoneFormId('');
+      form?.removeEffects(effectId);
     };
   }, [form?.id, effectId, btnList, autoLogic]);
 

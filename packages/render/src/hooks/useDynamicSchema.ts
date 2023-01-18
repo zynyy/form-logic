@@ -8,6 +8,7 @@ import { AnyObject, MetaSchema } from '@/interface';
 import useForceUpdate from '@/hooks/useForceUpdate';
 import { clone } from '@formily/shared';
 import {useDeepEffect} from '@formlogic/component';
+import { getFieldIndexes } from '@/utils/formUtils';
 
 export const useDynamicSchema = (
   metaSchema: MetaSchema,
@@ -33,7 +34,7 @@ export const useDynamicSchema = (
 
   const { propertiesSchema, transformsDone, btnFields, logicList } = schema || {};
 
-  const prefixField = field.props.name as string;
+  const prefixField = getFieldIndexes(field);
 
   useEffect(() => {
     if (metaSchema) {

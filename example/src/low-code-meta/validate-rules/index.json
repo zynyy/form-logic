@@ -1,12 +1,5 @@
 {
   "list": [
-    { "code": "test1", "component": "Input", "componentProps": {}, "name": "123543" },
-    {
-      "code": "test",
-      "component": "Input",
-      "componentProps": { "addonBefore": "12", "addonAfter": "12" },
-      "name": "测试"
-    },
     {
       "code": "enum",
       "component": "JsonPopover",

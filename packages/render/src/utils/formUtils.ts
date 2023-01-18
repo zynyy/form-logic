@@ -1,4 +1,5 @@
 import {
+  Field,
   Form,
   GeneralField,
   IFieldResetOptions,
@@ -71,10 +72,10 @@ export const getFormValues = (form: Form) => {
 
 export const fieldResetValue = (
   form: Form,
-  fields: FormPathPattern[],
+  fieldCodes: FormPathPattern[],
   options?: IFieldResetOptions,
 ) => {
-  toArray(fields).forEach((field) => {
+  toArray(fieldCodes).forEach((field) => {
     form.query(field).forEach((target) => {
       if (isField(target)) {
         target
@@ -91,18 +92,18 @@ export const fieldResetValue = (
 
 export const fieldSetValue = (
   form: Form,
-  field: FormPathPattern,
+  fieldCode: FormPathPattern,
   value: any,
   triggerInputChange?: boolean,
 ) => {
   if (triggerInputChange === undefined || triggerInputChange) {
-    form.query(field).forEach((target) => {
+    form.query(fieldCode).forEach((target) => {
       if (isField(target)) {
         target.onInput(value).then(() => void 0);
       }
     });
   } else {
-    form.setValuesIn(field, value);
+    form.setValuesIn(fieldCode, value);
   }
 };
 
@@ -131,11 +132,11 @@ export const fieldDisabled = (form: Form, disabled, fields: FormPathPattern[]) =
 
 export const fieldSum = (
   form: Form,
-  field: FormPathPattern,
+  fieldCode: FormPathPattern,
   targetMap: {},
   triggerOnInput?: boolean,
 ) => {
-  const data = toArray(form.getValuesIn(field));
+  const data = toArray(form.getValuesIn(fieldCode));
 
   Object.keys(targetMap).forEach((key) => {
     const sum = data.reduce((acc: BigNumber, cur: any) => {
@@ -167,4 +168,14 @@ export const fieldDestroy = (field: GeneralField, forceClear = true) => {
     form.deleteValuesIn(path);
     form.deleteInitialValuesIn(path);
   }
+};
+
+export const getFieldIndexes = (field: GeneralField, defaultIndex?: string): string => {
+  const address = field.address.toString();
+
+  const { form } = field;
+
+  return (Object.keys(form.indexes).find((index) => form.indexes[index] === address) ??
+    defaultIndex ??
+    field.props.name) as string;
 };

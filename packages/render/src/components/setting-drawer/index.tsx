@@ -96,7 +96,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form, renderDone }) => {
       }
     }
 
-    setReload(true)
+    setReload(true);
   };
 
   useEffect(() => {
@@ -218,7 +218,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form, renderDone }) => {
           items={items}
           type="card"
           size="small"
-          className="setting-drawer-tabs"
+          className={cls(hashId, `${prefixCls}-tabs`)}
         />
       </Drawer>
     </>,

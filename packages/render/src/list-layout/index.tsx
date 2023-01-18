@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { AnyObject, EventsObject, LogicConfig, MetaSchema, SchemaPatternEnum } from '@/interface';
 import { Form, IFormProps, isField } from '@formily/core';
-import { useTransformsOptions, useTriggerLogic } from '@/hooks';
+import { useCacheWhere, useTransformsOptions, useTriggerLogic } from '@/hooks';
 
 import WhereLayout from '@/components/schema-layout/WhereLayout';
 
@@ -32,6 +32,8 @@ export interface ListLayoutProps
   extraSearchParams?: AnyObject;
   transformSearchParams?: (searchParams: AnyObject) => AnyObject;
   reloadFlag?: number;
+  hasCacheWhere?: boolean;
+  cacheKey?: string;
   extraLogicParams?: {
     [key: string]: any;
   };
@@ -52,6 +54,8 @@ const ListLayout: FC<ListLayoutProps> = ({
   reloadFlag,
   components,
   language,
+  cacheKey,
+  hasCacheWhere,
   ...tableProps
 }) => {
   const [options] = useTransformsOptions({
@@ -61,6 +65,8 @@ const ListLayout: FC<ListLayoutProps> = ({
 
   const [dataSource, setDataSource] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
+
+  const [setCache, getCache] = useCacheWhere(`${options?.metaSchema?.code}_${cacheKey || ''}`);
 
   const {
     searchForm,
@@ -116,7 +122,15 @@ const ListLayout: FC<ListLayoutProps> = ({
   };
 
   const initSearch = () => {
-    search(1, pageSize);
+    if (hasCacheWhere) {
+      const { current, pageSize: nextPageSize, params } = getCache();
+
+      searchForm.setValues(params);
+
+      search(current || 1, pageSize || nextPageSize);
+    } else {
+      search(1, pageSize);
+    }
   };
 
   const handleRestClick = () => {
@@ -145,9 +159,12 @@ const ListLayout: FC<ListLayoutProps> = ({
         current: nextCurrent ?? currentPage,
         pageSize: nextPageSize ?? pageSize,
       };
+
       setSearchLoading(true);
 
-      requestGet(action, transformSearchParams?.(params) || params)
+      const searchParams = transformSearchParams?.(params) || params;
+
+      requestGet(action, searchParams)
         .then((res) => {
           const { data } = res || {};
 
@@ -157,6 +174,12 @@ const ListLayout: FC<ListLayoutProps> = ({
           setPageSize(pageSize);
 
           setTotal(total);
+
+          setCache({
+            current,
+            pageSize,
+            params: searchParams,
+          });
 
           setDataSource(list);
         })
@@ -249,6 +272,10 @@ const ListLayout: FC<ListLayoutProps> = ({
       </Layout>
     </ListLayoutContent.Provider>
   );
+};
+
+ListLayout.defaultProps = {
+  hasCacheWhere: true,
 };
 
 export default ListLayout;
