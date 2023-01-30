@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { apiUrl, FieldMetaConfig, fieldMetaRemove } from './services';
 import getLogicConfig from '@/low-code-meta/logic';
 import { getQueryUrl } from '@/utils/utils';
+import { useEffect } from 'react';
 
 const FieldMeta = () => {
   const navigate = useNavigate();
 
-  const {metaSchema} = useJsonMetaSchema(FieldMetaConfig.LIST);
+  const { metaSchema } = useJsonMetaSchema(FieldMetaConfig.LIST);
 
   const [reloadFlag, refreshReloadFlag] = useReloadFlag();
 
@@ -32,6 +33,24 @@ const FieldMeta = () => {
     const { code, belong } = record || {};
     navigate(getQueryUrl(FieldMetaConfig.DETAIL_LINK, { code, belong }));
   };
+
+  useEffect(() => {
+    window.addEventListener('message', (event) => {
+      const { data } = event || {};
+
+      const { source, type } = data || {};
+
+      if (source === '@formlogic-devtools-background-script') {
+        if (type === 'connect') {
+        } else if (type === 'disconnect') {
+        }
+      }
+    });
+
+    return () => {
+      window.removeEventListener('message', () => {});
+    };
+  }, []);
 
   return (
     <ListLayout

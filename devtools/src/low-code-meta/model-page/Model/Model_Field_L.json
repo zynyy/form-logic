@@ -1,0 +1,51 @@
+{
+  "code": "Model_Field_L",
+  "name": "模型字段列表",
+  "model": "Model",
+  "group": [],
+  "data": [
+    {
+      "code": "addBtn",
+      "name": "添加",
+      "type": "button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "component": "ArrayBase.Addition"
+    },
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "table_column",
+      "schemaType": "string"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "table_column",
+      "schemaType": "string"
+    },
+    {
+      "code": "defaultConfig",
+      "name": "默认配置",
+      "type": "table_column",
+      "schemaType": "Object",
+      "hidden": "1"
+    },
+    {
+      "code": "edit",
+      "name": "编辑",
+      "type": "table_button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "component": "ArrayBase.Edit"
+    },
+    {
+      "code": "remove",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "component": "ArrayBase.Remove"
+    }
+  ]
+}

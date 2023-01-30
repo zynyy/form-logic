@@ -5,6 +5,8 @@ import { MonacoEditorLoaderConfig, MonacoEditorType, MonacoType } from '@/interf
 
 import { DEFAULT_LOADER_CONFIG } from '@/utils';
 
+loader.config(DEFAULT_LOADER_CONFIG);
+
 export interface MonacoEditorProps extends Omit<EditorProps, 'onMount'> {
   language?: 'javascript' | 'json' | 'typescript';
   value?: string;
@@ -13,8 +15,6 @@ export interface MonacoEditorProps extends Omit<EditorProps, 'onMount'> {
   loaderConfig?: MonacoEditorLoaderConfig;
   onMount?: (editor: MonacoEditorType.IStandaloneCodeEditor, monaco: MonacoType) => void;
 }
-
-loader.config(DEFAULT_LOADER_CONFIG);
 
 const MonacoEditor: FC<MonacoEditorProps> = ({
   readOnly,

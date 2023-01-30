@@ -5,12 +5,11 @@ import { ISchema } from '@formily/react';
 
 import { Empty, Skeleton } from 'antd';
 
-import { useDevEnv } from '@/hooks';
+import { useNotifyDevtools } from '@/hooks';
 import useCreateSchemaField from '@/hooks/useSchemaField';
 
 import { SchemeFormContent, SchemeFormValueContent } from '@/scheme-form/hooks';
 
-import SettingDrawer from '@/components/setting-drawer';
 import { clone } from '@formily/shared';
 import { Components } from '@/interface';
 
@@ -35,7 +34,7 @@ const SchemeForm: FC<SchemeFormProps> = ({
 }) => {
   const SchemaField = useCreateSchemaField();
 
-  const isDev = useDevEnv();
+  useNotifyDevtools(form);
 
   useEffect(() => {
     setValidateLanguage(language ?? 'zh-CN');
@@ -65,8 +64,6 @@ const SchemeForm: FC<SchemeFormProps> = ({
           </SchemeFormContent.Provider>
         </FormProvider>
       </Skeleton>
-
-      {isDev ? <SettingDrawer form={form} renderDone={!loading} /> : null}
     </>
   );
 };

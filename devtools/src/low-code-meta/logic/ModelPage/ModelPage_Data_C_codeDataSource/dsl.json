@@ -1,0 +1,40 @@
+{
+  "code": "ModelPage_Data_C_codeDataSource",
+  "cells": [
+    {
+      "id": "edge-rm83x86d",
+      "shape": "edge",
+      "target": { "cell": "data-rr01w5db", "port": "c72891b4-a9a5-4fb6-a3ec-5a0d76f86cf3" },
+      "source": { "cell": "start-rkl5u54r", "port": "d68928cd-90e2-44ec-b41d-dd57374fe720" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-k9jg864x",
+      "shape": "edge",
+      "target": { "cell": "end-wgs562x2", "port": "bbdc8add-94e5-45db-aeb5-e935b7b80d26" },
+      "source": { "cell": "data-rr01w5db", "port": "ecdb281a-b74b-4d35-aedc-ecfe10a82544" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-rkl5u54r",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" }
+    },
+    {
+      "id": "data-rr01w5db",
+      "shape": "custom-polygon",
+      "data": {
+        "settingConfig": "data-config",
+        "configValues": { "label": "数据" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "dataTemplateCode"
+      }
+    },
+    {
+      "id": "end-wgs562x2",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" }
+    }
+  ]
+}

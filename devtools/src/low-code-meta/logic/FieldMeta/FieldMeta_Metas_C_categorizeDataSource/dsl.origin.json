@@ -1,0 +1,256 @@
+{
+  "code": "FieldMeta_Metas_C_categorizeDataSource",
+  "name": "分类数据源",
+  "suffix": "categorizeDataSource",
+  "before": "FieldMeta_Metas_C_",
+  "type": "page",
+  "belong": "FieldMeta_Metas_C",
+  "cells": [
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-ugippxa9",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "start-z0l5kewx", "port": "58415352-7c74-4a2f-b64b-3d94729e8718" },
+      "target": { "cell": "data-edkiduar", "port": "2cb03373-9994-4038-b1ca-a4ad6cb3fb58" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-3dvfhpfp",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "data-edkiduar", "port": "98cc8211-9b49-4c95-934c-c2301103daf7" },
+      "target": { "cell": "end-d3gfp3qu", "port": "4b27b9fa-8d47-4978-8863-36a1ec46ef74" }
+    },
+    {
+      "position": { "x": 60, "y": 100 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "开始" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "start-z0l5kewx",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" },
+      "ports": {
+        "groups": {
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "rightOut", "id": "3c5671d6-a65a-48c6-bef4-376481057725" },
+          { "group": "bottomOut", "id": "58415352-7c74-4a2f-b64b-3d94729e8718" }
+        ]
+      },
+      "zIndex": 1
+    },
+    {
+      "position": { "x": 459, "y": 100 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "结束" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "end-d3gfp3qu",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" },
+      "ports": {
+        "groups": {
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "leftIn", "id": "4b27b9fa-8d47-4978-8863-36a1ec46ef74" },
+          { "group": "topIn", "id": "4c909b97-9586-484f-935c-ea124ef1ba20" }
+        ]
+      },
+      "zIndex": 2
+    },
+    {
+      "position": { "x": 250, "y": 170 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "数据" }, "body": { "refPoints": "10,0 40,0 30,20 0,20" } },
+      "visible": true,
+      "shape": "custom-polygon",
+      "ports": {
+        "groups": {
+          "top": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "right": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "bottom": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "left": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "c19eb14e-3f06-475f-817f-64c164f1aebb" },
+          { "group": "leftIn", "id": "2cb03373-9994-4038-b1ca-a4ad6cb3fb58" },
+          { "group": "bottomOut", "id": "429e469f-7a37-439a-b869-33c19d36fb7e" },
+          { "group": "rightOut", "id": "98cc8211-9b49-4c95-934c-c2301103daf7" }
+        ]
+      },
+      "id": "data-edkiduar",
+      "data": {
+        "settingConfig": "data-config",
+        "configValues": { "label": "数据" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "dataTemplateCode"
+      },
+      "zIndex": 3
+    }
+  ]
+}

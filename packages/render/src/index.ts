@@ -49,6 +49,9 @@ export type { ArrayTableBaseProps } from '@/components/array-table-base';
 export { useSchemeFormContent } from './scheme-form/hooks';
 export type { SchemeFormValueContent } from './scheme-form/hooks';
 
+export {EFFECT_HOOK_GROUP} from '@/utils/constant'
+
+
 export {
   useForm,
   useField,
@@ -70,6 +73,7 @@ export {
   useEffectForm,
   registerValidateRules,
   registerValidateLocale,
+  isForm
 } from '@formily/core';
 
 export type {

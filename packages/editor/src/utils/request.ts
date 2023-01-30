@@ -15,8 +15,28 @@ const HTTPStatusCodeMessage = {
   500: '请求失败 后端接口处理出错 {{&url}}',
 };
 
+let url = '/';
+
+if (window.location.protocol.startsWith('chrome-extension:')) {
+  // @ts-ignore
+  chrome.tabs.query({ active: true }, (tabs) => {
+    const tab = tabs[0];
+    if (tab) {
+      const nowUrl = new URL(tab.url);
+      url = `${nowUrl.protocol}//${nowUrl.host}/`;
+    }
+  });
+}
+
+const getBaseUrl = () => {
+  if (window.location.protocol.startsWith('http')) {
+    return `${window.location.protocol}//${window.location.host}/`;
+  }
+  return url;
+};
+
 const serviceInstance = axios.create({
-  baseURL: `${window.location.protocol}//${window.location.host}/`,
+  baseURL: getBaseUrl(),
   // timeout: 3000, // 设置超时时间
 });
 
@@ -26,6 +46,10 @@ const serviceInstance = axios.create({
 serviceInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // https://github.com/axios/axios#request-config
+
+    if (config.baseURL === '/') {
+      config.baseURL = url;
+    }
 
     return config;
   },
@@ -57,7 +81,7 @@ serviceInstance.interceptors.response.use(
 
       const { url } = config || {};
 
-      const code = error.request.status;
+      const code = error.request?.status;
 
       if (HTTPStatusCodeMessage[code]) {
         message.error(mustache.render(HTTPStatusCodeMessage[code], { url })).then(() => void 0);

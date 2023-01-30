@@ -12,6 +12,7 @@ formlogic 是面向前端开发者的工具，核心解决的是页面、逻辑�
 1. `@formlogic/editor` 编辑器可视化逻辑编排
 1. `@formlogic/server` 服务开发需要启动服务生成文件
 1. `@formlogic/tpl` 微生成器生成各种预制的模板代码快速的完成页面所需要的文件
+1. `@formlogic/devtools` 谷歌插件快速的修改页面配置以及查看
 
 # pnpm 使用
 
@@ -45,6 +46,7 @@ formlogic 是面向前端开发者的工具，核心解决的是页面、逻辑�
 // 目录结构
 // low-code-logic
 // ├── example // 使用案例
+// ├── devtools // 谷歌插件
 // ├── packages // 核心包
 //       ├── component  // 组件包
 //       ├── editor  // 逻辑编排编辑器

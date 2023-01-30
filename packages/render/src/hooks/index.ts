@@ -31,6 +31,8 @@ export { default as useForceUpdate} from './useForceUpdate'
 
 export { default as useCacheWhere} from './useCacheWhere'
 
+export {default as useNotifyDevtools} from './useNotifyDevtools'
+
 
 export const useLatestFn = (handlerFn: (...arg: any) => void) => {
   const handlerRef = useRef((..._arg: any) => {});

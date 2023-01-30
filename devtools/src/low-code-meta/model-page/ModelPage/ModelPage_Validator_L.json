@@ -1,0 +1,67 @@
+{
+  "code": "ModelPage_Validator_L",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "table_column",
+      "schemaType": "string",
+      "required": "1",
+      "hidden": "0",
+      "disabled": "0",
+      "componentProps": {
+        "apiConfig": { "method": "get", "params": {}, "url": "/local-api/validate-rules/list" },
+        "defaultFirstOptionValue": "0",
+        "labelTemplateKey": "{{code}}-{{name}}",
+        "valueTemplateKey": "{{code}}"
+      },
+      "logics": [
+        { "effectHook": "onFieldMount", "logicCode": "ModelPage_Validator_L_setValueComponent" },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_Validator_L_setValueComponent"
+        }
+      ],
+      "code": "validatorRule",
+      "component": "RemoteSelect",
+      "name": "验证规则",
+      "validator": []
+    },
+    {
+      "type": "table_column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "componentProps": {},
+      "logics": [],
+      "code": "validatorRuleValue",
+      "component": "",
+      "name": "规则值",
+      "validator": []
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "addBtn",
+      "component": "ArrayBase.Addition",
+      "name": "新增"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "removeBtn",
+      "component": "ArrayBase.Remove",
+      "name": "删除"
+    }
+  ],
+  "model": "ModelPage",
+  "codeSuffix": "Validator_L",
+  "name": "验证规则"
+}

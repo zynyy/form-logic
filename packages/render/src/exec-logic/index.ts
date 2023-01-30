@@ -131,7 +131,10 @@ class ExecLogic {
 
       if (nextNodes.length) {
         if (!noExecNextNode) {
-          const isTrue = nextEdge && nextEdge !== 0;
+          const nextEndNode = nextNodes.filter((cur) => cur.id.startsWith('end'));
+
+          const isTrue =
+            nextEdge && nextEdge !== 0 && !(nextEndNode.length === 1 && nextNodes.length === 1);
 
           const execNextNodes = isTrue
             ? nextNodes.filter((node) => {
@@ -142,8 +145,6 @@ class ExecLogic {
                 });
               })
             : nextNodes;
-
-          const nextEndNode = nextNodes.filter((cur) => cur.id.startsWith('end'));
 
           if (isTrue && !execNextNodes.length && nextNodes.length !== nextEndNode.length) {
             this.edgeTip(nextEdge);

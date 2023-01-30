@@ -1,0 +1,203 @@
+{
+  "code": "com_testSequential",
+  "name": "测试时序",
+  "suffix": "testSequential",
+  "before": "com_",
+  "type": "com",
+  "cells": [
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-eg2ctvpb",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "start-qadsyxbs", "port": "5feac91a-3abd-41af-a698-db8152db18e6" },
+      "target": { "cell": "fn-8qd0hvie", "port": "329daa01-efc2-41c8-9db4-89853cea9a24" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-7zoaz6sq",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "fn-8qd0hvie", "port": "f5c26f5a-748c-4c6d-9962-eef671ba664f" },
+      "target": { "cell": "end-fm8azei4", "port": "481948ac-63f3-40f2-918a-051e189fecec" }
+    },
+    {
+      "position": { "x": -190, "y": -160 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "开始" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "start-qadsyxbs",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" },
+      "ports": {
+        "groups": {
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "rightOut", "id": "40a202d1-08f7-48b9-ac08-bdd09bd28834" },
+          { "group": "bottomOut", "id": "5feac91a-3abd-41af-a698-db8152db18e6" }
+        ]
+      },
+      "zIndex": 1
+    },
+    {
+      "position": { "x": 140, "y": -150 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "结束" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "end-fm8azei4",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" },
+      "ports": {
+        "groups": {
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "leftIn", "id": "481948ac-63f3-40f2-918a-051e189fecec" },
+          { "group": "topIn", "id": "8a4f58b3-ccfc-4d5c-8029-13f85d038a3e" }
+        ]
+      },
+      "zIndex": 2
+    },
+    {
+      "position": { "x": -40, "y": -80 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "函数" } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "fn-8qd0hvie",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      },
+      "ports": {
+        "groups": {
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "207af0e1-67ab-481e-9632-b5447b05d847" },
+          { "group": "bottomOut", "id": "2d2b5ec0-3ff2-4df3-bc39-59409db14c49" },
+          { "group": "leftIn", "id": "329daa01-efc2-41c8-9db4-89853cea9a24" },
+          { "group": "rightOut", "id": "f5c26f5a-748c-4c6d-9962-eef671ba664f" }
+        ]
+      },
+      "zIndex": 3
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+{
+  "code": "com_SelectModeDataSource",
+  "remarks": "下拉框mode数据源",
+  "name": "下拉框mode数据源",
+  "suffix": "SelectModeDataSource",
+  "before": "com_",
+  "type": "com",
+  "cells": [
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-e0p4g86b",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "start-5hn6mzhw", "port": "49d76a82-7a59-43c2-9af6-07b059c9fe21" },
+      "target": { "cell": "data-jsv8ybsh", "port": "13151533-30fb-4453-829b-950f9fa881fc" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-blskbsd3",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "data-jsv8ybsh", "port": "4f33ae5b-b971-4a0f-adc8-4f06dda6a4f7" },
+      "target": { "cell": "end-hznt8c18", "port": "19b1cf16-8fb9-44e8-a9b8-4c2d46fd4a86" }
+    },
+    {
+      "position": { "x": -150, "y": -150 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "开始" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "start-5hn6mzhw",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" },
+      "ports": {
+        "groups": {
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "rightOut", "id": "6ebf2f21-eae2-4ff7-9579-5336a6b0fae4" },
+          { "group": "bottomOut", "id": "49d76a82-7a59-43c2-9af6-07b059c9fe21" }
+        ]
+      },
+      "zIndex": 1
+    },
+    {
+      "position": { "x": 120, "y": -150 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "结束" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "end-hznt8c18",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" },
+      "ports": {
+        "groups": {
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "leftIn", "id": "19b1cf16-8fb9-44e8-a9b8-4c2d46fd4a86" },
+          { "group": "topIn", "id": "3693e96f-2584-42c9-9f25-4a803a0db33a" }
+        ]
+      },
+      "zIndex": 2
+    },
+    {
+      "position": { "x": -20, "y": -80 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "数据" }, "body": { "refPoints": "10,0 40,0 30,20 0,20" } },
+      "visible": true,
+      "shape": "custom-polygon",
+      "ports": {
+        "groups": {
+          "top": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "right": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "bottom": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "left": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "dffb66c9-c2ef-46c8-875d-0ac32d882da5" },
+          { "group": "leftIn", "id": "13151533-30fb-4453-829b-950f9fa881fc" },
+          { "group": "bottomOut", "id": "6be23e41-79f7-4a5f-b5ad-524aa904df6e" },
+          { "group": "rightOut", "id": "4f33ae5b-b971-4a0f-adc8-4f06dda6a4f7" }
+        ]
+      },
+      "id": "data-jsv8ybsh",
+      "data": {
+        "settingConfig": "data-config",
+        "configValues": { "label": "数据" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "dataTemplateCode"
+      },
+      "zIndex": 3
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 import mustache from 'mustache';
 import { DataIndex, MonacoEditorLoaderPaths, StrNumBool } from '@/interface';
 import { MONACO_EDITOR_PATHS_VS } from '@/utils/constant';
+import { loader } from '@monaco-editor/react';
 
 export * from './tree';
 
@@ -14,6 +15,7 @@ export const DEFAULT_LOADER_CONFIG = {
 
 export const setMonacoEditorLoaderPath = (loaderPath: MonacoEditorLoaderPaths) => {
   DEFAULT_LOADER_CONFIG.paths = loaderPath;
+  loader.config(DEFAULT_LOADER_CONFIG);
 };
 
 export const setComponentPrefixCls = (prefixCls: string) => {

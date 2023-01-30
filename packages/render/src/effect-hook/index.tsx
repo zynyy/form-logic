@@ -129,5 +129,4 @@ export default {
   onBindLogicEnd,
   onExecLogicDone,
   onTransformOptionsChange,
-
 };

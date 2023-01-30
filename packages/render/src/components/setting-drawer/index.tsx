@@ -12,7 +12,7 @@ import ExecLogicHistory from '@/components/setting-drawer/component/exec-logic-h
 import SchemaData from '@/components/setting-drawer/component/schema-data';
 import LogicTabs, { LogicTabsRef } from '@/components/setting-drawer/component/logic-tabs';
 import ModelPageTabs from '@/components/setting-drawer/component/model-page-tabs';
-import { CloseButton, LeftRightSlot, Portal } from '@formlogic/component';
+import { CloseButton, LeftRightSlot, Portal, uid } from '@formlogic/component';
 import { Form, isForm } from '@formily/core';
 
 import { onExecLogicDone, onTransformOptionsChange } from '@/effect-hook';
@@ -100,7 +100,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form, renderDone }) => {
   };
 
   useEffect(() => {
-    const effectId = 'setting';
+    const effectId = uid();
 
     form?.addEffects(effectId, () => {
       onExecLogicDone((payload) => {

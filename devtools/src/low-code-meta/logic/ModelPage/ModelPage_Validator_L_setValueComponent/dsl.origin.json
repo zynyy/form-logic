@@ -1,0 +1,204 @@
+{
+  "code": "ModelPage_Validator_L_setValueComponent",
+  "name": "规则值组件",
+  "suffix": "setValueComponent",
+  "before": "ModelPage_Validator_L_",
+  "type": "page",
+  "belong": "ModelPage_Validator_L",
+  "cells": [
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-0hv8imaa",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "start-jbioz2pd", "port": "ce4655da-7713-4d29-93e1-db6878b26b76" },
+      "target": { "cell": "fn-rc06gr5x", "port": "d0b328de-1f07-464b-a8dd-6b7028ea4e32" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-hnymqamk",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "fn-rc06gr5x", "port": "b9efaa9b-ffb2-4e07-b474-683003131c51" },
+      "target": { "cell": "end-l8hyr8oi", "port": "75172101-8e9f-461f-a0b1-2450591233fb" }
+    },
+    {
+      "position": { "x": -170, "y": -120 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "开始" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "start-jbioz2pd",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" },
+      "ports": {
+        "groups": {
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "rightOut", "id": "ff626c4f-b0ba-43ce-a71f-40819c6088c8" },
+          { "group": "bottomOut", "id": "ce4655da-7713-4d29-93e1-db6878b26b76" }
+        ]
+      },
+      "zIndex": 1
+    },
+    {
+      "position": { "x": 105, "y": -120 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "结束" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "end-l8hyr8oi",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" },
+      "ports": {
+        "groups": {
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "leftIn", "id": "75172101-8e9f-461f-a0b1-2450591233fb" },
+          { "group": "topIn", "id": "aeafaea7-dc29-4f7d-af66-44ec2d6d9a65" }
+        ]
+      },
+      "zIndex": 2
+    },
+    {
+      "position": { "x": -60, "y": -10 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "函数" } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "fn-rc06gr5x",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      },
+      "ports": {
+        "groups": {
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "259201d7-c193-4565-9b9e-3e47a9e56553" },
+          { "group": "bottomOut", "id": "fd77ee36-3892-49e5-be12-f46a3d39ab04" },
+          { "group": "leftIn", "id": "d0b328de-1f07-464b-a8dd-6b7028ea4e32" },
+          { "group": "rightOut", "id": "b9efaa9b-ffb2-4e07-b474-683003131c51" }
+        ]
+      },
+      "zIndex": 3
+    }
+  ]
+}
