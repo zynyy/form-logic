@@ -5,6 +5,7 @@
   "main": "lib",
   "module": "esm",
   "types": "esm/index.d.ts",
+  "homepage": "https://github.com/zynyy/form-logic#readme",
   "engines": {
     "npm": ">=3.0.0"
   },

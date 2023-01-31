@@ -8,6 +8,7 @@
   "engines": {
     "npm": ">=3.0.0"
   },
+  "homepage": "https://github.com/zynyy/form-logic#readme",
   "scripts": {
     "rmBuildDir": "rimraf -rf lib esm dist ",
     "build:link": "pnpm run rmBuildDir && pnpm run create:style  && pnpm run build:esm && pnpm run build:style",

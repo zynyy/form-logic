@@ -4,6 +4,7 @@
   "license": "MIT",
   "browser": "./esm/index.js",
   "types": "esm/index.d.ts",
+  "homepage": "https://github.com/zynyy/form-logic#readme",
   "engines": {
     "npm": ">=3.0.0"
   },

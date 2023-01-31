@@ -49,8 +49,9 @@ export type { ArrayTableBaseProps } from '@/components/array-table-base';
 export { useSchemeFormContent } from './scheme-form/hooks';
 export type { SchemeFormValueContent } from './scheme-form/hooks';
 
-export {EFFECT_HOOK_GROUP} from '@/utils/constant'
+export { EFFECT_HOOK_GROUP } from '@/utils/constant';
 
+export { default as ExecLogic } from './exec-logic';
 
 export {
   useForm,
@@ -73,12 +74,12 @@ export {
   useEffectForm,
   registerValidateRules,
   registerValidateLocale,
-  isForm
+  isForm,
 } from '@formily/core';
 
 export type {
   Form as FormilyForm,
   IFormProps as FormConfigProps,
   Field as FormilyField,
-  JSXComponent
+  JSXComponent,
 } from '@formily/core';

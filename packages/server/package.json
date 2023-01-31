@@ -2,6 +2,7 @@
   "name": "@formlogic/server",
   "version": "1.0.0",
   "description": "form logic server",
+  "homepage": "https://github.com/zynyy/form-logic#readme",
   "engines": {
     "node": ">=14.0.0"
   },

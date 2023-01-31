@@ -2,6 +2,7 @@
   "name": "@formlogic/tpl",
   "version": "1.0.0",
   "description": "Configuration and scripts for tpl.",
+  "homepage": "https://github.com/zynyy/form-logic#readme",
   "type": "module",
   "engines": {
     "node": ">=16.0.0"

@@ -1,5 +1,5 @@
 import Context from './context';
-import { AnyObject, ExecInfo, LogicCtxArgs, NextLogicNodeArgs } from '@/interface';
+import { AnyObject, ExecInfo } from '@/interface';
 
 export interface ExecLogicOptions {
   dsl: {
