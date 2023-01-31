@@ -1,6 +1,6 @@
 {
   "name": "@formlogic/component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "lib",
   "module": "esm",
@@ -54,5 +54,5 @@
     "@types/qs": "^6.9.7",
     "@types/react": "^18.0.26"
   },
-  "gitHead": "9e3e664d4bc7f9c0527ad8f31e68212b100ae1ca"
+  "gitHead": "d6dabcdbbb5b96c5939cbbaad34edb0519d01f78"
 }

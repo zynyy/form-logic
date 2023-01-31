@@ -175,10 +175,10 @@ importers:
   devtools:
     specifiers:
       '@ant-design/icons': ^4.8.0
-      '@formlogic/component': ^1.0.0
-      '@formlogic/editor': ^1.0.0
-      '@formlogic/render': ^1.0.0
-      '@formlogic/server': ^1.0.0
+      '@formlogic/component': 1.0.1
+      '@formlogic/editor': 1.0.1
+      '@formlogic/render': 1.0.1
+      '@formlogic/server': 1.0.1
       '@testing-library/jest-dom': ^5.16.5
       '@testing-library/react': ^13.4.0
       '@testing-library/user-event': ^13.5.0
@@ -240,11 +240,11 @@ importers:
   example:
     specifiers:
       '@ant-design/icons': ^4.8.0
-      '@formlogic/component': ^1.0.0
-      '@formlogic/editor': ^1.0.0
-      '@formlogic/render': ^1.0.0
-      '@formlogic/server': ^1.0.0
-      '@formlogic/tpl': ^1.0.0
+      '@formlogic/component': 1.0.1
+      '@formlogic/editor': 1.0.1
+      '@formlogic/render': 1.0.1
+      '@formlogic/server': 1.0.1
+      '@formlogic/tpl': 1.0.1
       '@testing-library/jest-dom': ^5.16.5
       '@testing-library/react': ^13.4.0
       '@testing-library/user-event': ^13.5.0
@@ -383,7 +383,7 @@ importers:
       '@antv/x6-plugin-stencil': ^2.0.2
       '@antv/x6-plugin-transform': ^2.1.4
       '@antv/x6-react-shape': ^2.0.7
-      '@formlogic/component': ^1.0.0
+      '@formlogic/component': ^1.0.1
       '@types/qs': ^6.9.7
       '@types/react': ^18.0.26
       antd: ^5.1.5
@@ -434,9 +434,9 @@ importers:
       '@formily/react': 2.2.10
       '@formily/reactive': 2.2.10
       '@formily/shared': 2.2.10
-      '@formlogic/component': ^1.0.0
-      '@formlogic/editor': ^1.0.0
-      '@formlogic/server': ^1.0.0
+      '@formlogic/component': ^1.0.1
+      '@formlogic/editor': ^1.0.1
+      '@formlogic/server': ^1.0.1
       '@popperjs/core': ^2.11.6
       '@types/qs': ^6.9.7
       '@types/react': ^18.0.26
@@ -8288,7 +8288,6 @@ packages:
   /commander/9.5.0:
     resolution: {integrity: sha512-KRs7WVDKg86PWiuAqhDrAQnTXZKraVcCc6vFdL14qrZ/DcWwuRo7VoiYXalXO7S5GKpqYiVEwCbgFDfxNHKJBQ==}
     engines: {node: ^12.20.0 || >=14}
-    dev: false
 
   /common-ancestor-path/1.0.1:
     resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==}
@@ -20388,5 +20387,5 @@ packages:
       lodash.isequal: 4.5.0
       validator: 13.7.0
     optionalDependencies:
-      commander: 9.4.1
+      commander: 9.5.0
     dev: true

@@ -1,6 +1,6 @@
 {
   "name": "@formlogic/render",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "browser": "./esm/index.js",
   "types": "esm/index.d.ts",
@@ -28,9 +28,9 @@
     "@formily/react": "2.2.10",
     "@formily/reactive": "2.2.10",
     "@formily/shared": "2.2.10",
-    "@formlogic/component": "^1.0.0",
-    "@formlogic/editor": "^1.0.0",
-    "@formlogic/server": "^1.0.0",
+    "@formlogic/component": "^1.0.1",
+    "@formlogic/editor": "^1.0.1",
+    "@formlogic/server": "^1.0.1",
     "@popperjs/core": "^2.11.6",
     "antd": "^5.1.5",
     "axios": "^1.2.1",
@@ -54,5 +54,5 @@
     "@types/qs": "^6.9.7",
     "@types/react": "^18.0.26"
   },
-  "gitHead": "9e3e664d4bc7f9c0527ad8f31e68212b100ae1ca"
+  "gitHead": "d6dabcdbbb5b96c5939cbbaad34edb0519d01f78"
 }
