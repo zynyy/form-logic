@@ -61,9 +61,12 @@
       "labelCol": 0,
       "wrapperCol": 24,
       "component": "ArrayTable",
-      "componentProps": {},
+      "componentProps": {
+        "hasRowSelection": "1"
+      },
       "defaultValue": [],
       "hiddenName": "1",
+
       "itemMetaSchema": {
         "code": "User_L",
         "name": "用户新增配置",

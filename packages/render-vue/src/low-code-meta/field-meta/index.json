@@ -1,0 +1,317 @@
+{
+  "categorize": [
+    { "code": "apiInfo", "name": "接口配置" },
+    { "code": "componentInfo", "name": "组件属性" },
+    { "code": "configInfo", "name": "配置信息" },
+    { "code": "basicInfo", "name": "基础信息" },
+    { "code": "button", "name": "按钮类" }
+  ],
+  "metas": [
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "type",
+      "name": "类型",
+      "categorize": "basicInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "method",
+      "name": "请求方式",
+      "categorize": "apiInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "url",
+      "name": "请求接口",
+      "categorize": "apiInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "params",
+      "name": "请求参数",
+      "categorize": "apiInfo"
+    },
+    {
+      "code": "explain",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "TextArea"
+      },
+      "name": "示例说明",
+      "categorize": "componentInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "array", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "remoteDataPath",
+      "name": "数据源路径",
+      "categorize": "componentInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "valueTemplateKey",
+      "categorize": "componentInfo",
+      "name": "选项值"
+    },
+    {
+      "code": "defaultFirstOptionValue",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "YesNoSelect"
+      },
+      "name": "默认第一个值",
+      "categorize": "componentInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "object", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "apiConfig",
+      "name": "接口配置",
+      "categorize": "componentInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "optionLabelProp",
+      "name": "属性值",
+      "categorize": "componentInfo"
+    },
+    {
+      "code": "labelTemplateKey",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "name": "选项标签",
+      "categorize": "componentInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "array", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "logics",
+      "name": "逻辑信息",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "validator",
+      "name": "校验器",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "InputNumber"
+      },
+      "code": "wrapperCol",
+      "name": "控件布局",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "InputNumber"
+      },
+      "code": "labelCol",
+      "name": "标签布局",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "colSpan",
+      "name": "跨列",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "group",
+      "name": "分组",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "wrap",
+      "name": "换行",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "hiddenName",
+      "name": "名称隐藏",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "parentCode",
+      "name": "上级编码",
+      "categorize": "basicInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "hasSort",
+      "name": "排序",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "hasSerialNo",
+      "name": "序号",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "disabled",
+      "name": "禁止",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "required",
+      "name": "必填",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "hidden",
+      "name": "隐藏",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "description",
+      "name": "描述",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "defaultValue",
+      "categorize": "configInfo",
+      "name": "默认值"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "schemaType",
+      "name": "模式类型",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "object", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "columnProps",
+      "name": "表格列配置",
+      "categorize": "configInfo"
+    },
+    {
+      "code": "componentPropsList",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "ArrayDrawerTable"
+      },
+      "name": "属性配置列表",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "component",
+      "name": "组件",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "componentProps",
+      "name": "组件属性",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "JsonMonacoEditor"
+      },
+      "code": "componentPropsJson",
+      "name": "组件合并属性",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "PageCodeSelect"
+      },
+      "code": "pageCode",
+      "name": "页面编码",
+      "categorize": "configInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "removeBtn",
+      "name": "删除",
+      "categorize": "button"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "editBtn",
+      "name": "编辑",
+      "categorize": "button"
+    },
+    {
+      "code": "detailBtn",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "component": "ArrayBase.Detail"
+      },
+      "name": "详情",
+      "categorize": "button"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "previewBtn",
+      "name": "预览",
+      "categorize": "button"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "remark",
+      "name": "备注",
+      "categorize": "basicInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "code",
+      "name": "编码",
+      "categorize": "basicInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "name",
+      "name": "名称",
+      "categorize": "basicInfo"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "categorize": "button",
+      "code": "saveBtn",
+      "name": "保存"
+    },
+    {
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" },
+      "code": "addBtn",
+      "name": "新增",
+      "categorize": "button"
+    }
+  ]
+}

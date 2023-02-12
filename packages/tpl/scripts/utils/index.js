@@ -17,8 +17,13 @@ const HYPHEN_DELIMITED = '-';
 const LOWER_REG_EXP = new RegExp(`(${HYPHEN_DELIMITED})[a-z]`, 'g');
 const UPPER_REG_EXP = new RegExp(`(^|${HYPHEN_DELIMITED})[a-z]`, 'g');
 
+/**
+ * 大驼峰转 划线 eg: Aa => a-a; AAA => a-a-a
+ * @param str
+ * @returns {string}
+ */
 export const camelCaseToHyphen = (str) => {
-  return str.replace(/([a-z0-9])([A-Z])/g, `$1${HYPHEN_DELIMITED}$2`).toLowerCase();
+  return str.replace(/(?<=[A-Za-z0-9])(?=[A-Z])/g, HYPHEN_DELIMITED).toLowerCase();
 };
 
 // capitalize

@@ -17,7 +17,7 @@ const FormGroup: FC<FormGroupProps> = ({ code, hiddenName, className, title }) =
   const schema = useFieldSchema();
   const field = useField();
 
-  const btn = useGroupSchemaBtn();
+  const btn = useGroupSchemaBtn(code);
 
   const [warpSSR, hashId, prefixCls] = useFormGroupStyle();
 

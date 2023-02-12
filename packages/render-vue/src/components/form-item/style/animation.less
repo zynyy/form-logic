@@ -1,0 +1,55 @@
+@keyframes antShowHelpIn {
+  0% {
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.@{form-item-cls}-help-appear,
+.@{form-item-cls}-help-enter {
+  animation-duration: 0.3s;
+
+  animation-fill-mode: both;
+
+  animation-play-state: paused;
+}
+
+.@{form-item-cls}-help-appear.@{form-item-cls}-help-appear-active,
+.@{form-item-cls}-help-enter.@{form-item-cls}-help-enter-active {
+  animation-name: antShowHelpIn;
+
+  animation-play-state: running;
+}
+
+.@{form-item-cls}-help-appear,
+.@{form-item-cls}-help-enter {
+  opacity: 0;
+}
+
+.@{form-item-cls}-help-appear,
+.@{form-item-cls}-help-enter {
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@keyframes antShowHelpIn {
+  0% {
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes antShowHelpOut {
+  to {
+    transform: translateY(-5px);
+    opacity: 0;
+  }
+}

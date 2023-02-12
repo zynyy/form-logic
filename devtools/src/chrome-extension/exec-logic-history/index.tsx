@@ -54,11 +54,17 @@ const ExecLogicHistory: FC<ExecLogicHistoryProps> = ({ dataSource }) => {
     },
 
     {
-      title: '字段',
+      title: '监听字段',
       dataIndex: 'fieldCode',
       filters: getFilters('fieldCode'),
       width: 100,
       onFilter: (value: string, record) => record.fieldCode?.indexOf(value) === 0,
+    },
+
+    {
+      title: '执行字段',
+      dataIndex: 'execFieldCode',
+      width: 100,
     },
     {
       title: '事件',

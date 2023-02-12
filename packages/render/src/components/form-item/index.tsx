@@ -248,7 +248,7 @@ const BaseItem: FC<FormItemProps> = observer(
         <div
           className={cls({
             [`${prefixCls}-control`]: true,
-            [`${prefixCls}-item-col-${wrapperCol}`]: enableCol && !!wrapperCol && label,
+            [`${prefixCls}-item-col-${hiddenLabel ? 24 :wrapperCol}`]: enableCol && !!wrapperCol && label,
           })}
         >
           <div className={cls(`${prefixCls}-control-content`)} ref={controlContentDomRef}>

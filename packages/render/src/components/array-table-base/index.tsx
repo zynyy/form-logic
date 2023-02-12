@@ -16,6 +16,7 @@ import SortableBodyWrapper from '@/components/array-table-base/SortableBodyWrapp
 
 import { RowSelectionType } from 'antd/es/table/interface';
 import { strNumBoolToBoolean } from '@formlogic/component';
+import { useItemKey } from '@/components/array-base/hooks';
 
 export interface ArrayTableBaseProps extends TableProps<any>, ArrayBaseProps {
   scrollY?: number;
@@ -63,12 +64,14 @@ const InternalArrayTableBase: FC<ArrayTableBaseProps> = observer(
 
     const btn = useSchemaBtn();
 
+    const { getRecordKey } = useItemKey(true);
+
     const defaultRowKey = (record: any) => {
       if (typeof rowKey === 'function') {
         return rowKey(record);
       }
 
-      return record[rowKey] || dataSource.indexOf(record);
+      return record[rowKey] || getRecordKey(record);
     };
 
     const setRowProps = (record, index) => {

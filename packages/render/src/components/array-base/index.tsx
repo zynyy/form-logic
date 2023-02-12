@@ -44,48 +44,39 @@ import { UploadChangeParam } from 'antd/es/upload/interface';
 const OmitKey = ['extraParams'];
 
 export interface ArrayAdditionProps extends PropsWithChildren, CustomButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
 }
 
 export interface ArrayUploadProps extends UploadButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
   value?: any;
 }
 
 export interface ArrayCopyProps extends CopyButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
 }
 
 export interface ArrayRemoveProps extends RemoveButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
 }
 
 export interface ArrayBatchRemoveProps extends RemoveButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
 }
 
 export interface ArrayMoveUpProps extends UpButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
 }
 
 export interface ArrayMoveDownProps extends DownButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
 }
 
 export interface ArrayEditProps extends EditButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
 }
 
 export interface ArrayDetailProps extends DetailButtonProps {
-  onLogicClick: (...arg: any) => void;
   onClick?: (...arg: any) => void;
 }
 
@@ -166,58 +157,51 @@ const SortHandle: FC<ArraySortHandleProps> = observer((props) => {
   return <SortableHandle {...dragProps} />;
 });
 
-const AdditionButton: FC<ArrayAdditionProps> = observer(
-  ({ className, onClick, onLogicClick, ...restProps }) => {
-    const field = useField();
-    const array = useArrayContext();
+const AdditionButton: FC<ArrayAdditionProps> = observer(({ className, onClick, ...restProps }) => {
+  const field = useField();
+  const array = useArrayContext();
 
-    const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
+  const [warpSSR, hashId, prefixCls] = useArrayBaseStyle();
 
-    const handleClick = (e) => {
-      e.stopPropagation();
-      if (field.disabled) {
-        return;
-      }
-
-      if (onLogicClick) {
-        onLogicClick(field, field.form);
-        return;
-      }
-
-      if (onClick) {
-        onClick(field, field.form);
-        return;
-      }
-
-      if (array?.props?.onAdd) {
-        array.props.onAdd();
-        return;
-      }
-
-      array.field?.push?.({});
-    };
-
-    if (!array || !['editable', 'disabled'].includes(array.field?.pattern)) {
-      return null;
+  const handleClick = (e) => {
+    e.stopPropagation();
+    if (field.disabled) {
+      return;
     }
 
-    const btnProps = lodashOmit(restProps, OmitKey);
+    if (onClick) {
+      onClick(field, field.form);
+      return;
+    }
 
-    return warpSSR(
-      <PlusButton
-        type="primary"
-        block
-        {...btnProps}
-        disabled={field?.disabled}
-        className={cls(`${prefixCls}-addition`, hashId, className)}
-        onClick={handleClick}
-        title={field.title}
-      />,
-    );
-  },
-);
+    if (array?.props?.onAdd) {
+      array.props.onAdd();
+      return;
+    }
 
-export const Detail: FC<ArrayDetailProps> = observer(({ onLogicClick, className, onClick }) => {
+    array.field?.push?.({});
+  };
+
+  if (!array || !['editable', 'disabled'].includes(array.field?.pattern)) {
+    return null;
+  }
+
+  const btnProps = lodashOmit(restProps, OmitKey);
+
+  return warpSSR(
+    <PlusButton
+      type="primary"
+      block
+      {...btnProps}
+      disabled={field?.disabled}
+      className={cls(`${prefixCls}-addition`, hashId, className)}
+      onClick={handleClick}
+      title={field.title}
+    />,
+  );
+});
+
+export const Detail: FC<ArrayDetailProps> = observer(({ className, onClick }) => {
   const field = useField();
   const array = useArrayContext();
   const index = useArrayIndex();
@@ -229,11 +213,6 @@ export const Detail: FC<ArrayDetailProps> = observer(({ onLogicClick, className,
     e.stopPropagation();
 
     if (field.disabled) {
-      return;
-    }
-
-    if (onLogicClick) {
-      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -264,7 +243,7 @@ export const Detail: FC<ArrayDetailProps> = observer(({ onLogicClick, className,
   );
 });
 
-const Remove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogicClick }) => {
+const Remove: FC<ArrayRemoveProps> = observer(({ className, onClick }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
   const field = useField();
@@ -274,11 +253,6 @@ const Remove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogicClic
   const handleClick = (e) => {
     e.stopPropagation();
     if (field.disabled) {
-      return;
-    }
-
-    if (onLogicClick) {
-      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -314,7 +288,7 @@ const Remove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogicClic
   );
 });
 
-const BatchRemove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogicClick }) => {
+const BatchRemove: FC<ArrayBatchRemoveProps> = observer(({ className, onClick }) => {
   const field = useField();
   const array = useArrayContext();
 
@@ -338,10 +312,6 @@ const BatchRemove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogi
     e.stopPropagation();
     if (disabled) {
       return;
-    }
-
-    if (onLogicClick) {
-      return onLogicClick(rowSelected, field);
     }
 
     if (onClick) {
@@ -387,7 +357,7 @@ const BatchRemove: FC<ArrayRemoveProps> = observer(({ className, onClick, onLogi
   );
 });
 
-const Edit: FC<ArrayEditProps> = observer(({ onClick, className, onLogicClick }) => {
+const Edit: FC<ArrayEditProps> = observer(({ onClick, className }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
   const field = useField();
@@ -398,11 +368,6 @@ const Edit: FC<ArrayEditProps> = observer(({ onClick, className, onLogicClick })
     e.stopPropagation();
 
     if (field.disabled) {
-      return;
-    }
-
-    if (onLogicClick) {
-      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -454,7 +419,7 @@ const Upload: FC<ArrayUploadProps> = observer(({ className, ...restProps }) => {
   );
 });
 
-const Copy: FC<ArrayCopyProps> = observer(({ className, onClick, onLogicClick }) => {
+const Copy: FC<ArrayCopyProps> = observer(({ className, onClick }) => {
   const field = useField();
   const array = useArrayContext();
   const index = useArrayIndex();
@@ -466,11 +431,6 @@ const Copy: FC<ArrayCopyProps> = observer(({ className, onClick, onLogicClick })
     e.stopPropagation();
 
     if (field.disabled) {
-      return;
-    }
-
-    if (onLogicClick) {
-      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -507,7 +467,7 @@ const Copy: FC<ArrayCopyProps> = observer(({ className, onClick, onLogicClick })
   );
 });
 
-const MoveDownButton: FC<ArrayMoveDownProps> = observer(({ className, onClick, onLogicClick }) => {
+const MoveDownButton: FC<ArrayMoveDownProps> = observer(({ className, onClick }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
   const field = useField();
@@ -518,11 +478,6 @@ const MoveDownButton: FC<ArrayMoveDownProps> = observer(({ className, onClick, o
     e.stopPropagation();
 
     if (field.disabled) {
-      return;
-    }
-
-    if (onLogicClick) {
-      onLogicClick(index, record, field, field.form);
       return;
     }
 
@@ -557,7 +512,7 @@ const MoveDownButton: FC<ArrayMoveDownProps> = observer(({ className, onClick, o
   );
 });
 
-const MoveUpButton: FC<ArrayMoveUpProps> = observer(({ onClick, className, onLogicClick }) => {
+const MoveUpButton: FC<ArrayMoveUpProps> = observer(({ onClick, className }) => {
   const index = useArrayIndex();
   const record = useArrayItemRecord();
   const field = useField();
@@ -571,17 +526,17 @@ const MoveUpButton: FC<ArrayMoveUpProps> = observer(({ onClick, className, onLog
       return;
     }
 
-    if (onLogicClick) {
-      onLogicClick(index, record, field, field.form);
-      return;
-    }
-
     if (onClick) {
       onClick(index, record, field, field.form);
       return;
     }
 
-    array.props?.onMoveUp?.(index, record);
+    if (array.props?.onMoveUp) {
+      array.props.onMoveUp(index, record);
+      return;
+    }
+
+    array?.field?.moveUp(index);
   };
 
   if (!array || !['editable'].includes(array.field?.pattern)) {

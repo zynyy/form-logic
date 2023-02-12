@@ -1,0 +1,498 @@
+{
+  "code": "ModelPage_Group_C_modeVisibleAndDataSource",
+  "name": "分组模式",
+  "suffix": "modeVisibleAndDataSource",
+  "before": "ModelPage_Group_C_",
+  "type": "page",
+  "belong": "ModelPage_Group_C",
+  "cells": [
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-0dml60r8",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "start-vjg02kbm", "port": "13aa52c0-6f9d-4851-a465-dece77985370" },
+      "target": { "cell": "fn-v786jbo3", "port": "b468c94d-499f-43f0-a6dd-4919b3e20cb9" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-j7uz1bqx",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "fn-v786jbo3", "port": "01069cb0-09f0-4600-8afc-168f736024a9" },
+      "target": { "cell": "yn-bopdkbrs", "port": "3b2d71d9-ebcf-43a9-90c2-d5db46b0382c" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "yesEdge-017ynzfl",
+      "zIndex": 0,
+      "data": { "configValues": { "label": "是", "value": "YES" } },
+      "labels": [{ "attrs": { "label": { "text": "是" } } }],
+      "source": { "cell": "yn-bopdkbrs", "port": "5756c130-55f7-43e1-9824-81bd2eafd79b" },
+      "target": { "cell": "data-bmnf7or0", "port": "38c6ed63-41ca-4de8-a9e4-bfce95cb85a2" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "noEdge-uwnkvwhw",
+      "zIndex": 0,
+      "data": { "configValues": { "label": "否", "value": "NO" } },
+      "labels": [{ "attrs": { "label": { "text": "否" } } }],
+      "source": { "cell": "yn-bopdkbrs", "port": "2bc1f107-db02-47d8-909c-58a74cc6f82b" },
+      "target": { "cell": "end-lcspfvdc", "port": "4bf240b3-6ec0-4636-be67-a806098208fa" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-au4o8xv4",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "data-bmnf7or0", "port": "324502a1-45cc-4a7d-9648-d26be973724f" },
+      "target": { "cell": "end-lcspfvdc", "port": "4bf240b3-6ec0-4636-be67-a806098208fa" }
+    },
+    {
+      "position": { "x": 80, "y": 130 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "开始" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "start-vjg02kbm",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" },
+      "ports": {
+        "groups": {
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "rightOut", "id": "98b6b74f-aad3-4171-86b0-5939216c9e1e" },
+          { "group": "bottomOut", "id": "13aa52c0-6f9d-4851-a465-dece77985370" }
+        ]
+      },
+      "zIndex": 1
+    },
+    {
+      "position": { "x": 453, "y": 130 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "结束" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "end-lcspfvdc",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" },
+      "ports": {
+        "groups": {
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "leftIn", "id": "4bf240b3-6ec0-4636-be67-a806098208fa" },
+          { "group": "topIn", "id": "8f602f53-2b12-40f5-94ef-986ddaf7fa43" }
+        ]
+      },
+      "zIndex": 2
+    },
+    {
+      "position": { "x": 146, "y": 222 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "函数" } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "fn-v786jbo3",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      },
+      "ports": {
+        "groups": {
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "b31be501-6707-46eb-b019-02c0051cab06" },
+          { "group": "bottomOut", "id": "7d64e126-746f-42d4-96a8-a361dcf78edb" },
+          { "group": "leftIn", "id": "b468c94d-499f-43f0-a6dd-4919b3e20cb9" },
+          { "group": "rightOut", "id": "01069cb0-09f0-4600-8afc-168f736024a9" }
+        ]
+      },
+      "zIndex": 3
+    },
+    {
+      "position": { "x": 250, "y": 300 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "判断" }, "body": { "refPoints": "0,10 10,0 20,10 10,20" } },
+      "visible": true,
+      "shape": "custom-polygon",
+      "ports": {
+        "groups": {
+          "top": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "right": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "bottom": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "left": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftOut": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "3b2d71d9-ebcf-43a9-90c2-d5db46b0382c" },
+          { "group": "rightOut", "id": "2bc1f107-db02-47d8-909c-58a74cc6f82b" },
+          { "group": "leftOut", "id": "5756c130-55f7-43e1-9824-81bd2eafd79b" }
+        ]
+      },
+      "id": "yn-bopdkbrs",
+      "data": {
+        "settingConfig": "yesOrNo-config",
+        "codeEditor": true,
+        "configValues": { "label": "判断" },
+        "validateRules": { "inOut": true },
+        "createEdgeConfig": {
+          "rightOut": { "portEdge": "createNoEdge" },
+          "leftOut": { "portEdge": "createYesEdge" }
+        },
+        "templateCode": "yesOrNoTemplate"
+      },
+      "zIndex": 4
+    },
+    {
+      "position": { "x": 250, "y": 390 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "数据" }, "body": { "refPoints": "10,0 40,0 30,20 0,20" } },
+      "visible": true,
+      "shape": "custom-polygon",
+      "ports": {
+        "groups": {
+          "top": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "right": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "bottom": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "left": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "hidden" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "62bdfea3-42b0-41c3-ac8a-71c6e4586b69" },
+          { "group": "leftIn", "id": "38c6ed63-41ca-4de8-a9e4-bfce95cb85a2" },
+          { "group": "bottomOut", "id": "a815283a-0a75-44ac-9ce8-71117ed66ba0" },
+          { "group": "rightOut", "id": "324502a1-45cc-4a7d-9648-d26be973724f" }
+        ]
+      },
+      "id": "data-bmnf7or0",
+      "data": {
+        "settingConfig": "data-config",
+        "configValues": { "label": "数据" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "dataTemplateCode"
+      },
+      "zIndex": 5
+    }
+  ]
+}

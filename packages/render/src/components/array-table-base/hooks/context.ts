@@ -10,7 +10,6 @@ export const SortableContext = createContext<SortableValueContext>({
   containerRef: undefined,
   list: [],
   start: 0,
-
 });
 
 export const useSortableContext = () => {

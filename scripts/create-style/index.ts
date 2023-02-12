@@ -26,7 +26,7 @@ export const createStyle = (extraStyle?: string) => {
           fs.writeFile(
             filename,
             `// auto generated code
-            ${extraStyle || ""}
+            ${extraStyle || "export default {}"}
       ${paths
         .map((path) => {
           return `import '${path}'\n`;

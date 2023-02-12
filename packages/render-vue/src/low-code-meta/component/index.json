@@ -1,0 +1,32 @@
+{
+  "list": [
+
+    { "code": "ArrayCheckDrawerTable", "name": "抽屉选择数据" },
+    { "code": "RequestMethodSelect", "name": "请求方式" },
+    { "code": "JsonPopover", "name": "json气泡卡片编辑" },
+    { "code": "TextArea", "name": "文本域" },
+    { "code": "YesNoSelect", "name": "是否选择框" },
+    { "code": "ArrayTable", "name": "数组表格" },
+    { "code": "ArrayBase.Detail", "name": "详情按钮" },
+    { "code": "DynamicSchema", "name": "动态字段" },
+    { "code": "MetaTreeArrayDrawerTable", "name": "字段树形表格抽屉" },
+    { "code": "PageCodeSelect", "name": "页面编码下拉框" },
+    { "code": "JsonMonacoEditor", "name": "json编辑器" },
+    { "code": "ArrayDrawerTable", "name": "抽屉表格" },
+    { "code": "FieldTypeSelect", "name": "字段类型下拉框" },
+    { "code": "EffectHookSelect", "name": "事件勾子下拉框" },
+    { "code": "Input", "name": "文本输入框" },
+    { "code": "Password", "name": "密码输入框" },
+    {
+      "code": "RemoteSelect",
+      "name": "远程下拉框",
+      "componentPropsPageCode": "Component_RemoteSelect",
+      "componentProps": {
+        "apiConfig": { "method": "get", "params": {} },
+        "defaultFirstOptionValue": "0"
+      }
+    },
+    { "code": "InputNumber", "name": "数字输入框" },
+    { "code": "StaticSelect", "name": "静态选择框" }
+  ]
+}

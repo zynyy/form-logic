@@ -99,13 +99,15 @@ const FormPageLayout: FC<FormPageLayoutProps> = ({
         <LeftRightSlot
           left={left}
           right={
-            <Buttons
-              buttons={buttons}
-              loading={submitLoading}
-              disabled={submitLoading}
-              onClick={handleButtonItemClick}
-              components={components}
-            />
+            hasButton ? (
+              <Buttons
+                buttons={buttons}
+                loading={submitLoading}
+                disabled={submitLoading}
+                onClick={handleButtonItemClick}
+                components={components}
+              />
+            ) : null
           }
         />
       );

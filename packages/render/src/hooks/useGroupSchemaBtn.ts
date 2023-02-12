@@ -1,9 +1,10 @@
-import { RecursionField, useFieldSchema } from '@formily/react';
+import { RecursionField, useField, useFieldSchema } from '@formily/react';
 
 import { createElement, FunctionComponentElement } from 'react';
 
-const useGroupSchemaBtn = (): FunctionComponentElement<any>[] | null => {
+const useGroupSchemaBtn = (groupCode: string): FunctionComponentElement<any>[] | null => {
   const schema = useFieldSchema();
+  const field = useField();
   const btn = schema.reduceProperties((addition: FunctionComponentElement<any>[], schema) => {
     const { name } = schema;
 
@@ -13,6 +14,7 @@ const useGroupSchemaBtn = (): FunctionComponentElement<any>[] | null => {
           schema,
           name,
           key: name,
+          basePath: field.address.concat(groupCode),
         }),
       );
     }

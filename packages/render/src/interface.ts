@@ -3,8 +3,9 @@ import { MouseEvent, RefObject } from 'react';
 
 import effectHook from '@/effect-hook';
 
-import { Field, Form, JSXComponent } from '@formily/core';
+import {Field, FieldFeedbackTriggerTypes, Form, JSXComponent} from '@formily/core';
 import { STEPS_GROUP_MODE, TABS_GROUP_MODE } from '@/utils/constant';
+
 
 export interface Components {
   [component: string]: JSXComponent;
@@ -105,12 +106,13 @@ export interface MetaSchemaGroup {
 export interface MetaLogic {
   effectHook: EffectHook;
   logicCode: string;
-  hasChildren: StrNumBool;
+  hasChildren?: StrNumBool;
 }
 
 export interface ValidateRules {
   validatorRule: string;
   validatorRuleValue?: string;
+  triggerType?: FieldFeedbackTriggerTypes
 }
 
 export interface MetaSchemaData {

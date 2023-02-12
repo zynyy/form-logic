@@ -343,16 +343,14 @@ class TransformsSchema extends MetaDataSorted {
   private getValidator = (item: MetaSchemaData) => {
     const { validator } = item;
 
-    const record = {};
+    return validator?.map(item => {
+      const { validatorRule, validatorRuleValue,triggerType } = item || {};
 
-    if (validator) {
-      validator.forEach((cur) => {
-        const { validatorRule, validatorRuleValue } = cur || {};
-        record[validatorRule] = validatorRuleValue ?? true;
-      });
-    }
-
-    return record;
+      return {
+        triggerType,
+        [validatorRule]: validatorRuleValue
+      }
+    }) || [];
   };
 
   private buttonsSchema = (buttons: MetaSchemaData[], prefixField?: string) => {

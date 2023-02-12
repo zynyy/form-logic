@@ -1,0 +1,24 @@
+{
+  "code": "Void_test",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "code": "code",
+      "name": "编码"
+    }
+  ],
+  "model": "Void",
+  "codeSuffix": "test",
+  "name": "测试"
+}

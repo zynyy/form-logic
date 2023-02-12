@@ -47,36 +47,40 @@ export const useTriggerLogic = (
 
       const currentExecNum = execNumRef.current[execKey];
 
-      getLogicConfig?.(logicCode).then((result) => {
-        if (result && result.default) {
-          const execLogic = new ExecLogic(
-            result.default,
-            {
-              form,
-              field,
-              ...restPayload,
-            },
-            (...args) => {
-              const { time, timeFormat: doneTime } = nowTime();
-              form?.notify(EXEC_LOGIC_DONE, [
-                {
-                  logicCode,
-                  fieldCode: execFieldCode,
-                  pageCode,
-                  effectHook,
-                  formId: form?.id,
-                  time,
-                  doneTime,
-                  createTime,
-                  uid: uid(8),
-                },
-              ]);
+      const callback = (...args) => {
+        const { time, timeFormat: doneTime } = nowTime();
+        form?.notify(EXEC_LOGIC_DONE, [
+          {
+            logicCode,
+            fieldCode,
+            execFieldCode,
+            pageCode,
+            effectHook,
+            formId: form?.id,
+            time,
+            doneTime,
+            createTime,
+            uid: uid(8),
+          },
+        ]);
 
-              cb?.(...args);
-            },
-          );
-          execLogic
-            .run({
+        cb?.(...args);
+      };
+
+      if (getLogicConfig) {
+        getLogicConfig?.(logicCode).then((result) => {
+          if (result && result.default) {
+            const execLogic = new ExecLogic(
+              result.default,
+              {
+                form,
+                field,
+                ...restPayload,
+              },
+              callback,
+            );
+
+            const execInfo = {
               pageCode,
               fieldCode,
               effectHook,
@@ -87,10 +91,16 @@ export const useTriggerLogic = (
               clearExecNum: () => {
                 execNumRef.current[execKey] = 0;
               },
-            })
-            .then(() => void 0);
-        }
-      });
+            };
+
+            execLogic.run(execInfo).then(() => void 0);
+          } else {
+            cb?.();
+          }
+        });
+      } else {
+        cb?.();
+      }
     });
   };
 
@@ -194,9 +204,15 @@ export const useBindBtnClick = (options: BindBtnClickOptions): [string] => {
         btnList?.forEach((item) => {
           const { fieldCode, clickCodes, eventCode, pageCode } = item || {};
           onFieldInit(fieldCode, (filed) => {
+            if (eventCode && events && events[eventCode]) {
+              filed.setComponentProps({
+                onClick: events[eventCode],
+              });
+            }
+
             if (clickCodes.length) {
               filed.setComponentProps({
-                onLogicClick: (...args) => {
+                onClick: (...args) => {
                   triggerLogic(clickCodes, {
                     params: logicParams,
                     filed,
@@ -207,12 +223,6 @@ export const useBindBtnClick = (options: BindBtnClickOptions): [string] => {
                     ...args,
                   });
                 },
-              });
-            }
-
-            if (eventCode && events && events[eventCode]) {
-              filed.setComponentProps({
-                onClick: events[eventCode],
               });
             }
           });

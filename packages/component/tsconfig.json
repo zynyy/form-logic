@@ -4,6 +4,7 @@
   "exclude": ["./src/__tests__/*","./src/components/*", "./esm/*", "./lib/*", "./tsconfig.esm.json", "./tsconfig.cjs.json"],
   "compilerOptions": {
     "baseUrl": "./",
+    "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"]
     }
