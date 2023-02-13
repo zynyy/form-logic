@@ -2,8 +2,7 @@ import { createSchemaField } from './createSchemaField';
 
 export { createSchemaField };
 
-export type { SchemaFieldProps } from './interface';
-export { getSchemaFieldProps } from './interface';
+export * from './interface';
 
 import { withInstall } from '@/utils';
 
@@ -16,7 +15,7 @@ export {
   useSchemaComponentsContext,
   provideSchemaScope,
   provideSchemaComponents,
-  useFieldSchema
+  useFieldSchema,
 } from './hooks';
 
 export type { SchemaScopeRef, SchemaComponentsRef } from './hooks';

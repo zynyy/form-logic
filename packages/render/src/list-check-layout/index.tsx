@@ -207,7 +207,12 @@ const ListCheckLayout: FC<ListCheckLayoutProps> = ({
 
     if (action === 'paginate') {
       const { current: nextCurrent, pageSize: nextPageSize } = pagination || {};
-      search(nextCurrent, nextPageSize);
+
+      if (hasPageQuery) {
+        search(nextCurrent, nextPageSize);
+      }
+
+
     }
   };
 
