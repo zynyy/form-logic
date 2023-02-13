@@ -20,12 +20,49 @@ const serviceInstance = axios.create({
   // timeout: 3000, // 设置超时时间
 });
 
+export interface TransformAxiosConfig {
+  request: (config: AxiosRequestConfig) => AxiosRequestConfig;
+  response: (response: AxiosResponse) => RequestBackEndData;
+}
+
+const transformAxiosConfig: TransformAxiosConfig = {
+  request: (config: AxiosRequestConfig) => {
+    return config;
+  },
+  response: (response: AxiosResponse) => {
+    const { data } = response;
+    const { code, msg } = data;
+    if (code !== 200) {
+      message.error(msg).then(() => void 0);
+      return Promise.reject(data);
+    }
+
+    return Promise.resolve(data);
+  },
+};
+
+export const setInterceptors = (config: Partial<TransformAxiosConfig>) => {
+  const { request, response } = config;
+
+  if (response) {
+    transformAxiosConfig.response = response;
+  }
+
+  if (request) {
+    transformAxiosConfig.request = request;
+  }
+};
+
 /**
  * 请求拦截器
  */
 serviceInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // https://github.com/axios/axios#request-config
+
+    if (transformAxiosConfig.request) {
+      return transformAxiosConfig.request(config);
+    }
 
     return config;
   },
@@ -42,6 +79,10 @@ serviceInstance.interceptors.response.use(
   (response: AxiosResponse) => {
     // https://github.com/axios/axios#response-schema
     const { data } = response;
+
+    if (transformAxiosConfig.response) {
+      return transformAxiosConfig.response(response);
+    }
 
     const { code, msg } = data;
     if (code !== 200) {

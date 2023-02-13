@@ -1,4 +1,4 @@
-import { MouseEvent, RefObject } from 'react';
+
 
 import effectHook from '@/effect-hook';
 
@@ -6,6 +6,7 @@ import {Field, FieldFeedbackTriggerTypes, Form} from '@formily/core';
 import { STEPS_GROUP_MODE, TABS_GROUP_MODE } from '@/utils/constant';
 import { VueComponent } from '@/formily-vue';
 import { SchemaTypes } from '@formily/json-schema';
+import {Ref} from "vue";
 
 export interface Components {
   [component: string]: VueComponent;
@@ -17,6 +18,7 @@ export enum CustomButtonMode {
 }
 
 export type CustomButtonModeType = keyof typeof CustomButtonMode;
+
 export enum RequestMethodEnum {
   get = 'get',
   post = 'post',
@@ -86,7 +88,7 @@ export interface BtnFieldsItem {
 }
 
 export interface EventsObject {
-  [key: string]: (e: MouseEvent<HTMLElement>, ...args: any) => void;
+  [key: string]: (e: MouseEvent, ...args: any) => void;
 }
 
 export type LogicListItem = {
@@ -195,7 +197,7 @@ export type ExecInfo = Pick<LogicPayloadArgs, 'fieldCode' | 'effectHook' | 'page
   currentExecNum: number;
   execKey: string;
   clearExecNum: () => void;
-  execNumRef: RefObject<{
+  execNumRef: Ref<{
     [key: string]: number;
   }>;
 };

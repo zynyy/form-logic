@@ -63,7 +63,7 @@ const removeImportStyleFromInputFilePlugin = () => ({
   },
 });
 
-const externalPattern = ['react', 'react-dom', 'react-is', '**/*.{css,less,sass,scss}'];
+const externalPattern = ['react', 'vue', 'react-dom', 'react-is', '**/*.{css,less,sass,scss}'];
 
 export default (filename, targetName, ...plugins) => {
   return [
@@ -79,9 +79,7 @@ export default (filename, targetName, ...plugins) => {
         },
       },
       external: (id) => {
-        if ([].includes(id)) {
-          return true;
-        }
+
 
         const matchHit = externalPattern.filter((pattern) => {
           return minimatch(id, pattern);

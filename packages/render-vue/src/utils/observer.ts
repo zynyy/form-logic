@@ -13,8 +13,6 @@ export const observer = function <Props>(
     ...opts,
     setup(props: Record<string, any>, context: any) {
       useObserver(options);
-
-
       return opts?.setup?.(props, context);
     },
   };

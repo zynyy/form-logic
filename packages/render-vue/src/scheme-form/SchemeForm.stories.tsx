@@ -11,6 +11,7 @@ import { onFieldInputValueChange } from '@formily/core';
 import { PlusOutlined } from '@ant-design/icons-vue';
 
 import '../style';
+import "ant-design-vue/dist/antd.css";
 
 export default {
   /* 👇 The title prop is optional.

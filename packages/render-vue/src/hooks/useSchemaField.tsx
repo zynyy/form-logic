@@ -13,6 +13,7 @@ import ArrayBase from "@/components/array-base/ArrayBase";
 import DynamicSchema from "@/components/dynamic-schema";
 import PopoverBtn from "@/components/popover-btn";
 import FormTabsGroup from "@/components/form-tabs-group";
+import ListTable from "@/components/list-table";
 
 const useCreateSchemaField = () => {
   const { SchemaField } = createSchemaField({
@@ -29,7 +30,8 @@ const useCreateSchemaField = () => {
       ArrayBase,
       DynamicSchema,
       PopoverBtn,
-      FormTabsGroup
+      FormTabsGroup,
+      ListTable
     },
   });
 

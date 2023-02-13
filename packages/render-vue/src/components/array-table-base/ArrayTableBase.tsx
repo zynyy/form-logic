@@ -8,7 +8,7 @@ import { connect, mapProps, RecursionField, useField } from '@/formily-vue';
 
 import ArrayPagination from '@/components/array-pagination/ArrayPagination';
 import { useArrayTableColumns, useArrayTableSources, useTableSchemaBtn } from '@/hooks';
-import { STYLE_PREFIX } from '@/utils/constant';
+
 import ArrayBase from '@/components/array-base/ArrayBase';
 import SchemaFragment from '@/components/schema-fragment';
 import { useItemKey } from '@/components/array-base/hooks';
@@ -16,7 +16,6 @@ import SortableBodyRow from '@/components/array-table-base/SortableBodyRow';
 import SortableBodyWrapper from '@/components/array-table-base/SortableBodyWrapper';
 import SortableContext from '@/components/array-table-base/SortableContext';
 
-import './style';
 import {
   ArrayTableBaseProps,
   getArrayTableBaseProps,
@@ -24,8 +23,7 @@ import {
 import { loop } from '@/utils';
 import { Key } from 'ant-design-vue/es/_util/type';
 import { strNumBoolToBoolean } from '@/transforms/utils';
-
-const stylePrefix = `${STYLE_PREFIX}`;
+import { useStylePrefixCls } from '@/components/style/hooks';
 
 const components = {
   body: {
@@ -42,7 +40,7 @@ const InternalArrayTableBase = observer<ArrayTableBaseProps>(
     setup(props: ArrayTableBaseProps) {
       const fieldRef = useField<ArrayField>();
 
-      const prefixCls = `${stylePrefix}-array-table`;
+      const prefixCls = useStylePrefixCls('-array-table');
 
       const selectedRowKeysRef = ref([]);
       const selectedRowsRef = ref([]);
@@ -128,7 +126,9 @@ const InternalArrayTableBase = observer<ArrayTableBaseProps>(
         };
 
         const renderBodyCell = ({ record, index, column }) => {
-          const { schema } = column;
+          const { schema } = column || {
+            schema: {},
+          };
 
           return (
             <ArrayBase.Item index={index} record={record}>

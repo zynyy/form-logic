@@ -47,6 +47,7 @@ const ListTable = observer<ListTableProps>(
           setSelectedRowKeys,
           selectedRows,
           setSelectedRows,
+          loading,
         } = props;
 
         const field = fieldRef.value;
@@ -68,7 +69,10 @@ const ListTable = observer<ListTableProps>(
         };
 
         const renderBodyCell = ({ record, index, column }) => {
-          const { schema } = column;
+          const { schema } = column || {
+            schema: {},
+          };
+
 
           return (
             <ArrayBase.Item index={index} record={record}>
@@ -102,6 +106,7 @@ const ListTable = observer<ListTableProps>(
             >
               <Table
                 bordered
+                loading={loading}
                 rowSelection={rowSelection}
                 rowKey={defaultRowKey}
                 size="small"

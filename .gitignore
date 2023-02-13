@@ -40,3 +40,4 @@ build
 storybook-static
 **/storybook-static
 /packages/component/temp/
+/example-vue/stats.html

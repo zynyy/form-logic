@@ -7,6 +7,8 @@ import cls from 'classnames';
 
 import lodashOmit from 'lodash.omit';
 
+export * from './hooks'
+
 import {
   ArrayBaseContext,
   ArrayItemContext,

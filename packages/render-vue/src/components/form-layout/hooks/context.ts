@@ -6,7 +6,7 @@ type Size = 'small' | 'default' | 'large';
 export const formLayoutValueContext = {
   colon: {
     type: Boolean,
-    default: undefined
+    default: undefined,
   },
   labelAlign: {
     type: String as PropType<horizontal>,
@@ -44,7 +44,7 @@ export const formLayoutValueContext = {
   },
   labelWrap: {
     type: Boolean,
-    default: undefined
+    default: undefined,
   },
   labelWidth: {
     type: Number,
@@ -55,7 +55,7 @@ export const formLayoutValueContext = {
   },
   wrapperWrap: {
     type: Boolean,
-    default: undefined
+    default: undefined,
   },
   wrapperWidth: {
     type: Number,
@@ -69,7 +69,7 @@ export const FormLayoutContextSymbol: InjectionKey<FormLayoutValueContext> =
   Symbol('FormLayoutValueContent');
 
 export const useFormLayoutContext = () => {
-  return inject(FormLayoutContextSymbol, );
+  return inject(FormLayoutContextSymbol, {} as FormLayoutValueContext);
 };
 
 export const formLayoutProvide = (formLayoutValueContent: FormLayoutValueContext) => {

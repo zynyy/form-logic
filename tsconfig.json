@@ -5,6 +5,7 @@
     "module": "ESNext",
     "target": "ESNext",
     "allowJs": true,
+    "strict": false,
     "noUnusedLocals": false,
     "preserveConstEnums": true,
     "skipLibCheck": true,

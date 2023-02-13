@@ -5,7 +5,7 @@ import FormGroup from '@/components/form-group';
 import FormGrid from '@/components/form-grid';
 import FormItem from '@/components/form-item';
 
-import { Space } from 'antd';
+import Space from '@/components/space';
 import {
   Input,
   StaticSelect,
@@ -13,7 +13,7 @@ import {
   RemoteSelect,
   TextArea,
   CustomButton,
-  YesOrNoCheckbox
+  YesOrNoCheckbox,
 } from '@formlogic/component';
 
 import ArrayTable from '@/components/array-table';
@@ -54,7 +54,7 @@ const useCreateSchemaField = () => {
         DynamicSchema,
         PopoverContainer,
         ArrayDrawerTable,
-        YesOrNoCheckbox
+        YesOrNoCheckbox,
       },
     });
   }, []);

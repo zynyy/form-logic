@@ -1,12 +1,9 @@
-
-
 import { isArr } from '@formily/shared';
 import { FieldDisplayTypes, GeneralField } from '@formily/core';
-import {ColumnProps} from "ant-design-vue/es/table";
-import {Schema} from "@formily/json-schema";
-import {useFieldSchema} from "@/formily-vue/components/schema-field/hooks";
-import {useField} from "@/formily-vue";
+import { ColumnProps } from 'ant-design-vue/es/table';
+import { Schema } from '@formily/json-schema';
 
+import { useField, useFieldSchema } from '@/formily-vue';
 
 export interface ObservableColumnSource {
   field: GeneralField;
@@ -53,7 +50,6 @@ const useArrayTableSources = () => {
   };
 
   const parseArrayItems = (schema: Schema['items']) => {
-
     const sources: ObservableColumnSource[] = [];
     const items = isArr(schema) ? schema : [schema];
 

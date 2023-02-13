@@ -9,14 +9,13 @@ import useCreateSchemaField from '@/hooks/useSchemaField';
 
 import { clone } from '@formily/shared';
 
-import { SchemeFormProps, schemeFormProps } from '@/scheme-form/interface';
+import { SchemeFormProps, getSchemeFormProps } from '@/scheme-form/interface';
 import { provideSchemeForm } from '@/scheme-form/hooks';
-import 'ant-design-vue/dist/antd.css';
 
 const SchemeForm = defineComponent({
   name: 'SchemeForm',
   inheritAttrs: false,
-  props: schemeFormProps,
+  props: getSchemeFormProps(),
   setup(props: SchemeFormProps) {
     const {
       getLogicConfig,
@@ -28,7 +27,6 @@ const SchemeForm = defineComponent({
     } = props;
 
     const SchemaField = useCreateSchemaField();
-
 
     useNotifyDevtools(toRef(props, 'form'));
 

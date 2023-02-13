@@ -8,8 +8,6 @@
     ".storybook",
     "src/**/*.stories.tsx",
     "src/**/*.stories.ts",
-    "storybook",
-    "tsconfig.cjs.json",
-    "tsconfig.esm.json"
+    "storybook"
   ]
 }

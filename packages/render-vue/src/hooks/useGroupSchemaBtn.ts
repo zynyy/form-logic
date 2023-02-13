@@ -1,6 +1,5 @@
 import { h, VNode } from 'vue';
-import { RecursionField, useField } from '@/formily-vue';
-import { useFieldSchema } from '@/formily-vue/components/schema-field/hooks';
+import { RecursionField, useField, useFieldSchema } from '@/formily-vue';
 
 const useGroupSchemaBtn = (groupCode: string): VNode[] | null => {
   const schema = useFieldSchema();

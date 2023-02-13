@@ -1,5 +1,5 @@
 import { createForm, Form, IFormProps, onFormMount } from '@formily/core';
-import { markRaw, Ref, ref, shallowRef, watchEffect } from 'vue';
+import { Ref, ref, shallowRef, watchEffect } from 'vue';
 
 import { isEqual } from '@formily/shared';
 
@@ -10,14 +10,14 @@ interface CreateFormOptions {
 }
 
 export const useCreateForm = (
-  options?: Ref<CreateFormOptions>,
+  optionsRef?: Ref<CreateFormOptions>,
 ): [Ref<Form>, (formConfig?: IFormProps) => string] => {
-  const { formConfig } = options.value;
+  const { formConfig } = optionsRef?.value || {};
 
   const prevFormConfig = ref(formConfig);
 
   const genForm = (config?: IFormProps) => {
-    const { onMount } = options.value || {};
+    const { onMount } = optionsRef?.value || {};
 
     const configMerge = {
       ...formConfig,
@@ -46,7 +46,7 @@ export const useCreateForm = (
   };
 
   watchEffect(() => {
-    const { formConfig, autoRefreshForm } = options.value;
+    const { formConfig, autoRefreshForm } = optionsRef?.value || {};
 
     if (autoRefreshForm && !isEqual(formConfig, prevFormConfig.value)) {
       prevFormConfig.value = formConfig;

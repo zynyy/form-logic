@@ -1,4 +1,4 @@
-import { computed, h, watch } from 'vue';
+import { computed, h, } from 'vue';
 import { Schema } from '@formily/json-schema';
 import RecursionField from './RecursionField';
 

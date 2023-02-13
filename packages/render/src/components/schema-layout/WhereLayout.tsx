@@ -1,4 +1,4 @@
-import { CSSProperties, FC, PropsWithChildren, useEffect, useState } from 'react';
+import { CSSProperties, FC, PropsWithChildren, ReactNode, useEffect, useState } from "react";
 
 import { Divider, Button, Space } from 'antd';
 
@@ -9,7 +9,7 @@ import { EventsObject, LogicConfig, MetaSchemaData } from '@/interface';
 import Buttons, { ButtonsProps } from '@/components/buttons';
 
 export interface WhereLayoutProps extends PropsWithChildren {
-  title?: React.ReactNode;
+  title?: ReactNode;
   buttons?: MetaSchemaData[];
   className?: string;
   style?: CSSProperties;

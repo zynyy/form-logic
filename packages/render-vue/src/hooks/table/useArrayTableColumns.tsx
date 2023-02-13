@@ -24,6 +24,7 @@ const useArrayTableColumns = (
           dataIndex: name,
           title: schema['title'],
           schema,
+          ellipsis: true,
           children,
         });
       }
@@ -34,6 +35,7 @@ const useArrayTableColumns = (
         dataIndex: name,
         title: schema['title'],
         width: columnProps['width'] ?? 120,
+        ellipsis: true,
         schema
       });
     }, []);
@@ -59,6 +61,7 @@ const useArrayTableColumns = (
           title: schema['title'],
           schema,
           children,
+          ellipsis: true,
         });
       }
 
@@ -68,7 +71,8 @@ const useArrayTableColumns = (
         dataIndex: name,
         title: schema['title'],
         width: columnProps['width'] ?? 120,
-        schema
+        schema,
+        ellipsis: true,
       });
     }, [])
     .forEach((item) => {

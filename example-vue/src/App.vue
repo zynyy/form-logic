@@ -9,6 +9,9 @@ import {
   useFormSchema,
   SchemeForm,
 } from "@formlogic/render-vue";
+import { ref } from "vue";
+
+
 
 const metaSchema: MetaSchema = {
   code: "Model_C",
@@ -53,15 +56,17 @@ const metaSchema: MetaSchema = {
   ],
 };
 
-const { schema, buttons } = useFormSchema({ metaSchema });
+const formSchemaRef = useFormSchema(ref({ metaSchema }));
 
-const [form] = useCreateForm({
-  formConfig: {
-    values: {
-      name: 111,
+const { schema } = formSchemaRef.value;
+
+const [form] = useCreateForm(
+  ref({
+    formConfig: {
+      values: {},
     },
-  },
-});
+  })
+);
 </script>
 
 <template>

@@ -1,5 +1,5 @@
 import { inject, provide, InjectionKey, Ref, ref } from 'vue';
-
+import { Schema } from '@formily/json-schema';
 import { SchemaVueComponents } from '@/formily-vue/interface';
 
 export type SchemaComponentsRef = Ref<SchemaVueComponents>;
@@ -27,7 +27,7 @@ export const provideSchemaScope = (schemaScope: SchemaScopeRef) => {
 };
 
 
-import { Schema } from '@formily/json-schema';
+
 
 export const SchemaSymbol: InjectionKey<Ref<Schema>> = Symbol('schema');
 

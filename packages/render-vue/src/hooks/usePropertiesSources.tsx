@@ -1,5 +1,4 @@
 import { useFieldSchema } from '@/formily-vue';
-import { computed } from 'vue';
 
 const usePropertiesSources = () => {
   const schema = useFieldSchema();

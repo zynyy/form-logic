@@ -31,11 +31,8 @@ const Layout = defineComponent({
       };
 
       return (
-        <Spin spinning={loading}>
-          <div
-            class={cls(props.class, prefixCls, `${prefixCls}-wrapper`)}
-            style={{ ...style, height }}
-          >
+        <Spin spinning={loading} wrapperClassName={`${prefixCls} ${prefixCls}-loading`}>
+          <div class={cls(props.class, `${prefixCls}-wrapper`)} style={{ ...style, height }}>
             {renderHeader()}
             <div class={cls(`${prefixCls}-body`)}>{slots?.default()}</div>
             {renderFooter()}
@@ -46,4 +43,4 @@ const Layout = defineComponent({
   },
 });
 
-export default Layout
+export default Layout;

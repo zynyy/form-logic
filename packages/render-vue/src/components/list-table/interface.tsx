@@ -22,8 +22,12 @@ export const getListTableProps = () => {
       type: Function as PropType<TableProps<any>['onChange']>,
     },
     pagination: {
-      type: [Object, Boolean] as PropType<TableProps<any>['pagination']>,
+      type: [Object] as PropType<TableProps<any>['pagination']>,
     },
+    loading: {
+      type: Boolean,
+      default: false as const
+    }
   };
 };
 

@@ -1,6 +1,4 @@
 import './style';
-import { App } from 'vue';
-import { withInstall } from '@/utils';
 
 export * from './transforms';
 
@@ -12,19 +10,40 @@ export * from './utils/formUtils';
 
 export * from '@/utils';
 
-export { default as SchemeForm } from './scheme-form';
+export { default as SchemeForm, getSchemeFormProps, useSchemeFormContent } from './scheme-form';
+export type { SchemeFormProps, SchemeFormValueContent } from './scheme-form';
 
-export type { SchemeFormProps } from './scheme-form/interface';
+export { default as FormPageLayout, getFormPageLayoutProps } from './form-page-layout';
+export type { FormPageLayoutProps } from './form-page-layout';
 
-export type { SchemeFormValueContent } from './scheme-form/hooks';
+export { default as SchemeTableForm, getSchemeTableFormProps } from './scheme-table-form';
+export type { SchemeTableFormProps } from './scheme-table-form';
+
+export type { ListLayoutProps } from './list-layout';
+export { default as ListLayout, getListLayoutProps } from './list-layout';
+
+export { default as ListCheckLayout, getListCheckLayoutProps } from './list-check-layout';
+export type { ListCheckLayoutProps } from './list-check-layout';
 
 export { EFFECT_HOOK_GROUP } from '@/utils/constant';
 
 export { default as ExecLogic } from './exec-logic';
 
-export { useForm, useField, useFieldSchema, RecursionField } from '@/formily-vue';
+export {
+  useForm,
+  useField,
+  useFieldSchema,
+  RecursionField,
+  useSchemaComponentsContext,
+  useFormEffects,
+  useParentForm,
+  getRecursionFieldProps,
+} from '@/formily-vue';
+
+export type { RecursionFieldProps } from '@/formily-vue';
 
 export type { ISchema } from '@formily/json-schema';
+
 export { observer } from '@/utils/observer';
 
 export {

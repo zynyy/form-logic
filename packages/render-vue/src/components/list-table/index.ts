@@ -4,3 +4,5 @@ import { withInstall } from '@/utils';
 const ListTable = withInstall(_ListTable);
 
 export default ListTable;
+
+export * from './interface'

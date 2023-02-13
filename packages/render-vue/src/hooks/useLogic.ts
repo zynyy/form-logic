@@ -1,3 +1,4 @@
+import { Ref, ref, watch, watchEffect } from 'vue';
 import ExecLogic from '@/exec-logic';
 import { Form, onFieldInit } from '@formily/core';
 
@@ -16,7 +17,6 @@ import { uid } from '@formily/shared';
 import { nowTime } from '@/utils';
 
 import { getFieldIndexes } from '@/utils/formUtils';
-import { Ref, ref, watch, watchEffect } from 'vue';
 
 export const useTriggerLogic = (
   getLogicConfig,
@@ -220,8 +220,7 @@ interface BindBtnClickOptions {
 }
 
 export const useBindBtnClick = (options: Ref<BindBtnClickOptions>): Ref<string> => {
-  const { form, btnList, cb, events, getLogicConfig, logicParams, autoLogic } = options.value || {};
-
+  const { cb, getLogicConfig } = options.value || {};
   const [triggerLogic] = useTriggerLogic(getLogicConfig, cb);
 
   const doneFormId = ref('');
@@ -229,6 +228,7 @@ export const useBindBtnClick = (options: Ref<BindBtnClickOptions>): Ref<string> 
   const effectId = ref(`btnClickEvent_${uid(8)}`);
 
   watchEffect((onCleanup) => {
+    const { form, btnList, events, logicParams, autoLogic } = options.value || {};
     if (form?.id && autoLogic) {
       form.addEffects(effectId.value, () => {
         btnList?.forEach((item) => {

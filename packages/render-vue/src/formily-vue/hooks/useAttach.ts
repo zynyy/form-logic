@@ -1,4 +1,5 @@
 import { onMounted, watch, Ref, onUnmounted, nextTick } from 'vue';
+import { loop } from '@/utils';
 
 interface IRecycleTarget {
   onMount: () => void;
@@ -12,7 +13,7 @@ export const useAttach = <T extends IRecycleTarget>(target: Ref<T>): Ref<T> => {
 
       nextTick(() => {
         v.onMount();
-      });
+      }).then(loop);
       onInvalidate(() => v.onUnmount());
     }
   });

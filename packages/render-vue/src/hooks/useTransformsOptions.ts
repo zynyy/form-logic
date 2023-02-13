@@ -46,8 +46,8 @@ export const useTransformsOptions = ({
 
     return {
       metaSchema: metaSchemaRef.value,
-      pattern: pattern.value,
-      hasGroup: hasGroup.value,
+      pattern: pattern?.value,
+      hasGroup: hasGroup?.value,
     };
   });
 

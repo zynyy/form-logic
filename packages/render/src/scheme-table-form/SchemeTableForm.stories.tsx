@@ -42,10 +42,6 @@ const Template = ({ hasGroup, pattern, metaSchema, ...args }) => {
   const [options] = useState<TransformsSchemaOptions>(() => {
     return {
       metaSchema: metaSchema,
-      hasGroup: hasGroup,
-      pattern: pattern,
-      buttonsEvent: {},
-      logic: {},
     };
   });
 
