@@ -1,6 +1,6 @@
 {
   "name": "example-vue",
-  "version": "0.0.0",
+  "version": "1.0.2-alpha.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,7 @@
   "dependencies": {
     "@formily/antdv-x3": "1.0.0-alpha.5",
     "@formily/core": "2.2.10",
-    "@formlogic/render-vue": "^1.0.1",
+    "@formlogic/render-vue": "1.0.2-alpha.0",
     "ant-design-vue": "^3.2.15",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"

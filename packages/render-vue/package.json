@@ -1,6 +1,6 @@
 {
   "name": "@formlogic/render-vue",
-  "version": "1.0.1",
+  "version": "1.0.2-alpha.0",
   "license": "MIT",
   "browser": "./esm/index.js",
   "types": "esm/index.d.ts",
@@ -30,7 +30,7 @@
     "@formily/json-schema": "^2.2.10",
     "@formily/reactive": "2.2.10",
     "@formily/shared": "2.2.10",
-    "@formlogic/server": "^1.0.1",
+    "@formlogic/server": "1.0.2-alpha.0",
     "@vue/shared": "^3.2.47",
     "ant-design-vue": "^3.2.15",
     "axios": "^1.2.1",
