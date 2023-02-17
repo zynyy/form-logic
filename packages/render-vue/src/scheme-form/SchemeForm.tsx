@@ -1,7 +1,7 @@
 import { setValidateLanguage } from '@formily/core';
 
 import { FormProvider } from '@/formily-vue';
-import { defineComponent, ref, toRef, watch, watchEffect } from 'vue';
+import { defineComponent, ref, toRef, watch, onMounted } from 'vue';
 import { Empty, Skeleton } from 'ant-design-vue';
 
 import { useNotifyDevtools } from '@/hooks';
@@ -17,24 +17,26 @@ const SchemeForm = defineComponent({
   inheritAttrs: false,
   props: getSchemeFormProps(),
   setup(props: SchemeFormProps) {
-    const {
-      getLogicConfig,
-      extraLogicParams,
-      events,
-      pattern,
-      loading: propsLoading,
-      components,
-    } = props;
+    const { getLogicConfig, extraLogicParams, events, pattern, components } = props;
 
     const SchemaField = useCreateSchemaField();
 
     useNotifyDevtools(toRef(props, 'form'));
 
-    watchEffect(() => {
+    const setLanguage = () => {
       setValidateLanguage(props.language ?? 'zh-CN');
-    });
+    };
 
-    let loading = !!propsLoading;
+    watch(
+      () => props.language,
+      () => {
+        setLanguage();
+      },
+    );
+
+    onMounted(() => {
+      setLanguage();
+    });
 
     const schemeFormRef = ref({
       pattern,
@@ -60,7 +62,8 @@ const SchemeForm = defineComponent({
     provideSchemeForm(schemeFormRef);
 
     return () => {
-      const { schema, form } = props;
+      const { schema, form, loading } = props;
+
 
       return (
         <Skeleton loading={loading}>

@@ -22,6 +22,13 @@ export type { SchemeTableFormProps } from './scheme-table-form';
 export type { ListLayoutProps } from './list-layout';
 export { default as ListLayout, getListLayoutProps } from './list-layout';
 
+
+export { default as ModalPageForm, getModalPageFormProps } from './modal-page-form';
+export type { ModalPageFormProps } from './modal-page-form';
+
+export { default as DrawerPageForm, getDrawerPageFormProps } from './drawer-page-form';
+export type { DrawerPageFormProps } from './drawer-page-form';
+
 export { default as ListCheckLayout, getListCheckLayoutProps } from './list-check-layout';
 export type { ListCheckLayoutProps } from './list-check-layout';
 

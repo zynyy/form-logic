@@ -11,6 +11,7 @@ tsconfig.json
 src
 tsconfig.cjs.json
 tsconfig.esm.json
+tsconfig.umd.json
 tsconfig.declaration.json
 .storybook
 storybook-static
@@ -18,3 +19,4 @@ build-style.ts
 create-style.ts
 formlogic.config.js
 babel.config.js
+.babelrc

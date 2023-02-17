@@ -122,7 +122,7 @@ const render = ({ metaSchema, rowKey, ...args }) => ({
   },
 });
 
-export const arrayTable = {
+export const basic = {
   render,
   args: {
     metaSchema: Logic_L,

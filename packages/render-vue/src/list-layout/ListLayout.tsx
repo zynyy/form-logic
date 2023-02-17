@@ -15,7 +15,7 @@ import { provideListLayoutContext } from '@/list-layout/hooks';
 const ListLayout = defineComponent({
   name: 'ListLayout',
   props: getListLayoutProps(),
-  setup(props: ListLayoutProps) {
+  setup(props: ListLayoutProps, { expose }) {
     const searchLoading = ref(false);
 
     const paginationRef = reactive({
@@ -37,6 +37,55 @@ const ListLayout = defineComponent({
     });
 
     const dataSource = ref([]);
+
+    const search = (nextCurrent: number, nextPageSize: number) => {
+      const { action, extraSearchParams, transformSearchParams } = props;
+
+      const { searchForm } = listPageFormRef.value;
+
+      if (!action) return;
+
+      getSubmitFormValues(searchForm).then((formValues) => {
+        const { currentPage, pageSize } = paginationRef;
+        const params = {
+          ...formValues,
+          ...extraSearchParams,
+          current: nextCurrent ?? currentPage,
+          pageSize: nextPageSize ?? pageSize,
+        };
+
+        setSearchLoading(true);
+
+        const searchParams = transformSearchParams?.(params) || params;
+
+        requestGet(action, searchParams)
+          .then((res) => {
+            const { data } = res || {};
+
+            const { list, total, current, pageSize } = data || {};
+
+            paginationRef.currentPage = current;
+            paginationRef.pageSize = pageSize;
+            paginationRef.total = total;
+
+            setCache({
+              current,
+              pageSize,
+              params: searchParams,
+            });
+
+            dataSource.value = list;
+          })
+          .finally(() => {
+            setSearchLoading(false);
+          });
+      });
+    };
+
+    expose({
+      search,
+      setSearchLoading,
+    });
 
     const [setCache, getCache] = useCacheWhere(
       `${options.value.metaSchema?.code}_${props.cacheKey || ''}`,
@@ -117,50 +166,6 @@ const ListLayout = defineComponent({
             target.reset().then(() => void 0);
           }
         }
-      });
-    };
-
-    const search = (nextCurrent: number, nextPageSize: number) => {
-      const { action, extraSearchParams, transformSearchParams } = props;
-
-      const { searchForm } = listPageFormRef.value;
-
-      if (!action) return;
-
-      getSubmitFormValues(searchForm).then((formValues) => {
-        const { currentPage, pageSize } = paginationRef;
-        const params = {
-          ...formValues,
-          ...extraSearchParams,
-          current: nextCurrent ?? currentPage,
-          pageSize: nextPageSize ?? pageSize,
-        };
-
-        setSearchLoading(true);
-
-        const searchParams = transformSearchParams?.(params) || params;
-
-        requestGet(action, searchParams)
-          .then((res) => {
-            const { data } = res || {};
-
-            const { list, total, current, pageSize } = data || {};
-
-            paginationRef.currentPage = current;
-            paginationRef.pageSize = pageSize;
-            paginationRef.total = total;
-
-            setCache({
-              current,
-              pageSize,
-              params: searchParams,
-            });
-
-            dataSource.value = list;
-          })
-          .finally(() => {
-            setSearchLoading(false);
-          });
       });
     };
 

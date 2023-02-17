@@ -4,7 +4,7 @@ import { Grid } from '@formily/grid';
 
 import { useFormLayoutContext } from '@/components/form-layout/hooks';
 
-import { defineComponent, ref, onMounted, watchEffect, computed } from 'vue';
+import { defineComponent, ref, onMounted, computed, nextTick } from 'vue';
 
 import { FormGridProps, formGridProps } from '@/components/form-grid/interface';
 import { observer } from '@/utils/observer';
@@ -14,7 +14,7 @@ const FormGrid = observer(
     name: 'FormGrid',
     inheritAttrs: false,
     props: formGridProps,
-    setup(props: FormGridProps, { slots, attrs }) {
+    setup(props: FormGridProps, { slots }) {
       const layout = useFormLayoutContext();
 
       const gridInstance = computed(() => {
@@ -29,12 +29,7 @@ const FormGrid = observer(
       const domRef = ref<HTMLDivElement>();
 
       onMounted(() => {
-        watchEffect((onCleanup) => {
-          const dispose = gridInstance.value.connect(domRef.value);
-          onCleanup(() => {
-            dispose();
-          });
-        });
+        gridInstance.value.connect(domRef.value);
       });
 
       return () => {

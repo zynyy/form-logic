@@ -9,6 +9,7 @@ import getLogicConfig from '@/low-code-meta/logic';
 
 import { message } from 'ant-design-vue';
 import { useReloadFlag } from '@/hooks';
+import { ref } from "vue";
 
 export default {
   /* 👇 The title prop is optional.
@@ -31,12 +32,15 @@ const render = ({ metaSchema, rowKey, ...args }) => ({
 
     const [reloadFlag, refreshFlag] = useReloadFlag();
 
+    const listRef = ref();
+
     const onTableMount = (form) => {
 
       form.setValuesIn(LIST_FILED_CODE, [{ code: '测试' }]);
     };
 
     const handleAdd = () => {
+
       refreshFlag();
       message.info({
         content: '点击新增',
@@ -73,13 +77,14 @@ const render = ({ metaSchema, rowKey, ...args }) => ({
           onDetail={handleDetail}
           onRemove={handleRemove}
           reloadFlag={reloadFlag.value}
+          ref={listRef}
         />
       );
     };
   },
 });
 
-export const arrayTable = {
+export const basic = {
   render,
   args: {
     metaSchema: Logic_L,

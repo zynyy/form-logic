@@ -35,7 +35,7 @@ const ObjectFieldComponent = observer<ObjectFieldProps>(
         },
       );
 
-      watch(formRef, () => {
+      watch(() => formRef.value.id, () => {
         fieldRef.value = createField();
       });
 

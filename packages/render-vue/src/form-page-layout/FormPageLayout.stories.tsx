@@ -26,7 +26,7 @@ const meta: Meta<typeof FormPageLayout> = {
 export default meta;
 type Story = StoryObj<typeof FormPageLayout>;
 
-const render = ({ metaSchema, pageCode, pattern, hasGroup }) => ({
+const render = ({ metaSchema, pageCode,...agrs }) => ({
   components: { FormPageLayout },
   setup() {
     //👇 The args will now be passed down to the template
@@ -46,9 +46,12 @@ const render = ({ metaSchema, pageCode, pattern, hasGroup }) => ({
     return () => {
       return (
         <FormPageLayout
+          {...agrs}
           getLogicConfig={getLogicConfig}
           pageCode={pageCode}
           formConfig={formConfigRef.value}
+          metaSchema={metaSchema}
+
         />
       );
     };

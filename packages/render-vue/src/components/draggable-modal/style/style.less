@@ -1,0 +1,25 @@
+@import '../../style/common.less';
+@import 'ant-design-vue/lib/style/themes/default.less';
+@import 'ant-design-vue/lib/input/style/mixin.less';
+
+@draggable-modal-render-cls: ~'@{form-logic-prefix}-draggable-modal-render';
+
+.@{draggable-modal-render-cls}-drag {
+  position: absolute;
+  top: 17px;
+  inset-inline-end: 17px;
+  z-index: 1010;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  background: transparent;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  outline: 0;
+  cursor: move;
+  transition: color 0.2s, background-color 0.2s;
+  font-size: 20px;
+}

@@ -38,9 +38,12 @@ const VoidFieldComponent = observer<VoidFieldProps>(
         },
       );
 
-      watch(formRef, () => {
-        fieldRef.value = createField();
-      });
+      watch(
+        () => formRef.value.id,
+        () => {
+          fieldRef.value = createField();
+        },
+      );
 
       useAttach(fieldRef);
       provideField(fieldRef);

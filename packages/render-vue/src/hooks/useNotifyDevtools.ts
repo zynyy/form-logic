@@ -16,8 +16,8 @@ const useNotifyDevtools = (formRef: Ref<Form>) => {
     const form = formRef.value;
 
     globalThis[DEV_TOOLS]?.update(form.id, {
-      options: JSON.parse(JSON.stringify(transformOptions.value)),
-      execLogicList: JSON.parse(JSON.stringify(execLogicHistoryRef.value)),
+      options: JSON.parse(JSON.stringify(transformOptions.value ?? {})),
+      execLogicList: JSON.parse(JSON.stringify(execLogicHistoryRef.value ?? {})),
     });
   };
 

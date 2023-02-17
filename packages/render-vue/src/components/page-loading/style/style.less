@@ -1,0 +1,13 @@
+@import '../../style/common.less';
+@import 'ant-design-vue/lib/style/themes/default.less';
+@import 'ant-design-vue/lib/input/style/mixin.less';
+
+@page-loading-cls: ~'@{form-logic-prefix}-page-loading';
+
+.@{page-loading-cls} {
+  height: 100%;
+
+  .@{ant-prefix}-spin-container {
+    height: 100%;
+  }
+}

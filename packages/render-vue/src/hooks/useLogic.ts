@@ -166,34 +166,6 @@ export const useBindLogic = (form: Ref<Form>, options: Ref<BindLogicOptions>): R
     });
   };
 
-  watch(
-    () => form.value.id,
-    () => {
-      console.log(form.value.id, 'form');
-    },
-  );
-
-  watch(
-    () => options.value.autoLogic,
-    () => {
-      console.log(options.value, 'autoLogic');
-    },
-  );
-
-  watch(
-    () => options.value.logicList,
-    () => {
-      console.log(options.value.logicList, 'logicList');
-    },
-  );
-
-  watch(
-    () => options.value.logicParams,
-    () => {
-      console.log(options.value, 'logicParams');
-    },
-  );
-
   watchEffect((onCleanup) => {
     const effectId = effectIdRef.value;
     onCleanup(() => {

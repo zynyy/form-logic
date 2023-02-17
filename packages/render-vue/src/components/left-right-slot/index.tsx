@@ -1,4 +1,4 @@
-import { Col, Row, RowProps, Space } from 'ant-design-vue';
+import { Col, Row,  Space } from 'ant-design-vue';
 
 import cls from 'classnames';
 import { defineComponent } from 'vue';

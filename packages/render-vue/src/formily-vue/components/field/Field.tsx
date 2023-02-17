@@ -19,6 +19,7 @@ const FieldComponent = observer<FieldProps>(
       const { basePath, name } = props;
 
       const createField = () => {
+
         return formRef?.value?.createField?.({
           name,
           ...props,
@@ -26,10 +27,22 @@ const FieldComponent = observer<FieldProps>(
         });
       };
 
+
+      watch(
+        () => props,
+        () => {
+          fieldRef.value = createField();
+        },
+      );
+
+      watch(
+        () => formRef.value.id,
+        () => {
+          fieldRef.value = createField();
+        },
+      );
+
       const fieldRef = shallowRef<Field>(createField());
-
-
-
 
       useAttach(fieldRef);
       provideField(fieldRef);

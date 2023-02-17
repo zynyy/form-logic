@@ -99,10 +99,10 @@ export default observer<ReactiveFieldProps>(
     setup(props: ReactiveFieldProps, { slots }) {
       const componentsRef = useSchemaComponentsContext();
 
-      const { field } = props;
-
       return () => {
         const components = componentsRef.value;
+
+        const { field } = props;
 
         if (!field) {
           return slots.default?.();
