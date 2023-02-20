@@ -1,16 +1,21 @@
-import { withInstall } from '@/utils';
-import _SchemeForm from './SchemeForm';
+import SchemeForm from './SchemeForm';
+import { pluginFactory } from '@/utils/plugins';
 
-export * from './hooks'
+export * from './hooks';
 
-export const SchemeForm = withInstall(_SchemeForm);
 export default SchemeForm;
 
 export * from './interface';
 
+export const schemeFormPlugin = pluginFactory({
+  components: {
+    SchemeForm,
+  },
+});
+
 declare module 'vue' {
   // Volar
   export interface GlobalComponents {
-    SchemeForm: typeof _SchemeForm;
+    SchemeForm: typeof SchemeForm;
   }
 }

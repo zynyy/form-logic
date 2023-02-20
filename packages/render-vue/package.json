@@ -1,10 +1,11 @@
 {
   "name": "@formlogic/render-vue",
-  "version": "1.0.2-alpha.0",
+  "version": "1.0.2-alpha.1",
   "license": "MIT",
-  "browser": "./esm/index.js",
+  "browser": "esm/index.js",
   "types": "esm/index.d.ts",
   "homepage": "https://github.com/zynyy/form-logic#readme",
+  "web-types": "dist/web-types.json",
   "engines": {
     "npm": ">=3.0.0"
   },
@@ -30,7 +31,7 @@
     "@formily/json-schema": "^2.2.10",
     "@formily/reactive": "2.2.10",
     "@formily/shared": "2.2.10",
-    "@formlogic/server": "1.0.2-alpha.0",
+    "@formlogic/server": "1.0.2-alpha.1",
     "@vue/shared": "^3.2.47",
     "@vueuse/core": "^9.12.0",
     "ant-design-vue": "^3.2.15",

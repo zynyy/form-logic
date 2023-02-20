@@ -1,7 +1,7 @@
 import { defineComponent, h } from 'vue';
 import { GeneralField, isVoidField } from '@formily/core';
 import { FormPath } from '@formily/shared';
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue/shared';
 import { toJS } from '@formily/reactive';
 import Fragment from '../fragment';
 

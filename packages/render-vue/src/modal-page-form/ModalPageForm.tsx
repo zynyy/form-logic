@@ -17,7 +17,7 @@ const ModalPageForm = defineComponent({
   name: 'ModalPageForm',
   inheritAttrs: false,
   props: getModalPageFormProps(),
-  setup(props: ModalPageFormProps) {
+  setup(props: ModalPageFormProps, { slots }) {
     const submitLoading = ref(false);
 
     const loadingDone = ref(false);
@@ -120,6 +120,16 @@ const ModalPageForm = defineComponent({
       }
     };
 
+    const renderTitle = () => {
+      if (slots.title) {
+        return slots.title();
+      }
+
+      const { title } = props;
+
+      return title || '请填写';
+    };
+
     const renderFooter = () => {
       const { buttons } = pageFormRef.value;
 
@@ -170,16 +180,8 @@ const ModalPageForm = defineComponent({
     );
 
     return () => {
-      const {
-        components,
-        title,
-        width,
-        extraLogicParams,
-        getLogicConfig,
-        events,
-        visible,
-        language,
-      } = props;
+      const { components, width, extraLogicParams, getLogicConfig, events, visible, language } =
+        props;
 
       const { schema, form, pattern, formLoading } = pageFormRef.value;
 
@@ -187,7 +189,6 @@ const ModalPageForm = defineComponent({
 
       return (
         <DraggableModal
-          title={title || '请填写'}
           maskClosable={false}
           visible={visible}
           confirmLoading={submitLoading.value}
@@ -201,6 +202,7 @@ const ModalPageForm = defineComponent({
             minHeight: 200,
           }}
           v-slots={{
+            title: renderTitle,
             footer: renderFooter,
           }}
           destroyOnClose

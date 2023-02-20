@@ -4,11 +4,7 @@ export { createSchemaField };
 
 export * from './interface';
 
-import { withInstall } from '@/utils';
-
-import _RecursionField from './RecursionField';
-
-export const RecursionField = withInstall(_RecursionField);
+import RecursionField from './RecursionField';
 
 export {
   useSchemaScopeContext,
@@ -19,6 +15,8 @@ export {
 } from './hooks';
 
 export type { SchemaScopeRef, SchemaComponentsRef } from './hooks';
+
+export { RecursionField };
 
 declare module 'vue' {
   export interface GlobalComponents {

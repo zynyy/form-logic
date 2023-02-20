@@ -91,8 +91,7 @@
       "name": "默认搜索",
       "type": "column",
       "schemaType": "string",
-      "required": "1",
-      "defaultValue": "6",
+      "defaultValue": 6,
       "group": "basicInfo"
     },
     {
@@ -154,5 +153,5 @@
       "logics": [{ "effectHook": "onClick", "logicCode": "com_save" }]
     }
   ],
-  "defaultSearchColumn": "6"
+  "defaultSearchColumn": 6
 }

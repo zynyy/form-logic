@@ -1,7 +1,7 @@
 import { markRaw, defineComponent, h } from 'vue';
 import { isFn, isStr, FormPath, each } from '@formily/shared';
 import { isVoidField, GeneralField } from '@formily/core';
-import { observer } from '@/utils/observer';
+import { observer } from './observer';
 
 import { useField } from '@/formily-vue/components/field';
 
@@ -42,8 +42,6 @@ export function mapProps<T extends VueComponent = VueComponent>(
               ? transform({ ...attrs } as VueComponentProps<T>, fieldRef.value)
               : { ...attrs };
 
-
-
             return h(
               target,
               formatComponentProps({
@@ -73,6 +71,36 @@ export function mapReadPretty<T extends VueComponent, C extends VueComponent>(
             const field = fieldRef.value;
             return h(
               field && !isVoidField(field) && field.pattern === 'readPretty' ? component : target,
+              formatComponentProps({
+                attrs: {
+                  ...readPrettyProps,
+                  ...attrs,
+                },
+                on: listeners,
+              }),
+              slots,
+            );
+          };
+        },
+      }),
+    );
+  };
+}
+
+export function mapReadOnly<T extends VueComponent, C extends VueComponent>(
+  component: C,
+  readPrettyProps?: Record<string, any>,
+) {
+  return (target: T) => {
+    return observer(
+      defineComponent({
+        name: target.name ? `ReadOnly${target.name}` : `ReadOnlyComponent`,
+        setup(props, { attrs, slots, listeners }: Record<string, any>) {
+          const fieldRef = useField();
+          return () => {
+            const field = fieldRef.value;
+            return h(
+              field && !isVoidField(field) && field.pattern === 'readOnly' ? component : target,
               formatComponentProps({
                 attrs: {
                   ...readPrettyProps,

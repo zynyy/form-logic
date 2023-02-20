@@ -1,6 +1,10 @@
-import { withInstall } from '@/utils';
+import FormGroup from './FormGroup';
 
-import _FormGroup from './FormGroup';
-
-const FormGroup = withInstall(_FormGroup);
 export default FormGroup;
+
+declare module 'vue' {
+  // Volar
+  export interface GlobalComponents {
+    FormGroup: typeof FormGroup;
+  }
+}

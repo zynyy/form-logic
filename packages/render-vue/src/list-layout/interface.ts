@@ -1,11 +1,22 @@
 import { ExtractPropTypes, PropType } from 'vue';
 import { Components, EventsObject, LogicConfig, MetaSchema, SchemaPattern } from '@/interface';
 import { Form, IFormProps } from '@formily/core';
-import { getArrayBaseEvent } from "@/components/array-base";
+import { getArrayBaseEvent } from '@/components/array-base';
+
+import pick from 'lodash.pick';
+import { getSchemeTableFormProps } from '@/scheme-table-form';
 
 export const getListLayoutProps = () => {
   return {
     ...getArrayBaseEvent(),
+
+    ...pick(getSchemeTableFormProps(), [
+      'scrollY',
+      'rowSelectionType',
+      'rowKey',
+      'hasRowSelection',
+    ]),
+
     language: String,
     action: {
       type: String,
@@ -30,7 +41,8 @@ export const getListLayoutProps = () => {
     },
     onSearchMount: {
       type: Function as PropType<(form: Form) => void>,
-    },  onTableMount: {
+    },
+    onTableMount: {
       type: Function as PropType<(form: Form) => void>,
     },
 
@@ -49,7 +61,6 @@ export const getListLayoutProps = () => {
     transformSearchParams: {
       type: Function as PropType<(searchParams: Record<string, any>) => Record<string, any>>,
     },
-
     components: {
       type: Object as PropType<Components>,
     },

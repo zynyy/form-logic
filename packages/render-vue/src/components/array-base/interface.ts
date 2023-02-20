@@ -1,5 +1,5 @@
 import { ExtractPropTypes, PropType, Ref } from 'vue';
-import { UploadChangeParam } from 'ant-design-vue';
+import { UploadChangeParam, UploadProps } from 'ant-design-vue';
 import { ArrayField, Form, VoidField } from '@formily/core';
 
 type Key = string | number;
@@ -145,11 +145,12 @@ export const getArrayAddProps = () => {
 };
 
 export const getArrayBaseUploadProps = () => {
-
-  return  {
-
-  }
-}
+  return {
+    onChange: {
+      type: Function as PropType<(info: UploadChangeParam, modelsFiled: ModelsFiled) => void>,
+    },
+  };
+};
 
 export type ArrayBaseProps = ExtractPropTypes<ReturnType<typeof getArrayBaseProps>>;
 export type RowSelectedProps = ExtractPropTypes<ReturnType<typeof getRowSelectedProps>>;
@@ -163,4 +164,4 @@ export type ArrayEditProps = ExtractPropTypes<ReturnType<typeof getArrayEditProp
 export type ArrayRemoveProps = ExtractPropTypes<ReturnType<typeof getArrayRemoveProps>>;
 export type ArrayBatchRemoveProps = ExtractPropTypes<ReturnType<typeof getArrayBatchRemoveProps>>;
 export type ArrayAddProps = ExtractPropTypes<ReturnType<typeof getArrayAddProps>>;
-export type ArrayBaseUploadProps  = ExtractPropTypes<ReturnType<typeof getArrayBaseUploadProps>>;
+export type ArrayBaseUploadProps = ExtractPropTypes<ReturnType<typeof getArrayBaseUploadProps>>;

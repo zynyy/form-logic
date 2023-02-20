@@ -1,6 +1,6 @@
-import { observer } from '@/utils/observer';
+
 import { defineComponent } from 'vue';
-import { RecursionField } from '@/formily-vue';
+import { RecursionField ,observer} from '@/formily-vue';
 import { getSchemaFragmentProps, SchemaFragmentProps } from './interface';
 
 const Fragment = defineComponent({

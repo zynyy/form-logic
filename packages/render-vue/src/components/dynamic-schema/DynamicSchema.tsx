@@ -1,7 +1,7 @@
 import { Skeleton } from 'ant-design-vue';
 import { defineComponent, toRef } from 'vue';
-import { RecursionField, useField } from '@/formily-vue';
-import { observer } from '@/utils/observer';
+import { RecursionField, useField,observer } from '@/formily-vue';
+
 import { getDynamicSchemaProps } from './interface';
 import { useJsonMetaSchema } from '@/hooks/useJsonMetaSchema';
 import { useDynamicSchema } from '@/hooks/useDynamicSchema';

@@ -1,7 +1,7 @@
 import { defineComponent, ref, watch } from 'vue';
 import { Pagination, Space } from 'ant-design-vue';
 import cls from 'classnames';
-import PaginationStatusSelect from '@/components/pagination-status-select/PaginationStatusSelect';
+import PaginationStatusSelect from '@/components/pagination-status-select';
 import { STYLE_PREFIX } from '@/utils/constant';
 import {
   ArrayPaginationProps,

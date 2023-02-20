@@ -1,7 +1,13 @@
-import _ArrayBase from './ArrayBase';
-import { withInstall } from '@/utils';
-
-export const ArrayBase = withInstall(_ArrayBase);
+import ArrayBase from './ArrayBase';
 
 export * from './hooks';
 export * from './interface';
+
+export default ArrayBase;
+
+declare module 'vue' {
+  // Volar
+  export interface GlobalComponents {
+    ArrayBase: typeof ArrayBase;
+  }
+}

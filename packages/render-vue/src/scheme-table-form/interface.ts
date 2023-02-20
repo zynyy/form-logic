@@ -2,14 +2,7 @@ import { ExtractPropTypes, PropType } from 'vue';
 import { makeRequiredProp } from '@/utils/props';
 import { Form } from '@formily/core';
 import { ISchema } from '@formily/json-schema';
-import {
-  AnyObject,
-  Components,
-  EventsObject,
-  LogicConfig,
-  SchemaPattern,
-  StrNumBool,
-} from '@/interface';
+import { AnyObject, Components, EventsObject, LogicConfig, StrNumBool } from '@/interface';
 import { TableRowSelection } from 'ant-design-vue/lib/table/interface';
 import { TableProps } from 'ant-design-vue';
 import { TablePaginationConfig } from 'ant-design-vue/es';
@@ -18,24 +11,13 @@ import {
   SorterResult,
   TableCurrentDataSource,
 } from 'ant-design-vue/es/table/interface';
-import { getArrayBaseEvent } from "@/components/array-base";
+import { getArrayBaseEvent } from '@/components/array-base';
 
 export const getSchemeTableFormProps = () => {
   return {
     ...getArrayBaseEvent(),
     form: makeRequiredProp<PropType<Form>>(Object),
     schema: makeRequiredProp<PropType<ISchema>>(Object),
-    getLogicConfig: {
-      type: Function as PropType<LogicConfig>,
-    },
-    extraLogicParams: {
-      type: Object as PropType<AnyObject>,
-      default: {},
-    },
-    events: {
-      type: Object as PropType<EventsObject>,
-      default: {},
-    },
     language: {
       type: String as PropType<string>,
       default: 'zh-CN',
@@ -43,7 +25,8 @@ export const getSchemeTableFormProps = () => {
     loading: {
       type: Boolean,
       default: false,
-    }, tableLoading: {
+    },
+    tableLoading: {
       type: Boolean,
       default: false,
     },

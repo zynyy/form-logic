@@ -1,15 +1,19 @@
-import _DrawerPageForm from './DrawerPageForm';
-import { withInstall } from '@/utils';
-
-const DrawerPageForm = withInstall(_DrawerPageForm);
+import DrawerPageForm from './DrawerPageForm';
+import { pluginFactory } from '@/utils/plugins';
 
 export * from './interface';
 
 export default DrawerPageForm;
 
+export const drawerPageFormPlugin = pluginFactory({
+  components: {
+    DrawerPageForm,
+  },
+});
+
 declare module 'vue' {
   // Volar
   export interface GlobalComponents {
-    ModalPageForm: typeof _DrawerPageForm;
+    DrawerPageForm: typeof DrawerPageForm;
   }
 }

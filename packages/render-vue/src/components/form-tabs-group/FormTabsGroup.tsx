@@ -8,7 +8,7 @@ import { RecursionField } from '@/formily-vue';
 import { usePropertiesSources } from '@/hooks';
 import { useTabs } from '@/components/form-tabs-group/hooks';
 import FeedbackBadge from '@/components/feedback-badge';
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue';
 import { FormTabsGroupProps, getFormTabsGroupProps } from '@/components/form-tabs-group/interface';
 
 const FormTabsGroup = observer<FormTabsGroupProps>(

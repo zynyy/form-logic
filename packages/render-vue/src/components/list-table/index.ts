@@ -1,8 +1,12 @@
-import _ListTable from './ListTable';
-import { withInstall } from '@/utils';
-
-const ListTable = withInstall(_ListTable);
+import ListTable from './ListTable';
 
 export default ListTable;
 
-export * from './interface'
+export * from './interface';
+
+declare module 'vue' {
+  // Volar
+  export interface GlobalComponents {
+    ListTable: typeof ListTable;
+  }
+}

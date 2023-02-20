@@ -2,7 +2,7 @@ import { defineComponent, toRef } from 'vue';
 
 import { provideForm } from './hooks';
 
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue/shared';
 
 import { FormProviderProps, getFormProviderProps } from './interface';
 import { useAttach } from '@/formily-vue/hooks';

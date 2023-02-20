@@ -169,21 +169,9 @@ export type WithInstall<T> = T & {
   install(app: App): void;
 };
 
-export const camelCaseToHyphen = (str) => {
-  return str.replace(/(?<=[A-Za-z0-9])(?=[A-Z])/g, '-').toLowerCase();
-};
 
-export function withInstall<T extends Component>(component: T) {
-  (component as Record<string, unknown>).install = (app: App) => {
-    const { name } = component;
-    if (name) {
-      app.component(name, component);
-      app.component(camelCaseToHyphen(name), component);
-    }
-  };
 
-  return component as WithInstall<T>;
-}
+
 
 export const formatComponentProps = (props: VNodeData) => {
   const newData = {};

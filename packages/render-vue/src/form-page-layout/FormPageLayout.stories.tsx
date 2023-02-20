@@ -51,7 +51,6 @@ const render = ({ metaSchema, pageCode,...agrs }) => ({
           pageCode={pageCode}
           formConfig={formConfigRef.value}
           metaSchema={metaSchema}
-
         />
       );
     };

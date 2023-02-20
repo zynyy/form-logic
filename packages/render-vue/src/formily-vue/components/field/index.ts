@@ -1,14 +1,7 @@
-import { withInstall } from '@/utils';
-
-import _Field from './Field';
-import _ArrayField from './ArrayField';
-import _ObjectField from './ObjectField';
-import _VoidField from './VoidField';
-
-export const Field = withInstall(_Field);
-export const ArrayField = withInstall(_ArrayField);
-export const ObjectField = withInstall(_ObjectField);
-export const VoidField = withInstall(_VoidField);
+import Field from './Field';
+import ArrayField from './ArrayField';
+import ObjectField from './ObjectField';
+import VoidField from './VoidField';
 
 export type { FieldProps, ArrayFieldProps, ObjectFieldProps, VoidFieldProps } from './interface';
 
@@ -20,6 +13,8 @@ export {
 } from './interface';
 
 export { useField, provideField } from './hooks';
+
+export { Field, VoidField, ArrayField, ObjectField };
 
 declare module 'vue' {
   export interface GlobalComponents {

@@ -7,7 +7,7 @@ export type SchemaComponentsRef = Ref<SchemaVueComponents>;
 export const SchemaComponentsSymbol: InjectionKey<SchemaComponentsRef> = Symbol('schemaComponents');
 
 export const useSchemaComponentsContext = (): SchemaComponentsRef => {
-  return inject(SchemaComponentsSymbol, ref()) as any;
+  return inject(SchemaComponentsSymbol, ref({})) as any;
 };
 
 export const provideSchemaComponents = (schemaComponents: SchemaComponentsRef) => {

@@ -1,4 +1,4 @@
-import { observer } from '@/utils/observer';
+
 import { defineComponent } from 'vue';
 import cls from 'classnames';
 import { Badge, Select } from 'ant-design-vue';

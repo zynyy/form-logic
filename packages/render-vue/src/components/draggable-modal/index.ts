@@ -1,12 +1,21 @@
-import _DraggableModal from './DraggableModal';
-import { withInstall } from '@/utils';
+import DraggableModal from './DraggableModal';
 
-export { default as infoModal } from './infoModal';
-export { default as confirmModal } from './confirmModal';
-export { default as ModalRender } from './ModalRender';
+import infoModal from './infoModal';
+import confirmModal from './confirmModal';
+import ModalRender from './ModalRender';
 
 export * from './interface';
 
-const DraggableModal = withInstall(_DraggableModal);
+export { infoModal, ModalRender, confirmModal };
 
 export default DraggableModal;
+
+declare module 'vue' {
+  // Volar
+  export interface GlobalComponents {
+    DraggableModal: typeof DraggableModal;
+    infoModal: typeof infoModal;
+    ModalRender: typeof ModalRender;
+    confirmModal: typeof confirmModal;
+  }
+}

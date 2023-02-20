@@ -16,7 +16,7 @@ const DrawerPageForm = defineComponent({
   name: 'DrawerPageForm',
   inheritAttrs: false,
   props: getDrawerPageFormProps(),
-  setup(props: DrawerPageFormProps) {
+  setup(props: DrawerPageFormProps, { slots }) {
     const submitLoading = ref(false);
 
     const loadingDone = ref(false);
@@ -138,6 +138,16 @@ const DrawerPageForm = defineComponent({
       );
     };
 
+    const renderTitle = () => {
+      if (slots.title) {
+        return slots.title();
+      }
+
+      const { title } = props;
+
+      return title || '请填写';
+    };
+
     watch(
       () => {
         return {
@@ -157,7 +167,7 @@ const DrawerPageForm = defineComponent({
     return () => {
       const {
         components,
-        title,
+
         width,
         extraLogicParams,
         getLogicConfig,
@@ -172,13 +182,13 @@ const DrawerPageForm = defineComponent({
 
       return (
         <Drawer
-          title={title || '请填写'}
           maskClosable={false}
           visible={visible}
           onClose={handleCloseClick}
           closable={false}
           width={width || '90%'}
           v-slots={{
+            title: renderTitle,
             footer: renderFooter,
           }}
           destroyOnClose

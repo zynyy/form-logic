@@ -1,10 +1,5 @@
-import { withInstall } from '@/utils';
-
-import _ReactiveField from './ReactiveField';
-
-const ReactiveField = withInstall(_ReactiveField);
-
-export default ReactiveField;
+import ReactiveField from './ReactiveField';
+export { default as ReactiveField } from './ReactiveField';
 
 export { getReactiveFieldProps } from './interface';
 

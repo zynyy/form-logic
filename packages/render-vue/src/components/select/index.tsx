@@ -1,4 +1,4 @@
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue';
 import { defineComponent } from 'vue';
 import { selectProps } from 'ant-design-vue/es/select';
 import { Select as AntdSelect } from 'ant-design-vue';

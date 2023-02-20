@@ -3,8 +3,8 @@ import type { ArrayField } from '@formily/core';
 
 import { Table, Space } from 'ant-design-vue';
 
-import { observer } from '@/utils/observer';
-import { RecursionField, useField } from '@/formily-vue';
+
+import { RecursionField, useField,observer } from '@/formily-vue';
 
 import { useArrayTableColumns, useArrayTableSources, useTableSchemaBtn } from '@/hooks';
 

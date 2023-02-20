@@ -15,8 +15,6 @@ import { useItemKey } from '@/components/array-base';
 import { toArray } from '@/utils';
 import { LIST_FILED_CODE } from '@/utils/constant';
 
-import 'ant-design-vue/dist/antd.css';
-
 const SchemeTableForm = defineComponent({
   name: 'SchemeTableForm',
   inheritAttrs: false,
@@ -60,7 +58,6 @@ const SchemeTableForm = defineComponent({
       if (typeof rowKey === 'function') {
         return rowKey(record);
       }
-
 
       return record[rowKey] || getRecordKey(record);
     };

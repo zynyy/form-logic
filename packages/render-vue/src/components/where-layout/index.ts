@@ -1,11 +1,12 @@
-import { withInstall } from "@/utils";
-
-
 export * from './interface';
 
-import _WhereLayout from './WhereLayout';
-
-const WhereLayout = withInstall(_WhereLayout);
+import WhereLayout from './WhereLayout';
 
 export default WhereLayout;
 
+declare module 'vue' {
+  // Volar
+  export interface GlobalComponents {
+    WhereLayout: typeof WhereLayout;
+  }
+}

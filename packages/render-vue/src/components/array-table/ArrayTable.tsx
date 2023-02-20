@@ -1,13 +1,16 @@
-import { observer } from '@/utils/observer';
+
 import { defineComponent } from 'vue';
-import { ArrayTableBase } from '@/components/array-table-base';
+import ArrayTableBase, { getArrayTableBaseProps } from '@/components/array-table-base';
 import { ArrayField } from '@formily/core';
-import { useField } from '@/formily-vue';
+import { useField,observer } from '@/formily-vue';
+import omit from 'lodash.omit';
 
 const ArrayTable = observer(
   defineComponent({
     name: 'ArrayTable',
-    props: [],
+    props: {
+      ...omit(getArrayTableBaseProps(), ['onRemove', 'onAdd']),
+    },
     setup(props) {
       const field = useField<ArrayField>();
 

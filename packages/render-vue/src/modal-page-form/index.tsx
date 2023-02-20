@@ -1,15 +1,19 @@
-import _ModalPageForm from './ModalPageForm';
-import { withInstall } from '@/utils';
-
-const ModalPageForm = withInstall(_ModalPageForm);
+import ModalPageForm from './ModalPageForm';
+import { pluginFactory } from '@/utils/plugins';
 
 export * from './interface';
 
 export default ModalPageForm;
 
+export const modalPageFormPlugin = pluginFactory({
+  components: {
+    ModalPageForm,
+  },
+});
+
 declare module 'vue' {
   // Volar
   export interface GlobalComponents {
-    ModalPageForm: typeof _ModalPageForm;
+    ModalPageForm: typeof ModalPageForm;
   }
 }

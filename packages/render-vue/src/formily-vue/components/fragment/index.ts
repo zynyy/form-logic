@@ -1,7 +1,9 @@
-import { withInstall } from '@/utils';
-
-import _Fragment from './Fragment';
-
-const Fragment = withInstall(_Fragment);
+import Fragment from './Fragment';
 
 export default Fragment;
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    Fragment: typeof Fragment;
+  }
+}

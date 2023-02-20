@@ -1,5 +1,5 @@
 import cls from 'classnames';
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue';
 
 import { isArrayField, isDataField } from '@formily/core';
 
@@ -100,11 +100,11 @@ const BaseItem = observer(
       const errorsMsg = computed(() => {
         return props.feedbackText?.length
           ? props.feedbackText
-              .reduce((acc, item) => {
-                const { messages } = item;
-                return `${acc} ${acc ? ';' : ''} ${messages?.join(';')}`;
-              }, '')
-              .trim()
+            .reduce((acc, item) => {
+              const { messages } = item;
+              return `${acc} ${acc ? ';' : ''} ${messages?.join(';')}`;
+            }, '')
+            .trim()
           : '';
       });
 

@@ -9,6 +9,12 @@ export const getDrawerPageFormProps = () => {
     extraLogicParams: {
       type: Object as PropType<Record<string, any>>,
     },
+    components: {
+      type: Object as PropType<Components>,
+    },
+    events: {
+      type: Object as PropType<EventsObject>,
+    },
     getLogicConfig: {
       type: Function as PropType<LogicConfig>,
       required: true as const,
@@ -17,12 +23,7 @@ export const getDrawerPageFormProps = () => {
       type: [null, Object] as PropType<TransformsSchemaOptions>,
       required: true as const,
     },
-    components: {
-      type: Object as PropType<Components>,
-    },
-    events: {
-      type: Object as PropType<EventsObject>,
-    },
+
     onFormMount: {
       type: Function as PropType<(form: Form) => void>,
     },

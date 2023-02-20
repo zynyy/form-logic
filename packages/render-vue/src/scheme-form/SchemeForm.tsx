@@ -64,7 +64,6 @@ const SchemeForm = defineComponent({
     return () => {
       const { schema, form, loading } = props;
 
-
       return (
         <Skeleton loading={loading}>
           <FormProvider form={form}>

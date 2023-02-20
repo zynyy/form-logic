@@ -1,4 +1,4 @@
-import { IObserverOptions, useObserver } from '@/formily-vue/hooks/useObserver';
+import { IObserverOptions, useObserver } from '@/formily-vue/hooks';
 import { DefineComponent } from '@/formily-vue';
 
 /* istanbul ignore next */

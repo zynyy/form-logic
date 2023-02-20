@@ -1,5 +1,5 @@
 import { AnyObject, EventsObject, LogicConfig, SchemaPattern } from '@/interface';
-import { InjectionKey, inject, provide, Ref } from 'vue';
+import {InjectionKey, inject, provide, Ref, ref} from 'vue';
 
 export interface SchemeFormValueContent {
   pattern?: SchemaPattern;
@@ -14,7 +14,7 @@ export const SchemeFormValueContentSymbol: InjectionKey<SchemeFormValueContentRe
   Symbol('SchemeFormValueContent');
 
 export const useSchemeFormContent = (): SchemeFormValueContentRef => {
-  return inject(SchemeFormValueContentSymbol);
+  return inject(SchemeFormValueContentSymbol, ref({}));
 };
 
 export const provideSchemeForm = (schemeFormValueContent: SchemeFormValueContentRef) => {

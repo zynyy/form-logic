@@ -3,15 +3,15 @@ import { Ref, ref, shallowRef, watchEffect } from 'vue';
 
 import { isEqual } from '@formily/shared';
 
-interface CreateFormOptions {
+export interface CreateFormOptions {
   formConfig?: IFormProps;
   onMount?: (form: Form) => void;
   autoRefreshForm?: boolean;
 }
 
-export const useCreateForm = (
-  optionsRef?: Ref<CreateFormOptions>,
-): [Ref<Form>, (formConfig?: IFormProps) => string] => {
+export type RefreshForm = (formConfig?: IFormProps) => string;
+
+export const useCreateForm = (optionsRef?: Ref<CreateFormOptions>): [Ref<Form>, RefreshForm] => {
   const { formConfig } = optionsRef?.value || {};
 
   const prevFormConfig = ref(formConfig);

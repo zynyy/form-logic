@@ -1,10 +1,10 @@
 import { defineComponent, shallowRef, watch } from 'vue';
 
 import { ArrayFieldProps, getArrayFieldProps } from './interface';
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue/shared';
 import { useAttach } from '@/formily-vue/hooks';
 import { ArrayField } from '@formily/core';
-import ReactiveField from '../reactive-field';
+import {ReactiveField} from '../reactive-field';
 import { provideField, useField } from './hooks';
 import { useForm } from '../form-provider';
 

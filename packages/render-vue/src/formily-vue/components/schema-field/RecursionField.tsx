@@ -7,7 +7,7 @@ import Fragment from '../fragment';
 
 import { Field, ArrayField, ObjectField, VoidField, useField } from '../field';
 
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue/shared';
 import { formatComponentProps } from '@/utils';
 import { getRecursionFieldProps, RecursionFieldProps } from './interface';
 

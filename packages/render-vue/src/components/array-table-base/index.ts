@@ -1,7 +1,13 @@
-import _ArrayTableBase from './ArrayTableBase';
-import { withInstall } from '@/utils';
-
-export const ArrayTableBase = withInstall(_ArrayTableBase);
+import ArrayTableBase from './ArrayTableBase';
 
 export * from './interface';
 export * from './hooks';
+
+export default ArrayTableBase;
+
+declare module 'vue' {
+  // Volar
+  export interface GlobalComponents {
+    ArrayTableBase: typeof ArrayTableBase;
+  }
+}

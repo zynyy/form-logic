@@ -1,8 +1,10 @@
+import PageLoading from './PageLoading';
 
+export default PageLoading;
 
-import _PageLoading from './PageLoading'
-import { withInstall } from "@/utils";
-
-const PageLoading = withInstall(_PageLoading);
-
-export default PageLoading
+declare module 'vue' {
+  // Volar
+  export interface GlobalComponents {
+    PageLoading: typeof PageLoading;
+  }
+}

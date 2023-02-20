@@ -4,10 +4,10 @@ import { Grid } from '@formily/grid';
 
 import { useFormLayoutContext } from '@/components/form-layout/hooks';
 
-import { defineComponent, ref, onMounted, computed, nextTick } from 'vue';
+import { defineComponent, ref, onMounted, computed } from 'vue';
 
 import { FormGridProps, formGridProps } from '@/components/form-grid/interface';
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue';
 
 const FormGrid = observer(
   defineComponent({

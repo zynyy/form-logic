@@ -3,10 +3,10 @@ import { VoidField } from '@formily/core';
 
 import { useAttach } from '@/formily-vue/hooks';
 
-import { observer } from '@/utils/observer';
+import { observer } from '@/formily-vue/shared';
 import { getVoidFieldProps, VoidFieldProps } from './interface';
 
-import ReactiveField from '../reactive-field';
+import {ReactiveField} from '../reactive-field';
 import { useForm } from '../form-provider';
 import { provideField, useField } from './hooks';
 

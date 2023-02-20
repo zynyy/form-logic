@@ -17,7 +17,6 @@ const ListLayout = defineComponent({
   props: getListLayoutProps(),
   setup(props: ListLayoutProps, { expose }) {
     const searchLoading = ref(false);
-
     const paginationRef = reactive({
       currentPage: 1,
       pageSize: 30,

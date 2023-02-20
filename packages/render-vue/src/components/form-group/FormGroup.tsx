@@ -3,10 +3,10 @@ import { Card, Space } from 'ant-design-vue';
 import { defineComponent } from 'vue';
 
 import { useFieldSchema } from '@/formily-vue/components/schema-field/hooks';
-import { RecursionField, useField } from '@/formily-vue';
+import { RecursionField, useField,observer } from '@/formily-vue';
 import { FormGroupProps, getFormGroupProps } from './interface';
 import { useGroupSchemaBtn } from '@/hooks';
-import { observer } from '@/utils/observer';
+
 import {useStylePrefixCls} from "@/components/style/hooks";
 
 const FormGroup = observer(

@@ -5,8 +5,8 @@ import type { ArrayField } from '@formily/core';
 import { DragOutlined } from '@ant-design/icons-vue';
 
 import { HandleDirective } from 'vue-slicksort';
-import { useField } from '@/formily-vue';
-import { observer } from '@/utils/observer';
+import { useField, observer } from '@/formily-vue';
+
 import {
   provideArrayContext,
   provideArrayItemContext,
@@ -33,8 +33,8 @@ import {
   MoveDown,
   MoveUp,
   Remove,
+  Upload,
 } from '@/components/array-base/buttons';
-import { Upload } from 'ant-design-vue';
 
 const stylePrefix = `${STYLE_PREFIX}`;
 
