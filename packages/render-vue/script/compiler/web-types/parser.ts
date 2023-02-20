@@ -3,6 +3,7 @@ const TITLE_REG = /^(#+)\s+([^\n]*)/;
 const TABLE_REG = /^\|.+\r?\n\|\s*-+/;
 const TD_REG = /\s*`[^`]+`\s*|([^|`]+)/g;
 const TABLE_SPLIT_LINE_REG = /^\|\s*-/;
+const DESCRIBE_REG = /(?<=\n\n).*?(?=\n\n)/;
 
 type TableContent = {
   head: string[];
@@ -27,9 +28,7 @@ function readLine(input: string) {
 function splitTableLine(line: string) {
   line = line.replace(/\\\|/g, 'JOIN');
 
-  const items = line
-    .split('|')
-    .map((item) => item.trim().replace(/JOIN/g, '|'));
+  const items = line.split('|').map((item) => item.trim().replace(/JOIN/g, '|'));
 
   // remove pipe character on both sides
   items.pop();
@@ -81,19 +80,30 @@ export function mdParser(input: string): Articles {
   const end = input.length;
 
   while (start < end) {
-    const target = input.substr(start);
+    const target = input.substring(start);
 
     let match;
     if ((match = TITLE_REG.exec(target))) {
+
       article.push({
         type: 'title',
         content: match[2],
         level: match[1].length,
       });
 
+      const [describe] = DESCRIBE_REG.exec(target);
+
+      if (!describe.startsWith("#")) {
+        article.push({
+          type: 'describe',
+          content: describe,
+          level: match[1].length,
+        });
+      }
+
       start += match.index + match[0].length;
     } else if ((match = TABLE_REG.exec(target))) {
-      const { table, usedLength } = tableParse(target.substr(match.index));
+      const { table, usedLength } = tableParse(target.substring(match.index));
       article.push({
         type: 'table',
         table,

@@ -6,7 +6,8 @@ import { formatter } from './formatter.js';
 import { genWebTypes } from './web-types.js';
 import { Options, VueTag } from './type.js';
 import { normalizePath } from './utils.js';
-import { SRC_DIR, LIB_DIR, getPackageJson } from '../../common/constant.js';
+import { SRC_DIR, DIST_DIR, getPackageJson } from '../../common/constant.js';
+
 
 async function readMarkdown(options: Options) {
   const mds = await glob(normalizePath(`${options.path}/**/*.md`));
@@ -23,7 +24,7 @@ export async function parseAndWrite(options: Options) {
 
   mds.forEach((md) => {
     const parsedMd = mdParser(md);
-    formatter(vueTags, parsedMd, options.tagPrefix);
+    formatter(vueTags, parsedMd, options.tagPrefix, options.name);
   });
 
   const webTypes = genWebTypes(vueTags, options);
@@ -38,7 +39,7 @@ export function genWebStormTypes(tagPrefix?: string) {
     path: SRC_DIR,
     test: /README\.md/,
     version: pkgJson.version,
-    outputDir: LIB_DIR,
+    outputDir: DIST_DIR,
     tagPrefix,
   });
 }

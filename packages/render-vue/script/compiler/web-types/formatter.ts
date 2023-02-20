@@ -16,7 +16,11 @@ function formatArguments(input: string): VueEventArgument[] {
   if (input === '-') return [];
   const args: VueEventArgument[] = [];
   const items = [];
-  input = formatType(input);
+
+  const funcArgs = /(?<=\().*?(?=\))/.exec(formatType(input));
+
+  input = funcArgs[0];
+
   while (input.length > 0) {
     if (/(?!_)\w/.test(input[0])) {
       const val = input.match(/(\w|\s|\p{P}|\||\[|\]|>|<)+/)![0] || '';
@@ -52,7 +56,7 @@ function getNameFromTableTitle(tableTitle: string, tagPrefix: string) {
   }
 }
 
-function findTag(vueTags: VueTag[], name: string) {
+function findTag(vueTags: VueTag[], name: string, module, description?: string) {
   const matched = vueTags.find((item) => item.name === name);
 
   if (matched) {
@@ -61,6 +65,12 @@ function findTag(vueTags: VueTag[], name: string) {
 
   const newTag: VueTag = {
     name,
+    description,
+    source: {
+      module: module,
+      symbol: name,
+    },
+    js: {},
   };
 
   vueTags.push(newTag);
@@ -68,20 +78,16 @@ function findTag(vueTags: VueTag[], name: string) {
   return newTag;
 }
 
-export function formatter(
-  vueTags: VueTag[],
-  articles: Articles,
-  tagPrefix = ''
-) {
+export function formatter(vueTags: VueTag[], articles: Articles, tagPrefix = '', module = '') {
   if (!articles.length) {
     return;
   }
 
   const mainTitle = articles[0].content;
-  const defaultName = mainTitle
-    ? formatComponentName(mainTitle.split(' ')[0], tagPrefix)
-    : '';
+  const defaultName = mainTitle ? formatComponentName(mainTitle.split(' ')[0], tagPrefix) : '';
   const tables = articles.filter((article) => article.type === 'table');
+
+  const describe = articles.find((item) => item.type === 'describe')?.content ?? '';
 
   tables.forEach((item) => {
     const { table } = item;
@@ -96,23 +102,21 @@ export function formatter(
 
     if (tableTitle.includes('Props')) {
       const name = getNameFromTableTitle(tableTitle, tagPrefix) || defaultName;
-      const tag = findTag(vueTags, name);
+      const tag = findTag(vueTags, name, module, describe);
 
       table.body.forEach((line) => {
         const [name, desc, type, defaultVal] = line;
 
-        if (!tag.attributes) {
-          tag.attributes = [];
+        if (!tag.props) {
+          tag.props = [];
         }
 
-        tag.attributes.push({
+        tag.props.push({
           name: removeVersion(name),
+          type: formatType(type),
           default: defaultVal,
+          required: !defaultVal,
           description: desc,
-          value: {
-            type: formatType(type),
-            kind: 'expression',
-          },
         });
       });
       return;
@@ -120,19 +124,20 @@ export function formatter(
 
     if (tableTitle.includes('Events')) {
       const name = getNameFromTableTitle(tableTitle, tagPrefix) || defaultName;
-      const tag = findTag(vueTags, name);
+      const tag = findTag(vueTags, name, module, describe);
 
       table.body.forEach((line) => {
-        const [name, desc, args] = line;
+        const [name, desc, type] = line;
 
-        if (!tag.events) {
-          tag.events = [];
+        if (!tag.js.events) {
+          tag.js.events = [];
         }
 
-        tag.events.push({
+        tag.js.events.push({
           name: removeVersion(name),
           description: desc,
-          arguments: formatArguments(args),
+          type: type,
+          arguments: formatArguments(type),
         });
       });
       return;
@@ -140,7 +145,7 @@ export function formatter(
 
     if (tableTitle.includes('Slots')) {
       const name = getNameFromTableTitle(tableTitle, tagPrefix) || defaultName;
-      const tag = findTag(vueTags, name);
+      const tag = findTag(vueTags, name, module, describe);
 
       table.body.forEach((line) => {
         const [name, desc] = line;
