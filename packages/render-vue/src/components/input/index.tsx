@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import inputProps from 'ant-design-vue/es/input/inputProps';
+import inputProps from 'ant-design-vue/lib/input/inputProps';
 import { Input as AntdInput } from 'ant-design-vue';
 import { observer } from '@/formily-vue';
 

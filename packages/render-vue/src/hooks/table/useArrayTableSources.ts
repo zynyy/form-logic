@@ -1,6 +1,6 @@
 import { isArr } from '@formily/shared';
 import { FieldDisplayTypes, GeneralField } from '@formily/core';
-import { ColumnProps } from 'ant-design-vue/es/table';
+import { ColumnProps } from 'ant-design-vue/lib/table';
 import { Schema } from '@formily/json-schema';
 
 import { useField, useFieldSchema } from '@/formily-vue';

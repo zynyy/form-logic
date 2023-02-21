@@ -30,9 +30,8 @@ export const getSchemeFormProps = () => {
     },
     loading: {
       type: Boolean,
-      default: false,
+      default: false as const,
     },
-
     components: {
       type: Object as PropType<Components>,
     },

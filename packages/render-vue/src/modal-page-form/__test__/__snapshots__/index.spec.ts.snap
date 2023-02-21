@@ -1,0 +1,179 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`modal-page-form  gen snapshot 1`] = `
+<body style="overflow: hidden; overflow-x: hidden; overflow-y: hidden;"
+      class="ant-scrolling-effect"
+>
+  <div>
+    <div class="ant-modal-root">
+      <transition-stub name="fade"
+                       enterfromclass="fade-enter fade-enter-prepare"
+                       enteractiveclass="fade-enter fade-enter-prepare"
+                       entertoclass="fade-enter fade-enter-active"
+                       leavefromclass=" fade-leave"
+                       leaveactiveclass="fade-leave fade-leave-active"
+                       leavetoclass="fade-leave fade-leave-active"
+                       appear="true"
+                       persisted="false"
+                       css="true"
+      >
+        <div class="ant-modal-mask">
+        </div>
+      </transition-stub>
+      <div tabindex="-1"
+           class="ant-modal-wrap"
+           role="dialog"
+           aria-labelledby="vcDialogTitle0"
+      >
+        <transition-stub name="zoom"
+                         enterfromclass="zoom-enter zoom-enter-prepare"
+                         enteractiveclass="zoom-enter zoom-enter-prepare"
+                         entertoclass="zoom-enter zoom-enter-active"
+                         leavefromclass=" zoom-leave"
+                         leaveactiveclass="zoom-leave zoom-leave-active"
+                         leavetoclass="zoom-leave zoom-leave-active"
+                         appear="true"
+                         persisted="false"
+                         css="true"
+        >
+          <div style="width: 60%;"
+               class="ant-modal form-logic-draggable-modal"
+               role="document"
+          >
+            <div tabindex="0"
+                 style="width: 0px; height: 0px; overflow: hidden; outline: none;"
+                 aria-hidden="true"
+            >
+            </div>
+            <div style="transform: translate(0px, 0px);">
+              <div class="ant-modal-content">
+                <div class="ant-modal-header">
+                  <div class="ant-modal-title"
+                       id="vcDialogTitle0"
+                  >
+                    请填写
+                  </div>
+                </div>
+                <div class="ant-modal-body"
+                     style="overflow-y: auto; max-height: 500; min-height: 200;"
+                >
+                  <div class="ant-spin-nested-loading form-logic-page-loading">
+                    <div class="ant-spin-container">
+                      <div class="ant-skeleton">
+                        <div class="ant-skeleton-content">
+                          <h3 class="ant-skeleton-title"
+                              style="width: 38%;"
+                          >
+                          </h3>
+                          <ul class="ant-skeleton-paragraph">
+                            <li>
+                            </li>
+                            <li>
+                            </li>
+                            <li style="width: 61%;">
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="ant-modal-footer">
+                  <div class="ant-row form-logic-left-right-slot">
+                    <div class="ant-col ant-col-12 form-logic-left-right-slot-left">
+                      <div class="ant-space ant-space-horizontal ant-space-align-center">
+                        <div class="ant-space-item">
+                          <button class="ant-btn ant-btn-dashed"
+                                  type="button"
+                          >
+                            <span role="img"
+                                  aria-label="close"
+                                  class="anticon anticon-close"
+                            >
+                              <svg focusable="false"
+                                   class
+                                   data-icon="close"
+                                   width="1em"
+                                   height="1em"
+                                   fill="currentColor"
+                                   aria-hidden="true"
+                                   viewbox="64 64 896 896"
+                              >
+                                <path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z">
+                                </path>
+                              </svg>
+                            </span>
+                            <span>
+                              关闭
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ant-col ant-col-12 form-logic-left-right-slot-right">
+                      <div class="ant-space ant-space-horizontal ant-space-align-center">
+                        <div class="ant-space-item"
+                             style="margin-right: 8px;"
+                        >
+                        </div>
+                        <div class="ant-space-item">
+                          <button class="ant-btn ant-btn-primary"
+                                  type="button"
+                          >
+                            <span role="img"
+                                  aria-label="check"
+                                  class="anticon anticon-check"
+                            >
+                              <svg focusable="false"
+                                   class
+                                   data-icon="check"
+                                   width="1em"
+                                   height="1em"
+                                   fill="currentColor"
+                                   aria-hidden="true"
+                                   viewbox="64 64 896 896"
+                              >
+                                <path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 00-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z">
+                                </path>
+                              </svg>
+                            </span>
+                            <span>
+                              确定
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span role="img"
+                      aria-label="drag"
+                      class="anticon anticon-drag form-logic-draggable-modal-render-drag"
+                >
+                  <svg focusable="false"
+                       class
+                       data-icon="drag"
+                       width="1em"
+                       height="1em"
+                       fill="currentColor"
+                       aria-hidden="true"
+                       viewbox="64 64 896 896"
+                  >
+                    <path d="M909.3 506.3L781.7 405.6a7.23 7.23 0 00-11.7 5.7V476H548V254h64.8c6 0 9.4-7 5.7-11.7L517.7 114.7a7.14 7.14 0 00-11.3 0L405.6 242.3a7.23 7.23 0 005.7 11.7H476v222H254v-64.8c0-6-7-9.4-11.7-5.7L114.7 506.3a7.14 7.14 0 000 11.3l127.5 100.8c4.7 3.7 11.7.4 11.7-5.7V548h222v222h-64.8c-6 0-9.4 7-5.7 11.7l100.8 127.5c2.9 3.7 8.5 3.7 11.3 0l100.8-127.5c3.7-4.7.4-11.7-5.7-11.7H548V548h222v64.8c0 6 7 9.4 11.7 5.7l127.5-100.8a7.3 7.3 0 00.1-11.4z">
+                    </path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div tabindex="0"
+                 style="width: 0px; height: 0px; overflow: hidden; outline: none;"
+                 aria-hidden="true"
+            >
+            </div>
+          </div>
+        </transition-stub>
+      </div>
+    </div>
+  </div>
+</body>
+`;

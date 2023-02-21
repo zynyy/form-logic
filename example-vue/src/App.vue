@@ -4,14 +4,9 @@ import HelloWorld from "./components/HelloWorld.vue";
 
 import type { MetaSchema } from "@formlogic/render-vue";
 
-import {
-  useCreateForm,
-  useFormSchema,
-  SchemeForm,
-} from "@formlogic/render-vue";
+import { useCreateForm, useFormSchema } from "@formlogic/render-vue";
 import { ref } from "vue";
-
-
+import getLogicConfig from "@formlogic/render-vue/lib/low-code-meta/logic";
 
 const metaSchema: MetaSchema = {
   code: "Model_C",
@@ -67,6 +62,8 @@ const [form] = useCreateForm(
     },
   })
 );
+
+const tableMount = () => {};
 </script>
 
 <template>
@@ -87,9 +84,9 @@ const [form] = useCreateForm(
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div>
-  </header>
 
-  <SchemeForm :schema="schema" :form="form" />
+
+  </header>
 </template>
 
 <style scoped>

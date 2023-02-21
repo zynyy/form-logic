@@ -9,6 +9,7 @@ import { IFormProps, isArrayField } from '@formily/core';
 import { AnyObject } from '@formlogic/component';
 import { TransformsSchemaOptions } from '@/transforms';
 import { useSchemeFormContent } from '@/scheme-form/hooks';
+import { SchemaPattern } from '@/interface';
 
 export interface ArrayDrawerTableProps extends Omit<ArrayTableBaseProps, 'onEdit' | 'onAdd'> {
   drawerPageCode?: string;
@@ -24,7 +25,7 @@ const ArrayDrawerTable: FC<ArrayDrawerTableProps> = observer(
 
     const [formConfig, setFormConfig] = useState<IFormProps>({});
 
-    const {metaSchema} = useJsonMetaSchema(drawerPageCode);
+    const { metaSchema } = useJsonMetaSchema(drawerPageCode);
 
     const field = useField();
 
@@ -37,10 +38,11 @@ const ArrayDrawerTable: FC<ArrayDrawerTableProps> = observer(
       hasGroup: true,
     });
 
-    const genOptions = () => {
+    const genOptions = (pattern?: SchemaPattern) => {
       setOptions({
         metaSchema,
         hasGroup: true,
+        pattern,
       });
     };
 
@@ -55,6 +57,18 @@ const ArrayDrawerTable: FC<ArrayDrawerTableProps> = observer(
       setActiveIndex(index);
 
       genOptions();
+      genFormConfig({
+        values: record,
+        initialValues: record,
+      });
+
+      showOpen();
+    };
+
+    const handleDetail = (index, record) => {
+      setActiveIndex(index);
+
+      genOptions('DETAIL');
       genFormConfig({
         values: record,
         initialValues: record,
@@ -91,7 +105,12 @@ const ArrayDrawerTable: FC<ArrayDrawerTableProps> = observer(
 
     return (
       <>
-        <ArrayTableBase {...restProps} onAdd={handleAdd} onEdit={handleEdit} />
+        <ArrayTableBase
+          {...restProps}
+          onDetail={handleDetail}
+          onAdd={handleAdd}
+          onEdit={handleEdit}
+        />
 
         <DrawerPageForm
           open={open}

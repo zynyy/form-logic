@@ -1,4 +1,4 @@
-import { selectProps } from 'ant-design-vue/es/select';
+
 import { ExtractPropTypes, PropType } from 'vue';
 import { SelectProps } from 'ant-design-vue';
 

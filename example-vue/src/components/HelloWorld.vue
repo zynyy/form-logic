@@ -1,16 +1,11 @@
 <script setup lang="ts">
-import {FormPageLayout} from '@formlogic/render-vue';
-
 defineProps<{
-  msg: string
-}>()
-
+  msg: string;
+}>();
 
 const getLogicConfig = () => {
-  return Promise.resolve()
-}
-
-
+  return Promise.resolve();
+};
 </script>
 
 <template>
@@ -19,10 +14,11 @@ const getLogicConfig = () => {
     <h3>
       You’ve successfully created a project with
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
+      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      What's next?
     </h3>
   </div>
-  <form-page-layout :get-logic-config="getLogicConfig"/>
+
 </template>
 
 <style scoped>

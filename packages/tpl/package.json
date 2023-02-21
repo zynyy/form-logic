@@ -1,6 +1,6 @@
 {
   "name": "@formlogic/tpl",
-  "version": "1.0.2-alpha.0",
+  "version": "1.0.2-alpha.1",
   "description": "Configuration and scripts for tpl.",
   "homepage": "https://github.com/zynyy/form-logic#readme",
   "type": "module",

@@ -21,7 +21,7 @@ import {
   getArrayTableBaseProps,
 } from '@/components/array-table-base/interface';
 import { loop } from '@/utils';
-import { Key } from 'ant-design-vue/es/_util/type';
+import { Key } from 'ant-design-vue/lib/_util/type';
 import { strNumBoolToBoolean } from '@/transforms/utils';
 import { useStylePrefixCls } from '@/components/style/hooks';
 

@@ -1,7 +1,7 @@
 import { ExtractPropTypes, PropType } from 'vue';
 import { CustomButtonModeType } from '@/interface';
 
-import { ButtonHTMLType, ButtonType } from 'ant-design-vue/es/button/buttonTypes';
+import { ButtonHTMLType, ButtonType } from 'ant-design-vue/lib/button/buttonTypes';
 
 export const getCustomButtonProps = () => {
   return {

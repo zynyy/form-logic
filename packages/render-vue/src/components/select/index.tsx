@@ -1,6 +1,6 @@
 import { observer } from '@/formily-vue';
 import { defineComponent } from 'vue';
-import { selectProps } from 'ant-design-vue/es/select';
+import { selectProps } from 'ant-design-vue/lib/select';
 import { Select as AntdSelect } from 'ant-design-vue';
 
 const Select = observer(

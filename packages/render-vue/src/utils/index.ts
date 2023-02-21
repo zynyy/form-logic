@@ -2,13 +2,13 @@ import { DataIndex } from '@/interface';
 
 import mustache from 'mustache';
 
-import { DataNode } from 'ant-design-vue/es/vc-tree/interface';
+import { DataNode } from 'ant-design-vue/lib/vc-tree/interface';
 
 export * from './jsonMetaSchema';
 
-import type { App, Component, camelize } from 'vue';
+import type { App,  } from 'vue';
 import { each } from '@formily/shared';
-import { Key } from 'ant-design-vue/es/_util/type';
+import { Key } from 'ant-design-vue/lib/_util/type';
 type VNodeData = Record<string, any>;
 
 export const toArray = <T>(arr: T | readonly T[]): T[] => {

@@ -13,11 +13,7 @@ export async function compileScript(filePath: string, format: Format): Promise<v
     return;
   }
 
-  const extensionMap: any = {
-    cjs: '.cjs',
-  };
-
-  const extension = extensionMap?.[format] || '.js';
+  const extension = '.js';
 
   let code = readFileSync(filePath, 'utf-8');
 
@@ -29,17 +25,7 @@ export async function compileScript(filePath: string, format: Format): Promise<v
   if (isJsx(filePath)) {
     const babelResult = await babel.transformAsync(code, {
       filename: filePath,
-      babelrc: false,
-      presets: ['@babel/preset-typescript'],
-      plugins: [
-        [
-          '@vue/babel-plugin-jsx',
-          {
-            enableObjectSlots: false,
-          },
-        ],
-        ['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: false }],
-      ],
+      babelrc: true,
     });
     if (babelResult?.code) {
       ({ code } = babelResult);

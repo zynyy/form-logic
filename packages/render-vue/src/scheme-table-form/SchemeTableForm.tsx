@@ -10,7 +10,7 @@ import useCreateSchemaField from '@/hooks/useSchemaField';
 import { SchemeTableFormProps, getSchemeTableFormProps } from './interface';
 
 import useDOMRect from '@/hooks/dom/useDOMRect';
-import { Key } from 'ant-design-vue/es/_util/type';
+import { Key } from 'ant-design-vue/lib/_util/type';
 import { useItemKey } from '@/components/array-base';
 import { toArray } from '@/utils';
 import { LIST_FILED_CODE } from '@/utils/constant';
@@ -169,9 +169,9 @@ const SchemeTableForm = defineComponent({
           setSelectedRows,
           scrollY: scrollY.value,
           pagination: {
-            pageSize: Number(pageSize),
-            current: Number(currentPage),
-            total: Number(total),
+            pageSize: Number(pageSize ?? 30),
+            current: Number(currentPage ?? 1),
+            total: Number(total ?? 0),
           },
         });
       });

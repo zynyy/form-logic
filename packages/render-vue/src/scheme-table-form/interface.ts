@@ -2,15 +2,15 @@ import { ExtractPropTypes, PropType } from 'vue';
 import { makeRequiredProp } from '@/utils/props';
 import { Form } from '@formily/core';
 import { ISchema } from '@formily/json-schema';
-import { AnyObject, Components, EventsObject, LogicConfig, StrNumBool } from '@/interface';
+import {  Components,  StrNumBool } from '@/interface';
 import { TableRowSelection } from 'ant-design-vue/lib/table/interface';
 import { TableProps } from 'ant-design-vue';
-import { TablePaginationConfig } from 'ant-design-vue/es';
+import { TablePaginationConfig } from 'ant-design-vue/lib';
 import {
   FilterValue,
   SorterResult,
   TableCurrentDataSource,
-} from 'ant-design-vue/es/table/interface';
+} from 'ant-design-vue/lib/table/interface';
 import { getArrayBaseEvent } from '@/components/array-base';
 
 export const getSchemeTableFormProps = () => {

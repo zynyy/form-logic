@@ -1,0 +1,182 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`list layout gen snapshot 1`] = `
+<div class="ant-spin-nested-loading form-logic-layout form-logic-layout-loading">
+  <div>
+    <div class="ant-spin ant-spin-spinning"><span class="ant-spin-dot ant-spin-dot-spin"><i class="ant-spin-dot-item"></i><i class="ant-spin-dot-item"></i><i class="ant-spin-dot-item"></i><i class="ant-spin-dot-item"></i></span>
+      <!---->
+    </div>
+  </div>
+  <div class="ant-spin-container ant-spin-blur">
+    <div class="form-logic-layout-wrapper">
+      <div class="form-logic-layout-header">
+        <div class="form-logic-where-layout-wrapper">
+          <div class="form-logic-where-layout-title-warp"><span role="img" aria-label="search" class="anticon anticon-search form-logic-where-layout-icon"><svg focusable="false" class="" data-icon="search" width="1em" height="1em" fill="currentColor" aria-hidden="true" viewBox="64 64 896 896"><path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path></svg></span><span class="form-logic-where-layout-title">搜索条件</span></div>
+          <div class="form-logic-where-layout-body">
+            <form class="form-id-snapshot">
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: grid; gap: 4px 8px;">
+                  <div style="grid-row-end: span 1; grid-column: span undefined / auto;" class="form-logic-form-item form-logic-form-item-fullness form-logic-form-item-label-align-right form-logic-form-item-control-align-left form-logic-form-item-control-wrap" data-grid-span="1">
+                    <div class="form-logic-form-item-label form-logic-form-item-item-col-6">
+                      <div class="form-logic-form-item-label-content"><span><!----><label>编码</label></span></div>
+                      <!----><span class="form-logic-form-item-colon">:</span>
+                    </div>
+                    <div class="form-logic-form-item-control form-logic-form-item-item-col-18">
+                      <div class="form-logic-form-item-control-content">
+                        <div class="form-logic-form-item-control-content-component">
+                          <!----><span><input type="text" class="ant-input"></span>
+                        </div>
+                      </div>
+                      <!---->
+                    </div>
+                  </div>
+                  <div style="grid-row-end: span 1; grid-column: span 1 / auto;" class="form-logic-form-item form-logic-form-item-fullness form-logic-form-item-label-align-right form-logic-form-item-control-align-left form-logic-form-item-control-wrap" data-grid-span="1">
+                    <div class="form-logic-form-item-label form-logic-form-item-item-col-6">
+                      <div class="form-logic-form-item-label-content"><span><!----><label>名称</label></span></div>
+                      <!----><span class="form-logic-form-item-colon">:</span>
+                    </div>
+                    <div class="form-logic-form-item-control form-logic-form-item-item-col-18">
+                      <div class="form-logic-form-item-control-content">
+                        <div class="form-logic-form-item-control-content-component">
+                          <!----><span><input type="text" class="ant-input"></span>
+                        </div>
+                      </div>
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="form-logic-where-layout-right-button">
+            <div class="ant-space ant-space-horizontal ant-space-align-center">
+              <div class="ant-space-item" style="margin-right: 8px;">
+                <!---->
+              </div>
+              <!---->
+              <div class="ant-space-item" style="margin-right: 8px;"><button class="ant-btn ant-btn-dashed" type="button"><span role="img" aria-label="clear" class="anticon anticon-clear"><svg focusable="false" class="" data-icon="clear" width="1em" height="1em" fill="currentColor" aria-hidden="true" viewBox="64 64 896 896"><defs><style></style></defs><path d="M899.1 869.6l-53-305.6H864c14.4 0 26-11.6 26-26V346c0-14.4-11.6-26-26-26H618V138c0-14.4-11.6-26-26-26H432c-14.4 0-26 11.6-26 26v182H160c-14.4 0-26 11.6-26 26v192c0 14.4 11.6 26 26 26h17.9l-53 305.6a25.95 25.95 0 0025.6 30.4h723c1.5 0 3-.1 4.4-.4a25.88 25.88 0 0021.2-30zM204 390h272V182h72v208h272v104H204V390zm468 440V674c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v156H416V674c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v156H202.8l45.1-260H776l45.1 260H672z"></path></svg></span><span>重置</span></button></div>
+              <!---->
+              <div class="ant-space-item"><button class="ant-btn ant-btn-primary" type="button"><span role="img" aria-label="search" class="anticon anticon-search"><svg focusable="false" class="" data-icon="search" width="1em" height="1em" fill="currentColor" aria-hidden="true" viewBox="64 64 896 896"><path d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"></path></svg></span><span>搜索</span></button></div>
+              <!---->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-logic-layout-body">
+        <div class="form-id-ki22ucy8no0" style="height: 100%;">
+          <div class="form-logic-list-table">
+            <div class="ant-table-wrapper">
+              <div class="ant-spin-nested-loading">
+                <!---->
+                <div class="ant-spin-container">
+                  <div class="ant-table ant-table-fixed-header ant-table-fixed-column ant-table-scroll-horizontal ant-table-has-fix-left ant-table-has-fix-right ant-table-small ant-table-bordered ant-table-empty">
+                    <div class="ant-table-title">
+                      <div class="ant-space ant-space-horizontal ant-space-align-center">
+                        <div class="ant-space-item"><button class="ant-btn ant-btn-primary" type="button"><span role="img" aria-label="plus" class="anticon anticon-plus"><svg focusable="false" class="" data-icon="plus" width="1em" height="1em" fill="currentColor" aria-hidden="true" viewBox="64 64 896 896"><defs><style></style></defs><path d="M482 152h60q8 0 8 8v704q0 8-8 8h-60q-8 0-8-8V160q0-8 8-8z"></path><path d="M176 474h672q8 0 8 8v60q0 8-8 8H176q-8 0-8-8v-60q0-8 8-8z"></path></svg></span><span>新建</span></button></div>
+                        <!---->
+                      </div>
+                    </div>
+                    <div class="ant-table-container">
+                      <div style="overflow: hidden;" class="ant-table-header">
+                        <table style="table-layout: fixed;">
+                          <colgroup></colgroup>
+                          <thead class="ant-table-thead">
+                            <tr>
+                              <th title="序号" class="ant-table-cell ant-table-cell-fix-left ant-table-cell-fix-left-last ant-table-cell-ellipsis" style="text-align: center; position: sticky; left: 0px;" colstart="0" colend="0">
+                                <!----><span class="ant-table-cell-content">序号</span>
+                                <!---->
+                              </th>
+                              <th title="编码" class="ant-table-cell ant-table-cell-ellipsis" colstart="1" colend="1">
+                                <!---->编码
+                                <!---->
+                              </th>
+                              <th title="名称" class="ant-table-cell ant-table-cell-ellipsis" colstart="2" colend="2">
+                                <!---->名称
+                                <!---->
+                              </th>
+                              <th title="备注说明" class="ant-table-cell ant-table-cell-ellipsis" colstart="3" colend="3">
+                                <!---->备注说明
+                                <!---->
+                              </th>
+                              <th title="操作列" class="ant-table-cell ant-table-cell-fix-right ant-table-cell-fix-right-first ant-table-cell-ellipsis" style="position: sticky; right: 0px;" colstart="4" colend="4">
+                                <!----><span class="ant-table-cell-content">操作列</span>
+                                <!---->
+                              </th>
+                            </tr>
+                          </thead>
+                          <!---->
+                        </table>
+                      </div>
+                      <div style="overflow-x: auto; overflow-y: scroll; max-height: -140px;" class="ant-table-body">
+                        <table style="min-width: 100%; table-layout: auto;">
+                          <colgroup>
+                            <col style="width: 50px;">
+                            <col style="width: 120px;">
+                            <col style="width: 120px;">
+                            <col style="width: 120px;">
+                            <col style="width: 120px;">
+                          </colgroup>
+                          <tbody class="ant-table-tbody">
+                            <tr aria-hidden="true" class="ant-table-measure-row" style="height: 0px; font-size: 0px;">
+                              <td style="padding: 0px; border: 0px; height: 0px;">
+                                <div style="height: 0px; overflow: hidden;">&nbsp;</div>
+                              </td>
+                              <td style="padding: 0px; border: 0px; height: 0px;">
+                                <div style="height: 0px; overflow: hidden;">&nbsp;</div>
+                              </td>
+                              <td style="padding: 0px; border: 0px; height: 0px;">
+                                <div style="height: 0px; overflow: hidden;">&nbsp;</div>
+                              </td>
+                              <td style="padding: 0px; border: 0px; height: 0px;">
+                                <div style="height: 0px; overflow: hidden;">&nbsp;</div>
+                              </td>
+                              <td style="padding: 0px; border: 0px; height: 0px;">
+                                <div style="height: 0px; overflow: hidden;">&nbsp;</div>
+                              </td>
+                            </tr>
+                            <tr class="ant-table-placeholder">
+                              <td class="ant-table-cell" colspan="5">
+                                <!---->
+                                <div style="width: 0px; position: sticky; left: 0px; overflow: hidden;" class="ant-table-expanded-row-fixed">
+                                  <div class="ant-empty ant-empty-normal">
+                                    <div class="ant-empty-image"><svg class="ant-empty-img-simple" width="64" height="41" viewBox="0 0 64 41">
+                                        <g transform="translate(0 1)" fill="none" fill-rule="evenodd">
+                                          <ellipse class="ant-empty-img-simple-ellipse" fill="#F5F5F5" cx="32" cy="33" rx="32" ry="7"></ellipse>
+                                          <g class="ant-empty-img-simple-g" fill-rule="nonzero" stroke="#D9D9D9">
+                                            <path d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"></path>
+                                            <path d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z" fill="#FAFAFA" class="ant-empty-img-simple-path"></path>
+                                          </g>
+                                        </g>
+                                      </svg></div>
+                                    <p class="ant-empty-description">No Data</p>
+                                    <!---->
+                                  </div>
+                                </div>
+                                <!---->
+                              </td>
+                            </tr>
+                          </tbody>
+                          <!---->
+                        </table>
+                      </div>
+                      <!---->
+                      <!---->
+                    </div>
+                    <!---->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+          </div>
+        </div>
+      </div>
+      <!---->
+    </div>
+  </div>
+</div>
+`;

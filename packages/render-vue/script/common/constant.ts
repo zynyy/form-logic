@@ -30,6 +30,8 @@ export const STYLE_DEPS_JSON_FILE = join(DIST_DIR, 'style-deps.json');
 // Config files
 export const POSTCSS_CONFIG_FILE = join(CJS_DIR, 'postcss.config.cjs');
 
+export const JEST_CONFIG_FILE = join(ROOT, 'jest.config.js');
+
 export const SCRIPT_EXTS = ['.js', '.jsx', '.vue', '.ts', '.tsx', '.mjs', '.cjs'];
 export const STYLE_EXTS = ['.css', '.less', '.scss'];
 

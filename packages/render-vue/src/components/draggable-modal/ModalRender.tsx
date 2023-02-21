@@ -1,10 +1,9 @@
-import { computed, CSSProperties, defineComponent, ref, watch, watchEffect } from 'vue';
+import { computed, CSSProperties, defineComponent, ref, watch, watchEffect, Teleport } from 'vue';
 import cls from 'classnames';
 import { DragOutlined } from '@ant-design/icons-vue';
 import useDOMHover from '@/hooks/dom/useDOMHover';
 import { useStylePrefixCls } from '@/components/style/hooks';
 
-import { Teleport } from 'vue';
 import { getModalRenderProps } from './interface';
 import { useDraggable } from '@vueuse/core';
 

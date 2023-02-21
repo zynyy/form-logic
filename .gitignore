@@ -41,3 +41,4 @@ storybook-static
 **/storybook-static
 /packages/component/temp/
 /example-vue/stats.html
+/packages/render-vue/coverage/

@@ -3,7 +3,7 @@ import { Col, Row,  Space } from 'ant-design-vue';
 import cls from 'classnames';
 import { defineComponent } from 'vue';
 import { useStylePrefixCls } from '@/components/style/hooks';
-import { rowProps } from 'ant-design-vue/es/grid/Row';
+import { rowProps } from 'ant-design-vue/lib/grid/Row';
 
 const LeftRightSlot = defineComponent({
   name: 'LeftRightSlot',
