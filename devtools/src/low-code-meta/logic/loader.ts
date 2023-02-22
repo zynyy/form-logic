@@ -32,6 +32,7 @@ export default {
   ModelPage_modelValue: () => import('./ModelPage/ModelPage_modelValue'),
   com_SelectModeDataSource: () => import('./common/com_SelectModeDataSource'),
   com_YesOrNoDataSource: () => import('./common/com_YesOrNoDataSource'),
+  com_buttonType: () => import('./common/com_buttonType'),
   com_getComponentConfig: () => import('./common/com_getComponentConfig'),
   com_save: () => import('./common/com_save'),
   com_targetWithValues: () => import('./common/com_targetWithValues'),

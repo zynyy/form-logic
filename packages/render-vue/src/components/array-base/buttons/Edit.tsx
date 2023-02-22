@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import {defineComponent, unref} from 'vue';
 import { ArrayEditProps, getArrayEditProps } from '../interface';
 import { useField } from '@/formily-vue';
 
@@ -16,7 +16,7 @@ const ArrayBaseEdit = defineComponent({
   props: getArrayEditProps(),
   setup(props: ArrayEditProps) {
     const indexRef = useArrayIndex();
-    const record = useArrayItemRecord();
+    const recordRef = useArrayItemRecord();
     const fieldRef = useField<VoidField>();
     const array = useArrayContext();
 
@@ -26,6 +26,7 @@ const ArrayBaseEdit = defineComponent({
 
     const handleClick = (e) => {
       e.stopPropagation();
+      const record = unref(recordRef)
 
       const index = indexRef.value;
 

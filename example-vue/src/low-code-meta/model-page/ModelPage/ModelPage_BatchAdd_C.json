@@ -1,0 +1,68 @@
+{
+  "code": "ModelPage_BatchAdd_C",
+  "name": "页面配置字段新增",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": "1",
+  "group": [{ "hiddenName": "0", "componentProps": {}, "code": "basicInfo", "name": "基础信息" }],
+  "data": [
+    {
+      "code": "type",
+      "name": "类型",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo",
+      "defaultValue": "column",
+      "component": "FieldTypeSelect",
+      "logics": [
+        { "effectHook": "onFieldMount", "logicCode": "ModelPage_Data_C_codeDataSource" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_Data_C_codeDataSource" },
+        { "effectHook": "onFieldMount", "logicCode": "ModelPage_Data_C_type" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "ModelPage_Data_C_type" }
+      ]
+    },
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "wrap": "0",
+      "group": "basicInfo",
+      "component": "RemoteSelect",
+      "componentProps": {
+        "labelTemplateKey": "{{code}}-{{name}}",
+        "optionLabelProp": "value",
+        "defaultFirstOptionValue": "0",
+        "apiConfig": { "method": "get", "params": "" },
+        "labelInValue": true,
+        "mode": "multiple"
+      },
+      "logics": [],
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "validator": []
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [{ "effectHook": "onFieldMount", "logicCode": "ModelPage_Data_C_groupDataSource" }],
+      "validator": [],
+      "code": "group",
+      "component": "StaticSelect",
+      "name": "分组",
+      "group": "basicInfo"
+    }
+  ],
+  "defaultSearchColumn": "6",
+  "codeSuffix": "BatchAdd_C"
+}

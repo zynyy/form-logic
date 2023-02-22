@@ -102,9 +102,8 @@ const metaSchema = {
 
 ### Props
 
-| 属性                    | 描述                                                   | 类型                                                  | 默认值 |
-|-----------------------| ------------------------------------------------------ | ----------------------------------------------------- | ------ |
-| action                | 列表查询接口                                           | string                                                |        |
+| 属性                  | 描述                                                   | 类型                                                  | 默认值 |
+| --------------------- | ------------------------------------------------------ | ----------------------------------------------------- | ------ |
 | getLogicConfig        | 获取逻辑编码                                           | (code: string) => Promise\<any\>                      |        |
 | metaSchema            | 页面字段配置描述                                       | MetaSchema                                            | -      |
 | pageCode              | 获取`low-code-meta/model-page`下的 json 文件           | string                                                | -      |
@@ -118,43 +117,25 @@ const metaSchema = {
 | formConfig            | 查询表单配置                                           | IFormProps                                            | -      |
 | loading               | 页面加载                                               | boolean                                               | false  |
 | events                | 按钮点击事件勾子映射`MetaSchema`里 `eventCode`与之对应 | Record<string, (e: MouseEvent, ...args: any) => void> | {}     |
-| extraLogicParams   | 逻辑流程额外参数                                       | Record<string, any>                                   | -      |
+| extraLogicParams      | 逻辑流程额外参数                                       | Record<string, any>                                   | -      |
+| hasFooter             | 是否需要底部按钮                                       | boolean                          | true   |
+| hasBackBtn            | 是否需要返回按钮                                       | boolean                                  | true   |
+| hasButton             | 是否需要按钮                                           | boolean                               | true   |
+| hasGroup              | 是否需要分组                                           | boolean                                   | -      |
 
 ### Events
 
-| 事件          | 描述                                            | 类型                                                      |
-|-------------| ----------------------------------------------- | --------------------------------------------------------- |
-| formMount   | 监听表单已挂载                              | (form:Form)=>void                                         |
-| backClick   | 监听搜索表单已挂载                              | (form:Form) => void                                       |
-| add         | 列表按钮配置`ArrayBase.Addition`组件点击触发    | (modelsFiled:ModelsFiled)=>void                           |
-| edit        | 列表按钮配置`ArrayBase.Edit`组件点击触发        | (index:number, record:any, modelsFiled:ModelsFiled)=>void |
-| remove      | 列表按钮配置`ArrayBase.Remove`组件点击触发      | (index:number, record:any, modelsFiled:ModelsFiled)=>void |
-| detail      | 列表按钮配置`ArrayBase.Detail`组件点击触发      | (index:number, record:any, modelsFiled:ModelsFiled)=>void |
-| moveDown    | 列表按钮配置`ArrayBase.MoveDown`组件点击触发    | (index:number, record:any, modelsFiled:ModelsFiled)=>void |
-| moveUp      | 列表按钮配置`ArrayBase.MoveUp`组件点击触发      | (index:number, record:any, modelsFiled:ModelsFiled)=>void |
-| copy        | 列表按钮配置`ArrayBase.Copy`组件点击触发        | (index:number, record:any, modelsFiled:ModelsFiled)=>void |
-| batchRemove | 列表按钮配置`ArrayBase.BatchRemove`组件点击触发 | (rowSelected:RowSelected, modelsFiled:ModelsFiled)=>void  |
-| upload      | 列表按钮配置`ArrayBase.Upload`组件上传文件触发  | (info:UploadChangeParam, modelsFiled:ModelsFiled)=>void   |
+| 事件      | 描述               | 类型                |
+| --------- | ------------------ | ------------------- |
+| formMount | 监听表单已挂载     | (form:Form)=>void   |
+| backClick | 监听搜索表单已挂载 | (form:Form) => void |
 
 ### 类型定义
 
 组件导出以下类型定义：
 
 ```ts
-import type { ListLayoutProps } from '@formlogic/render-vue';
+import type { FormPageLayoutProps } from '@formlogic/render-vue';
 
-import { getListLayoutProps } from '@formlogic/render-vue';
-
-interface ModelsFiled {
-  field: VoidField;
-  form: Form;
-  arrayField: ArrayField;
-}
-
-interface RowSelected {
-  selectedRowKeys: string[];
-  setSelectedRowKeys: (selectedRowKeys: string[]) => void;
-  selectedRows: any[];
-  setSelectedRows: (selectedRows: any[]) => void;
-}
+import { getFormPageLayoutProps } from '@formlogic/render-vue';
 ```

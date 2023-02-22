@@ -13,6 +13,10 @@ export default async function (ctx: LogicCtxArgs) {
     const { name, defaultConfig } = record || {};
     const config = defaultConfig || {};
 
+    if (Object.keys(config).length) {
+      form.setInitialValues(defaultConfig);
+    }
+
     Object.keys(config).forEach((key) => {
       const target = form.query(key).take();
 
@@ -20,6 +24,7 @@ export default async function (ctx: LogicCtxArgs) {
 
       if (isField(target)) {
         form.setInitialValuesIn(key, val);
+
         if (key === 'component' && val) {
           target.onInput(val, {
             defaultChange: true,
@@ -31,10 +36,6 @@ export default async function (ctx: LogicCtxArgs) {
         form.setValuesIn(key, val);
       }
     });
-
-    if (Object.keys(config).length) {
-      form.setInitialValues(defaultConfig);
-    }
 
     if (!('component' in config)) {
       const target = form.query('component').take();

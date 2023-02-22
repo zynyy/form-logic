@@ -120,11 +120,17 @@
       "name": "默认搜索",
       "type": "column",
       "schemaType": "string",
-      "required": "1",
+      "required": false,
       "defaultValue": "6",
       "group": "basicInfo",
       "logics": [],
-      "component": "InputNumber"
+      "component": "InputNumber",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "validator": []
     },
     {
       "code": "remark",

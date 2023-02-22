@@ -1,0 +1,88 @@
+{
+  "code": "ModelPage_Data_L",
+  "name": "页面配置字段列表",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "data": [
+    {
+      "code": "addBtn",
+      "name": "添加",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.Addition",
+      "eventCode": "onAdd",
+      "componentProps": {},
+      "logics": []
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "previewBtn",
+      "component": "PagePreviewButton",
+      "name": "预览"
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "sortBtn",
+      "component": "PageSortButton",
+      "name": "排序"
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "batchRemoveBtn",
+      "component": "ArrayBase.BatchRemove",
+      "name": "批量删除"
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "batchAddBtn",
+      "component": "BatchAddModelPageField",
+      "name": "批量添加"
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "batchSettingConfigBtn",
+      "component": "BatchSettingModelPageField",
+      "name": "批量配置"
+    },
+    {
+      "code": "editBtn",
+      "name": "编辑",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Edit",
+      "eventCode": "onEdit"
+    },
+    {
+      "code": "removeBtn",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Remove",
+      "eventCode": "onRemove"
+    },
+    { "code": "type", "name": "类型", "type": "table_column", "schemaType": "string" },
+    { "code": "code", "name": "编码", "type": "table_column", "schemaType": "string" },
+    { "code": "name", "name": "名称", "type": "table_column", "schemaType": "string" },
+    { "code": "group", "name": "所属分组", "type": "table_column", "schemaType": "string" },
+    { "code": "component", "name": "组件", "type": "table_column", "schemaType": "string" }
+  ],
+  "defaultSearchColumn": "6"
+}

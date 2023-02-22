@@ -40,7 +40,7 @@ const FormGrid: FC<FormGridProps> = observer(({ className, style, children, ...p
   return wrapSSR(
     <FormGridContext.Provider value={grid}>
       <div
-        className={cn(`${prefixCls}-layout`, hashId, className)}
+        className={cn(`${prefixCls}`, hashId, className)}
         style={{
           ...style,
           gridTemplateColumns: grid.templateColumns,

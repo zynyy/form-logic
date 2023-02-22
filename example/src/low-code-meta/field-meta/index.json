@@ -8,6 +8,26 @@
   ],
   "metas": [
     {
+      "code": "triggerType",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {
+          "data": [
+            { "code": "onInput", "name": "输入时" },
+            { "code": "onFocus", "name": "聚焦时" },
+            { "code": "onBlur", "name": "失焦时" }
+          ]
+        },
+        "component": "StaticSelect"
+      },
+      "name": "触发方式",
+      "categorize": "configInfo",
+      "componentProps": { "data": [] }
+    },
+    {
       "defaultConfig": {
         "schemaType": "void",
         "required": "0",

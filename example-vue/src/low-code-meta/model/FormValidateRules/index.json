@@ -1,0 +1,37 @@
+{
+  "code": "FormValidateRules",
+  "name": "表单验证规则",
+  "metas": [
+    {
+      "code": "code",
+      "name": "编码",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "component",
+      "name": "值组件",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0",
+        "componentProps": {}
+      }
+    },
+    {
+      "code": "componentProps",
+      "name": "组件属性",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" }
+    },
+    {
+      "code": "defaultValue",
+      "name": "默认值",
+      "defaultConfig": { "schemaType": "string", "required": "0", "hidden": "0", "disabled": "0" }
+    }
+  ]
+}

@@ -19,9 +19,24 @@ import { strNumBoolToBoolean } from '@formlogic/component';
 import { useItemKey } from '@/components/array-base/hooks';
 
 export interface ArrayTableBaseProps extends TableProps<any>, ArrayBaseProps {
+
+  /**
+   * 表格高度
+   */
   scrollY?: number;
+
+  /**
+   * 是否需要分页
+   */
   hasPagination?: boolean;
+  /**
+   * 是否需要选择行
+   */
   hasRowSelection?: boolean;
+
+  /**
+   * 选择行类型
+   */
   rowSelectionType?: RowSelectionType;
 }
 
@@ -106,41 +121,39 @@ const InternalArrayTableBase: FC<ArrayTableBaseProps> = observer(
 
     return warpSSR(
       <div ref={containerRef} className={cls(prefixCls, hashId)}>
-        <ArrayPagination {...pagination} onChange={handlePaginationChange} dataSource={dataSource}>
-          {(data, pager, { startIndex }) => {
-            const nextData = hasPagination ? data : dataSource;
+        <ArrayBase
+          onRemove={onRemove}
+          onAdd={onAdd}
+          onCopy={onCopy}
+          onEdit={onEdit}
+          onDetail={onDetail}
+          onMoveUp={onMoveUp}
+          onMoveDown={onMoveDown}
+          selectedRowKeys={selectedRowKeys}
+          setSelectedRowKeys={setSelectedRowKeys}
+          selectedRows={selectedRows}
+          setSelectedRows={setSelectedRows}
+        >
+          <ArrayPagination
+            {...pagination}
+            onChange={handlePaginationChange}
+            dataSource={dataSource}
+          >
+            {(data, pager, { startIndex }) => {
+              const nextData = hasPagination ? data : dataSource;
 
-            return (
-              <SortableContext.Provider
-                value={{
-                  list: nextData,
-                  start: hasPagination ? startIndex : 0,
-                  containerRef,
-                }}
-              >
-                <ArrayBase
-                  onRemove={onRemove}
-                  onAdd={onAdd}
-                  onCopy={onCopy}
-                  onEdit={onEdit}
-                  onDetail={onDetail}
-                  onMoveUp={onMoveUp}
-                  onMoveDown={onMoveDown}
-                  selectedRowKeys={selectedRowKeys}
-                  setSelectedRowKeys={setSelectedRowKeys}
-                  selectedRows={selectedRows}
-                  setSelectedRows={setSelectedRows}
+              return (
+                <SortableContext.Provider
+                  value={{
+                    list: nextData,
+                    start: hasPagination ? startIndex : 0,
+                    containerRef,
+                  }}
                 >
                   <Table
-                    rowKey={defaultRowKey}
-                    title={
-                      btn
-                        ? () => {
-                            return <Space>{btn}</Space>;
-                          }
-                        : null
-                    }
+                    title={btn ? () => <Space>{btn}</Space> : null}
                     {...tableProps}
+                    rowKey={defaultRowKey}
                     rowSelection={nextRowSelection}
                     size="small"
                     onChange={() => {}}
@@ -164,13 +177,12 @@ const InternalArrayTableBase: FC<ArrayTableBaseProps> = observer(
                   {hasPagination ? (
                     <div style={{ marginTop: 5, marginBottom: 5 }}>{pager}</div>
                   ) : null}
-
-                  <SchemaFragment schemaSource={sources} />
-                </ArrayBase>
-              </SortableContext.Provider>
-            );
-          }}
-        </ArrayPagination>
+                </SortableContext.Provider>
+              );
+            }}
+          </ArrayPagination>
+          <SchemaFragment schemaSource={sources} />
+        </ArrayBase>
       </div>,
     );
   },

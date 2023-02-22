@@ -116,10 +116,10 @@
     {
       "type": "button",
       "schemaType": "void",
-      "componentProps": {},
+      "componentProps": { "type": "primary" },
       "logics": [{ "effectHook": "onClick", "logicCode": "com_save" }],
       "code": "saveBtn",
-      "component": "",
+      "component": "Button",
       "name": "保存"
     }
   ],

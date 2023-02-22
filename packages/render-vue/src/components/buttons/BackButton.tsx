@@ -2,11 +2,13 @@ import { RollbackOutlined } from '@ant-design/icons-vue';
 
 import CustomButton, { CustomButtonProps } from '../custom-button';
 import { defineComponent } from 'vue';
+import omit from 'lodash.omit';
 
 export interface BackButtonProps extends Omit<CustomButtonProps, 'icon'> {}
 
 const BackButton = defineComponent({
   name: 'BackButton',
+  inheritAttrs: false,
   setup(props: BackButtonProps) {
     const handleBackClick = (e) => {
       const { onClick } = props;
@@ -21,7 +23,7 @@ const BackButton = defineComponent({
       return (
         <CustomButton
           title="返回"
-          {...props}
+          {...omit(props, 'onClick')}
           onClick={handleBackClick}
           v-slots={{
             icon: () => <RollbackOutlined />,

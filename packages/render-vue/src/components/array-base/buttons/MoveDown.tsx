@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import {defineComponent, unref} from 'vue';
 import { ArrayMoveDownProps, getArrayMoveDownProps } from '../interface';
 import { useField } from '@/formily-vue';
 import { VoidField } from '@formily/core';
@@ -24,9 +24,11 @@ const MoveDownButton = defineComponent({
     const handleClick = (e) => {
       e.stopPropagation();
 
-      const { index, record } = arrayItemContextRef.value;
+      const { index, record:recordRef } = arrayItemContextRef.value;
 
       const field = fieldRef.value;
+
+      const record = unref(recordRef)
 
       if (field.disabled) {
         return;

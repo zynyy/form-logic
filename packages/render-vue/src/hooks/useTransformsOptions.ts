@@ -26,6 +26,7 @@ export const useTransformsOptions = ({
   watchEffect(() => {
     if (pageCode.value) {
       loading.value = true;
+
       getJsonMetaSchema(pageCode.value)
         .then((data) => {
           metaSchemaRef.value = data;

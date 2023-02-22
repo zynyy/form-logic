@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { FormilyForm, FormConfigProps, Components } from '@formlogic/render';
+import { FormilyForm, FormConfigProps, Components,JsonPopover } from '@formlogic/render';
 import { useSearchParams } from 'react-router-dom';
 
 import { validateRulesDetail } from './service';
 
 
 export const components:Components = {
-
+  JsonPopover
 }
 
 

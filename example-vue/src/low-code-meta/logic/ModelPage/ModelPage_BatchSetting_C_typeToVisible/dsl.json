@@ -1,0 +1,58 @@
+{
+  "code": "ModelPage_BatchSetting_C_typeToVisible",
+  "cells": [
+    {
+      "id": "edge-m8qkp9fl",
+      "shape": "edge",
+      "target": { "cell": "end-k3jnprsw", "port": "6e9259bf-025a-4136-9c5d-144a96954c2a" },
+      "source": { "cell": "fn-9pohgxt0", "port": "a0c49ec1-9be2-4e91-bf96-275d58052eb9" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-b2fio7z4",
+      "shape": "edge",
+      "target": { "cell": "fn-e534qubn", "port": "b7d60366-fae8-425d-8b3c-c87d3f679569" },
+      "source": { "cell": "start-mrhchu6z", "port": "2566da17-79f5-461c-8791-74fda1b34116" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-5jfmu1a0",
+      "shape": "edge",
+      "target": { "cell": "fn-9pohgxt0", "port": "5e875a96-eda2-4109-905f-947cccfc2245" },
+      "source": { "cell": "fn-e534qubn", "port": "699818b1-bb35-4950-80f7-349005ef5f29" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-mrhchu6z",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" }
+    },
+    {
+      "id": "fn-9pohgxt0",
+      "shape": "custom-rect",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "显隐" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      }
+    },
+    {
+      "id": "end-k3jnprsw",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" }
+    },
+    {
+      "id": "fn-e534qubn",
+      "shape": "custom-rect",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "值设置" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      }
+    }
+  ]
+}

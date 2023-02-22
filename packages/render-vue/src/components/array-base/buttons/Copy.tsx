@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import {defineComponent, unref} from 'vue';
 import { ArrayCopyProps, getArrayCopyProps } from '../interface';
 import { useField } from '@/formily-vue';
 import { clone } from '@formily/shared';
@@ -17,7 +17,7 @@ const ArrayBaseCopy = defineComponent({
   props: getArrayCopyProps(),
   setup(props: ArrayCopyProps) {
     const indexRef = useArrayIndex();
-    const record = useArrayItemRecord();
+    const recordRef = useArrayItemRecord();
     const fieldRef = useField<VoidField>();
     const array = useArrayContext();
 
@@ -27,6 +27,7 @@ const ArrayBaseCopy = defineComponent({
 
     const handleClick = (e) => {
       e.stopPropagation();
+      const record = unref(recordRef)
 
       const index = indexRef.value;
 

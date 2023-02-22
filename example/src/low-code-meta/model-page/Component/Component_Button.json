@@ -13,11 +13,11 @@
       "disabled": "0",
       "hiddenName": "0",
       "wrap": "0",
-      "componentProps": {},
-      "logics": [],
+      "componentProps": { "data": [] },
+      "logics": [{ "effectHook": "onFieldInit", "logicCode": "com_buttonType" }],
       "validator": [],
       "code": "type",
-      "component": "",
+      "component": "StaticSelect",
       "name": "类型"
     }
   ],

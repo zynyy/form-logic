@@ -1,0 +1,45 @@
+<template>
+    <form-page-layout
+            :get-logic-config="getLogicConfig"
+            :has-group="true"
+            :page-code="<%- fileName %>Config.EDIT"
+            :extra-logic-params="extraLogicParams"
+            :form-config="formConfig"
+            :loading="loading"
+            @back-click="handleBackClick"
+    />
+</template>
+
+<script setup lang="ts">
+  import { useRouter } from "vue-router";
+  import { ref } from "vue";
+  import { FormPageLayout } from '@formlogic/render-vue';
+  import getLogicConfig from "@/low-code-meta/logic";
+  import { apiUrl, <%- fileName %>Config } from './service';
+
+  import { validateFormValues, formatFormValues,use<%- fileName %>Detail } from './hooks';
+
+  const router = useRouter();
+
+  const [formConfig, loading] = use<%- fileName %>Detail();
+
+  const handleBackClick = () => {
+    router.go(-1);
+  };
+
+  const successCallback = () => {
+    handleBackClick();
+  };
+
+  const extraLogicParams = ref({
+    successCallback,
+    action: apiUrl.update,
+    extraParams: {},
+    validateFormValues,
+    formatFormValues,
+  });
+</script>
+
+<style scope>
+
+</style>

@@ -1,7 +1,6 @@
 import path from 'path';
 
-import { getFileExists, generateFile,getJsonFileContent } from './file.cjs';
-
+import { getFileExists, generateFile, getJsonFileContent, deleteFile } from './file.cjs';
 
 import { readAllFileList } from './require-context/readFileList';
 
@@ -59,4 +58,13 @@ export const checkModelPagePath = ({ outputPath, pageCode }) => {
   const { pageCodePath } = getModelPagePath({ outputPath, pageCode });
 
   return getFileExists(pageCodePath);
+};
+
+export const deleteModelPage = ({ outputPath, pageCode }) => {
+  const { pageCodePath } = getModelPagePath({ outputPath, pageCode });
+
+  const content = getJsonFileContent(pageCodePath);
+
+  deleteFile(pageCodePath);
+  return content;
 };

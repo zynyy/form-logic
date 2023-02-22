@@ -1,0 +1,57 @@
+{
+  "code": "Api_C",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "code": "url",
+      "name": "请求接口",
+      "colSpan": 1,
+      "labelCol": 6,
+      "wrapperCol": 18,
+      "component": "Input",
+      "componentProps": {}
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "code": "method",
+      "name": "请求方式",
+      "defaultValue": "get",
+      "component": "RequestMethodSelect"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "code": "params",
+      "name": "请求参数",
+      "component": "JsonPopover",
+      "defaultValue": ""
+    }
+  ],
+  "model": "Api",
+  "codeSuffix": "C",
+  "name": "组件接口配置"
+}

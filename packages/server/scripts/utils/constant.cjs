@@ -2,7 +2,7 @@ const { join } = require('path');
 
 const PROJECT_PATH = process.cwd();
 
-const CONFIG_FILE_NAME = 'formlogic.config.js';
+const CONFIG_FILE_NAME = 'formlogic.config.cjs';
 const CONFIG_TPL_FILE_NAME = 'formlogic.config.js.tpl';
 
 const OUTPUT_PATH_README = 'README.md';

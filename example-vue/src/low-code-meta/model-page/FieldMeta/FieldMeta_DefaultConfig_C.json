@@ -1,0 +1,83 @@
+{
+  "code": "FieldMeta_DefaultConfig_C",
+  "name": "模型字段列表",
+  "model": "FieldMeta",
+  "group": [],
+  "data": [
+    {
+      "code": "schemaType",
+      "name": "模式类型",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "string",
+      "component": "SchemaTypeSelect"
+    },
+    {
+      "code": "required",
+      "name": "是否必填",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "0",
+      "component": "YesOrNoCheckbox",
+      "wrap": "1"
+    },
+    {
+      "code": "hidden",
+      "name": "是否隐藏",
+      "type": "column",
+      "defaultValue": "0",
+      "schemaType": "string",
+      "component": "YesOrNoCheckbox"
+    },
+    {
+      "code": "disabled",
+      "name": "是否禁止",
+      "type": "column",
+      "defaultValue": "0",
+      "schemaType": "string",
+      "component": "YesOrNoCheckbox"
+    },
+    {
+      "code": "component",
+      "name": "组件",
+      "type": "column",
+      "schemaType": "string",
+      "logics": [
+        { "effectHook": "onFieldMount", "logicCode": "com_getComponentConfig" },
+        { "effectHook": "onFieldInputValueChange", "logicCode": "com_getComponentConfig" }
+      ],
+      "wrap": "1",
+      "component": "RemoteSelect",
+      "componentProps": {
+        "labelTemplateKey": "{{code}}-{{name}}",
+        "apiConfig": { "method": "get", "url": "/local-api/component/list", "params": {} }
+      },
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hasSerialNo": "0",
+      "hasSort": "0",
+      "hiddenName": "0"
+    },
+    {
+      "code": "componentProps",
+      "name": "组件属性",
+      "type": "column",
+      "schemaType": "object",
+      "colSpan": 3,
+      "labelCol": 2,
+      "wrapperCol": 22,
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "component": "DynamicSchema"
+    }
+  ],
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6"
+}

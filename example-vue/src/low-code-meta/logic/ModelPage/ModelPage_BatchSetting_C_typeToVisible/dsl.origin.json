@@ -1,0 +1,305 @@
+{
+  "code": "ModelPage_BatchSetting_C_typeToVisible",
+  "name": "批量设置type显隐",
+  "suffix": "typeToVisible",
+  "before": "ModelPage_BatchSetting_C_",
+  "type": "page",
+  "belong": "ModelPage_BatchSetting_C",
+  "cells": [
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-m8qkp9fl",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "fn-9pohgxt0", "port": "a0c49ec1-9be2-4e91-bf96-275d58052eb9" },
+      "target": { "cell": "end-k3jnprsw", "port": "6e9259bf-025a-4136-9c5d-144a96954c2a" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-b2fio7z4",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "start-mrhchu6z", "port": "2566da17-79f5-461c-8791-74fda1b34116" },
+      "target": { "cell": "fn-e534qubn", "port": "b7d60366-fae8-425d-8b3c-c87d3f679569" }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-5jfmu1a0",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": { "cell": "fn-e534qubn", "port": "699818b1-bb35-4950-80f7-349005ef5f29" },
+      "target": { "cell": "fn-9pohgxt0", "port": "5e875a96-eda2-4109-905f-947cccfc2245" }
+    },
+    {
+      "position": { "x": 100, "y": 10 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "开始" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "start-mrhchu6z",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "startTemplateCode",
+        "code": "// 开始节点\nexport default async function (ctx) {\n  return {};\n}\n"
+      },
+      "zIndex": 1,
+      "ports": {
+        "groups": {
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "rightOut", "id": "4d5d0e8b-4bd1-46d8-87e9-b2f1879190bb" },
+          { "group": "bottomOut", "id": "2566da17-79f5-461c-8791-74fda1b34116" }
+        ]
+      }
+    },
+    {
+      "position": { "x": 300, "y": 130 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "显隐" }, "label": { "text": "显隐" } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "fn-9pohgxt0",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "显隐" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode",
+        "code": "// 函数节点\nimport { fieldVisible } from '@formlogic/render-vue';\n\nexport default async function (ctx) {\n  const { payload } = ctx || {};\n  const { form } = payload || {};\n\n  const { type } = form.values || {};\n\n  const isColumn = type?.endsWith('column');\n\n  fieldVisible(\n    form,\n    isColumn,\n    ['defaultValue', 'configInfo', 'required', 'disabled', 'hidden', 'validatorInfo', 'validator'],\n    ['eventCode'],\n  );\n\n  switch (type) {\n    case 'column': {\n      fieldVisible(form, true, ['layoutInfo', 'group'], ['parentCode']);\n      break;\n    }\n    case 'table_column': {\n      fieldVisible(form, true, ['parentCode', 'defaultValue'], ['layoutInfo']);\n\n      break;\n    }\n\n    case 'search_column': {\n      fieldVisible(form, true, ['layoutInfo'], ['parentCode', 'group']);\n\n      break;\n    }\n    case 'button':\n    case 'table_button':\n    case 'search_button': {\n      fieldVisible(form, true, [], ['parentCode', 'layoutInfo']);\n      break;\n    }\n\n    default: {\n    }\n  }\n\n  return {};\n}\n"
+      },
+      "zIndex": 2,
+      "ports": {
+        "groups": {
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "86f336bc-83d3-4cc7-ba47-4b3b33ffd007" },
+          { "group": "bottomOut", "id": "66b2fb09-815d-4d63-94bb-91916cdffe07" },
+          { "group": "leftIn", "id": "5e875a96-eda2-4109-905f-947cccfc2245" },
+          { "group": "rightOut", "id": "a0c49ec1-9be2-4e91-bf96-275d58052eb9" }
+        ]
+      }
+    },
+    {
+      "position": { "x": 490, "y": 80 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "结束" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "end-k3jnprsw",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "endTemplateCode",
+        "code": "// 结束节点\nexport default async function (ctx) {}\n"
+      },
+      "zIndex": 3,
+      "ports": {
+        "groups": {
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "leftIn", "id": "6e9259bf-025a-4136-9c5d-144a96954c2a" },
+          { "group": "topIn", "id": "610804b5-fa3d-4365-afa8-9a697600731b" }
+        ]
+      }
+    },
+    {
+      "position": { "x": 139, "y": 116 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "值设置" }, "label": { "text": "值设置" } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "fn-e534qubn",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "值设置" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      },
+      "zIndex": 4,
+      "ports": {
+        "groups": {
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "efebaaf7-c724-4ca3-9c5e-c4c37539f1c1" },
+          { "group": "bottomOut", "id": "12a9d0ef-1e76-49bb-a85f-d19bcd6184c3" },
+          { "group": "leftIn", "id": "b7d60366-fae8-425d-8b3c-c87d3f679569" },
+          { "group": "rightOut", "id": "699818b1-bb35-4950-80f7-349005ef5f29" }
+        ]
+      }
+    }
+  ]
+}

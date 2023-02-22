@@ -31,6 +31,8 @@ export const useItemKey = (isObject = true) => {
   const keyMapRef = useRef<KeyMapProps>(isObject ? new WeakMap() : []);
 
   useEffect(() => {
+    keyMapRef.current = new WeakMap();
+
     return () => {
       keyMapRef.current = null;
     };

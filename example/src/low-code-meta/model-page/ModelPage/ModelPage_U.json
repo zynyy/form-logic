@@ -101,9 +101,17 @@
       "name": "默认搜索",
       "type": "column",
       "schemaType": "string",
-      "required": "1",
+      "required": false,
       "defaultValue": "6",
-      "group": "basicInfo"
+      "group": "basicInfo",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "validator": [],
+      "component": "InputNumber"
     },
     {
       "code": "remark",

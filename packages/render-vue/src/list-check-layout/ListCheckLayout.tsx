@@ -11,12 +11,13 @@ import SchemeForm from '@/scheme-form';
 import { SchemaPatternEnum } from '@/interface';
 import SchemeTableForm from '@/scheme-table-form/SchemeTableForm';
 import { getListCheckLayoutProps, ListCheckLayoutProps } from '@/list-check-layout/interface';
+import { Skeleton } from 'ant-design-vue';
 
 const ListCheckLayout = defineComponent({
   name: 'ListCheckLayout',
   props: getListCheckLayoutProps(),
   inheritAttrs: false,
-  setup(props: ListCheckLayoutProps, { attrs }) {
+  setup(props: ListCheckLayoutProps) {
     const searchLoading = ref(false);
 
     const paginationRef = reactive({
@@ -32,7 +33,7 @@ const ListCheckLayout = defineComponent({
     const pageCodeRef = toRef(props, 'pageCode');
     const metaSchemaRef = toRef(props, 'metaSchema');
 
-    const { options } = useTransformsOptions({
+    const { options, loading } = useTransformsOptions({
       pageCode: pageCodeRef,
       metaSchema: metaSchemaRef,
     });
@@ -239,52 +240,54 @@ const ListCheckLayout = defineComponent({
       const { pageSize, currentPage, total } = paginationRef;
 
       return (
-        <Layout
-          loading={searchLoading.value}
-          v-slots={{
-            header: () => {
-              return (
-                <WhereLayout
-                  title="搜索条件"
-                  onCollapsedClick={handleCollapsedClick}
-                  hasCollapsed={hasCollapsed}
-                  buttons={searchButtons}
-                  onRestClick={handleRestClick}
-                  onSearchClick={handleSearch}
-                  onButtonItemClick={handleButtonItemClick}
-                >
-                  <SchemeForm
-                    loading={searchFormLoading}
-                    schema={searchSchema}
-                    form={searchForm}
-                    pattern={SchemaPatternEnum.EDITABLE}
-                    getLogicConfig={getLogicConfig}
-                    extraLogicParams={extraLogicParams}
-                    events={events}
-                    components={components}
-                    language={language}
-                  />
-                </WhereLayout>
-              );
-            },
-          }}
-        >
-          <SchemeTableForm
-            hasClearSelectedRows
-            {...tableProps}
-            dataSource={dataSource.value}
-            form={dataTableForm}
-            loading={tableFormLoading}
-            schema={tableSchema}
-            total={total}
-            currentPage={currentPage}
-            pageSize={pageSize}
-            onChange={handleTableChange}
-            components={components}
-            language={language}
-            hasRowSelection
-          />
-        </Layout>
+        <Skeleton loading={loading.value}>
+          <Layout
+            loading={searchLoading.value}
+            v-slots={{
+              header: () => {
+                return (
+                  <WhereLayout
+                    title="搜索条件"
+                    onCollapsedClick={handleCollapsedClick}
+                    hasCollapsed={hasCollapsed}
+                    buttons={searchButtons}
+                    onRestClick={handleRestClick}
+                    onSearchClick={handleSearch}
+                    onButtonItemClick={handleButtonItemClick}
+                  >
+                    <SchemeForm
+                      loading={searchFormLoading}
+                      schema={searchSchema}
+                      form={searchForm}
+                      pattern={SchemaPatternEnum.EDITABLE}
+                      getLogicConfig={getLogicConfig}
+                      extraLogicParams={extraLogicParams}
+                      events={events}
+                      components={components}
+                      language={language}
+                    />
+                  </WhereLayout>
+                );
+              },
+            }}
+          >
+            <SchemeTableForm
+              hasClearSelectedRows
+              {...tableProps}
+              dataSource={dataSource.value}
+              form={dataTableForm}
+              loading={tableFormLoading}
+              schema={tableSchema}
+              total={total}
+              currentPage={currentPage}
+              pageSize={pageSize}
+              onChange={handleTableChange}
+              components={components}
+              language={language}
+              hasRowSelection
+            />
+          </Layout>
+        </Skeleton>
       );
     };
   },

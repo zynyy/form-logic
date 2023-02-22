@@ -8,10 +8,9 @@ export function genWebTypes(tags: VueTag[], options: Options) {
     'js-types-syntax': 'typescript',
     name: options.name,
     version: options.version,
+    'description-markup': 'markdown',
     contributions: {
       html: {
-        'description-markup': 'markdown',
-        'types-syntax': 'typescript',
         // elements: tags,
         'vue-components': tags,
         // tags,

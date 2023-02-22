@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import {defineComponent, unref} from 'vue';
 import { ArrayRemoveProps, getArrayRemoveProps } from '../interface';
 import { useField } from '@/formily-vue';
 import { loop } from '@/utils';
@@ -18,7 +18,7 @@ const ArrayBaseRemove = defineComponent({
     const { onClick } = props;
 
     const indexRef = useArrayIndex();
-    const record = useArrayItemRecord();
+    const recordRef = useArrayItemRecord();
     const fieldRef = useField<VoidField>();
     const array = useArrayContext();
 
@@ -33,6 +33,8 @@ const ArrayBaseRemove = defineComponent({
       if (field.disabled) {
         return;
       }
+
+      const record = unref(recordRef)
 
       const modelsFiled = {
         field,

@@ -1,0 +1,40 @@
+{
+  "code": "Component_pageCode",
+  "cells": [
+    {
+      "id": "edge-m0nyosmp",
+      "shape": "edge",
+      "target": { "cell": "fn-frsi6em7", "port": "e86dfb92-9472-4cbe-b4b9-7188628a0575" },
+      "source": { "cell": "start-dh8jo6dk", "port": "6a035ae6-73e2-411b-9665-df026ef1a3a7" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-kb6h1adx",
+      "shape": "edge",
+      "target": { "cell": "end-wwt9aigo", "port": "0154246f-01a6-41fd-87ef-0c5ff4190b2d" },
+      "source": { "cell": "fn-frsi6em7", "port": "fc7df01c-5776-48f2-8c86-53382438772b" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-dh8jo6dk",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" }
+    },
+    {
+      "id": "end-wwt9aigo",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" }
+    },
+    {
+      "id": "fn-frsi6em7",
+      "shape": "custom-rect",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      }
+    }
+  ]
+}

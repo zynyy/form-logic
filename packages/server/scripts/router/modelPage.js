@@ -5,6 +5,7 @@ import {
   generateModelPage,
   getModelPageAllData,
   getModelPagePath,
+  deleteModelPage,
 } from '../utils/modelPage';
 import { getFileExists, getJsonFileContent } from '../utils/file.cjs';
 import { toArray } from '../utils/fieldMeta';
@@ -161,6 +162,21 @@ const pageConfigUpdateLogic = async (req, res) => {
   return sendJson(res, content);
 };
 
+const pageConfigRemove = async (req, res) => {
+  const { code } = req.body;
+
+  if (!checkModelPagePath({ outputPath, pageCode: code })) {
+    return sendJson(res, false, `${code}文件路径不存在无法更新`);
+  }
+
+  const content = deleteModelPage({
+    outputPath,
+    pageCode: code,
+  });
+
+  return sendJson(res, content);
+};
+
 modelPageRouter.get('/local-api/model-page/detail', pageConfigDetail);
 modelPageRouter.get('/local-api/model-page/batchDetail', pageConfigBatchDetail);
 modelPageRouter.get('/local-api/model-page/page', pageConfigPage);
@@ -168,3 +184,4 @@ modelPageRouter.get('/local-api/model-page/check', pageConfigCheck);
 modelPageRouter.post('/local-api/model-page/create', pageConfigCreate);
 modelPageRouter.post('/local-api/model-page/update', pageConfigUpdate);
 modelPageRouter.post('/local-api/model-page/updateLogic', pageConfigUpdateLogic);
+modelPageRouter.delete('/local-api/model-page/remove', pageConfigRemove);

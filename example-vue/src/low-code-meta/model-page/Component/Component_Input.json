@@ -1,0 +1,42 @@
+{
+  "code": "Component_Input",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "validator": [],
+      "code": "addonBefore",
+      "component": "Input",
+      "name": "前置标签"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "validator": [],
+      "code": "addonAfter",
+      "component": "Input",
+      "name": "后置标签"
+    }
+  ],
+  "model": "Component",
+  "codeSuffix": "Input",
+  "name": "文本输入框配置"
+}

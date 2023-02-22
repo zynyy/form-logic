@@ -1,0 +1,40 @@
+{
+  "code": "com_buttonType",
+  "cells": [
+    {
+      "id": "edge-5f1fp64w",
+      "shape": "edge",
+      "target": { "cell": "data-vn29cvbe", "port": "0a4ffcc1-17d5-4e49-9438-936b88269aae" },
+      "source": { "cell": "start-ttptjlkv", "port": "5e1bbae4-091d-4165-abc9-c3720e570c53" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-yzqtuxp2",
+      "shape": "edge",
+      "target": { "cell": "end-5i6vve1j", "port": "ee57b6f8-56eb-424f-82c9-52b386986820" },
+      "source": { "cell": "data-vn29cvbe", "port": "490017ba-55d0-4ac5-8f87-6eb22bb623e1" },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-ttptjlkv",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "startTemplateCode" }
+    },
+    {
+      "id": "end-5i6vve1j",
+      "shape": "custom-rect",
+      "data": { "validateRules": { "inOut": true }, "templateCode": "endTemplateCode" }
+    },
+    {
+      "id": "data-vn29cvbe",
+      "shape": "custom-polygon",
+      "data": {
+        "settingConfig": "data-config",
+        "configValues": { "label": "数据" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "dataTemplateCode"
+      }
+    }
+  ]
+}

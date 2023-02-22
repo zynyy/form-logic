@@ -1,0 +1,27 @@
+{
+  "code": "Component_StaticSelect",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "validator": [],
+      "code": "data",
+      "component": "JsonPopover",
+      "name": "数据源"
+    }
+  ],
+  "model": "Component",
+  "codeSuffix": "StaticSelect",
+  "name": "静态选择框配置"
+}

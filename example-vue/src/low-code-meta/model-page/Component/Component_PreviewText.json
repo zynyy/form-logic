@@ -1,0 +1,27 @@
+{
+  "code": "Component_PreviewText",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {},
+      "logics": [],
+      "validator": [],
+      "code": "colDataIndex",
+      "component": "Input",
+      "name": "表格列表索引"
+    }
+  ],
+  "model": "Component",
+  "codeSuffix": "PreviewText",
+  "name": "预览文本"
+}

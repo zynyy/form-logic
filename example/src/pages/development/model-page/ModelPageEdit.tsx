@@ -17,7 +17,7 @@ const ModelPageEdit = () => {
   };
 
   const successCallback = () => {
- //   handleBackClick();
+    handleBackClick();
   };
 
   return (

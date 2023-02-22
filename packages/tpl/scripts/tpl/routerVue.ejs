@@ -1,0 +1,20 @@
+import type { RouteRecordRaw } from "vue-router";
+
+
+
+const <%- fileName %>Route: RouteRecordRaw[] = [
+
+<% routes.forEach(({path, component}) => { %>
+
+    {
+
+    path: '<%= path %>',
+    component: () => import('<%= component %>'),
+
+    },
+
+
+<%})%>
+]
+
+export default <%- fileName %>Route

@@ -1,0 +1,53 @@
+{
+  "code": "Model_L",
+  "name": "模型列表",
+  "model": "Model",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "data": [
+    { "code": "code", "name": "编码", "type": "search_column", "schemaType": "string" },
+    { "code": "name", "name": "名称", "type": "search_column", "schemaType": "string" },
+    {
+      "code": "addBtn",
+      "name": "新建",
+      "type": "button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "component": "ArrayBase.Addition",
+      "eventCode": "onAdd"
+    },
+    { "code": "code", "name": "编码", "type": "table_column", "schemaType": "string" },
+    { "code": "name", "name": "名称", "type": "table_column", "schemaType": "string" },
+    {
+      "code": "editBtn",
+      "name": "编辑",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Edit",
+      "eventCode": "onEdit"
+    },
+    {
+      "code": "removeBtn",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Remove",
+      "eventCode": "onRemove"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "logics": [],
+      "code": "detailBtn",
+      "name": "详情",
+      "component": "ArrayBase.Detail",
+      "eventCode": "onDetail"
+    }
+  ],
+  "defaultSearchColumn": "6"
+}

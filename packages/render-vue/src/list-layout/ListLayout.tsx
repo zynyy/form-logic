@@ -11,6 +11,7 @@ import { getListLayoutProps, ListLayoutProps } from '@/list-layout/interface';
 import { getSubmitFormValues } from '@/utils/formUtils';
 import { requestGet } from '@/utils/request';
 import { provideListLayoutContext } from '@/list-layout/hooks';
+import { Skeleton } from 'ant-design-vue';
 
 const ListLayout = defineComponent({
   name: 'ListLayout',
@@ -30,7 +31,7 @@ const ListLayout = defineComponent({
     const pageCodeRef = toRef(props, 'pageCode');
     const metaSchemaRef = toRef(props, 'metaSchema');
 
-    const { options } = useTransformsOptions({
+    const { options, loading } = useTransformsOptions({
       pageCode: pageCodeRef,
       metaSchema: metaSchemaRef,
     });
@@ -242,51 +243,53 @@ const ListLayout = defineComponent({
       const { pageSize, currentPage, total } = paginationRef;
 
       return (
-        <Layout
-          loading={searchLoading.value}
-          v-slots={{
-            header: () => {
-              return (
-                <WhereLayout
-                  title="搜索条件"
-                  onCollapsedClick={handleCollapsedClick}
-                  hasCollapsed={hasCollapsed}
-                  buttons={searchButtons}
-                  onRestClick={handleRestClick}
-                  onSearchClick={handleSearch}
-                  onButtonItemClick={handleButtonItemClick}
-                >
-                  <SchemeForm
-                    loading={searchFormLoading}
-                    schema={searchSchema}
-                    form={searchForm}
-                    pattern={SchemaPatternEnum.EDITABLE}
-                    getLogicConfig={getLogicConfig}
-                    extraLogicParams={extraLogicParams}
-                    events={events}
-                    components={components}
-                    language={language}
-                  />
-                </WhereLayout>
-              );
-            },
-          }}
-        >
-          <SchemeTableForm
-            {...tableProps}
-            dataSource={dataSource.value}
-            form={dataTableForm}
-            loading={tableFormLoading}
-            schema={tableSchema}
-            total={total}
-            currentPage={currentPage}
-            pageSize={pageSize}
-            onChange={handleTableChange}
-            components={components}
-            language={language}
-            hasClearSelectedRows
-          />
-        </Layout>
+        <Skeleton loading={loading.value}>
+          <Layout
+            loading={searchLoading.value}
+            v-slots={{
+              header: () => {
+                return (
+                  <WhereLayout
+                    title="搜索条件"
+                    onCollapsedClick={handleCollapsedClick}
+                    hasCollapsed={hasCollapsed}
+                    buttons={searchButtons}
+                    onRestClick={handleRestClick}
+                    onSearchClick={handleSearch}
+                    onButtonItemClick={handleButtonItemClick}
+                  >
+                    <SchemeForm
+                      loading={searchFormLoading}
+                      schema={searchSchema}
+                      form={searchForm}
+                      pattern={SchemaPatternEnum.EDITABLE}
+                      getLogicConfig={getLogicConfig}
+                      extraLogicParams={extraLogicParams}
+                      events={events}
+                      components={components}
+                      language={language}
+                    />
+                  </WhereLayout>
+                );
+              },
+            }}
+          >
+            <SchemeTableForm
+              {...tableProps}
+              dataSource={dataSource.value}
+              form={dataTableForm}
+              loading={tableFormLoading}
+              schema={tableSchema}
+              total={total}
+              currentPage={currentPage}
+              pageSize={pageSize}
+              onChange={handleTableChange}
+              components={components}
+              language={language}
+              hasClearSelectedRows
+            />
+          </Layout>
+        </Skeleton>
       );
     };
   },

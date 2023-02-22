@@ -11,6 +11,8 @@ import { message } from 'ant-design-vue';
 import { useReloadFlag } from '@/hooks';
 import { ref } from "vue";
 
+import 'ant-design-vue/dist/antd.css'
+
 export default {
   /* 👇 The title prop is optional.
    * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
@@ -25,7 +27,7 @@ export default {
   },
 };
 
-const render = ({ metaSchema, rowKey, ...args }) => ({
+const render = ({  rowKey, ...args }) => ({
   components: { ListLayout },
   setup() {
     //👇 The args will now be passed down to the template
@@ -70,7 +72,6 @@ const render = ({ metaSchema, rowKey, ...args }) => ({
         <ListLayout
           getLogicConfig={getLogicConfig}
           action="/local-api/logic/page"
-          metaSchema={metaSchema}
           onTableMount={onTableMount}
           onAdd={handleAdd}
           onEdit={handleEdit}
@@ -78,6 +79,7 @@ const render = ({ metaSchema, rowKey, ...args }) => ({
           onRemove={handleRemove}
           reloadFlag={reloadFlag.value}
           ref={listRef}
+          {...args}
         />
       );
     };
@@ -88,6 +90,16 @@ export const basic = {
   render,
   args: {
     metaSchema: Logic_L,
+    hasGroup: false,
+    hasRowSelection: true,
+    rowKey: 'uid',
+  },
+};
+
+export const pageCode = {
+  render,
+  args: {
+    pageCode: 'Logic_L',
     hasGroup: false,
     hasRowSelection: true,
     rowKey: 'uid',
