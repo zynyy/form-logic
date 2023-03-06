@@ -117,7 +117,7 @@ const generateList = () => {
 
   const content = ejs.render(readFileSync(ejsTempPath, 'utf8'), ejsParams);
 
-  generateFile(`${listPath}/index.vue`, content);
+  generateFile(`${listPath}/${fileName}.vue`, content);
 };
 
 const generateHooks = () => {
@@ -140,7 +140,7 @@ const generateRouter = () => {
   const routes = [
     {
       path: `${urlPath}`,
-      component: `@/views/${urlPath}/index.vue`,
+      component: `@/views/${urlPath}/${fileName}.vue`,
     },
   ];
 

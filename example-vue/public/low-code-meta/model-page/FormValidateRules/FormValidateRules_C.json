@@ -126,5 +126,5 @@
   "model": "FormValidateRules",
   "codeSuffix": "C",
   "name": "表单验证规则新增",
-  "columnLayout": "3"
+  "columnLayout": 3
 }

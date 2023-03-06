@@ -4,7 +4,7 @@ import type { FormilyForm, FormConfigProps } from "@formlogic/render-vue";
 
 import { useRoute } from "vue-router";
 
-import { listDetail } from "./service";
+import { linkDetail } from "./service";
 
 // 验证表单值
 export const validateFormValues: (
@@ -21,7 +21,7 @@ export const formatFormValues: (formValues: any, form: FormilyForm) => any = (
   return formValues;
 };
 
-export const useListDetail = (): [Ref<FormConfigProps>, Ref<boolean>] => {
+export const useLinkDetail = (): [Ref<FormConfigProps>, Ref<boolean>] => {
   const route = useRoute();
 
   const loading = ref(false);
@@ -34,7 +34,7 @@ export const useListDetail = (): [Ref<FormConfigProps>, Ref<boolean>] => {
     if (code) {
       loading.value = true;
 
-      listDetail({ code })
+      linkDetail({ code })
         .then((res) => {
           const { data } = res;
 

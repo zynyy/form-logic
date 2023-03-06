@@ -33,19 +33,22 @@ export const getDrawerPageFormProps = () => {
     validateFormValues: {
       type: Function as PropType<(formValues: any) => Promise<string>>,
     },
+    visible: {
+      type: Boolean,
+      required: true as const,
+    },
     onConfirm: {
       type: Function as PropType<(formValues: any) => void>,
     },
     onClose: {
       type: Function as PropType<(e?: MouseEvent) => void>,
+      required: true as const,
     },
     hasConfirmButton: {
       type: Boolean,
       default: true as const,
     },
-    visible: {
-      type: Boolean,
-    },
+
     title: String,
     language: String,
     width: {

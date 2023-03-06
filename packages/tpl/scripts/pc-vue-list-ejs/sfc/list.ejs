@@ -8,8 +8,7 @@
             @edit="handleEdit"
             @detail="handleDetail"
             @remove="handleRemove"
-    >
-    </list-layout>
+    />
 </template>
 
 <script setup lang="ts">
@@ -33,7 +32,7 @@
 
   };
 
-  const handleEdit = (index, record) => {
+  const handleEdit = (index: number, record:any) => {
     const { code, } = record || {};
 
     router.push({
@@ -44,7 +43,7 @@
     });
   };
 
-  const handleDetail = (index, record) => {
+  const handleDetail = (index: number, record:any) => {
     const { code, } = record || {};
     router.push({
       path: <%- fileName %>Config.DETAIL_LINK,
@@ -54,7 +53,7 @@
     });
   };
 
-  const handleRemove = (index, record) => {
+  const handleRemove = (index: number, record:any) => {
     const { code, } = record || {};
       <%- fileNameLower %>Remove({ code }).then(() => {
         refreshReloadFlag();

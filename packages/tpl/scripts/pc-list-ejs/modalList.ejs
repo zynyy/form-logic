@@ -34,6 +34,7 @@ const [options, setOptions] = useState<TransformsSchemaOptions>(null);
         setAction(apiUrl.create);
 
         showModal();
+        setFormConfig({})
         getJsonMetaSchema(<%- fileName %>Config.CREATE).then((metaSchema) => {
             setOptions({
                 metaSchema,

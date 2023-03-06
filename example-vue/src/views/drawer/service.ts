@@ -1,19 +1,15 @@
 import { requestGet, requestPost, requestDelete } from "@/service";
 
-export enum ListConfig {
-  CREATE = "List_C",
-  DETAIL = "List_D",
-  EDIT = "List_U",
-  LIST = "List_L",
+export enum DrawerConfig {
+  CREATE = "FormValidateRules_C",
+  DETAIL = "FormValidateRules_D",
+  EDIT = "FormValidateRules_U",
+  LIST = "FormValidateRules_L",
 
-  CREATE_LINK = "/list/create",
-  EDIT_LINK = "/list/edit",
-  DETAIL_LINK = "/list/detail",
-
-  MODEL_CODE = "List",
+  MODEL_CODE = "FormValidateRules",
 }
 
-const baseUrl = "/list";
+const baseUrl = "/local-api/validate-rules";
 
 export const apiUrl = {
   detail: `${baseUrl}/detail`, // 详情
@@ -23,38 +19,38 @@ export const apiUrl = {
   page: `${baseUrl}/page`, // 列表接口
 };
 
-export interface ListCreateParams {
+export interface DrawerCreateParams {
   [key: string]: any;
 }
 
-export interface ListDetailParams {
+export interface DrawerDetailParams {
   [key: string]: any;
 }
 
-export interface ListUpdateParams {
+export interface DrawerUpdateParams {
   [key: string]: any;
 }
 
-export interface ListRemoveParams {
+export interface DrawerRemoveParams {
   [key: string]: any;
 }
 
 // 新增
-export const listCreate = (params: ListCreateParams) => {
+export const drawerCreate = (params: DrawerCreateParams) => {
   return requestPost(apiUrl.create, params);
 };
 
 // 编辑更新
-export const listUpdate = (params: ListUpdateParams) => {
+export const drawerUpdate = (params: DrawerUpdateParams) => {
   return requestPost(apiUrl.update, params);
 };
 
 // 详情页
-export const listDetail = (params: ListDetailParams) => {
+export const drawerDetail = (params: DrawerDetailParams) => {
   return requestGet(apiUrl.detail, params);
 };
 
 // 详情页
-export const listRemove = (params: ListRemoveParams) => {
+export const drawerRemove = (params: DrawerRemoveParams) => {
   return requestDelete(apiUrl.remove, params);
 };

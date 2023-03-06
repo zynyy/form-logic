@@ -2,8 +2,10 @@
   <form-page-layout
     :get-logic-config="getLogicConfig"
     :has-group="true"
-    :page-code="ListConfig.CREATE"
+    :page-code="LinkConfig.EDIT"
     :extra-logic-params="extraLogicParams"
+    :form-config="formConfig"
+    :loading="loading"
     @back-click="handleBackClick"
   />
 </template>
@@ -11,13 +13,15 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { ref } from "vue";
-import getLogicConfig from "@/low-code-meta/logic";
 import { FormPageLayout } from "@formlogic/render-vue";
-import { apiUrl, ListConfig } from "./service";
+import getLogicConfig from "@/low-code-meta/logic";
+import { apiUrl, LinkConfig } from "./service";
 
-import { validateFormValues, formatFormValues } from "./hooks";
+import { validateFormValues, formatFormValues, useLinkDetail } from "./hooks";
 
 const router = useRouter();
+
+const [formConfig, loading] = useLinkDetail();
 
 const handleBackClick = () => {
   router.go(-1);
@@ -29,7 +33,7 @@ const successCallback = () => {
 
 const extraLogicParams = ref({
   successCallback,
-  action: apiUrl.create,
+  action: apiUrl.update,
   extraParams: {},
   validateFormValues,
   formatFormValues,

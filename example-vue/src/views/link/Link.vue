@@ -3,19 +3,18 @@
     :action="apiUrl.page"
     :get-logic-config="getLogicConfig"
     :reload-flag="reloadFlag"
-    :page-code="ListConfig.LIST"
+    :page-code="LinkConfig.LIST"
     @add="handleAdd"
     @edit="handleEdit"
     @detail="handleDetail"
     @remove="handleRemove"
-  >
-  </list-layout>
+  />
 </template>
 
 <script setup lang="ts">
 import getLogicConfig from "@/low-code-meta/logic";
 
-import { apiUrl, ListConfig, listRemove } from "./service";
+import { apiUrl, LinkConfig, linkRemove } from "./service";
 
 import { ListLayout, useReloadFlag } from "@formlogic/render-vue";
 
@@ -27,34 +26,34 @@ const router = useRouter();
 
 const handleAdd = () => {
   router.push({
-    path: ListConfig.CREATE_LINK,
+    path: LinkConfig.CREATE_LINK,
   });
 };
 
-const handleEdit = (index, record) => {
+const handleEdit = (index: number, record: any) => {
   const { code } = record || {};
 
   router.push({
-    path: ListConfig.EDIT_LINK,
+    path: LinkConfig.EDIT_LINK,
     query: {
       code,
     },
   });
 };
 
-const handleDetail = (index, record) => {
+const handleDetail = (index: number, record: any) => {
   const { code } = record || {};
   router.push({
-    path: ListConfig.DETAIL_LINK,
+    path: LinkConfig.DETAIL_LINK,
     query: {
       code,
     },
   });
 };
 
-const handleRemove = (index, record) => {
+const handleRemove = (index: number, record: any) => {
   const { code } = record || {};
-  listRemove({ code }).then(() => {
+  linkRemove({ code }).then(() => {
     refreshReloadFlag();
   });
 };

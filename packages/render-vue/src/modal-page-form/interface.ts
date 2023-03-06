@@ -37,6 +37,7 @@ export const getModalPageFormProps = () => {
     },
     onClose: {
       type: Function as PropType<(e?: MouseEvent) => void>,
+      required: true as const,
     },
     hasConfirmButton: {
       type: Boolean,
@@ -44,6 +45,7 @@ export const getModalPageFormProps = () => {
     },
     visible: {
       type: Boolean,
+      required: true as const,
     },
     title: String,
     language: String,
