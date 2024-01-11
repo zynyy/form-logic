@@ -1,4 +1,6 @@
+import DRAWER from "./drawer";
 import FORMVALIDATERULES from "./formvalidaterules";
-import LIST from "./list";
+import LINK from "./link";
+import MODAL from "./modal";
 // @ts-ignore
-export default [].concat(FORMVALIDATERULES, LIST);
+export default [].concat(DRAWER, FORMVALIDATERULES, LINK, MODAL);

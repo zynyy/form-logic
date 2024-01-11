@@ -115,20 +115,20 @@ const options =
 
 ### Props
 
-| 属性               | 描述                                    | 类型                                                  | 默认值 |
-| ------------------ |---------------------------------------| ----------------------------------------------------- | ------ |
-| options            | 页面配置选项                                | TransformsSchemaOptions                               |        |
-| getLogicConfig     | 获取逻辑编码                                | (code: string) => Promise\<any\>                      |        |
-| visible            | 抽屉是否可见                                | MetaSchema                                            | -      |
-| extraLogicParams   | 逻辑流程额外参数                              | string                                                | -      |
-| validateFormValues | 表单验证                                  | string                                                | zh-CN  |
-| language           | 表单验证国际化语言                             | string                                                | zh-CN  |
-| width              | 对话框宽度                                 | number                                                | -      |
-| title              | 对话框标题                                  | string                                                | true   |
-| hasConfirmButton   | 是否需要默认的确定按钮                           | string                                                | -      |
-| components         | 注册组件                                  | Record<string, Component>                             | {}     |
-| formConfig         | 表单配置                                  | IFormProps                                            | -      |
-| events             | 按钮点击事件勾子映射`MetaSchema`里 `eventCode`与之对应 | Record<string, (e: MouseEvent, ...args: any) => void> | {}     |
+| 属性               | 描述                                    | 类型                                                    | 默认值   |
+| ------------------ |---------------------------------------|-------------------------------------------------------|-------|
+| options            | 页面配置选项                                | TransformsSchemaOptions                               |       |
+| getLogicConfig     | 获取逻辑编码                                | (code: string) => Promise\<any\>                      |       |
+| visible            | 抽屉是否可见                                | boolean                                               | -     |
+| extraLogicParams   | 逻辑流程额外参数                              | string                                                | -     |
+| validateFormValues | 表单验证                                  | string                                                | zh-CN |
+| language           | 表单验证国际化语言                             | string                                                | zh-CN |
+| width              | 对话框宽度                                 | number                                                | -     |
+| title              | 对话框标题                                  | string                                                | true  |
+| hasConfirmButton   | 是否需要默认的确定按钮                           | boolean                                                | -     |
+| components         | 注册组件                                  | Record<string, Component>                             | {}    |
+| formConfig         | 表单配置                                  | IFormProps                                            | -     |
+| events             | 按钮点击事件勾子映射`MetaSchema`里 `eventCode`与之对应 | Record<string, (e: MouseEvent, ...args: any) => void> | {}    |
 
 ### Events
 

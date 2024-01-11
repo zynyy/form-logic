@@ -9,11 +9,9 @@ const removeImportStyleFromInputFilePlugin = () => ({
   transform(code, id) {
     // 样式由 build:style 进行打包，所以要删除入口文件上的 `import './style'`
 
-    if (id.endsWith("/esm/index.js")) {
-      return  code.replaceAll('import "./style"', "")
-
+    if (id.endsWith('/esm/index.js')) {
+      return code.replaceAll('import "./style"', '');
     }
-
 
     return code;
   },
@@ -65,7 +63,6 @@ export function getViteConfigForPackage({
           globals: {
             vue: 'Vue',
           },
-
         },
         plugins: [removeImportStyleFromInputFilePlugin()],
       },

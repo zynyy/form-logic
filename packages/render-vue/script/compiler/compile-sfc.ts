@@ -137,18 +137,6 @@ export async function compileSfc(filePath: string): Promise<any> {
       const cssFilePath = getSfcStylePath(filePath, style.lang || 'css', index);
 
       const styleSource = trim(style.content);
-
-      // TODO support scoped
-      // if (style.scoped) {
-      //   styleSource = compileUtils.compileStyle({
-      //     id: scopeId,
-      //     scoped: true,
-      //     source: styleSource,
-      //     filename: cssFilePath,
-      //     preprocessLang: style.lang,
-      //   }).code;
-      // }
-
       return outputFile(cssFilePath, styleSource);
     })
   );

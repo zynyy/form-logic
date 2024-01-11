@@ -168,7 +168,7 @@ const ListLayout: FC<ListLayoutProps> = ({
         .then((res) => {
           const { data } = res || {};
 
-          const { list, total, current, pageSize } = data || {};
+          const { records, total, current, pageSize } = data || {};
 
           setCurrentPage(current);
           setPageSize(pageSize);
@@ -181,7 +181,7 @@ const ListLayout: FC<ListLayoutProps> = ({
             params: searchParams,
           });
 
-          setDataSource(list);
+          setDataSource(records);
         })
         .finally(() => {
           setSearchLoading(false);

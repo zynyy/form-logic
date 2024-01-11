@@ -84,7 +84,7 @@ const LeftNavSider = () => {
         },
         {
           name: '测试',
-          path: '/setting/test',
+          path: '/setting/link',
           pid: '1',
           id: '1-2',
         },

@@ -35,6 +35,7 @@ const [options, setOptions] = useState<TransformsSchemaOptions>(null);
         setAction(apiUrl.create);
 
         showDrawer();
+        setFormConfig({})
 
         getJsonMetaSchema(<%- fileName %>Config.CREATE).then((metaSchema) => {
             setOptions({

@@ -157,7 +157,7 @@ const SettingDrawer: FC<SettingDrawerProps> = ({ form, renderDone }) => {
     {
       label: '转换数据',
       key: TabsItemKey.options,
-      children: <SchemaData value={options ? JSON.stringify(options, null, 2) : ''} />,
+      children: <SchemaData value={options ? JSON.stringify(options || '', null, 2) : ''} />,
     },
     {
       label: '执行逻辑历史',

@@ -17,6 +17,7 @@ import { modelRouter } from './router/model';
 import { logicRouter } from './router/logic';
 import { modelPageRouter } from './router/modelPage';
 import { fieldMetaRouter } from './router/fieldMeta';
+import { warpathRouter } from './router/warpath';
 
 import { getConfig } from './utils/config.cjs';
 import { validateRulesRouter } from './router/validateRules';
@@ -140,6 +141,7 @@ class Dev {
     app.use(componentRouter);
     app.use(fieldMetaRouter);
     app.use(validateRulesRouter);
+    app.use(warpathRouter);
 
     app.get('/local-api/sequential', this.sequential);
 

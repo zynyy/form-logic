@@ -2,14 +2,14 @@ import { Breadcrumb, Layout } from 'antd';
 
 import GlobalHeader from './header/global-header';
 import LeftNav from './sider/left-nav';
-import { FC, PropsWithChildren, useState } from 'react';
+import { FC, PropsWithChildren } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import PageHeader from '@/components/page-header';
 
-const { Content, Header } = Layout;
-
-import './style/index.css';
 import useVisualHeight from '@/layouts/useVisualHeight';
+import './style/index.css';
+
+const { Content, Header } = Layout;
 
 const BasicLayout: FC<PropsWithChildren> = ({ children }) => {
   const location = useLocation();

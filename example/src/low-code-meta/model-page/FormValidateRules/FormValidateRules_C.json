@@ -29,7 +29,7 @@
       "group": "basicInfo"
     },
     {
-      "type": "column",
+       "type": "column",
       "schemaType": "string",
       "required": "1",
       "hidden": "0",
