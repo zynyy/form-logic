@@ -148,6 +148,6 @@ export const sendJsonPage = (res, { data, current, pageSize }) => {
     current,
     pageSize,
     total: data.length,
-    list: data.slice(startIndex, endIndex),
+    records: data.slice(startIndex, endIndex),
   });
 };

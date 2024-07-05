@@ -1,0 +1,42 @@
+{
+  "name": "@formlogic/designer-core",
+  "version": "1.0.0",
+  "license": "MIT",
+  "browser": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "web-types": "esm/web-types.json",
+  "engines": {
+    "npm": ">=8.0.0"
+  },
+  "type": "module",
+  "main": "esm/index.js",
+  "files": [
+    "dist",
+    "esm",
+    "lib"
+  ],
+  "scripts": {
+    "clean": "form-logic-cli clean",
+    "build": "form-logic-cli build-vue2-ts",
+    "test": " jest --config jest.config.js",
+    "test:usnap": "pnpm test -- -u",
+    "depcruise-circular": "depcruise --include-only \"^src\" src",
+    "depcruise-graph": "depcruise --include-only \"^src\" -v -T dot src | dot -T svg | depcruise-wrap-stream-in-html > dependency-graph.html"
+  },
+  "peerDependencies": {
+    "@formily/core": "^2.2.29",
+    "@formily/json-schema": "^2.2.29",
+    "@formily/path": "^2.2.29",
+    "@formily/reactive": "^2.2.29",
+    "@formily/shared": "^2.2.29"
+  },
+  "dependencies": {
+    "@juggle/resize-observer": "^3.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@formlogic/package-compiler": "^1.0.0"
+  }
+}

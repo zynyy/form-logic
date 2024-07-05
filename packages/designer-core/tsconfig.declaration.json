@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "lib": ["ESNext", "dom"],
+
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "module": "ESNext",
+    "target": "ESNext",
+    "allowJs": false,
+    "noUnusedLocals": true,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "declaration": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./esm/*"]
+    },
+    "declarationDir": ".",
+    "emitDeclarationOnly": true
+  },
+  "include": ["esm/**/*", "lib/**/*"],
+  "exclude": [
+    "node_modules",
+    "**/test/**/*",
+    "**/demo/**/*",
+    ".storybook",
+    "**/*.stories.tsx",
+    "**/*.stories.ts",
+    "storybook"
+  ]
+}

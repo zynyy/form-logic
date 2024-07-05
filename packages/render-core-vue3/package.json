@@ -1,0 +1,68 @@
+{
+  "name": "@formlogic/render-core-vue3",
+  "version": "1.0.0",
+  "license": "MIT",
+  "browser": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "engines": {
+    "npm": ">=8.0.0"
+  },
+  "type": "module",
+  "main": "esm/index.js",
+  "files": [
+    "dist",
+    "esm",
+    "lib"
+  ],
+  "scripts": {
+    "clean": "formlogic-cli clean",
+    "build": "npm run clean &&  formlogic-cli build-vue3-ts",
+    "test": " jest --config jest.config.js",
+    "test:usnap": "pnpm test -- -u",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "typecheck": "vue-tsc --noEmit",
+    "depcruise-circular": "depcruise --include-only \"^src\" src",
+    "depcruise-graph": "depcruise --include-only \"^src\" -v -T dot src | dot -T svg | depcruise-wrap-stream-in-html > dependency-graph.html"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.27"
+  },
+  "dependencies": {
+    "@formily/core": "^2.2.29",
+    "@formily/json-schema": "^2.2.29",
+    "@formily/reactive": "^2.2.29",
+    "@formily/shared": "^2.2.29",
+    "@formily/validator": "^2.2.29",
+    "@vue/shared": "^3.3.4",
+    "bignumber.js": "^9.1.1",
+    "lodash-es": "^4.17.21",
+    "scroll-into-view-if-needed": "^3.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@storybook/blocks": "^8.0.10",
+    "@storybook/builder-webpack5": "^8.0.10",
+    "@storybook/core-events": "^8.0.10",
+    "@storybook/manager-api": "^8.0.10",
+    "@storybook/testing-library": "^0.2.0",
+    "@storybook/theming": "^8.0.10",
+    "@storybook/vue3": "^8.0.10",
+    "@storybook/vue3-webpack5": "^8.0.10",
+    "@types/babel__core": "^7.20.0",
+    "@types/hash-sum": "^1.0.0",
+    "@types/less": "^3.0.3",
+    "@types/lodash-es": "^4.17.12",
+    "@types/qs": "^6.9.7",
+    "@vue/babel-plugin-jsx": "^1.2.2",
+    "csstype": "^3.1.2",
+    "element-plus": "^2.3.7",
+    "sass": "1.64.2",
+    "sass-loader": "13.3.2",
+    "sass-resources-loader": "2.2.5",
+    "storybook": "^8.0.10",
+    "style-loader": "^3.3.1"
+  }
+}

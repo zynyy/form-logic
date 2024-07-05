@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "strict": true,
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "dom"],
+    "outDir": "./lib",
+    "declaration": true,
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "allowJs": true,
+    "noUnusedLocals": false,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "inlineSources": false,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "preserveSymlinks": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}

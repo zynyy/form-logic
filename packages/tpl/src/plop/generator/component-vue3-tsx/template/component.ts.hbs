@@ -1,0 +1,16 @@
+import { defineComponent } from 'vue'
+import { get{{componentName}}Props, {{componentName}}Props } from './interface'
+
+const {{componentName}} = defineComponent({
+name: '{{componentName}}',
+inheritAttrs: false,
+props: get{{componentName}}Props(),
+setup(props: {{componentName}}Props) {
+return () => {
+return <div>
+      {{componentName}}
+</div>
+}
+}
+})
+export default {{componentName}}

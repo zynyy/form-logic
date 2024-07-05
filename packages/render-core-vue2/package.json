@@ -1,0 +1,80 @@
+{
+  "name": "@formlogic/render-core-vue2",
+  "version": "1.0.0",
+  "license": "MIT",
+  "browser": "esm/index.js",
+  "types": "esm/index.d.ts",
+  "engines": {
+    "npm": ">=8.0.0"
+  },
+  "type": "module",
+  "main": "esm/index.js",
+  "files": [
+    "dist",
+    "esm",
+    "lib"
+  ],
+  "scripts": {
+    "clean": "formlogic-cli clean",
+    "build": "npm run clean &&  formlogic-cli build-vue2-ts",
+    "test": " jest --config jest.config.js",
+    "test:usnap": "pnpm test -- -u",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "typecheck": "vue-tsc --noEmit",
+    "depcruise-circular": "depcruise --include-only \"^src\" src",
+    "depcruise-graph": "depcruise --include-only \"^src\" -v -T dot src | dot -T svg | depcruise-wrap-stream-in-html > dependency-graph.html"
+  },
+  "peerDependencies": {
+    "vue": "^2.7.14"
+  },
+  "dependencies": {
+    "@formily/core": "^2.2.29",
+    "@formily/json-schema": "^2.2.29",
+    "@formily/reactive": "^2.2.29",
+    "@formily/shared": "^2.2.29",
+    "@formily/validator": "^2.2.29",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
+    "@vue/shared": "^3.3.4",
+    "bignumber.js": "^9.1.1",
+    "lodash-es": "^4.17.21",
+    "scroll-into-view-if-needed": "^3.0.3",
+    "vue-frag": "^1.4.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@storybook/addons": "^7.0.27",
+    "@storybook/blocks": "^7.0.27",
+    "@storybook/builder-vite": "^7.0.27",
+    "@storybook/builder-webpack5": "^7.0.27",
+    "@storybook/core-events": "^7.0.27",
+    "@storybook/testing-library": "^0.2.0",
+    "@storybook/theming": "^7.0.27",
+    "@storybook/vue": "^7.0.27",
+    "@storybook/vue-webpack5": "^7.0.27",
+    "@types/babel__core": "^7.20.0",
+    "@types/hash-sum": "^1.0.0",
+    "@types/less": "^3.0.3",
+    "@types/lodash-es": "^4.17.12",
+    "@types/qs": "^6.9.7",
+    "@vue/babel-plugin-transform-vue-jsx": "^1.4.0",
+    "@vue/babel-preset-jsx": "^1.4.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "ag-grid-community": "~29.2.0",
+    "ag-grid-enterprise": "~29.2.0",
+    "ag-grid-vue": "~29.2.0",
+    "csstype": "^3.1.2",
+    "element-ui": "^2.15.6",
+    "sass": "1.64.2",
+    "sass-loader": "13.3.2",
+    "sass-resources-loader": "2.2.5",
+    "storybook": "^7.0.27",
+    "style-loader": "^3.3.1",
+    "vue-i18n": "8.28.2",
+    "vue-loader": "15.10.1",
+    "vue-router": "3.5.2",
+    "vue-tsc": "^1.0.24"
+  }
+}

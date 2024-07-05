@@ -1,0 +1,29 @@
+import {{componentName}} from '../{{componentName}}'
+
+export default {
+/* 👇 The title prop is optional.
+* See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
+* to learn how to generate automatic titles
+*/
+title: '{{componentName}}',
+component: {{componentName}},
+argTypes: {
+config: {
+description: 'meta schema {{componentName}}'
+}
+}
+}
+
+const render = (args) => ({
+components: { {{componentName}} },
+setup() {
+return () => {
+return <{{componentName}} attrs={args} />
+}
+}
+})
+
+export const basic = {
+render,
+args: {}
+}

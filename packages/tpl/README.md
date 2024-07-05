@@ -1,45 +1,46 @@
-# @formLogic/tpl
 
-微生成器，协助你在开发中快速的完成一些繁琐的工作。
+# formlogic-tpl
 
-## Install 安装
+formlogic-tpl 是一个基于 Plop 实现的快速创建模板文件工具。
 
 
-```pnpm
-pnpm add @formlogic/tpl -D
-```
+### 安装
 
-```yarn
+```shell
+# 通过 npm
+npm i @formlogic/tpl -D
+
+# 通过 yarn
 yarn add @formlogic/tpl -D
+
+# 通过 pnpm
+pnpm add @formlogic/tpl -D
+
+# 通过 Bun
+bun add @formlogic/tpl -D
 ```
 
-```npm
-npm install @formlogic/tpl -D
-```
+安装完成后，请将以下配置命令按需添加到 package.json 文件中
 
-
-## Usage
-
-### list
-
-生成文件列表以及路由
-
-```json5
+```json
 {
-  scripts: {
-    genListTpl: 'formlogic-tpl list',
-  },
+  "scripts": {
+    "init-plop": "formlogic-tpl init-plop",
+    "plop": "formlogic-tpl plop",
+    "plop:vue3Tsx": "formlogic-tpl -g component-vue3-tsx"
+  }
 }
 ```
 
-### remote-list
+```
 
-删除有 list 生成文件列表以及路由
+## 目录说明
 
-```json5
-{
-  scripts: {
-    remoteList: 'formlogic-tpl remote-list',
-  },
-}
+```js
+// 目录结构
+// tpl
+// ├── src // 源码目录
+//     ├── plop // plop 封装
+//     ├── utils // 工具函数
+// ├── bin.js // node 执行文件
 ```
