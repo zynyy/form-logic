@@ -1,0 +1,95 @@
+{
+  "code": "User_C",
+  "name": "用户新增配置",
+  "model": "User",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    {
+      "code": "basicInfo",
+      "name": "卡片容器"
+    }
+  ],
+  "data": [
+    {
+      "code": "xxx",
+      "name": "",
+      "type": "column",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "component": "Tabs",
+      "componentProps": {},
+      "itemMetaSchema": {
+        "data": [
+          {
+            "code": "catePane",
+            "name": "分类标签",
+            "type": "column",
+            "schemaType": "void",
+            "group": "basicInfo",
+            "parentCode": "xxx",
+            "component": "TabPane",
+            "componentProps": {
+              "title": "分类标题"
+            },
+            "itemMetaSchema": {
+              "data": [
+                {
+                  "code": "add",
+                  "name": "新增",
+                  "type": "button",
+                  "schemaType": "void",
+                  "hiddenName": "0",
+                  "group": "basicInfo",
+                  "component": "Button",
+                  "parentCode": "xxxPane",
+                  "componentProps": {
+                    "type": "primary",
+                    "icon": "el-icon-search"
+                  }
+                },
+                {
+                  "code": "input",
+                  "name": "输入框",
+                  "type": "column",
+                  "schemaType": "string",
+                  "hiddenName": "0",
+                  "group": "basicInfo",
+                  "component": "Input",
+                  "parentCode": "xxxPane",
+                  "componentProps": {}
+                }
+              ]
+            }
+          },
+          {
+            "code": "menuPane",
+            "name": "菜单标签",
+            "type": "column",
+            "schemaType": "void",
+            "group": "basicInfo",
+            "parentCode": "xxx",
+            "component": "TabPane",
+            "componentProps": {
+              "title": "菜单标题"
+            }
+          },
+          {
+            "code": "xxxPane",
+            "name": "按钮标签",
+            "type": "column",
+            "schemaType": "void",
+            "group": "basicInfo",
+            "parentCode": "xxx",
+            "component": "TabPane",
+            "componentProps": {
+              "title": "按钮标题"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

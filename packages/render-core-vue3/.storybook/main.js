@@ -1,15 +1,17 @@
+import {  resolve } from 'node:path';
+
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const path = require('path');
 
 module.exports = {
   stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  staticDirs: [],
+
   env: (config) => {
     return {
       ...config,
       VUE_APP_BASE_API: '/api',
     };
   },
+
   webpackFinal: async (config) => {
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
@@ -21,7 +23,7 @@ module.exports = {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        '@formlogic/render-core-vue3': path.resolve(__dirname, '../src/index'),
+        '@formlogic/render-core-vue3': resolve(__dirname, '../src/index'),
       };
     }
 
@@ -72,11 +74,11 @@ module.exports = {
 
     return config;
   },
-
-  addons: [],
   framework: '@storybook/vue3-webpack5',
   core: {
     builder: '@storybook/builder-webpack5',
     enableCrashReports: false, // 👈 Appends the crash reports to the telemetry events
   },
+  docs: {},
+  addons: [],
 };

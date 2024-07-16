@@ -1,0 +1,395 @@
+{
+  "createTime": "2023-08-07T18:55:59",
+  "createUser": "1640891867238539264",
+  "updateTime": "2023-08-07T20:05:18",
+  "updateUser": "1640891867238539264",
+  "dataStatus": 0,
+  "id": "1688504252673622017",
+  "name": "页面08",
+  "code": "ModelPage_3_1",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 6,
+  "layoutComponent": "FormPageLayout",
+  "data": [
+    {
+      "name": "保存",
+      "type": "button",
+      "colSpan": 2,
+      "component": "cube-button",
+      "eventCode": "",
+      "schemaType": "void",
+      "componentProps": {
+        "icon": "el-icon-search",
+        "size": "medium",
+        "type": "primary",
+        "plain": false,
+        "round": false,
+        "title": "",
+        "circle": false,
+        "loading": false,
+        "disabled": false,
+        "autofocus": "",
+        "hasTooltip": "",
+        "nativeType": "button",
+        "hasPopConfirm": ""
+      }
+    },
+    {
+      "code": "input",
+      "name": "文本框",
+      "type": "column",
+      "wrap": false,
+      "hidden": false,
+      "logics": [],
+      "colSpan": 2,
+      "disabled": false,
+      "pageCode": "",
+      "required": false,
+      "component": "cube-input",
+      "validator": [],
+      "hiddenName": false,
+      "parentCode": "",
+      "schemaType": "string",
+      "description": "",
+      "defaultValue": "",
+      "componentProps": {
+        "max": "",
+        "min": "",
+        "type": "text",
+        "style": {
+          "width": "100%"
+        },
+        "resize": "none",
+        "autosize": {
+          "maxRows": 4,
+          "minRows": 4
+        },
+        "readonly": false,
+        "autofocus": false,
+        "clearable": true,
+        "maxlength": null,
+        "minlength": null,
+        "placeholder": "请输入",
+        "prefix-icon": "",
+        "suffix-icon": "",
+        "auto-complete": "off",
+        "show-password": false,
+        "show-word-limit": false
+      },
+      "group": "card101"
+    },
+    {
+      "code": "input01",
+      "name": "文本框",
+      "type": "column",
+      "wrap": false,
+      "hidden": false,
+      "logics": [],
+      "colSpan": 2,
+      "disabled": false,
+      "pageCode": "",
+      "required": false,
+      "component": "cube-input",
+      "validator": [],
+      "hiddenName": false,
+      "parentCode": "",
+      "schemaType": "string",
+      "description": "",
+      "defaultValue": "",
+      "componentProps": {
+        "max": "",
+        "min": "",
+        "type": "text",
+        "style": {
+          "width": "100%"
+        },
+        "resize": "none",
+        "autosize": {
+          "maxRows": 4,
+          "minRows": 4
+        },
+        "readonly": false,
+        "autofocus": false,
+        "clearable": true,
+        "maxlength": null,
+        "minlength": null,
+        "placeholder": "请输入",
+        "prefix-icon": "",
+        "suffix-icon": "",
+        "auto-complete": "off",
+        "show-password": false,
+        "show-word-limit": false
+      },
+      "group": "card101"
+    },
+    {
+      "name": "新增",
+      "type": "button",
+      "colSpan": 2,
+      "component": "cube-button",
+      "eventCode": "",
+      "schemaType": "void",
+      "componentProps": {
+        "icon": "el-icon-search",
+        "size": "medium",
+        "type": "primary",
+        "plain": false,
+        "round": false,
+        "title": "",
+        "circle": false,
+        "loading": false,
+        "disabled": false,
+        "autofocus": "",
+        "hasTooltip": "",
+        "nativeType": "button",
+        "hasPopConfirm": ""
+      },
+      "code": "cardAdd",
+      "group": "card101"
+    },
+    {
+      "code": "input89",
+      "name": "分类",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": false,
+      "hidden": false,
+      "description": "",
+      "colSpan": 2,
+      "wrap": false,
+      "defaultValue": "",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [],
+      "validator": [],
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": {
+          "width": "100%"
+        },
+        "clearable": true,
+        "prefix-icon": "",
+        "suffix-icon": "",
+        "maxlength": null,
+        "minlength": null,
+        "show-word-limit": false,
+        "readonly": false,
+        "autofocus": false,
+        "show-password": false,
+        "autosize": {
+          "minRows": 4,
+          "maxRows": 4
+        },
+        "auto-complete": "off",
+        "resize": "none",
+        "min": "",
+        "max": ""
+      },
+      "tabs": "type",
+      "group": "type"
+    },
+    {
+      "name": "按钮",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "cube-button",
+      "componentProps": {
+        "type": "primary",
+        "icon": "el-icon-search",
+        "round": false,
+        "size": "medium",
+        "plain": false,
+        "circle": false,
+        "disabled": false,
+        "nativeType": "button",
+        "autofocus": "",
+        "title": "",
+        "loading": false,
+        "hasTooltip": "",
+        "hasPopConfirm": ""
+      },
+      "tabs": "type",
+      "code": "del",
+      "group": "type"
+    },
+    {
+      "name": "cad按钮",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "cube-button",
+      "componentProps": {
+        "type": "primary",
+        "icon": "el-icon-search",
+        "round": false,
+        "size": "medium",
+        "plain": false,
+        "circle": false,
+        "disabled": false,
+        "nativeType": "button",
+        "autofocus": "",
+        "title": "",
+        "loading": false,
+        "hasTooltip": "",
+        "hasPopConfirm": ""
+      },
+      "tabs": "menu",
+      "code": "assas",
+      "group": "menu"
+    },
+    {
+      "code": "menu",
+      "name": "菜单",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": false,
+      "hidden": false,
+      "description": "",
+      "colSpan": 2,
+      "wrap": false,
+      "defaultValue": "",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [],
+      "validator": [],
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": {
+          "width": "100%"
+        },
+        "clearable": true,
+        "prefix-icon": "",
+        "suffix-icon": "",
+        "maxlength": null,
+        "minlength": null,
+        "show-word-limit": false,
+        "readonly": false,
+        "autofocus": false,
+        "show-password": false,
+        "autosize": {
+          "minRows": 4,
+          "maxRows": 4
+        },
+        "auto-complete": "off",
+        "resize": "none",
+        "min": "",
+        "max": ""
+      },
+      "tabs": "menu",
+      "group": "menu"
+    },
+    {
+      "name": "按钮新增",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "cube-button",
+      "componentProps": {
+        "type": "primary",
+        "icon": "el-icon-search",
+        "round": false,
+        "size": "medium",
+        "plain": false,
+        "circle": false,
+        "disabled": false,
+        "nativeType": "button",
+        "autofocus": "",
+        "title": "",
+        "loading": false,
+        "hasTooltip": "",
+        "hasPopConfirm": ""
+      },
+      "tabs": "btn",
+      "code": "btm",
+      "group": "btn"
+    },
+    {
+      "code": "inputbtn",
+      "name": "文本框",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": false,
+      "hidden": false,
+      "description": "",
+      "colSpan": 2,
+      "wrap": false,
+      "defaultValue": "",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [],
+      "validator": [],
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": {
+          "width": "100%"
+        },
+        "clearable": true,
+        "prefix-icon": "",
+        "suffix-icon": "",
+        "maxlength": null,
+        "minlength": null,
+        "show-word-limit": false,
+        "readonly": false,
+        "autofocus": false,
+        "show-password": false,
+        "autosize": {
+          "minRows": 4,
+          "maxRows": 4
+        },
+        "auto-complete": "off",
+        "resize": "none",
+        "min": "",
+        "max": ""
+      },
+      "tabs": "btn",
+      "group": "btn"
+    }
+  ],
+  "group": [
+    {
+      "code": "card101",
+      "name": "卡片容器"
+    },
+    {
+      "code": "type",
+      "name": "分类标签",
+      "mode": "tabs",
+      "modeCodes": ["menu", "btn"],
+      "componentProps": {
+        "title": "分类标题"
+      }
+    },
+    {
+      "code": "menu",
+      "name": "菜单标签",
+      "componentProps": {
+        "title": "菜单标题"
+      }
+    },
+    {
+      "code": "btn",
+      "name": "按钮标签",
+      "componentProps": {
+        "title": "按钮标题"
+      }
+    }
+  ]
+}

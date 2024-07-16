@@ -1,0 +1,173 @@
+{
+  "code": "Logic_L",
+  "name": "逻辑列表",
+  "model": "Logic",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "componentProps": {
+    "hasMasterDetail": true
+  },
+  "defaultSearchColumn": "6",
+  "layoutComponent": "ListLayout",
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "xx",
+      "name": "xx",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "xx",
+      "name": "xx",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "yy",
+      "name": "yy",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "t",
+      "name": "t",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "h",
+      "name": "h",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "x",
+      "name": "x",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "c",
+      "name": "c",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "v",
+      "name": "v",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "a",
+      "name": "a",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "e",
+      "name": "e",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "ww",
+      "name": "ww",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "q",
+      "name": "q",
+      "type": "search_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "addBtn",
+      "name": "新建",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.Addition",
+      "logics": [],
+      "componentProps": {
+        "type": "primary"
+      }
+    },
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "table_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "table_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "remarks",
+      "name": "备注说明",
+      "type": "table_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "remarks",
+      "name": "备注说明",
+      "type": "detail_table_column",
+      "schemaType": "string",
+      "logics": []
+    },
+    {
+      "code": "editBtn",
+      "name": "编辑",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Edit",
+      "logics": []
+    },
+    {
+      "code": "removeBtn",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Remove",
+      "logics": []
+    },
+    {
+      "type": "table_button",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "logics": [],
+      "code": "detailBtn",
+      "name": "详情",
+      "component": "ArrayBase.Detail"
+    }
+  ]
+}

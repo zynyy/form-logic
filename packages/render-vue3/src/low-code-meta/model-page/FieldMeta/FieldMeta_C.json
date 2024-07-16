@@ -1,0 +1,147 @@
+{
+  "code": "FieldMeta_C",
+  "name": "元字段新增",
+  "model": "FieldMeta",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    { "code": "card101", "name": "分类信息" },
+    { "code": "metaInfo", "name": "字段信息" }
+  ],
+  "data": [
+    {
+      "name": "按钮",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 1,
+      "component": "cube-button",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "disabled": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": ""
+      },
+      "group": "card100"
+    },
+    {
+      "component": "ArrayTable",
+      "colSpan": 12,
+      "componentProps": {
+        "apiConfig": {
+          "method": "get",
+          "url": "/system/formDesignMetafield/list",
+          "params": {},
+          "data": {}
+        },
+        "remoteDataPath": "records",
+        "additionalOptions": {},
+        "detailOptions": {},
+        "childColumnDefs": [],
+        "operationButtonConfig": [],
+        "hasPagination": true,
+        "hasRowSelection": true,
+        "scrollY": 500,
+        "tableSelection": "multiple",
+        "isSubtable": false,
+        "childrenListKey": "_details",
+        "childRowKey": "id",
+        "childAllSelect": false,
+        "paginationinif": true,
+        "defaultPage": 0,
+        "defaultPageSize": 10,
+        "autoLoadData": false,
+        "rowKey": "id",
+        "autoHeight": true,
+        "style": {
+          "height": "500px"
+        }
+      },
+      "type": "column",
+      "code": "remark",
+      "name": "备注",
+      "schemaType": "array",
+      "itemMetaSchema": {
+        "data": [
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "index",
+            "name": "",
+            "componentProps": {
+              "width": 40,
+              "minWidth": 40,
+              "checkboxSelection": true,
+              "headerCheckboxSelection": true,
+              "pinned": "left"
+            }
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "id",
+            "name": "Id",
+            "componentProps": {
+              "minWidth": 40
+            }
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "name",
+            "name": "名称",
+            "componentProps": {
+              "headerClass": "ag-header-red",
+              "minWidth": 150
+            }
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "operation",
+            "name": "编辑操作",
+            "componentProps": {
+              "editable": true,
+              "headerClass": "ag-header-blue",
+              "width": 150
+            }
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "count",
+            "name": "排序",
+            "componentProps": {
+              "sortable": true,
+              "sort": "desc",
+              "cellClass": "ag-cell-orange",
+              "minWidth": 150
+            }
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "content",
+            "name": "内容",
+            "componentProps": {
+              "minWidth": 300
+            }
+          }
+        ]
+      },
+      "group": "card101"
+    }
+  ],
+  "defaultSearchColumn": "6",
+  "layoutComponentProps": {
+    "title": "字段详情"
+  }
+}

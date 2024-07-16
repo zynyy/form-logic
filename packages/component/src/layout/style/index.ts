@@ -37,7 +37,7 @@ export const layoutStyle = genStyleHook('layout', (token) => {
 });
 
 export const whereLayoutStyle = genStyleHook('where-layout', (token) => {
-  const { componentCls, marginSM, paddingSM, fontSizeLG, fontSizeXL, colorPrimary, colorWhite } =
+  const { componentCls, paddingSM, fontSizeLG, fontSizeXL, colorPrimary, colorWhite } =
     token || {};
 
   return {

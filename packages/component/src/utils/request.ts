@@ -9,7 +9,7 @@ import mustache from 'mustache';
 
 // https://tools.ietf.org/html/rfc2616#section-10
 // https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status
-const HTTPStatusCodeMessage = {
+const HTTPStatusCodeMessage: Record<number, string> = {
   404: '请求失败，接口不存在 {{&url}}',
   504: '请求失败 网关超时 {{&url}}',
   500: '请求失败 后端接口处理出错 {{&url}}',
@@ -45,7 +45,7 @@ const serviceInstance = axios.create({
  * 请求拦截器
  */
 serviceInstance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config) => {
     // https://github.com/axios/axios#request-config
 
     if (config.baseURL === '/') {

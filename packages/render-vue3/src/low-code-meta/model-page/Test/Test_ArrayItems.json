@@ -1,0 +1,138 @@
+{
+  "code": "User_C",
+  "name": "用户新增配置",
+  "model": "User",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    {
+      "code": "Fragment_z8mjfm36",
+      "component": "Fragment",
+      "schemaType": "void"
+    }
+  ],
+  "data": [
+    {
+      "code": "type",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "string",
+      "required": "1",
+      "logics": [{ "effectHook": "onClick", "logicCode": "com_save" }]
+    },
+    {
+      "name": "新增",
+      "type": "column",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "ArrayBase.Addition",
+      "code": "button101",
+      "group": "Fragment_z8mjfm36",
+      "parentCode": "card101",
+      "logics": [],
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "componentType": "ArrayBase.Addition"
+      }
+    },
+    {
+      "name": "卡片列表",
+      "component": "ArrayItems",
+      "code": "card101",
+      "colSpan": 12,
+      "schemaType": "array",
+      "type": "column",
+      "logics": [{ "effectHook": "", "logicCode": "", "hasChildren": "", "params": "" }],
+      "group": "Fragment_z8mjfm36",
+      "componentProps": {
+        "hasSortHandle": true,
+        "hasRemoveBtn": true
+      },
+      "itemMetaSchema": {
+        "data": [
+          {
+            "code": "serviceCode",
+            "name": "所属服务",
+            "type": "table_column",
+            "schemaType": "string",
+            "hiddenName": false,
+            "disabled": false,
+            "required": false,
+            "hidden": false,
+            "description": "",
+            "colSpan": 6,
+            "wrap": false,
+            "defaultValue": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "pageCode": "",
+            "logics": [
+              {
+                "effectHook": "onFieldMount",
+                "logicCode": "wewewewe",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "validator": [],
+            "componentProps": {
+              "type": "text",
+              "placeholder": "请输入",
+              "style": { "width": "100%" },
+              "clearable": true,
+              "prefixIcon": "",
+              "suffixIcon": "",
+              "showWordLimit": false,
+              "readonly": false,
+              "autofocus": false,
+              "showPassword": false,
+              "autoComplete": "off",
+              "autosize": { "minRows": 2, "maxRows": 4 },
+              "resize": "none",
+              "min": "",
+              "max": "",
+              "autocomplete": "off"
+            }
+          },
+          {
+            "code": "api",
+            "name": "请求路径",
+            "component": "cube-input-number",
+            "colSpan": 6,
+            "type": "table_column",
+            "schemaType": "string",
+            "defaultValue": "",
+            "componentProps": {
+              "decimalDigit": null,
+              "range": [null, null],
+              "thousandthSign": false,
+              "negative": false,
+              "autoFocus": false,
+              "focusSelect": false,
+              "required": false,
+              "returnNull": false
+            }
+          }
+        ]
+      },
+      "hiddenName": true
+    }
+  ]
+}

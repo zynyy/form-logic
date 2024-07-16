@@ -1,0 +1,115 @@
+{
+  "code": "Component_C",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [
+    { "hiddenName": "0", "code": "basicInfo", "name": "基础信息" },
+    { "hiddenName": "0", "code": "propsInfo", "name": "属性信息" }
+  ],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "code": "code",
+      "name": "组件编码",
+      "group": "basicInfo"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "hidden": "0",
+      "disabled": "0",
+      "hasSerialNo": "0",
+      "hasSort": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "code": "name",
+      "name": "组件名称",
+      "group": "basicInfo"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "Component_setComponentProps"
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "Component_setComponentProps"
+        }
+      ],
+      "code": "componentPropsPageCode",
+      "name": "属性编码",
+      "group": "basicInfo",
+      "component": "PageCodeSelect",
+      "componentProps": {
+        "modelCode": "Component",
+        "filterData": ["Component_C", "Component_U", "Component_L"]
+      }
+    },
+    {
+      "type": "column",
+      "schemaType": "object",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "1",
+      "logics": [],
+      "code": "componentProps",
+      "name": "组件属性",
+      "group": "propsInfo",
+      "colSpan": "3",
+      "labelCol": "2",
+      "wrapperCol": "22",
+      "component": "DynamicSchema"
+    },
+    {
+      "type": "button",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hasSerialNo": "0",
+      "hasSort": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [{ "effectHook": "onClick", "logicCode": "com_save" }],
+      "code": "saveBtn",
+      "name": "保存"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "code": "type",
+      "name": "类型",
+      "component": "StaticSelect"
+    }
+  ],
+  "model": "Component",
+  "codeSuffix": "C",
+  "columnLayout": "3",
+  "name": "组件新增"
+}

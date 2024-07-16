@@ -1,0 +1,28 @@
+{
+  "code": "ModelPage_Group_C",
+  "name": "页面配置分组新增",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [{ "code": "basicInfo", "name": "基础信息" }],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    }
+  ],
+  "defaultSearchColumn": "6"
+}

@@ -1,0 +1,49 @@
+{
+  "code": "ModelPage_Group_L",
+  "name": "页面配置分组列表",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "table_column",
+      "schemaType": "string"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "table_column",
+      "schemaType": "string"
+    },
+    {
+      "code": "editBtn",
+      "name": "编辑",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Edit",
+      "componentProps": {
+        "targetFiled": "group",
+        "drawerPageCode": "ModelPage_C",
+        "hasConfirmButton": true
+      },
+      "logics": [
+        {
+          "effectHook": "onClick",
+          "logicCode": "com_openEditDrawer",
+          "params": {}
+        }
+      ]
+    },
+    {
+      "code": "removeBtn",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Remove"
+    }
+  ]
+}

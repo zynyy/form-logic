@@ -1,0 +1,84 @@
+{
+  "code": "User_C",
+  "name": "用户新增配置",
+  "model": "User",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    {
+      "code": "basicInfo",
+      "name": "基础信息"
+    },
+    {
+      "code": "tabsInfo",
+      "name": "标签信息",
+      "hasTabs": "1",
+      "tabs": ["schoolInfo", "personalInfo"]
+    },
+    {
+      "code": "personalInfo",
+      "name": "个人信息"
+    },
+    {
+      "code": "schoolInfo",
+      "name": "学校信息"
+    }
+  ],
+  "data": [
+    {
+      "code": "code",
+      "name": "用户编码",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "component": "InputNumber",
+      "logics": [
+        {
+          "logicCode": "com_testSum",
+          "effectHook": "onFieldInputValueChange",
+          "params": {
+            "sum": ["code", "name"],
+            "targetKey": "sex"
+          }
+        }
+      ]
+    },
+    {
+      "code": "name",
+      "name": "用户名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "component": "InputNumber",
+      "logics": [
+        {
+          "logicCode": "com_testSum",
+          "effectHook": "onFieldInputValueChange",
+          "params": {
+            "sum": ["code", "name"],
+            "targetKey": "sex"
+          }
+        }
+      ]
+    },
+    {
+      "code": "sex",
+      "name": "性别",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "component": "InputNumber",
+      "componentProps": {
+        "mode": "multiple"
+      },
+      "wrap": 1
+    },
+    {
+      "code": "save",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "void"
+    }
+  ]
+}

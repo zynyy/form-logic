@@ -17,7 +17,7 @@ const CopyButton: FC<CopyButtonProps> = forwardRef(
       message.success(`${text} 复制成功`).then(() => void 0);
     };
 
-    if (hasCopyToClipboard) {
+    if (hasCopyToClipboard && text) {
       return (
         <CopyToClipboard text={text} onCopy={handleCopy}>
           <CustomButton

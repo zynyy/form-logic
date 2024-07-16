@@ -1,0 +1,269 @@
+{
+  "code": "Test_targetExpression",
+  "layoutComponent": "FormPageLayout",
+  "model": "Test",
+  "name": "测试表达式",
+  "group": [
+    {
+      "code": "card101",
+      "name": "必填",
+      "componentProps": {
+        "type": "default",
+        "status": "normal",
+        "component": "cube-card",
+        "collapse": true
+      }
+    },
+    {
+      "code": "card102",
+      "name": "显示",
+      "componentProps": {
+        "type": "default",
+        "status": "normal",
+        "component": "cube-card",
+        "collapse": true
+      }
+    },
+    {
+      "code": "card102",
+      "name": "禁止",
+      "componentProps": {
+        "type": "default",
+        "status": "normal",
+        "component": "cube-card",
+        "collapse": true
+      }
+    }
+  ],
+  "data": [
+    {
+      "code": "disabled",
+      "name": "禁止123",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": true,
+      "hidden": false,
+      "description": "",
+      "colSpan": 3,
+      "wrap": false,
+      "defaultValue": "123",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "com_targetExpressionDisabled",
+          "hasChildren": "",
+          "params": {
+            "expression": "{{fieldValue}}===123",
+            "fields": ["name"]
+          }
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "com_targetExpressionDisabled",
+          "hasChildren": "",
+          "params": {
+            "expression": "{{formValues.disabled}}===123",
+            "fields": ["name"]
+          }
+        }
+      ],
+      "validator": [],
+      "group": "card101",
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": {
+          "width": "100%"
+        },
+        "clearable": true,
+        "prefixIcon": "",
+        "suffixIcon": "",
+        "showWordLimit": false,
+        "readonly": false,
+        "autofocus": false,
+        "showPassword": false,
+        "autoComplete": "off",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        },
+        "resize": "none",
+        "min": "",
+        "max": "",
+        "autocomplete": "off"
+      }
+    },
+    {
+      "code": "required",
+      "name": "必填312",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": true,
+      "hidden": false,
+      "description": "",
+      "colSpan": 3,
+      "wrap": false,
+      "defaultValue": "312",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "com_targetExpressionRequired",
+          "hasChildren": "",
+          "params": {
+            "expression": "{{fieldValue}}===312",
+            "fields": ["name"]
+          }
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "com_targetExpressionRequired",
+          "hasChildren": "",
+          "params": {
+            "expression": "{{formValues.required}}===312",
+            "fields": ["name"]
+          }
+        }
+      ],
+      "validator": [],
+      "group": "card101",
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": {
+          "width": "100%"
+        },
+        "clearable": true,
+        "prefixIcon": "",
+        "suffixIcon": "",
+        "showWordLimit": false,
+        "readonly": false,
+        "autofocus": false,
+        "showPassword": false,
+        "autoComplete": "off",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        },
+        "resize": "none",
+        "min": "",
+        "max": "",
+        "autocomplete": "off"
+      }
+    },
+    {
+      "code": "visible",
+      "name": "显示321",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": true,
+      "hidden": false,
+      "description": "",
+      "colSpan": 3,
+      "wrap": false,
+      "defaultValue": "321",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "com_targetExpressionVisible",
+          "hasChildren": "",
+          "params": {
+            "expression": "{{formValues.visible}}===321",
+            "fields": ["name"]
+          }
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "com_targetExpressionVisible",
+          "hasChildren": "",
+          "params": {
+            "expression": "{{fieldValue}}===321",
+            "fields": ["name"]
+          }
+        }
+      ],
+      "validator": [],
+      "group": "card101",
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": {
+          "width": "100%"
+        },
+        "clearable": true,
+        "prefixIcon": "",
+        "suffixIcon": "",
+        "showWordLimit": false,
+        "readonly": false,
+        "autofocus": false,
+        "showPassword": false,
+        "autoComplete": "off",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        },
+        "resize": "none",
+        "min": "",
+        "max": "",
+        "autocomplete": "off"
+      }
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": false,
+      "hidden": false,
+      "description": "",
+      "colSpan": 3,
+      "wrap": false,
+      "defaultValue": "",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [],
+      "validator": [],
+      "group": "card101",
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": {
+          "width": "100%"
+        },
+        "clearable": true,
+        "prefixIcon": "",
+        "suffixIcon": "",
+        "showWordLimit": false,
+        "readonly": false,
+        "autofocus": false,
+        "showPassword": false,
+        "autoComplete": "off",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        },
+        "resize": "none",
+        "min": "",
+        "max": "",
+        "autocomplete": "off"
+      }
+    }
+  ]
+}

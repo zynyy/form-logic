@@ -1,0 +1,84 @@
+{
+  "code": "",
+  "name": "",
+  "model": "",
+  "layoutComponent": "FormPageLayout",
+  "layoutComponentProps": {
+    "title": "详情页表单标题",
+    "pattern": "EDITABLE",
+    "hasHeader": true,
+    "detailApiConfig": {
+      "url": "",
+      "method": "",
+      "data": {},
+      "params": {}
+    }
+  },
+  "group": [
+    {
+      "code": "tab_ch1d",
+      "name": "选项卡标题",
+      "mode": "tabs",
+      "modeCodes": []
+    }
+  ],
+  "data": [
+    {
+      "code": "btn_b7tc",
+      "name": "布局按钮",
+      "type": "button",
+      "schemaType": "void",
+      "component": "Button",
+      "componentProps": {
+        "plain": true
+      }
+    },
+    {
+      "code": "btn_zjni",
+      "name": "选项卡按钮",
+      "type": "button",
+      "schemaType": "void",
+      "group": "tab_ch1d",
+      "component": "Button",
+      "componentProps": {
+        "plain": true
+      }
+    },
+    {
+      "code": "card_g3uu",
+      "name": "分组卡片名称",
+      "group": "tab_ch1d",
+      "component": "FormGroup",
+      "type": "column",
+      "schemaType": "void",
+      "componentProps": {
+        "type": "default",
+        "status": "normal",
+        "collapse": true
+      }
+    },
+    {
+      "code": "btn_w8ju",
+      "name": "卡片按钮",
+      "type": "button",
+      "schemaType": "void",
+      "group": "tab_ch1d",
+      "parentCode": "card_g3uu",
+      "component": "Button",
+      "componentProps": {
+        "plain": true
+      }
+    },
+    {
+      "code": "input_nes4",
+      "name": "文本框",
+      "type": "column",
+      "schemaType": "string",
+      "group": "tab_ch1d",
+      "parentCode": "card_g3uu",
+      "component": "Input",
+      "componentProps": {},
+      "colSpan": 2
+    }
+  ]
+}

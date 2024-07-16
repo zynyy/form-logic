@@ -1,7 +1,7 @@
 import { Path } from '@formily/path';
 import { observable } from '@formily/reactive';
 
-import { each } from '@/utils';
+import { each } from '@/utils/array';
 
 import { isBehaviorHost, isBehaviorList } from './externals';
 import {

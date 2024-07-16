@@ -1,0 +1,86 @@
+{
+  "code": "FieldMeta_C",
+  "layoutComponent": "FormPageLayout",
+  "name": "元字段新增",
+  "model": "FieldMeta",
+  "defaultSearchColumn": "6",
+  "layoutComponentProps": {
+    "title": "字段详情"
+  },
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [{ "code": "cateInfo", "name": "多选" }],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "colSpan": 6,
+      "component": "Input",
+      "group": "cateInfo",
+      "defaultValue": "abcd",
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "com_targetExpressionDisabled",
+          "hasChildren": "",
+          "params": {
+            "expression": "'{{fieldValue}}'==='abcd'",
+            "fields": ["title1"],
+            "otherwiseFields": ["title"]
+          }
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "com_targetExpressionDisabled",
+          "hasChildren": "",
+          "params": {
+            "expression": "'{{fieldValue}}'==='abc'",
+            "fields": ["name"],
+            "otherwiseFields": ["model"]
+          }
+        }
+      ]
+    },
+    {
+      "code": "title",
+      "name": "title-逻辑1:挂载时编码不是abcd则禁止",
+      "type": "column",
+      "schemaType": "string",
+      "colSpan": 6,
+      "component": "Input",
+      "group": "cateInfo"
+    },
+    {
+      "code": "title1",
+      "name": "title-逻辑1:挂载时编码是abcd则禁止",
+      "type": "column",
+      "schemaType": "string",
+      "colSpan": 6,
+      "component": "Input",
+      "group": "cateInfo"
+    },
+    {
+      "code": "name",
+      "name": "name-逻辑2: 编码输入abc则禁止",
+      "type": "column",
+      "schemaType": "string",
+      "colSpan": 6,
+      "component": "Input",
+      "group": "cateInfo",
+      "required": true
+    },
+    {
+      "code": "model",
+      "name": "model-逻辑2: 编码输入不是abc则禁止",
+      "type": "column",
+      "schemaType": "string",
+      "colSpan": 6,
+      "component": "Input",
+      "group": "cateInfo",
+      "required": true
+    }
+  ]
+}

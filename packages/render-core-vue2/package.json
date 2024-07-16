@@ -15,8 +15,8 @@
     "lib"
   ],
   "scripts": {
-    "clean": "formlogic-cli clean",
-    "build": "npm run clean &&  formlogic-cli build-vue2-ts",
+    "clean": "package-compiler clean",
+    "build": "package-compiler build-vue2-ts",
     "test": " jest --config jest.config.js",
     "test:usnap": "pnpm test -- -u",
     "storybook": "storybook dev -p 6006",
@@ -45,6 +45,7 @@
     "access": "public"
   },
   "devDependencies": {
+    "@formlogic/package-compiler": "workspace:^",
     "@storybook/addons": "^7.0.27",
     "@storybook/blocks": "^7.0.27",
     "@storybook/builder-vite": "^7.0.27",

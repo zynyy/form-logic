@@ -1,0 +1,52 @@
+{
+  "name": "@formlogic/render",
+  "version": "1.0.0",
+  "license": "MIT",
+  "browser": "./esm/index.js",
+  "types": "esm/index.d.ts",
+  "homepage": "https://github.com/zynyy/form-logic#readme",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "scripts": {
+    "build": "package-compiler build-react-ts",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "run-server": "formlogic-server dev"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.8.0",
+    "@formily/core": "2.2.10",
+    "@formily/grid": "2.2.10",
+    "@formily/react": "2.2.10",
+    "@formily/reactive": "2.2.10",
+    "@formily/shared": "2.2.10",
+    "@formlogic/component": "1.0.0",
+    "@formlogic/editor": "1.0.0",
+    "@formlogic/server": "1.0.0",
+    "antd": "^5.1.5",
+    "axios": "^1.2.1",
+    "bignumber.js": "^9.1.1",
+    "classnames": "^2.3.2",
+    "core-js": "^3.37.1",
+    "lodash.isequal": "^4.5.0",
+    "lodash.omit": "^4.5.0",
+    "lodash.pick": "^4.4.0",
+    "mustache": "^4.2.0",
+    "qs": "^6.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "scroll-into-view-if-needed": "^3.0.3",
+    "store2": "^2.14.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@formlogic/package-compiler": "workspace:^",
+    "@types/qs": "^6.9.7",
+    "@types/react": "^18.0.26",
+    "@types/react-dom": "^18.0.9"
+  },
+  "gitHead": "d6dabcdbbb5b96c5939cbbaad34edb0519d01f78"
+}

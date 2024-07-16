@@ -10,14 +10,7 @@
     "npm": ">=3.0.0"
   },
   "scripts": {
-    "rmBuildDir": "rimraf -rf lib esm dist",
-    "build:link": "pnpm run rmBuildDir && pnpm run create:style  && pnpm run build:esm && pnpm run build:style",
-    "build": "pnpm run rmBuildDir && pnpm run create:style && pnpm run build:cjs && pnpm run build:umd && pnpm run build:esm && pnpm run build:style",
-    "create:style": "ts-node --project tsconfig.cjs.json ./create-style",
-    "build:style": "ts-node  --project tsconfig.cjs.json ./build-style",
-    "build:cjs": "tsc --project tsconfig.cjs.json && tsc-alias -p tsconfig.cjs.json",
-    "build:esm": "tsc --project tsconfig.esm.json && tsc-alias -p tsconfig.esm.json",
-    "build:umd": "rollup --config",
+    "build": "package-compiler build-react-ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -33,27 +26,32 @@
     "antd": "^5.1.2",
     "axios": "^1.2.2",
     "classnames": "^2.3.2",
+    "core-js": "^3.37.1",
     "dayjs": "^1.11.7",
     "lodash.isequal": "^4.5.0",
     "lodash.merge": "^4.6.2",
     "monaco-editor": "^0.34.1",
     "mustache": "^4.2.0",
     "qs": "^6.11.0",
-    "react": "^18.2.0",
+    "react": "^18.3.1",
     "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "^18.2.0",
+    "react-dom": "^18.3.1",
     "react-draggable": "^4.4.5",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "^7.6.0",
     "xlsx": "^0.18.5"
   },
   "publishConfig": {
     "access": "public"
   },
+  "resolutions": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0"
+  },
   "devDependencies": {
+    "@formlogic/package-compiler": "workspace:^",
     "@types/qs": "^6.9.7",
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9"
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0"
   },
   "gitHead": "d6dabcdbbb5b96c5939cbbaad34edb0519d01f78"
 }

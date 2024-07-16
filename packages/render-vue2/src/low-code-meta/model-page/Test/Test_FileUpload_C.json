@@ -1,0 +1,169 @@
+{
+  "code": "Test_C",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "accept": ["image/*"]
+      },
+      "colSpan": 6,
+      "code": "image",
+      "name": "图像",
+      "component": "FileUpload"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "accept": [
+          ".xls,.xlsx,application/vnd.ms-excel,.application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        ]
+      },
+      "colSpan": 6,
+      "code": "excel",
+      "name": "excel",
+      "component": "FileUpload"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "accept": [".pdf"]
+      },
+      "colSpan": 6,
+      "code": "pdf",
+      "name": "pdf",
+      "component": "FileUpload"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "accept": [".doc,.docx"]
+      },
+      "colSpan": 6,
+      "code": "word",
+      "name": "word",
+      "component": "FileUpload"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "accept": [".ppt,.pptx"]
+      },
+      "colSpan": 6,
+      "code": "ppt",
+      "name": "ppt",
+      "component": "FileUpload"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "accept": [".txt"]
+      },
+      "colSpan": 6,
+      "code": "txt",
+      "name": "txt",
+      "component": "FileUpload"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "accept": [".md"]
+      },
+      "colSpan": 6,
+      "code": "markdown",
+      "name": "markdown",
+      "component": "FileUpload"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "accept": [".7z,.rar,.zip,.rar-zip,.zip-rar"]
+      },
+      "colSpan": 6,
+      "code": "zip",
+      "name": "压缩包",
+      "component": "FileUpload"
+    },
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "maxSize": 2,
+        "sizeUnit": "MB",
+        "accept": ["image/*"]
+      },
+      "colSpan": 6,
+      "code": "size",
+      "name": "size",
+      "component": "FileUpload"
+    }
+  ],
+  "model": "Test",
+  "codeSuffix": "C",
+  "name": "测试"
+}

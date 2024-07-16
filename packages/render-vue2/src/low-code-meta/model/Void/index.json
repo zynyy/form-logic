@@ -1,0 +1,16 @@
+{
+  "code": "Void",
+  "name": "空",
+  "metas": [
+    {
+      "code": "code",
+      "name": "编码",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0"
+      }
+    }
+  ]
+}

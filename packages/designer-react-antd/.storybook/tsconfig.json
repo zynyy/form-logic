@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "declaration": false,
+    "declarationMap": false,
+    "paths": {
+      "@formlogic/designer-vue2": ["../src"]
+    }
+  }
+}

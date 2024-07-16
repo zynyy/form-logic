@@ -1,0 +1,36 @@
+{
+  "include": ["src"],
+  "exclude": ["./src/__tests__/*", "./esm/*", "./lib/*"],
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "ESNext",
+    "allowJs": true,
+    "strict": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "noImplicitThis": true,
+    "inlineSources": true,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "noImplicitAny": true, // 在表达式和声明上有隐含的 any类型时报错
+    "strictNullChecks": true, // 启用严格的 null 检查
+    "alwaysStrict": false, // 以严格模式检查每个模块，并在每个文件里加入 'use strict'
+    "noUnusedLocals": true, // 有未使用的变量时，抛出错误
+    "noUnusedParameters": false, // 有未使用的参数时，抛出错误
+    "noImplicitReturns": false, // 并不是所有函数里的代码都有返回值时，抛出错误
+    "noFallthroughCasesInSwitch": true,
+    "lib": ["ESNext", "dom"],
+    "baseUrl": "./",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

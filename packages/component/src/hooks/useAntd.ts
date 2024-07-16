@@ -23,5 +23,5 @@ export const usePrefixCls = (
   }
 };
 
-
+// @ts-ignore
 export const useAntdThemeToken = useToken;

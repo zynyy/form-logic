@@ -1,0 +1,149 @@
+{
+  "code": "User_Object_C",
+  "name": "模型字段列表",
+  "model": "Model",
+  "group": [
+    {
+      "code": "basicInfo",
+      "name": "基础信息"
+    },
+    {
+      "code": "listItem",
+      "name": "列表"
+    }
+  ],
+  "data": [
+    {
+      "code": "code",
+      "name": "字典编码",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "save",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.SaveButton",
+      "group": "basicInfo",
+      "eventCode": "save"
+    },
+    {
+      "code": "name",
+      "name": "字典名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "remark",
+      "name": "描述",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "status",
+      "name": "状态",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "add",
+      "name": "新增",
+      "type": "button",
+      "schemaType": "void",
+      "group": "listItem",
+      "component": "ArrayBase.Addition",
+      "componentProps": {
+        "targetFiled": "school"
+      }
+    },
+    {
+      "code": "school",
+      "name": "学校信息",
+      "type": "column",
+      "schemaType": "array",
+      "group": "listItem",
+      "required": "1",
+      "hasSerialNo": "1",
+      "hasSort": "1",
+      "colSpan": 12,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "component": "ArrayTable",
+      "componentProps": {
+        "tableSelection": "single"
+      },
+      "defaultValue": [],
+      "hiddenName": "1",
+      "itemMetaSchema": {
+        "code": "User_L",
+        "name": "用户新增配置",
+        "model": "User",
+        "data": [
+          {
+            "code": "delete",
+            "name": "删除",
+            "type": "table_button",
+            "schemaType": "void",
+            "hiddenName": "0",
+            "group": "basicInfo",
+            "component": "ArrayBase.Remove"
+          },
+          {
+            "code": "itemValue",
+            "name": "字典项值",
+            "type": "table_column",
+            "schemaType": "string",
+            "required": "1",
+            "colSpan": 6
+          },
+          {
+            "code": "itemLabel",
+            "name": "字典项名称",
+            "type": "table_column",
+            "schemaType": "string",
+            "group": "personalInfo",
+            "required": "1",
+            "component": "Input",
+            "colSpan": 6
+          },
+          {
+            "code": "status",
+            "name": "值是否可用",
+            "type": "table_column",
+            "schemaType": "string",
+            "group": "personalInfo",
+            "colSpan": 6
+          },
+          {
+            "code": "sortOrder",
+            "name": "排序",
+            "type": "table_column",
+            "schemaType": "string",
+            "group": "personalInfo",
+            "required": "1",
+            "component": "Input",
+            "colSpan": 6
+          },
+          {
+            "code": "remark",
+            "name": "字典项描述",
+            "type": "table_column",
+            "schemaType": "string",
+            "group": "personalInfo",
+            "required": "1",
+            "colSpan": 6,
+            "component": "Select",
+            "componentProps": {
+              "mode": "multiple"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

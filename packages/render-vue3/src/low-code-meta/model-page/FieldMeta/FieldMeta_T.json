@@ -1,0 +1,18 @@
+{
+  "code": "FieldMeta_T",
+  "name": "元字段列表",
+  "model": "FieldMeta",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "data": [
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "table_column",
+      "schemaType": "string"
+    }
+  ],
+  "defaultSearchColumn": "6"
+}

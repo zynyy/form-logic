@@ -1,0 +1,228 @@
+{
+  "code": "ModelPage_modelValue",
+  "name": "编码前缀以及禁止",
+  "suffix": "modelValue",
+  "before": "ModelPage_",
+  "type": "model",
+  "belong": "ModelPage",
+  "cells": [
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-on7znamp",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": {
+        "cell": "start-s7rbg0qg",
+        "port": "a4f53980-63ea-4dec-b624-1a221a576f54"
+      },
+      "target": {
+        "cell": "fn-642zusd8",
+        "port": "e8ebdd42-3514-4102-adb3-61f851eafdca"
+      }
+    },
+    {
+      "shape": "edge",
+      "attrs": {
+        "line": {
+          "stroke": "#A2B1C3",
+          "targetMarker": { "name": "block", "width": 12, "height": 8 }
+        }
+      },
+      "id": "edge-vmgqm54k",
+      "zIndex": 0,
+      "data": { "settingConfig": "edge-config", "configValues": {} },
+      "source": {
+        "cell": "fn-642zusd8",
+        "port": "302cabd8-561f-4508-8639-e6f6a7c1b015"
+      },
+      "target": {
+        "cell": "end-rh4lx44n",
+        "port": "57dbe23b-b0fa-4d16-9f89-563fe415beb9"
+      }
+    },
+    {
+      "position": { "x": 120, "y": 110 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "开始" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "start-s7rbg0qg",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "startTemplateCode",
+        "code": "// 开始节点\nexport default async function (ctx) {\n  return {};\n}\n"
+      },
+      "zIndex": 1,
+      "ports": {
+        "groups": {
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "rightOut", "id": "282072d1-2172-4cee-a007-66bf08b46de0" },
+          { "group": "bottomOut", "id": "a4f53980-63ea-4dec-b624-1a221a576f54" }
+        ]
+      }
+    },
+    {
+      "position": { "x": 459, "y": 110 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "结束" }, "body": { "rx": 20, "ry": 26 } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "end-rh4lx44n",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "endTemplateCode",
+        "code": "// 结束节点\nexport default async function (ctx) {}\n"
+      },
+      "zIndex": 2,
+      "ports": {
+        "groups": {
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "leftIn", "id": "57dbe23b-b0fa-4d16-9f89-563fe415beb9" },
+          { "group": "topIn", "id": "a6d3f8a8-6d0e-4b85-bbd3-b647fb7c581f" }
+        ]
+      }
+    },
+    {
+      "position": { "x": 260, "y": 210 },
+      "size": { "width": 66, "height": 36 },
+      "attrs": { "text": { "text": "函数" } },
+      "visible": true,
+      "shape": "custom-rect",
+      "id": "fn-642zusd8",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode",
+        "code": "// 函数节点\n\nexport default async function (ctx) {\n  const { payload } = ctx || {};\n  const { form } = payload || {};\n\n  const { model } = form.values || {};\n\n  const disabled = !model;\n\n  form.query('codeSuffix').take((target) => {\n    target.setState({\n      disabled,\n    });\n\n    target.setComponentProps({\n      addonBefore: model ? `${model}_` : '',\n    });\n  });\n\n  form.query('data.addBtn').take((target) => {\n    target.setState({\n      disabled,\n    });\n  });\n\n  return {};\n}\n"
+      },
+      "zIndex": 3,
+      "ports": {
+        "groups": {
+          "topIn": {
+            "position": "top",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "leftIn": {
+            "position": "left",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "bottomOut": {
+            "position": "bottom",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          },
+          "rightOut": {
+            "position": "right",
+            "attrs": {
+              "circle": {
+                "r": 4,
+                "magnet": true,
+                "stroke": "#5F95FF",
+                "strokeWidth": 1,
+                "fill": "#fff",
+                "style": { "visibility": "true" }
+              }
+            }
+          }
+        },
+        "items": [
+          { "group": "topIn", "id": "541ba66d-6726-45c5-9ce0-38580df65a83" },
+          {
+            "group": "bottomOut",
+            "id": "5299e7a0-c76a-43e8-a0b8-f43d1390a078"
+          },
+          { "group": "leftIn", "id": "e8ebdd42-3514-4102-adb3-61f851eafdca" },
+          { "group": "rightOut", "id": "302cabd8-561f-4508-8639-e6f6a7c1b015" }
+        ]
+      }
+    }
+  ]
+}

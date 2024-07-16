@@ -28,7 +28,7 @@ const ModalRender: FC<ModalRenderProps> = ({ hasDrag, dragClassName, modal }) =>
   const [portalContainer, setPortalContainer] = useState(null);
 
   const handleStart = (_event: DraggableEvent, uiData: DraggableData) => {
-    const { clientWidth, clientHeight } = window.document.documentElement;
+    const { clientWidth, clientHeight } = document.documentElement;
     const targetRect = draggableRef.current?.getBoundingClientRect();
     if (!targetRect) {
       return;

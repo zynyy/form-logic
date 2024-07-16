@@ -1,5 +1,3 @@
-import './style';
-
 export * from './utils';
 
 export { default as Portal } from '@rc-component/portal';
@@ -34,7 +32,7 @@ export type { LeftRightSlotProps } from './left-right-slot';
 
 export { Keyframes, useStyleRegister } from '@ant-design/cssinjs';
 
-export { GenerateStyle } from '@/./style/interface';
+export type { GenerateStyle } from '@/style/interface';
 
 export * from './select';
 export * from './radio';

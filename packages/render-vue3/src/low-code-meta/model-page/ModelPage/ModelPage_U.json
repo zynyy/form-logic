@@ -1,0 +1,201 @@
+{
+  "code": "ModelPage_C",
+  "codeSuffix": "C",
+  "name": "模型新增",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    { "code": "basicInfo", "name": "基础信息" },
+    { "code": "groupInfo", "name": "分组信息" },
+    { "code": "tabsInfo", "name": "标签", "mode": "tabs", "modeCodes": [] }
+  ],
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "required": "1",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    },
+    {
+      "code": "code1",
+      "name": "编码",
+      "type": "column",
+      "required": "1",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "name1",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    },
+    {
+      "code": "code2",
+      "name": "编码",
+      "type": "column",
+      "required": "1",
+      "schemaType": "string",
+      "group": "basicInfo"
+    },
+    {
+      "code": "name2",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo"
+    },
+    {
+      "code": "remark",
+      "name": "备注",
+      "type": "column",
+      "schemaType": "string",
+      "group": "basicInfo",
+      "colSpan": 12,
+      "labelCol": 2,
+      "wrapperCol": 22,
+      "logics": [
+        {
+          "effectHook": "onFieldInit",
+          "logicCode": "com_tenantHidden",
+          "hasChildren": "",
+          "params": ""
+        }
+      ]
+    },
+
+    {
+      "code": "delBtnDemo",
+      "name": "批量删除",
+      "type": "button",
+      "schemaType": "void",
+      "group": "groupInfo",
+      "component": "ArrayBase.BatchRemove",
+      "logics": [],
+      "componentProps": {
+        "targetFiled": "group"
+      }
+    },
+    {
+      "code": "delBtn",
+      "name": "批量删除",
+      "type": "button",
+      "schemaType": "void",
+      "group": "tabsInfo",
+      "component": "ArrayBase.BatchRemove",
+      "logics": [],
+      "componentProps": {
+        "targetFiled": "groupTabs"
+      }
+    },
+    {
+      "code": "groupTabs",
+      "name": "分组",
+      "type": "column",
+      "schemaType": "array",
+      "group": "tabsInfo",
+      "colSpan": 12,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "hiddenName": "1",
+      "pageCode": "ModelPage_Group_L1",
+      "componentProps": {
+        "tableSelection": "multiple"
+      },
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "ModelPage_dataDrawerExtraLogicParams"
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_dataDrawerExtraLogicParams"
+        },
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "ModelPage_groupDrawerExtraLogicParams"
+        },
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "ModelPage_groupDrawerExtraLogicParams"
+        }
+      ]
+    },
+    {
+      "code": "group",
+      "name": "分组",
+      "type": "column",
+      "schemaType": "array",
+      "group": "groupInfo",
+      "colSpan": 12,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "hiddenName": "1",
+      "component": "ArrayTable",
+      "componentProps": {},
+      "logics": [],
+      "itemMetaSchema": {
+        "data": [
+          {
+            "code": "code",
+            "name": "编码",
+            "type": "table_column"
+          }
+        ]
+      }
+    },
+    {
+      "code": "type",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "string",
+      "required": "1",
+      "componentProps": {
+        "type": "primary"
+      },
+      "logics": [
+        {
+          "effectHook": "onClick",
+          "logicCode": "com_save",
+          "params": {
+            "apiConfig": {
+              "method": "post",
+              "url": "/local-api/model-page/update",
+              "data": {
+                "model": "Test"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "defaultSearchColumn": "6",
+  "layoutComponent": "FormPageLayout",
+  "layoutComponentProps": {
+    "title": "模型页面新增",
+    "hasGroup": true,
+    "detailApiConfig": {
+      "url": "/local-api/model-page/detail",
+      "method": "get",
+      "params": {
+        "pageCode": "{{query.code}}"
+      }
+    }
+  }
+}

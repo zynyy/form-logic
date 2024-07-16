@@ -1,6 +1,6 @@
 import { useCheckboxStyle } from '@/checkbox/hooks';
 import cls from 'classnames';
-import { FC, PropsWithChildren, ReactNode } from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 export interface ReadOnlyCheckboxProps extends PropsWithChildren {
   checked: boolean;

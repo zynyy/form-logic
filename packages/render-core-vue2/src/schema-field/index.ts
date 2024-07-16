@@ -1,10 +1,7 @@
 import { createSchemaField } from './createSchemaField';
-
-export { createSchemaField };
+import RecursionField from './RecursionField';
 
 export * from './interface';
-
-import RecursionField from './RecursionField';
 
 export {
   provideSchemaComponents,
@@ -15,7 +12,7 @@ export {
 } from './hooks';
 export type { SchemaComponentsRef, SchemaScopeRef } from './hooks';
 
-export { RecursionField };
+export { RecursionField, createSchemaField };
 
 declare module 'vue' {
   export interface GlobalComponents {

@@ -1,0 +1,606 @@
+{
+  "code": "User_C",
+  "name": "用户新增配置",
+  "model": "User",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    {
+      "code": "test",
+      "name": "测试",
+      "schemaType": "void"
+    }
+  ],
+  "data": [
+    {
+      "code": "type",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "void",
+      "required": "1",
+      "group": "test"
+    },
+    {
+      "code": "download",
+      "name": "下载",
+      "type": "button",
+      "schemaType": "void",
+      "group": "test",
+      "component": "DownloadButton",
+      "componentProps": {
+        "url": "https://ams-testing.oss-cn-shenzhen.aliyuncs.com/1725167672855367124.png"
+      }
+    },
+    {
+      "code": "DrawerSelected",
+      "name": "DrawerSelected",
+      "type": "button",
+      "schemaType": "void",
+      "group": "test",
+      "component": "SelectedDrawer",
+      "componentProps": {
+        "rowKey": "id",
+        "targetField": "arrayTable",
+        "drawerPageCode": "SysParamType_L",
+        "searchApiConfig": {
+          "url": "/system/sysParamType/page",
+          "method": "post",
+          "data": {
+            "hiddenLevel": 2,
+            "hiddenNoPageCode": 1
+          }
+        }
+      }
+    },
+    {
+      "code": "ModalSelected",
+      "name": "ModalSelected",
+      "type": "button",
+      "schemaType": "void",
+      "group": "test",
+      "component": "SelectedModal",
+      "componentProps": {
+        "rowKey": "id",
+        "targetField": "arrayTable",
+        "dialogPageCode": "SysParamType_L",
+        "searchApiConfig": {
+          "url": "/system/sysParamType/page",
+          "method": "post",
+          "data": {
+            "hiddenLevel": 2,
+            "hiddenNoPageCode": 1
+          }
+        }
+      }
+    },
+    {
+      "name": "删除",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "ArrayBase.Remove",
+      "code": "button102",
+      "group": "test",
+      "logics": [
+        {
+          "effectHook": "onClick",
+          "logicCode": "com_delete",
+          "hasChildren": "",
+          "params": {
+            "hasMessageBox": true
+          }
+        }
+      ],
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetField": "arrayTable"
+      }
+    },
+    {
+      "name": "批量删除",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "ArrayBase.BatchRemove",
+      "code": "batchRemove",
+      "group": "test",
+      "logics": [
+        {
+          "effectHook": "onClick",
+          "logicCode": "com_delete",
+          "hasChildren": "",
+          "params": {
+            "hasMessageBox": true
+          }
+        }
+      ],
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetField": "arrayTable"
+      }
+    },
+    {
+      "name": "导入excel",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "otter-excel-import",
+      "code": "otterExcelImport",
+      "group": "test",
+      "logics": [],
+      "componentProps": {
+        "importApi": {
+          "serverName": "/security",
+          "path": "/batch/templatePermisson"
+        },
+        "rules": [
+          { "headerName": "模板名称", "field": "templateName" },
+          { "headerName": "备注", "field": "comments", "required": false }
+        ]
+      }
+    },
+    {
+      "name": "导出excel",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "otter-excel-export",
+      "code": "otterExcelExport",
+      "group": "test",
+      "logics": [],
+      "componentProps": {
+        "rules": [
+          { "headerName": "模板名称", "field": "templateName" },
+          { "headerName": "备注", "field": "comments" }
+        ],
+        "exportApi": {
+          "serverName": "/security",
+          "path": "/templatePermission/list"
+        }
+      }
+    },
+    {
+      "name": "新增",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "ArrayBase.Addition",
+      "code": "button101",
+      "group": "test",
+      "logics": [
+        {
+          "effectHook": "onFieldMount",
+          "logicCode": "save_mount",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetField": "arrayTable"
+      }
+    },
+    {
+      "name": "选中",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "ArrayBase.Selected",
+      "code": "selected",
+      "group": "test",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetField": "arrayTable"
+      }
+    },
+    {
+      "name": "复制",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "ArrayBase.Copy",
+      "code": "copy",
+      "group": "test",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "componentType": "ArrayBase.Copy",
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetField": "arrayTable"
+      }
+    },
+    {
+      "name": "卡片列表",
+      "component": "ArrayTable",
+      "code": "arrayTable",
+      "colSpan": 12,
+      "schemaType": "array",
+      "type": "column",
+      "logics": [{ "effectHook": "", "logicCode": "", "hasChildren": "", "params": "" }],
+      "group": "test",
+      "componentProps": {
+        "type": "default",
+        "status": "normal",
+        "collapse": false,
+        "titleCard": false,
+        "additionBtnText": "添加测试按钮",
+        "subTitle": "卡片",
+        "hasAdditionBtn": true,
+        "hasOneData": false,
+        "tableSelection": "multiple",
+        "apiConfig": {
+          "url": "/system/sysParamType/page",
+          "method": "post",
+          "data": {
+            "hiddenLevel": 2,
+            "hiddenNoPageCode": 1
+          }
+        },
+        "hasPagination": true
+      },
+      "itemMetaSchema": {
+        "data": [
+          {
+            "name": "上移",
+            "type": "table_button",
+            "schemaType": "void",
+            "colSpan": 2,
+            "eventCode": "",
+            "component": "ArrayBase.MoveUp",
+            "code": "up",
+            "group": "test",
+            "componentProps": {
+              "type": "primary",
+              "icon": "",
+              "round": false,
+              "size": "mini",
+              "plain": false,
+              "circle": false,
+              "componentType": "ArrayBase.MoveUp",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "targetField": "arrayTable"
+            }
+          },
+          {
+            "name": "下移",
+            "type": "table_button",
+            "schemaType": "void",
+            "colSpan": 2,
+            "eventCode": "",
+            "component": "ArrayBase.MoveDown",
+            "code": "down",
+            "group": "test",
+            "componentProps": {
+              "type": "primary",
+              "icon": "",
+              "round": false,
+              "size": "mini",
+              "plain": false,
+              "circle": false,
+              "componentType": "ArrayBase.MoveDown",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "targetField": "arrayTable"
+            }
+          },
+          {
+            "name": "下移",
+            "type": "table_button",
+            "schemaType": "void",
+            "colSpan": 2,
+            "eventCode": "",
+            "code": "down1",
+            "group": "test",
+            "componentProps": {
+              "type": "primary",
+              "icon": "",
+              "round": false,
+              "size": "mini",
+              "plain": false,
+              "circle": false,
+              "componentType": "ArrayBase.MoveDown",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "targetField": "arrayTable"
+            }
+          },
+          {
+            "name": "下移",
+            "type": "table_button",
+            "schemaType": "void",
+            "colSpan": 2,
+            "eventCode": "",
+            "code": "down2",
+            "group": "test",
+            "componentProps": {
+              "type": "primary",
+              "icon": "",
+              "round": false,
+              "size": "mini",
+              "plain": false,
+              "circle": false,
+              "componentType": "ArrayBase.MoveDown",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "targetField": "arrayTable"
+            }
+          },
+          {
+            "name": "下移",
+            "type": "table_button",
+            "schemaType": "void",
+            "colSpan": 2,
+            "eventCode": "",
+            "code": "down3",
+            "group": "test",
+            "componentProps": {
+              "type": "primary",
+              "icon": "",
+              "round": false,
+              "size": "mini",
+              "plain": false,
+              "circle": false,
+              "componentType": "ArrayBase.MoveDown",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "targetField": "arrayTable"
+            }
+          },
+          {
+            "code": "code",
+            "name": "编码",
+            "type": "table_column",
+            "schemaType": "string",
+            "hiddenName": false,
+            "disabled": false,
+            "required": false,
+            "hidden": false,
+            "description": "",
+            "colSpan": 2,
+            "wrap": false,
+            "defaultValue": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "pageCode": "",
+            "logics": [
+              {
+                "effectHook": "onFieldMount",
+                "logicCode": "wewewewe",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "validator": [],
+            "componentProps": {
+              "type": "text",
+              "placeholder": "请输入",
+              "style": { "width": "100%" },
+              "clearable": true,
+              "prefixIcon": "",
+              "suffixIcon": "",
+              "showWordLimit": false,
+              "readonly": false,
+              "autofocus": false,
+              "showPassword": false,
+              "autoComplete": "off",
+              "autosize": { "minRows": 2, "maxRows": 4 },
+              "resize": "none",
+              "min": "",
+              "max": "",
+              "autocomplete": "off",
+              "cellClassRules": {
+                "ag-tag-yellow": "x === 'param.config'",
+                "ag-cell-green": "x === 'message.config'"
+              }
+            }
+          },
+          {
+            "code": "name",
+            "name": "名称",
+            "component": "cube-input-number",
+            "colSpan": 2,
+            "type": "table_column",
+            "schemaType": "string",
+            "defaultValue": "",
+            "componentProps": {
+              "decimalDigit": null,
+              "range": [null, null],
+              "thousandthSign": false,
+              "negative": false,
+              "autoFocus": false,
+              "focusSelect": false,
+              "required": false,
+              "returnNull": false
+            }
+          },
+          {
+            "code": "serviceCode",
+            "name": "所属服务",
+            "type": "table_column",
+            "schemaType": "string",
+            "hiddenName": false,
+            "disabled": false,
+            "required": false,
+            "hidden": false,
+            "description": "",
+            "colSpan": 2,
+            "wrap": false,
+            "defaultValue": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "pageCode": "",
+            "logics": [
+              {
+                "effectHook": "onFieldMount",
+                "logicCode": "wewewewe",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "validator": [],
+            "componentProps": {
+              "type": "text",
+              "placeholder": "请输入",
+              "style": { "width": "100%" },
+              "clearable": true,
+              "prefixIcon": "",
+              "suffixIcon": "",
+              "showWordLimit": false,
+              "readonly": false,
+              "autofocus": false,
+              "showPassword": false,
+              "autoComplete": "off",
+              "autosize": { "minRows": 2, "maxRows": 4 },
+              "resize": "none",
+              "min": "",
+              "max": "",
+              "autocomplete": "off"
+            }
+          },
+          {
+            "code": "api",
+            "name": "请求路径",
+            "component": "cube-input-number",
+            "colSpan": 2,
+            "type": "table_column",
+            "schemaType": "string",
+            "defaultValue": "",
+            "componentProps": {
+              "decimalDigit": null,
+              "range": [null, null],
+              "thousandthSign": false,
+              "negative": false,
+              "autoFocus": false,
+              "focusSelect": false,
+              "required": false,
+              "returnNull": false
+            }
+          }
+        ]
+      },
+      "hiddenName": true
+    }
+  ]
+}

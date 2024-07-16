@@ -93,13 +93,33 @@ export const buildCJSOutputs = async () => {
 };
 
 export const buildTypeDeclarations = async () => {
-  await Promise.all([preCompileDir(ES_DIR), preCompileDir(LIB_DIR)]);
+  await buildSFC();
 
-  const tsConfig = join(process.cwd(), 'tsconfig.declaration.json');
+  const esmConfig = join(process.cwd(), 'tsconfig.declaration.esm.json');
+  const cjsConfig = join(process.cwd(), 'tsconfig.declaration.cjs.json');
 
-  if (existsSync(tsConfig)) {
-    await execa('tsc', ['-p', tsConfig]);
+  const esmExists =  existsSync(esmConfig)
+  const cjsExists =  existsSync(cjsConfig)
+
+  if (esmExists || cjsExists) {
+
+    if (esmExists) {
+      await execa('tsc', ['-p', esmConfig]);
+    }
+    if (cjsExists) {
+      await execa('tsc', ['-p', cjsConfig]);
+    }
+  } else {
+
+    const tsConfig = join(process.cwd(), 'tsconfig.declaration.json');
+
+    if (existsSync(tsConfig)) {
+      await execa('tsc', ['-p', tsConfig]);
+    }
   }
+
+
+
 };
 
 const replaceAliasPaths = async () => {
@@ -179,10 +199,6 @@ const runBuildTs = async () => {
       task: buildTypeDeclarations,
     },
     {
-      text: 'sfc转js',
-      task: buildSFC,
-    },
-    {
       text: '打包输出 ESModule',
       task: buildESMOutputs,
     },
@@ -208,9 +224,12 @@ export interface BuildOptions {
 }
 
 export const build = async (options?: Partial<BuildOptions>) => {
-  const { useTypescript } = merge(options, {
-    useTypescript: false,
-  });
+  const { useTypescript } = merge(
+    {
+      useTypescript: false,
+    },
+    options,
+  );
 
   try {
     await clean();

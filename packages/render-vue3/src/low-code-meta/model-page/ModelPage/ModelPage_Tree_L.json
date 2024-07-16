@@ -1,0 +1,142 @@
+{
+  "code": "ModelPage_Tree_L",
+  "name": "页面配置树形列表",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [],
+  "data": [
+    {
+      "code": "copy",
+      "name": "复制",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.Copy"
+    },
+    {
+      "code": "addBtn",
+      "name": "新建",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.Addition"
+    },
+    {
+      "code": "delBtn",
+      "name": "删除",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.Remove"
+    },
+    {
+      "code": "editBtn",
+      "name": "编辑",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.Edit"
+    },
+    {
+      "code": "uploadBtn",
+      "name": "上传",
+      "type": "button",
+      "schemaType": "void",
+      "component": "ArrayBase.Upload"
+    },
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "search_column",
+      "schemaType": "string",
+      "validator": [
+        {
+          "triggerType": "onInput",
+          "validatorRule": "testValidator",
+          "validatorRuleValue": {
+            "demo": 999
+          },
+          "message": "demo{{field.title}}"
+        }
+      ]
+    },
+    { "code": "name", "name": "名称", "type": "search_column", "schemaType": "string" },
+    {
+      "type": "search_column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "componentProps": {
+        "apiConfig": {
+          "method": "get",
+          "params": { "type": "model" },
+          "url": "/local-api/model/page"
+        },
+        "defaultFirstOptionValue": "0",
+        "remoteDataPath": "data.records",
+        "labelTemplateKey": "{{code}}-{{name}}",
+        "valueTemplateKey": "{{code}}",
+        "isPageApi": true,
+        "pageSize": 3
+      },
+      "logics": [],
+      "code": "model",
+      "component": "Select",
+      "name": "模型"
+    },
+    {
+      "code": "editBtn",
+      "name": "编辑",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Edit",
+      "eventCode": "onEdit"
+    },
+    {
+      "code": "removeBtn",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "void",
+      "component": "ArrayBase.Remove",
+      "eventCode": "onRemove"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "detailBtn",
+      "component": "ArrayBase.Detail",
+      "name": "详情"
+    },
+    {
+      "type": "table_button",
+      "schemaType": "void",
+      "componentProps": {},
+      "logics": [],
+      "code": "copyBtn",
+      "component": "ArrayBase.Copy",
+      "name": "复制"
+    },
+    { "code": "code", "name": "编码", "type": "table_column", "schemaType": "string" },
+    { "code": "name", "name": "名称", "type": "table_column", "schemaType": "string" }
+  ],
+  "defaultSearchColumn": "6",
+  "layoutComponent": "TreeListLayout",
+  "layoutComponentProps": {
+    "searchApiConfig": {
+      "url": "/local-api/model-page/page",
+      "method": "get"
+    },
+    "treeApiConfig": {
+      "method": "get",
+      "url": "/local-api/field-meta/tree"
+    },
+    "nodeKey": "key",
+    "fieldNames": {
+      "label": "title"
+    },
+    "tableSelection": "multiple"
+  }
+}

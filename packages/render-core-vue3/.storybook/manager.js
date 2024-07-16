@@ -1,10 +1,12 @@
-import { create } from '@storybook/theming';
+import { create } from '@storybook/theming'
 
-import { addons } from '@storybook/manager-api';
+import { addons } from '@storybook/manager-api'
 
 addons.setConfig({
   theme: create({
     base: 'light',
-    brandTitle: 'formlogic design vue3',
-  }),
-});
+    brandTitle: 'formily for vue3'
+  })
+})
+
+

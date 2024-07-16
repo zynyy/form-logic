@@ -1,4 +1,4 @@
-import { Shortcut } from '@/models';
+import { Shortcut } from '@/models/Shortcut';
 import { KeyCode } from '@/utils';
 
 export const UndoMutation = new Shortcut({

@@ -1,0 +1,3295 @@
+{
+  "createTime": "2023-12-25 10:25:25",
+  "createUser": "1",
+  "updateTime": "2024-04-30 14:22:42",
+  "updateUser": "1",
+  "dataStatus": 0,
+  "id": "1697451923216326657",
+  "name": "消息配置详情",
+  "code": "MessageConfig_C",
+  "model": "MessageConfig",
+  "labelCol": 16,
+  "wrapperCol": 8,
+  "columnLayout": 6,
+  "group": [
+    {
+      "code": "base",
+      "name": "基础配置",
+      "componentProps": {
+        "title": ""
+      },
+      "mode": "tabs",
+      "modeCodes": ["mail", "message", "im", "wechat", "wxwork"]
+    },
+    {
+      "code": "mail",
+      "name": "邮箱配置",
+      "componentProps": {
+        "title": ""
+      }
+    },
+    {
+      "code": "message",
+      "name": "短信配置",
+      "componentProps": {
+        "title": ""
+      }
+    },
+    {
+      "code": "im",
+      "name": "IM应用配置",
+      "componentProps": {}
+    },
+    {
+      "code": "wechat",
+      "name": "微信公众号配置",
+      "hidden": true,
+      "componentProps": {
+        "title": ""
+      }
+    },
+    {
+      "code": "wxwork",
+      "name": "企业微信配置",
+      "componentProps": {
+        "title": ""
+      }
+    }
+  ],
+  "data": [
+    {
+      "code": "baseSave",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "void",
+      "group": "base",
+      "colSpan": 2,
+      "logics": [
+        {
+          "hasChildren": "",
+          "logicCode": "ParamConfig_save",
+          "effectHook": "onClick",
+          "params": {
+            "layout": "tabs"
+          }
+        }
+      ],
+      "component": "ArrayBase.SaveButton",
+      "componentProps": {
+        "componentType": "ArrayBase.SaveButton",
+        "hasTooltip": false,
+        "icon": "",
+        "type": "primary",
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "dialogType": "",
+        "round": false,
+        "size": "mini",
+        "drawerTitle": "",
+        "plain": false,
+        "drawerPageCode": "",
+        "hasPopConfirm": false,
+        "dialogTitle": "",
+        "circle": false,
+        "dialogPageCode": ""
+      },
+      "index": 0,
+      "eventCode": ""
+    },
+    {
+      "code": "card101",
+      "name": "消息中心配置",
+      "type": "column",
+      "schemaType": "void",
+      "group": "base",
+      "colSpan": 12,
+      "component": "FormGroup",
+      "componentProps": {
+        "titleCard": false,
+        "type": "default",
+        "collapse": true,
+        "status": "normal",
+        "code": "card101",
+        "title": "消息中心配置"
+      },
+      "index": 0
+    },
+    {
+      "code": "sys.message.ebl.enable",
+      "name": "是否启用外部中心",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "0",
+      "group": "base",
+      "parentCode": "card101",
+      "disabled": true,
+      "colSpan": 6,
+      "component": "cube-switch",
+      "componentProps": {
+        "inactiveIconClass": "",
+        "activeIconClass": "",
+        "activeValue": "0",
+        "activeText": "",
+        "inactiveValue": "1",
+        "width": 40,
+        "name": "",
+        "inactiveText": ""
+      },
+      "border": true,
+      "style": {}
+    },
+    {
+      "code": "sys.message.ebl.send.url",
+      "name": "URL",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "group": "base",
+      "parentCode": "card101",
+      "hiddenName": false,
+      "disabled": false,
+      "required": true,
+      "hidden": false,
+      "colSpan": 6,
+      "logics": [],
+      "validator": [
+        {
+          "validatorRuleValue": "",
+          "validatorRule": "url",
+          "triggerType": "onBlur",
+          "message": ""
+        }
+      ],
+      "component": "cube-input",
+      "componentProps": {
+        "autoComplete": "off",
+        "clearable": true,
+        "max": "",
+        "autocomplete": "off",
+        "maxlength": 100,
+        "suffixIcon": "",
+        "type": "text",
+        "autofocus": false,
+        "min": "",
+        "readonly": false,
+        "showWordLimit": false,
+        "showPassword": false,
+        "resize": "none",
+        "style": {
+          "width": "100%"
+        },
+        "placeholder": "请输入",
+        "prefixIcon": "",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        }
+      },
+      "description": "",
+      "pageCode": "",
+      "wrap": false
+    },
+    {
+      "code": "sys.message.ebl.app.key",
+      "name": "App Key",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "group": "base",
+      "parentCode": "card101",
+      "hiddenName": false,
+      "disabled": false,
+      "required": true,
+      "hidden": false,
+      "colSpan": 6,
+      "logics": [],
+      "validator": [],
+      "component": "cube-input",
+      "componentProps": {
+        "autoComplete": "off",
+        "clearable": true,
+        "max": "",
+        "maxlength": 30,
+        "autocomplete": "off",
+        "suffixIcon": "",
+        "type": "text",
+        "autofocus": false,
+        "min": "",
+        "readonly": false,
+        "showWordLimit": false,
+        "showPassword": false,
+        "resize": "none",
+        "style": {
+          "width": "100%"
+        },
+        "placeholder": "请输入",
+        "prefixIcon": "",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        }
+      },
+      "description": "",
+      "pageCode": "",
+      "wrap": false
+    },
+    {
+      "code": "sys.message.ebl.app.secret",
+      "name": "App Secret",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "group": "base",
+      "parentCode": "card101",
+      "hiddenName": false,
+      "disabled": false,
+      "required": true,
+      "hidden": false,
+      "colSpan": 6,
+      "logics": [],
+      "validator": [],
+      "component": "cube-input",
+      "componentProps": {
+        "autoComplete": "off",
+        "clearable": true,
+        "max": "",
+        "maxlength": 64,
+        "autocomplete": "off",
+        "suffixIcon": "",
+        "type": "password",
+        "autofocus": false,
+        "min": "",
+        "readonly": false,
+        "showWordLimit": false,
+        "showPassword": true,
+        "resize": "none",
+        "style": {
+          "width": "100%"
+        },
+        "placeholder": "请输入",
+        "prefixIcon": "",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        }
+      },
+      "description": "",
+      "pageCode": "",
+      "wrap": false
+    },
+    {
+      "code": "sys.message.ebl.customer.id",
+      "name": "CUSTOMER ID",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "group": "base",
+      "parentCode": "card101",
+      "hiddenName": false,
+      "disabled": false,
+      "required": false,
+      "hidden": false,
+      "colSpan": 6,
+      "logics": [],
+      "validator": [],
+      "component": "cube-input",
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": {
+          "width": "100%"
+        },
+        "clearable": true,
+        "prefixIcon": "",
+        "suffixIcon": "",
+        "showWordLimit": false,
+        "readonly": false,
+        "autofocus": false,
+        "showPassword": false,
+        "autoComplete": "off",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        },
+        "resize": "none",
+        "min": "",
+        "max": ""
+      },
+      "description": "",
+      "wrap": false,
+      "pageCode": ""
+    },
+    {
+      "code": "sys.message.account",
+      "name": "消息中心账号",
+      "type": "column",
+      "schemaType": "string",
+      "group": "base",
+      "parentCode": "card101",
+      "required": true,
+      "colSpan": 6,
+      "component": "Input",
+      "componentProps": {
+        "clearable": true,
+        "placeholder": "请输入"
+      }
+    },
+    {
+      "code": "sys.card.mail",
+      "name": "默认发送账户",
+      "type": "column",
+      "schemaType": "array",
+      "group": "mail",
+      "hiddenName": true,
+      "colSpan": 12,
+      "component": "ArrayCard",
+      "componentProps": {
+        "titleCard": false,
+        "subTitle": "发送账户",
+        "hasAdditionBtn": true,
+        "hasOneData": true,
+        "type": "default",
+        "collapse": false,
+        "status": "normal",
+        "additionBtnText": "添加发送账户"
+      },
+      "index": 0,
+      "itemMetaSchema": {
+        "data": [
+          {
+            "eventCode": "",
+            "component": "ArrayBase.Remove",
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "com_firstNotVisible",
+                "effectHook": "onFieldMount",
+                "params": {}
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_delete",
+                "effectHook": "onClick",
+                "params": {
+                  "apiConfig": {
+                    "method": "DELETE",
+                    "data": {
+                      "categoryList": ["{{record.sys-mail-account-code}}"]
+                    },
+                    "params": {},
+                    "url": "/system/sys-param-info"
+                  },
+                  "tip": "此操作将删除, 是否继续?",
+                  "hasMessageBox": true,
+                  "checkCode": "sys-mail-account-code"
+                }
+              }
+            ],
+            "code": "delMail",
+            "colSpan": 2,
+            "name": "删除",
+            "schemaType": "void",
+            "type": "table_button",
+            "componentProps": {
+              "componentType": "ArrayBase.Remove",
+              "hasTooltip": false,
+              "icon": "",
+              "type": "primary",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "dialogType": "",
+              "round": false,
+              "size": "mini",
+              "drawerTitle": "",
+              "plain": false,
+              "drawerPageCode": "",
+              "hasPopConfirm": false,
+              "dialogTitle": "",
+              "circle": false,
+              "dialogPageCode": ""
+            }
+          },
+          {
+            "eventCode": "",
+            "component": "ArrayBase.SaveButton",
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "ParamConfig_save",
+                "effectHook": "onClick",
+                "params": ""
+              }
+            ],
+            "code": "saveMail",
+            "colSpan": 2,
+            "name": "保存",
+            "schemaType": "void",
+            "type": "table_button",
+            "componentProps": {
+              "componentType": "ArrayBase.SaveButton",
+              "hasTooltip": false,
+              "icon": "",
+              "type": "primary",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "dialogType": "",
+              "round": false,
+              "size": "mini",
+              "drawerTitle": "",
+              "plain": false,
+              "drawerPageCode": "",
+              "hasPopConfirm": false,
+              "dialogTitle": "",
+              "circle": false,
+              "dialogPageCode": ""
+            }
+          },
+          {
+            "border": true,
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldMount",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableHasChange",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              }
+            ],
+            "code": "sys.mail.enable",
+            "defaultValue": "0",
+            "colSpan": 12,
+            "index": 0,
+            "type": "table_column",
+            "component": "cube-switch",
+            "name": "是否启用邮箱配置",
+            "schemaType": "string",
+            "style": {},
+            "disabled": false,
+            "componentProps": {
+              "inactiveIconClass": "",
+              "activeIconClass": "",
+              "activeValue": "0",
+              "activeText": "",
+              "inactiveValue": "1",
+              "width": 40,
+              "name": "",
+              "inactiveText": ""
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.mail.account.code",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 1,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "账户代码",
+            "schemaType": "string",
+            "disabled": true,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "自动生成，无需输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.mail.account.name",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 2,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "名称",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.mail.username",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [
+              {
+                "validatorRuleValue": "",
+                "validatorRule": "email",
+                "triggerType": "onInput",
+                "message": ""
+              }
+            ],
+            "description": "",
+            "index": 3,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "邮箱地址",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.mail.server",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 4,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "SMTP服务器地址/域名",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 100,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.mail.port",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 5,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "SMTP服务器端口",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "component": "cube-select",
+            "code": "sys.mail.status",
+            "colSpan": 6,
+            "defaultValue": "",
+            "name": "状态",
+            "schemaType": "string",
+            "index": 6,
+            "type": "table_column",
+            "required": true,
+            "componentProps": {
+              "pagination": {
+                "total": "0",
+                "pageNo": "1",
+                "totalPages": "0",
+                "pageSize": "10"
+              },
+              "isBindObject": false,
+              "reserveKeyword": false,
+              "remoteDataPath": "",
+              "collapseTags": false,
+              "allowCreate": false,
+              "automaticDropdown": false,
+              "valueTemplateKey": "itemValue",
+              "placeholder": "请选择",
+              "valueKey": "value",
+              "filterable": false,
+              "clearable": true,
+              "loadingText": "加载中",
+              "multipleLimit": 0,
+              "defaultOptions": [],
+              "multiple": false,
+              "labelTemplateKey": "itemLabel",
+              "hasZeroPagination": false,
+              "noDataText": "无数据",
+              "popperAppendToBody": true,
+              "defaultFirstOption": true,
+              "popperClass": "",
+              "apiConfig": {
+                "method": "post",
+                "data": {
+                  "dictCode": "sys.message.status"
+                },
+                "params": {},
+                "url": "/system/sysDictItem/dict"
+              },
+              "noMatchText": "无匹配数据",
+              "style": {
+                "width": "100%"
+              },
+              "tagsNumber": false,
+              "dataSource": [],
+              "apiType": "",
+              "popoverTags": false
+            }
+          },
+          {
+            "logics": [
+              {
+                "effectHook": "onFieldMount",
+                "logicCode": "com_securityIgnoreValidator",
+                "hasChildren": "",
+                "params": ""
+              },
+              {
+                "effectHook": "onFieldInputValueChange",
+                "logicCode": "com_securityIgnoreValidator",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "code": "sys.mail.password",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [
+              {
+                "validatorRuleValue": "",
+                "validatorRule": "startLetterNumSpecialCharacters",
+                "triggerType": "onInput",
+                "message": ""
+              }
+            ],
+            "description": "",
+            "index": 7,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "邮箱密码",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "password",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": true,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_setDefault",
+                "effectHook": "onFieldMount",
+                "params": ""
+              }
+            ],
+            "code": "sys.mail.default.account",
+            "hidden": true,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 8,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "是否为默认发送账户",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "code": "sys.mail.version",
+            "name": "版本号",
+            "type": "table_column",
+            "schemaType": "string",
+            "colSpan": 6,
+            "component": "Input",
+            "componentProps": {
+              "clearable": true,
+              "placeholder": "请输入"
+            },
+            "hidden": true,
+            "disabled": true,
+            "defaultValue": "0"
+          },
+          {
+            "logics": [],
+            "code": "sys.mail.remark",
+            "hidden": false,
+            "colSpan": 12,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 9,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "备注",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "maxlength": 256,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "textarea",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": true,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "sys.card.sms",
+      "name": "默认发送账户",
+      "type": "column",
+      "schemaType": "array",
+      "group": "message",
+      "hiddenName": true,
+      "colSpan": 12,
+      "component": "ArrayCard",
+      "componentProps": {
+        "titleCard": false,
+        "subTitle": "发送账户",
+        "hasAdditionBtn": true,
+        "hasOneData": true,
+        "type": "default",
+        "collapse": false,
+        "status": "normal",
+        "additionBtnText": "添加发送账户"
+      },
+      "index": 0,
+      "itemMetaSchema": {
+        "data": [
+          {
+            "eventCode": "",
+            "component": "ArrayBase.SaveButton",
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "ParamConfig_save",
+                "effectHook": "onClick",
+                "params": {}
+              }
+            ],
+            "code": "smsSave",
+            "colSpan": 2,
+            "name": "保存",
+            "schemaType": "void",
+            "type": "table_button",
+            "componentProps": {
+              "componentType": "ArrayBase.SaveButton",
+              "hasTooltip": false,
+              "icon": "",
+              "type": "primary",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "dialogType": "",
+              "round": false,
+              "size": "mini",
+              "drawerTitle": "",
+              "plain": false,
+              "drawerPageCode": "",
+              "hasPopConfirm": false,
+              "dialogTitle": "",
+              "circle": false,
+              "dialogPageCode": ""
+            }
+          },
+          {
+            "eventCode": "",
+            "component": "ArrayBase.Remove",
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "com_firstNotVisible",
+                "effectHook": "onFieldMount",
+                "params": {}
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_delete",
+                "effectHook": "onClick",
+                "params": {
+                  "apiConfig": {
+                    "method": "DELETE",
+                    "data": {
+                      "categoryList": ["{{record.sys-sms-account-code}}"]
+                    },
+                    "params": {},
+                    "url": "/system/sys-param-info"
+                  },
+                  "tip": "此操作将删除, 是否继续?",
+                  "hasMessageBox": true,
+                  "checkCode": "sys-sms-account-code"
+                }
+              }
+            ],
+            "code": "smsDel",
+            "colSpan": 2,
+            "name": "删除",
+            "schemaType": "void",
+            "type": "table_button",
+            "componentProps": {
+              "componentType": "ArrayBase.Remove",
+              "hasTooltip": false,
+              "icon": "",
+              "type": "primary",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "dialogType": "",
+              "round": false,
+              "size": "mini",
+              "drawerTitle": "",
+              "plain": false,
+              "drawerPageCode": "",
+              "hasPopConfirm": false,
+              "dialogTitle": "",
+              "circle": false,
+              "dialogPageCode": ""
+            }
+          },
+          {
+            "border": true,
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldMount",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableHasChange",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              }
+            ],
+            "code": "sys.sms.enable",
+            "defaultValue": "0",
+            "colSpan": 12,
+            "index": 0,
+            "type": "table_column",
+            "component": "cube-switch",
+            "name": "是否启用",
+            "schemaType": "string",
+            "style": {},
+            "disabled": false,
+            "componentProps": {
+              "inactiveIconClass": "",
+              "activeIconClass": "",
+              "activeValue": "0",
+              "activeText": "",
+              "inactiveValue": "1",
+              "width": 40,
+              "name": "",
+              "inactiveText": ""
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.sms.account.code",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 1,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "账户代码",
+            "schemaType": "string",
+            "disabled": true,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "自动生成，无需输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.sms.account.name",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 2,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "名称",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.sms.account.username",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [
+              {
+                "validatorRuleValue": "",
+                "validatorRule": "startLetterNumUnderline",
+                "triggerType": "onInput",
+                "message": ""
+              }
+            ],
+            "description": "",
+            "index": 3,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "账户名",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "effectHook": "onFieldMount",
+                "logicCode": "com_securityIgnoreValidator",
+                "hasChildren": "",
+                "params": ""
+              },
+              {
+                "effectHook": "onFieldInputValueChange",
+                "logicCode": "com_securityIgnoreValidator",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "code": "sys.sms.password",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [
+              {
+                "validatorRuleValue": "",
+                "validatorRule": "startLetterNumSpecialCharacters",
+                "triggerType": "onInput",
+                "message": ""
+              }
+            ],
+            "description": "",
+            "index": 4,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "密码",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "maxlength": 30,
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "password",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": true,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_smsOperator",
+                "effectHook": "onFieldMount",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_smsOperator",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              }
+            ],
+            "code": "sys.sms.operator",
+            "colSpan": 6,
+            "defaultValue": "",
+            "index": 5,
+            "type": "table_column",
+            "required": true,
+            "component": "cube-select",
+            "name": "运营商类型",
+            "schemaType": "string",
+            "componentProps": {
+              "pagination": {
+                "total": "0",
+                "pageNo": "1",
+                "totalPages": "0",
+                "pageSize": "10"
+              },
+              "isBindObject": false,
+              "isPageApi": false,
+              "reserveKeyword": false,
+              "remoteDataPath": "",
+              "collapseTags": false,
+              "allowCreate": false,
+              "automaticDropdown": false,
+              "valueTemplateKey": "itemValue",
+              "placeholder": "请选择",
+              "valueKey": "value",
+              "filterable": false,
+              "clearable": true,
+              "loadingText": "加载中",
+              "multipleLimit": 0,
+              "defaultOptions": [],
+              "multiple": false,
+              "labelTemplateKey": "itemLabel",
+              "hasZeroPagination": false,
+              "noDataText": "无数据",
+              "popperAppendToBody": true,
+              "defaultFirstOption": true,
+              "popperClass": "",
+              "apiConfig": {
+                "method": "post",
+                "data": {
+                  "dictCode": "sys.sms.operator",
+                  "level": 0,
+                  "key": "",
+                  "itemValues": []
+                },
+                "params": {},
+                "url": "/system/sysDictItem/dict"
+              },
+              "noMatchText": "无匹配数据",
+              "style": {
+                "width": "100%"
+              },
+              "tagsNumber": false,
+              "dataSource": [],
+              "apiType": "",
+              "popoverTags": false
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.sms.enterprise.id",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 6,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "企业 ID",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.sms.special.number",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 7,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "特服号",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.sms.prefix.url",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 8,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "请求 URL 前缀",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.sms.sign",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 9,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "短信签名",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "component": "cube-select",
+            "code": "sys.sms.status",
+            "colSpan": 6,
+            "defaultValue": "",
+            "name": "状态",
+            "schemaType": "string",
+            "index": 10,
+            "type": "table_column",
+            "required": true,
+            "componentProps": {
+              "pagination": {
+                "total": "0",
+                "pageNo": "1",
+                "totalPages": "0",
+                "pageSize": "10"
+              },
+              "isBindObject": false,
+              "isPageApi": false,
+              "reserveKeyword": false,
+              "remoteDataPath": "",
+              "collapseTags": false,
+              "allowCreate": false,
+              "automaticDropdown": false,
+              "valueTemplateKey": "itemValue",
+              "placeholder": "请选择",
+              "valueKey": "value",
+              "filterable": false,
+              "clearable": true,
+              "loadingText": "加载中",
+              "multipleLimit": 0,
+              "defaultOptions": [],
+              "multiple": false,
+              "labelTemplateKey": "itemLabel",
+              "hasZeroPagination": false,
+              "noDataText": "无数据",
+              "popperAppendToBody": true,
+              "defaultFirstOption": true,
+              "popperClass": "",
+              "apiConfig": {
+                "method": "post",
+                "data": {
+                  "dictCode": "sys.message.status",
+                  "level": 0,
+                  "key": "",
+                  "itemValues": []
+                },
+                "params": {},
+                "url": "/system/sysDictItem/dict"
+              },
+              "noMatchText": "无匹配数据",
+              "style": {
+                "width": "100%"
+              },
+              "tagsNumber": false,
+              "dataSource": [],
+              "apiType": "",
+              "popoverTags": false
+            }
+          },
+          {
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_setDefault",
+                "effectHook": "onFieldMount",
+                "params": ""
+              }
+            ],
+            "code": "sys.sms.default.account",
+            "hidden": true,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 11,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "是否为默认发送账户",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "code": "sys.sms.version",
+            "name": "版本号",
+            "type": "table_column",
+            "schemaType": "string",
+            "colSpan": 6,
+            "component": "Input",
+            "componentProps": {
+              "clearable": true,
+              "placeholder": "请输入"
+            },
+            "hidden": true,
+            "disabled": true,
+            "defaultValue": "0"
+          },
+          {
+            "logics": [],
+            "code": "sys.sms.remark",
+            "hidden": false,
+            "colSpan": 12,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 12,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "备注",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 256,
+              "suffixIcon": "",
+              "type": "textarea",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": true,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "sys.imConfig",
+      "name": "应用配置",
+      "type": "column",
+      "schemaType": "void",
+      "group": "im",
+      "colSpan": 12,
+      "component": "FormGroup",
+      "componentProps": {
+        "titleCard": false,
+        "type": "default",
+        "collapse": true,
+        "status": "normal",
+        "code": "sys.imConfig",
+        "title": "应用配置"
+      },
+      "index": 0
+    },
+    {
+      "code": "imConfig",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "void",
+      "group": "im",
+      "parentCode": "sys.imConfig",
+      "colSpan": 2,
+      "logics": [
+        {
+          "hasChildren": "",
+          "logicCode": "ParamConfig_save",
+          "effectHook": "onClick",
+          "params": {
+            "layout": "card"
+          }
+        }
+      ],
+      "component": "ArrayBase.SaveButton",
+      "componentProps": {
+        "componentType": "ArrayBase.SaveButton",
+        "hasTooltip": false,
+        "icon": "",
+        "type": "primary",
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "dialogType": "",
+        "round": false,
+        "size": "mini",
+        "drawerTitle": "",
+        "plain": false,
+        "drawerPageCode": "",
+        "hasPopConfirm": false,
+        "dialogTitle": "",
+        "circle": false,
+        "dialogPageCode": ""
+      },
+      "eventCode": ""
+    },
+    {
+      "code": "sys.im.base.address",
+      "name": "IM地址",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "group": "im",
+      "parentCode": "sys.imConfig",
+      "hiddenName": false,
+      "disabled": false,
+      "required": true,
+      "hidden": false,
+      "colSpan": 6,
+      "logics": [],
+      "validator": [],
+      "component": "cube-input",
+      "componentProps": {
+        "autoComplete": "off",
+        "clearable": true,
+        "max": "",
+        "maxlength": 256,
+        "suffixIcon": "",
+        "type": "text",
+        "autofocus": false,
+        "min": "",
+        "readonly": false,
+        "showWordLimit": false,
+        "showPassword": false,
+        "resize": "none",
+        "style": {
+          "width": "100%"
+        },
+        "placeholder": "请输入",
+        "prefixIcon": "",
+        "autosize": {
+          "minRows": 2,
+          "maxRows": 4
+        }
+      },
+      "description": "",
+      "pageCode": "",
+      "wrap": false
+    },
+    {
+      "code": "sys.im.base.secret",
+      "name": "IM秘钥",
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "group": "im",
+      "parentCode": "sys.imConfig",
+      "hiddenName": false,
+      "disabled": false,
+      "required": true,
+      "hidden": false,
+      "colSpan": 6,
+      "logics": [],
+      "validator": [],
+      "component": "Password",
+      "componentProps": {},
+      "description": "",
+      "pageCode": "",
+      "wrap": false
+    },
+    {
+      "code": "sys.card.im",
+      "name": "默认应用",
+      "type": "column",
+      "schemaType": "array",
+      "group": "im",
+      "hiddenName": true,
+      "colSpan": 12,
+      "component": "ArrayCard",
+      "componentProps": {
+        "titleCard": false,
+        "subTitle": "应用",
+        "hasAdditionBtn": true,
+        "hasOneData": true,
+        "type": "default",
+        "collapse": false,
+        "status": "normal",
+        "additionBtnText": "添加应用"
+      },
+      "index": 1,
+      "itemMetaSchema": {
+        "data": [
+          {
+            "eventCode": "",
+            "component": "ArrayBase.Remove",
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "com_firstNotVisible",
+                "effectHook": "onFieldMount",
+                "params": {}
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_delete",
+                "effectHook": "onClick",
+                "params": {
+                  "apiConfig": {
+                    "method": "DELETE",
+                    "data": {
+                      "categoryList": ["{{record.sys-im-app-code}}"]
+                    },
+                    "params": {},
+                    "url": "/system/sys-param-info"
+                  },
+                  "tip": "此操作将删除, 是否继续?",
+                  "hasMessageBox": true,
+                  "checkCode": "sys-im-app-code"
+                }
+              }
+            ],
+            "code": "imDel",
+            "colSpan": 2,
+            "name": "删除",
+            "schemaType": "void",
+            "type": "table_button",
+            "componentProps": {
+              "componentType": "ArrayBase.Remove",
+              "hasTooltip": false,
+              "icon": "",
+              "type": "primary",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "dialogType": "",
+              "round": false,
+              "size": "mini",
+              "drawerTitle": "",
+              "plain": false,
+              "drawerPageCode": "",
+              "hasPopConfirm": false,
+              "dialogTitle": "",
+              "circle": false,
+              "dialogPageCode": ""
+            }
+          },
+          {
+            "eventCode": "",
+            "component": "ArrayBase.SaveButton",
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "ParamConfig_save",
+                "effectHook": "onClick",
+                "params": ""
+              }
+            ],
+            "code": "imSave",
+            "colSpan": 2,
+            "name": "保存",
+            "schemaType": "void",
+            "type": "table_button",
+            "componentProps": {
+              "componentType": "ArrayBase.SaveButton",
+              "hasTooltip": false,
+              "icon": "",
+              "type": "primary",
+              "autofocus": false,
+              "title": "",
+              "loading": false,
+              "dialogType": "",
+              "round": false,
+              "size": "mini",
+              "drawerTitle": "",
+              "plain": false,
+              "drawerPageCode": "",
+              "hasPopConfirm": false,
+              "dialogTitle": "",
+              "circle": false,
+              "dialogPageCode": ""
+            }
+          },
+          {
+            "border": true,
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldMount",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableHasChange",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              }
+            ],
+            "code": "sys.im.app.enable",
+            "defaultValue": "0",
+            "colSpan": 12,
+            "index": 0,
+            "type": "table_column",
+            "component": "cube-switch",
+            "name": "应用启用状态",
+            "schemaType": "string",
+            "style": {},
+            "disabled": false,
+            "componentProps": {
+              "inactiveIconClass": "",
+              "activeIconClass": "",
+              "activeValue": "0",
+              "activeText": "",
+              "inactiveValue": "1",
+              "width": 40,
+              "name": "",
+              "inactiveText": ""
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.im.app.code",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 1,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "应用ID",
+            "schemaType": "string",
+            "disabled": true,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "自动生成，无需输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.im.app.logo",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 2,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "FileUpload",
+            "parentCode": "",
+            "name": "应用LOGO",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "mode": "input",
+              "fileSizeErrorText": "图片大小不能超过2MB",
+              "clearable": true,
+              "fileTypeErrorText": "请上传格式为jpg/png/jpeg格式的图片",
+              "sizeUnit": "MB",
+              "style": {
+                "width": "100%"
+              },
+              "maxSize": 2,
+              "placeholder": "请上传应用LOGO",
+              "accept": [".png", ".jpeg", ".jpg"]
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.im.app.name",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 3,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "应用名称",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "maxlength": 30,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_setDefault",
+                "effectHook": "onFieldMount",
+                "params": ""
+              }
+            ],
+            "code": "sys.im.app.default.account",
+            "hidden": true,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 4,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "是否为默认应用",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.im.app.desc",
+            "hidden": false,
+            "colSpan": 12,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 5,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "应用描述",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "maxlength": 256,
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "textarea",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": true,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "code": "button104",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "void",
+      "group": "wechat",
+      "colSpan": 2,
+      "logics": [
+        {
+          "hasChildren": "",
+          "logicCode": "ParamConfig_save",
+          "effectHook": "onClick",
+          "params": {
+            "layout": "tabs"
+          }
+        }
+      ],
+      "component": "ArrayBase.SaveButton",
+      "componentProps": {
+        "componentType": "ArrayBase.SaveButton",
+        "hasTooltip": false,
+        "icon": "",
+        "type": "primary",
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "dialogType": "",
+        "round": false,
+        "size": "mini",
+        "drawerTitle": "",
+        "plain": false,
+        "drawerPageCode": "",
+        "hasPopConfirm": false,
+        "dialogTitle": "",
+        "circle": false,
+        "dialogPageCode": ""
+      },
+      "index": 0,
+      "eventCode": ""
+    },
+    {
+      "code": "sys.card.wechat",
+      "name": "默认公众号",
+      "type": "column",
+      "schemaType": "array",
+      "group": "wechat",
+      "hiddenName": true,
+      "hidden": true,
+      "colSpan": 12,
+      "component": "ArrayCard",
+      "componentProps": {
+        "titleCard": false,
+        "subTitle": "",
+        "hasAdditionBtn": false,
+        "hasOneData": true,
+        "type": "default",
+        "collapse": false,
+        "status": "normal",
+        "additionBtnText": ""
+      },
+      "index": 1,
+      "itemMetaSchema": {
+        "data": [
+          {
+            "border": true,
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldMount",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableHasChange",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              }
+            ],
+            "code": "sys.wechat.enable",
+            "defaultValue": "0",
+            "colSpan": 12,
+            "index": 0,
+            "type": "table_column",
+            "component": "cube-switch",
+            "name": "是否启用微信公众号配置",
+            "schemaType": "string",
+            "style": {},
+            "disabled": false,
+            "componentProps": {
+              "inactiveIconClass": "",
+              "activeIconClass": "",
+              "activeValue": "0",
+              "activeText": "",
+              "inactiveValue": "1",
+              "width": 40,
+              "name": "",
+              "inactiveText": ""
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wechat.config.code",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 1,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "配置编码",
+            "schemaType": "string",
+            "disabled": true,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_wechatWorkAuthType",
+                "effectHook": "onFieldMount",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_wechatWorkAuthType",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              }
+            ],
+            "code": "sys.wechat.auth.type",
+            "colSpan": 6,
+            "defaultValue": "",
+            "index": 2,
+            "type": "table_column",
+            "required": true,
+            "component": "cube-select",
+            "name": "授权类型",
+            "schemaType": "string",
+            "componentProps": {
+              "pagination": {
+                "total": "0",
+                "pageNo": "1",
+                "totalPages": "0",
+                "pageSize": "10"
+              },
+              "isBindObject": false,
+              "reserveKeyword": false,
+              "remoteDataPath": "",
+              "collapseTags": false,
+              "allowCreate": false,
+              "automaticDropdown": false,
+              "valueTemplateKey": "itemValue",
+              "placeholder": "请选择",
+              "valueKey": "value",
+              "filterable": false,
+              "clearable": true,
+              "loadingText": "加载中",
+              "multipleLimit": 0,
+              "defaultOptions": [],
+              "multiple": false,
+              "labelTemplateKey": "itemLabel",
+              "hasZeroPagination": false,
+              "noDataText": "无数据",
+              "popperAppendToBody": true,
+              "defaultFirstOption": true,
+              "popperClass": "",
+              "apiConfig": {
+                "method": "post",
+                "data": {
+                  "dictCode": "sys.wx.auth.type"
+                },
+                "params": {},
+                "url": "/system/sysDictItem/dict"
+              },
+              "noMatchText": "无匹配数据",
+              "style": {
+                "width": "100%"
+              },
+              "tagsNumber": false,
+              "dataSource": [],
+              "apiType": "",
+              "popoverTags": false
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wechat.user.certificate",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [
+              {
+                "validatorRuleValue": "",
+                "validatorRule": "startLetterNumUnderline",
+                "triggerType": "onInput",
+                "message": ""
+              }
+            ],
+            "description": "",
+            "index": 3,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "用户凭证",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "maxlength": 64,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "effectHook": "onFieldMount",
+                "logicCode": "com_securityIgnoreValidator",
+                "hasChildren": "",
+                "params": ""
+              },
+              {
+                "effectHook": "onFieldInputValueChange",
+                "logicCode": "com_securityIgnoreValidator",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "code": "sys.wechat.user.secret",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [
+              {
+                "validatorRuleValue": "",
+                "validatorRule": "startLetterNumSpecialCharacters",
+                "triggerType": "onInput",
+                "message": ""
+              }
+            ],
+            "description": "",
+            "index": 4,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "用户秘钥",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "maxlength": 64,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wechat.auth.address",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 5,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "第三方授权地址",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "maxlength": 256,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wechat.config.name",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 6,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "配置名称",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_setDefault",
+                "effectHook": "onFieldMount",
+                "params": ""
+              }
+            ],
+            "code": "sys.wechat.default.account",
+            "hidden": true,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "index": 7,
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "是否为默认发送账户",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "code": "sys.wechat.version",
+            "name": "版本号",
+            "type": "table_column",
+            "schemaType": "string",
+            "colSpan": 6,
+            "component": "Input",
+            "componentProps": {
+              "clearable": true,
+              "placeholder": "请输入"
+            },
+            "hidden": true,
+            "disabled": true,
+            "defaultValue": "0"
+          }
+        ]
+      }
+    },
+    {
+      "code": "wxWorkSave",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "void",
+      "group": "wxwork",
+      "colSpan": 2,
+      "logics": [
+        {
+          "hasChildren": "",
+          "logicCode": "ParamConfig_save",
+          "effectHook": "onClick",
+          "params": {
+            "layout": "tabs"
+          }
+        }
+      ],
+      "component": "ArrayBase.SaveButton",
+      "componentProps": {
+        "componentType": "ArrayBase.SaveButton",
+        "hasTooltip": false,
+        "icon": "",
+        "type": "primary",
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "dialogType": "",
+        "round": false,
+        "size": "mini",
+        "drawerTitle": "",
+        "plain": false,
+        "drawerPageCode": "",
+        "hasPopConfirm": false,
+        "dialogTitle": "",
+        "circle": false,
+        "dialogPageCode": ""
+      },
+      "index": 0,
+      "eventCode": ""
+    },
+    {
+      "code": "sys.card.wxwork",
+      "name": "默认企业号",
+      "type": "column",
+      "schemaType": "array",
+      "group": "wxwork",
+      "hiddenName": true,
+      "colSpan": 12,
+      "component": "ArrayCard",
+      "componentProps": {
+        "titleCard": false,
+        "subTitle": "",
+        "hasAdditionBtn": false,
+        "hasOneData": true,
+        "type": "default",
+        "collapse": false,
+        "status": "normal",
+        "additionBtnText": ""
+      },
+      "index": 1,
+      "itemMetaSchema": {
+        "data": [
+          {
+            "border": true,
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableGroupRequired",
+                "effectHook": "onFieldMount",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "com_enableHasChange",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              }
+            ],
+            "code": "sys.wxwork.enable",
+            "defaultValue": "0",
+            "colSpan": 12,
+            "type": "table_column",
+            "component": "cube-switch",
+            "name": "是否启用微信企业号配置",
+            "schemaType": "string",
+            "style": {},
+            "disabled": false,
+            "componentProps": {
+              "inactiveIconClass": "",
+              "activeIconClass": "",
+              "activeValue": "0",
+              "activeText": "",
+              "inactiveValue": "1",
+              "width": 40,
+              "name": "",
+              "inactiveText": ""
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wxwork.config.code",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "配置编码",
+            "schemaType": "string",
+            "disabled": true,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wxwork.config.name",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "配置名称",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_wxWorkAuthType",
+                "effectHook": "onFieldMount",
+                "params": ""
+              },
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_wxWorkAuthType",
+                "effectHook": "onFieldInputValueChange",
+                "params": ""
+              }
+            ],
+            "code": "sys.wxwork.auth.type",
+            "hidden": true,
+            "colSpan": 6,
+            "defaultValue": "",
+            "type": "table_column",
+            "required": true,
+            "component": "cube-select",
+            "name": "授权类型",
+            "schemaType": "string",
+            "componentProps": {
+              "pagination": {
+                "total": "0",
+                "pageNo": "1",
+                "totalPages": "0",
+                "pageSize": "10"
+              },
+              "isBindObject": false,
+              "reserveKeyword": false,
+              "remoteDataPath": "",
+              "collapseTags": false,
+              "allowCreate": false,
+              "automaticDropdown": false,
+              "valueTemplateKey": "itemValue",
+              "placeholder": "请选择",
+              "valueKey": "value",
+              "filterable": false,
+              "clearable": true,
+              "loadingText": "加载中",
+              "multipleLimit": 0,
+              "defaultOptions": [],
+              "multiple": false,
+              "labelTemplateKey": "itemLabel",
+              "hasZeroPagination": false,
+              "noDataText": "无数据",
+              "popperAppendToBody": true,
+              "defaultFirstOption": true,
+              "popperClass": "",
+              "apiConfig": {
+                "method": "post",
+                "data": {
+                  "dictCode": "sys.wx.auth.type"
+                },
+                "params": {},
+                "url": "/system/sysDictItem/dict"
+              },
+              "noMatchText": "无匹配数据",
+              "style": {
+                "width": "100%"
+              },
+              "tagsNumber": false,
+              "dataSource": [],
+              "apiType": "",
+              "popoverTags": false
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wxwork.agentid",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "Agent Id",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "maxlength": 64,
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wxwork.corpid",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "企业 ID",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "maxlength": 64,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "effectHook": "onFieldMount",
+                "logicCode": "com_securityIgnoreValidator",
+                "hasChildren": "",
+                "params": ""
+              },
+              {
+                "effectHook": "onFieldInputValueChange",
+                "logicCode": "com_securityIgnoreValidator",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "code": "sys.wxwork.corpsecret",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [
+              {
+                "validatorRuleValue": "",
+                "validatorRule": "startLetterNumSpecialCharacters",
+                "triggerType": "onInput",
+                "message": ""
+              }
+            ],
+            "description": "",
+            "type": "table_column",
+            "hiddenName": false,
+            "required": true,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "凭证秘钥",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "maxlength": 64,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "password",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [],
+            "code": "sys.wxwork.auth.address",
+            "hidden": false,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "第三方授权地址",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "maxlength": 256,
+              "max": "",
+              "autocomplete": "off",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "logics": [
+              {
+                "hasChildren": "",
+                "logicCode": "MessageConfig_setDefault",
+                "effectHook": "onFieldMount",
+                "params": ""
+              }
+            ],
+            "code": "sys.wxwork.default.account",
+            "hidden": true,
+            "colSpan": 6,
+            "defaultValue": "",
+            "validator": [],
+            "description": "",
+            "type": "table_column",
+            "hiddenName": false,
+            "required": false,
+            "pageCode": "",
+            "component": "cube-input",
+            "parentCode": "",
+            "name": "是否为默认发送账户",
+            "schemaType": "string",
+            "disabled": false,
+            "wrap": false,
+            "componentProps": {
+              "autoComplete": "off",
+              "clearable": true,
+              "max": "",
+              "suffixIcon": "",
+              "type": "text",
+              "autofocus": false,
+              "min": "",
+              "readonly": false,
+              "showWordLimit": false,
+              "showPassword": false,
+              "resize": "none",
+              "style": {
+                "width": "100%"
+              },
+              "placeholder": "请输入",
+              "prefixIcon": "",
+              "autosize": {
+                "minRows": 2,
+                "maxRows": 4
+              }
+            }
+          },
+          {
+            "name": "发送方式",
+            "type": "table_column",
+            "schemaType": "string",
+            "component": "cube-select",
+            "colSpan": 6,
+            "defaultValue": "",
+            "code": "sys.wxwork.send.mode",
+            "required": true,
+            "componentProps": {
+              "apiType": "",
+              "dataSource": [],
+              "apiConfig": {
+                "method": "post",
+                "url": "/system/sysDictItem/dict",
+                "data": {
+                  "dictCode": "sys.wxwork.send.mode"
+                },
+                "params": {}
+              },
+              "remoteDataPath": "",
+              "placeholder": "请选择",
+              "valueKey": "value",
+              "style": {
+                "width": "100%"
+              },
+              "clearable": true,
+              "filterable": false,
+              "multiple": false,
+              "collapseTags": false,
+              "multipleLimit": 0,
+              "allowCreate": false,
+              "loadingText": "加载中",
+              "noMatchText": "无匹配数据",
+              "noDataText": "无数据",
+              "popperClass": "",
+              "reserveKeyword": false,
+              "defaultFirstOption": true,
+              "popperAppendToBody": true,
+              "automaticDropdown": false,
+              "valueTemplateKey": "itemValue",
+              "labelTemplateKey": "itemLabel",
+              "defaultOptions": [],
+              "isBindObject": false,
+              "popoverTags": false,
+              "tagsNumber": false,
+              "hasZeroPagination": false,
+              "pagination": {
+                "totalPages": "0",
+                "pageNo": "1",
+                "total": "0",
+                "pageSize": "10"
+              }
+            }
+          },
+          {
+            "code": "sys.wxwork.version",
+            "name": "版本号",
+            "type": "table_column",
+            "schemaType": "string",
+            "colSpan": 6,
+            "component": "Input",
+            "componentProps": {
+              "clearable": true,
+              "placeholder": "请输入"
+            },
+            "defaultValue": "0",
+            "hidden": true,
+            "disabled": true
+          }
+        ]
+      }
+    }
+  ],
+  "version": 3,
+  "layoutComponent": "FormPageLayout",
+  "layoutComponentProps": {
+    "remoteDataPath": "",
+    "hasHeader": true,
+    "hasGroup": true,
+    "pattern": "EDITABLE",
+    "hasBackBtn": true,
+    "title": "消息配置",
+    "detailApiConfig": {
+      "method": "post",
+      "data": {},
+      "params": {}
+    }
+  },
+  "designer": null,
+  "extra": null
+}

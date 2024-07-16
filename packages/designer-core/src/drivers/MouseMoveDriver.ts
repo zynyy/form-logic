@@ -1,5 +1,5 @@
 import { MouseMoveEvent } from '@/events/cursor';
-import { Engine } from '@/models';
+import { Engine } from '@/models/Engine';
 import { EventDriver } from '@/utils';
 export class MouseMoveDriver extends EventDriver<Engine> {
   request: number | null = null;

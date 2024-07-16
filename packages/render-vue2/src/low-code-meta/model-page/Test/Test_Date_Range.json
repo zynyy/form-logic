@@ -1,0 +1,31 @@
+{
+  "code": "Test_C",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "column",
+      "schemaType": "string",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "componentProps": {
+        "type": "daterange",
+        "rangeSeparator": "至",
+        "startPlaceholder": "开始日期",
+        "endPlaceholder": "结束日期"
+      },
+      "code": "[start,end]",
+      "name": "日期",
+      "component": "DatePicker"
+    }
+  ],
+  "model": "Test",
+  "codeSuffix": "C",
+  "name": "测试"
+}

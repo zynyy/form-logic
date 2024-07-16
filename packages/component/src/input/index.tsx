@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Input as AntdInput, InputProps as AntdInputProps } from 'antd';
 
 export interface InputProps extends AntdInputProps {}

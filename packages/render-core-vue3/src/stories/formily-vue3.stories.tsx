@@ -7,7 +7,6 @@ import {
 import { clone } from '@formily/shared';
 import {
   ElConfigProvider,
-  ElDatePicker,
   ElDivider,
   ElForm,
   ElFormItem,
@@ -16,16 +15,15 @@ import {
 } from 'element-plus';
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
 import { ref, unref } from 'vue';
+import DatePicker from './components/DatePicker'
 
-import CubeSelect from './components/Select';
 
 const components = {
   Input: ElInput,
   Select: ElSelect,
-  DatePicker: ElDatePicker,
   Divider: ElDivider,
   FormItem: ElFormItem,
-  CubeSelect,
+  DatePicker
 };
 
 export default {
@@ -107,7 +105,7 @@ export const basic = {
       properties: {
         CubeSelect: {
           type: 'string',
-          'x-component': 'CubeSelect',
+          'x-component': 'Select',
           'x-component-props': {
             dataSource: [
               {
@@ -138,7 +136,6 @@ export const basic = {
         start: {
           type: 'string',
           title: '元字段编码',
-
           'x-decorator-props': {
             gridSpan: 12,
           },
@@ -150,53 +147,7 @@ export const basic = {
             format: 'YYYY-MM-DD',
           },
         },
-        // subCode: {
-        //   type: 'string',
-        //   title: '元字段副编码',
-        //   'x-decorator-props': {
-        //     gridSpan: 12,
-        //   },
-        //   'x-component': 'Input',
-        //   'x-component-props': {
-        //     placeholder: '请选择编码',
-        //     clearable: true,
-        //     multiple: true,
-        //   },
-        // },
-        // name: {
-        //   type: 'string',
-        //   title: '元字段名称',
-        //
-        //   'x-decorator-props': {
-        //     gridSpan: 12,
-        //   },
-        //   'x-component': 'Input',
-        //   'x-disabled': true,
-        //   'x-component-props': {
-        //     placeholder: '请输入名称',
-        //     clearable: true,
-        //   },
-        // },
-        // authCode: {
-        //   type: 'string',
-        //   title: '权限编码',
-        //
-        //   'x-decorator-props': {
-        //     gridSpan: 12,
-        //   },
-        //   'x-component': 'Input',
-        //   'x-component-props': {
-        //     placeholder: '请输入权限编码',
-        //   },
-        // },
-        // defaultValue: {
-        //   title: '默认值',
-        //
-        //   'x-decorator-props': {
-        //     gridSpan: 12,
-        //   },
-        //   'x-component': 'Input',
-        // },
+
       },
     },
   },

@@ -1,0 +1,60 @@
+{
+  "code": "Model_C",
+  "name": "模型新增",
+  "model": "Model",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    { "code": "basicInfo", "name": "基础信息" },
+    { "code": "metaInfo", "name": "字段信息" }
+  ],
+  "defaultSearchColumn": "6",
+  "data": [
+    {
+      "code": "code",
+      "name": "编码",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo",
+      "logics": []
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "type": "column",
+      "schemaType": "string",
+      "required": "1",
+      "group": "basicInfo",
+      "logics": []
+    },
+    {
+      "code": "metas",
+      "name": "字段集合",
+      "type": "column",
+      "schemaType": "array",
+      "required": "1",
+      "group": "metaInfo",
+      "colSpan": 3,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "hiddenName": "1",
+      "pageCode": "Model_Field_L",
+      "component": "MetaTreeArrayDrawerTable",
+      "componentProps": { "drawerPageCode": "Model_Field_C" },
+      "defaultValue": [],
+      "hasSort": 1,
+      "hasSerialNo": 1,
+      "logics": []
+    },
+    {
+      "code": "type",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "string",
+      "required": "1",
+      "logics": [{ "logicCode": "com_save", "effectHook": "onClick" }]
+    }
+  ]
+}

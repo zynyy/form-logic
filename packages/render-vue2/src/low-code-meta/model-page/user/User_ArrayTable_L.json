@@ -1,0 +1,78 @@
+{
+  "code": "User_L",
+  "name": "用户新增配置",
+  "model": "User",
+  "data": [
+    {
+      "code": "add",
+      "name": "新增",
+      "type": "button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "component": "ArrayBase.Addition"
+    },
+    {
+      "code": "Upload",
+      "name": "上传",
+      "type": "button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "component": "ArrayBase.Upload"
+    },
+    {
+      "code": "delete",
+      "name": "删除",
+      "type": "table_button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "component": "ArrayBase.Remove"
+    },
+    {
+      "code": "code",
+      "name": "学校编码",
+      "type": "table_column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "disabled": "1"
+    },
+    {
+      "code": "name",
+      "name": "学校名称",
+      "type": "table_column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1",
+      "component": "Input"
+    },
+    {
+      "code": "name",
+      "name": "学校名称",
+      "type": "table_column",
+      "schemaType": "string",
+      "group": "personalInfo"
+    },
+    {
+      "code": "grade",
+      "name": "年级",
+      "type": "table_column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "parentCode": "name",
+      "required": "1",
+      "component": "Input"
+    },
+    {
+      "code": "year",
+      "name": "测试",
+      "type": "table_column",
+      "schemaType": "string",
+      "parentCode": "name",
+      "group": "personalInfo",
+      "required": "1"
+    }
+  ]
+}

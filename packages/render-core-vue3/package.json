@@ -15,8 +15,8 @@
     "lib"
   ],
   "scripts": {
-    "clean": "formlogic-cli clean",
-    "build": "npm run clean &&  formlogic-cli build-vue3-ts",
+    "clean": "package-compiler clean",
+    "build": "package-compiler build-vue3-ts",
     "test": " jest --config jest.config.js",
     "test:usnap": "pnpm test -- -u",
     "storybook": "storybook dev -p 6006",
@@ -43,14 +43,14 @@
     "access": "public"
   },
   "devDependencies": {
-    "@storybook/blocks": "^8.0.10",
-    "@storybook/builder-webpack5": "^8.0.10",
-    "@storybook/core-events": "^8.0.10",
-    "@storybook/manager-api": "^8.0.10",
-    "@storybook/testing-library": "^0.2.0",
-    "@storybook/theming": "^8.0.10",
-    "@storybook/vue3": "^8.0.10",
-    "@storybook/vue3-webpack5": "^8.0.10",
+    "@formlogic/package-compiler": "1.0.0",
+    "@storybook/blocks": "^8.1.11",
+    "@storybook/core-events": "^8.1.11",
+    "@storybook/manager-api": "^8.1.11",
+    "@storybook/test": "^8.1.11",
+    "@storybook/theming": "^8.1.11",
+    "@storybook/vue3": "^8.1.11",
+    "@storybook/vue3-webpack5": "^8.1.11",
     "@types/babel__core": "^7.20.0",
     "@types/hash-sum": "^1.0.0",
     "@types/less": "^3.0.3",
@@ -62,7 +62,7 @@
     "sass": "1.64.2",
     "sass-loader": "13.3.2",
     "sass-resources-loader": "2.2.5",
-    "storybook": "^8.0.10",
+    "storybook": "^8.1.11",
     "style-loader": "^3.3.1"
   }
 }

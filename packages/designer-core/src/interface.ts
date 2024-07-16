@@ -10,7 +10,7 @@ import type {
   Viewport,
   Workbench,
   Workspace,
-} from '@/models';
+} from './models';
 import { IPoint, IRect } from '@/utils';
 import { Event, IEventProps } from '@/utils/event';
 

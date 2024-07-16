@@ -1,0 +1,58 @@
+{
+  "code": "ModelPage_dataDrawerExtraLogicParams",
+  "cells": [
+    {
+      "id": "edge-33wl4552",
+      "shape": "edge",
+      "target": {
+        "cell": "fn-o3w0dqz1",
+        "port": "2e621bc8-804a-4145-92c0-28d9c5ad0f29"
+      },
+      "source": {
+        "cell": "start-lwoif71n",
+        "port": "fbbbc4a7-45c1-4f95-b854-2b8ca250083b"
+      },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-z160j3b1",
+      "shape": "edge",
+      "target": {
+        "cell": "end-reuly121",
+        "port": "1f91dbbc-8b1c-4e30-be54-0a380079e3b4"
+      },
+      "source": {
+        "cell": "fn-o3w0dqz1",
+        "port": "9ca3e25e-2253-4ad2-a952-30d38aafc09c"
+      },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-lwoif71n",
+      "shape": "custom-rect",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "startTemplateCode"
+      }
+    },
+    {
+      "id": "end-reuly121",
+      "shape": "custom-rect",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "endTemplateCode"
+      }
+    },
+    {
+      "id": "fn-o3w0dqz1",
+      "shape": "custom-rect",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      }
+    }
+  ]
+}

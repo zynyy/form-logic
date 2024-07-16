@@ -36,7 +36,7 @@ const compileScript = async (filePath: string): Promise<any> => {
       .transformAsync(code, {
         filename: filePath,
         babelrc: false,
-        presets: [['@babel/preset-typescript', { isTSX: true, allExtensions: true }]],
+        presets: [['@babel/preset-typescript']],
         plugins: [],
       })
       .then((result: any) => {

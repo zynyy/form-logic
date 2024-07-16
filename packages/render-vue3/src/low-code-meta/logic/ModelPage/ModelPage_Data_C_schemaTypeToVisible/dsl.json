@@ -1,0 +1,58 @@
+{
+  "code": "ModelPage_Data_C_schemaTypeToVisible",
+  "cells": [
+    {
+      "id": "edge-cdl06o1x",
+      "shape": "edge",
+      "target": {
+        "cell": "fn-rymcazzm",
+        "port": "49608838-8b82-4fdb-ac04-92134dcae983"
+      },
+      "source": {
+        "cell": "start-0hxpcwjj",
+        "port": "5fa694f9-22bc-4eb0-a98e-ce568533f012"
+      },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-dq0yrb5h",
+      "shape": "edge",
+      "target": {
+        "cell": "end-n4aogown",
+        "port": "52968ae9-7647-43bf-9c6b-a9355a4b2f9f"
+      },
+      "source": {
+        "cell": "fn-rymcazzm",
+        "port": "09f504ef-e5b5-4024-acbf-96fc3c63ab83"
+      },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-0hxpcwjj",
+      "shape": "custom-rect",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "startTemplateCode"
+      }
+    },
+    {
+      "id": "end-n4aogown",
+      "shape": "custom-rect",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "endTemplateCode"
+      }
+    },
+    {
+      "id": "fn-rymcazzm",
+      "shape": "custom-rect",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      }
+    }
+  ]
+}

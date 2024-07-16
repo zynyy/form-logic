@@ -1,0 +1,36 @@
+{
+  "code": "Api",
+  "name": "接口配置",
+  "metas": [
+    {
+      "code": "method",
+      "name": "请求方式",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0"
+      }
+    },
+    {
+      "code": "url",
+      "name": "请求接口",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0"
+      }
+    },
+    {
+      "code": "params",
+      "name": "请求参数",
+      "defaultConfig": {
+        "schemaType": "string",
+        "required": "0",
+        "hidden": "0",
+        "disabled": "0"
+      }
+    }
+  ]
+}

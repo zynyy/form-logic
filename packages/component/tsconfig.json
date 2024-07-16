@@ -1,12 +1,31 @@
 {
-  "extends": "../../tsconfig.json",
   "include": ["src"],
-  "exclude": ["./src/__tests__/*","./src/components/*", "./esm/*", "./lib/*", "./tsconfig.esm.json", "./tsconfig.cjs.json"],
+  "exclude": ["./esm/*", "./lib/*", "./tsconfig.esm.json", "./tsconfig.cjs.json"],
   "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "target": "ESNext",
+    "allowJs": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "isolatedModules": true,
+    "noImplicitThis": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "resolveJsonModule": true,
+    "lib": ["ESNext", "dom"],
+    "declaration": true,
+    "declarationDir": ".",
+    "emitDeclarationOnly": false,
     "baseUrl": "./",
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"]
     }
-  },
+  }
 }

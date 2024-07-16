@@ -50,9 +50,30 @@ program
     });
   });
 
+program
+  .command('build-react-ts')
+  .description('编译react+ts生产包')
+  .action(async () => {
+    const { build } = await import('./commands/build-react.js');
+    return build({
+      useTypescript: true,
+    });
+  });
+
+program
+  .command('build-react')
+  .description('编译react生产包')
+  .action(async () => {
+    const { build } = await import('./commands/build-react.js');
+    return build({
+      useTypescript: false,
+    });
+  });
+
 program.command('build-module').action(async () => {
   const { build } = await import('./commands/build-module.js');
   return build();
 });
+
 
 program.parse();

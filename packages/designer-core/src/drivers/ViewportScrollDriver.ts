@@ -1,5 +1,5 @@
 import { ViewportScrollEvent } from '@/events/viewport';
-import { Engine } from '@/models';
+import { Engine } from '@/models/Engine';
 import { EventDriver, globalThisPolyfill } from '@/utils';
 
 export class ViewportScrollDriver extends EventDriver<Engine> {

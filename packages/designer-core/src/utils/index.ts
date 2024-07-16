@@ -8,7 +8,6 @@ export * from './event';
 export * from './globalThisPolyfill';
 export * from './instanceof';
 export * from './keycode';
-export * from './lru';
 export * from './observer';
 export * from './request-idle';
 export * from './scroller';

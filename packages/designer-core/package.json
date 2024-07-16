@@ -16,8 +16,8 @@
     "lib"
   ],
   "scripts": {
-    "clean": "form-logic-cli clean",
-    "build": "form-logic-cli build-vue2-ts",
+    "clean": "package-compiler clean",
+    "build": "package-compiler build-vue2-ts",
     "test": " jest --config jest.config.js",
     "test:usnap": "pnpm test -- -u",
     "depcruise-circular": "depcruise --include-only \"^src\" src",

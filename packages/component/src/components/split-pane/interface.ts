@@ -1,10 +1,8 @@
-import {CSSProperties, MouseEvent, ReactNode, TouchEvent} from "react";
+import { CSSProperties, MouseEvent, TouchEvent } from 'react';
 
 export type Size = string | number;
 
-export type Split = "vertical" | "horizontal";
-
-
+export type Split = 'vertical' | 'horizontal';
 
 export interface ResizerProps {
   className: string;
@@ -17,5 +15,3 @@ export interface ResizerProps {
   split: Split;
   style: CSSProperties;
 }
-
-

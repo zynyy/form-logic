@@ -1,0 +1,1021 @@
+{
+  "code": "Test_transformsLogic",
+  "layoutComponent": "FormPageLayout",
+  "model": "Test",
+  "name": "测试逻辑转换是否正常",
+  "group": [
+    {
+      "code": "type",
+      "name": "分类标签",
+      "mode": "tabs",
+      "modeCodes": ["menu", "btn"],
+      "componentProps": { "title": "分类标题" }
+    },
+    { "code": "menu", "name": "菜单标签", "componentProps": { "title": "菜单标题" } },
+    { "code": "btn", "name": "按钮标签", "componentProps": { "title": "按钮标题" } },
+    {
+      "code": "card101",
+      "name": "卡片容器",
+      "componentProps": {
+        "type": "default",
+        "status": "normal",
+        "component": "cube-card",
+        "collapse": true,
+        "titleCard": false
+      }
+    },
+    {
+      "code": "card1096",
+      "name": "卡片容器",
+      "componentProps": {
+        "type": "default",
+        "status": "normal",
+        "component": "cube-card",
+        "collapse": true,
+        "titleCard": false
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "保存",
+      "code": "button101",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 1,
+      "eventCode": "",
+      "component": "cube-button",
+      "logics": [
+        {
+          "effectHook": "onClick",
+          "logicCode": "test_buttonClick",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "group": "",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false
+      }
+    },
+    {
+      "code": "name",
+      "name": "数据源名称",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": false,
+      "hidden": false,
+      "description": "",
+      "colSpan": 2,
+      "wrap": false,
+      "defaultValue": "",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "test_tabGrid",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "validator": [],
+      "index": 0,
+      "group": "type",
+      "slotName": "tabPane",
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": { "width": "100%" },
+        "clearable": true,
+        "prefixIcon": "",
+        "suffixIcon": "",
+        "showWordLimit": false,
+        "readonly": false,
+        "autofocus": false,
+        "showPassword": false,
+        "autoComplete": "off",
+        "autosize": { "minRows": 2, "maxRows": 4 },
+        "resize": "none",
+        "min": "",
+        "max": "",
+        "autocomplete": "off"
+      }
+    },
+    {
+      "code": "number1212",
+      "name": "数字输入框",
+      "component": "cube-input-number",
+      "colSpan": 2,
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "index": 1,
+      "wrap": true,
+      "logics": [
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "test_tabGrid1",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "group": "type",
+      "slotName": "tabPane",
+      "componentProps": {
+        "decimalDigit": null,
+        "range": [null, null],
+        "thousandthSign": false,
+        "negative": false,
+        "autoFocus": false,
+        "focusSelect": false,
+        "required": false,
+        "returnNull": false
+      }
+    },
+    {
+      "name": "卡片容器",
+      "component": "FormGroup",
+      "code": "kkkkrd105",
+      "colSpan": 12,
+      "index": 2,
+      "group": "type",
+      "componentProps": {
+        "type": "default",
+        "status": "normal",
+        "collapse": true,
+        "titleCard": false,
+        "code": "kkkkrd105",
+        "title": "卡片容器"
+      },
+      "type": "column",
+      "schemaType": "void"
+    },
+    {
+      "code": "tabsGro",
+      "name": "文本框",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": false,
+      "hidden": false,
+      "description": "",
+      "colSpan": 2,
+      "wrap": false,
+      "defaultValue": "",
+      "component": "cube-input",
+      "parentCode": "kkkkrd105",
+      "pageCode": "",
+      "logics": [
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "test_tabGroupGrid",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "validator": [],
+      "group": "type",
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": { "width": "100%" },
+        "clearable": true,
+        "prefixIcon": "",
+        "suffixIcon": "",
+        "showWordLimit": false,
+        "readonly": false,
+        "autofocus": false,
+        "showPassword": false,
+        "autoComplete": "off",
+        "autosize": { "minRows": 2, "maxRows": 4 },
+        "resize": "none",
+        "min": "",
+        "max": "",
+        "autocomplete": "off"
+      }
+    },
+    {
+      "code": "cardNumb",
+      "name": "数字输入框",
+      "component": "cube-input-number",
+      "colSpan": 2,
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "wrap": true,
+      "logics": [
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "test_tabGroupGrid1",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "group": "type",
+      "componentProps": {
+        "decimalDigit": null,
+        "range": [null, null],
+        "thousandthSign": false,
+        "negative": false,
+        "autoFocus": false,
+        "focusSelect": false,
+        "required": false,
+        "returnNull": false
+      },
+      "parentCode": "kkkkrd105"
+    },
+    {
+      "name": "卡片标签",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "cube-button",
+      "code": "button106",
+      "logics": [
+        {
+          "effectHook": "onClick",
+          "logicCode": "test_tabGroupClick",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "group": "type",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": ""
+      },
+      "parentCode": "kkkkrd105"
+    },
+    {
+      "name": "标题",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "cube-button",
+      "code": "button102",
+      "index": 0,
+      "logics": [
+        { "effectHook": "onClick", "logicCode": "test_tabClick", "hasChildren": "", "params": "" }
+      ],
+      "group": "type",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": ""
+      }
+    },
+    {
+      "name": "新增",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "ArrayBase.Addition",
+      "code": "button104",
+      "index": 1,
+      "group": "menu",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "componentType": "ArrayBase.Addition",
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetFiled": "aggrid101"
+      }
+    },
+    {
+      "name": "逻辑",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "cube-button",
+      "code": "utton102",
+      "index": 0,
+      "logics": [
+        { "effectHook": "onClick", "logicCode": "test_clickDemo", "hasChildren": "", "params": "" }
+      ],
+      "group": "menu",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetFiled": "aggrid101"
+      }
+    },
+    {
+      "component": "ArrayTable",
+      "name": "gridtable",
+      "colSpan": 12,
+      "componentProps": {
+        "apiConfig": { "method": "post", "url": "", "params": {}, "data": {} },
+        "remoteDataPath": "data.record",
+        "additionalOptions": {},
+        "detailOptions": {},
+        "childColumnDefs": [],
+        "rowData": [],
+        "hasPagination": true,
+        "hasSerialNo": true,
+        "hasRowSelection": true,
+        "scrollY": 500,
+        "tableSelection": "single",
+        "isSubtable": false,
+        "childrenListKey": "_details",
+        "childRowKey": "id",
+        "childAllSelect": false,
+        "defaultPage": 1,
+        "defaultPageSize": 30,
+        "autoLoadData": false,
+        "rowKey": "id",
+        "autoHeight": true,
+        "heightinif": ""
+      },
+      "type": "column",
+      "code": "aggrid101",
+      "tabs": "menu",
+      "index": 0,
+      "schemaType": "array",
+      "defaultValue": [
+        {
+          "id": 909012
+        }
+      ],
+      "itemMetaSchema": {
+        "data": [
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "id",
+            "name": "Id",
+            "colSpan": 12,
+            "componentProps": { "minWidth": 40 },
+            "component": "cube-input"
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "name",
+            "name": "名称",
+            "colSpan": 12,
+            "componentProps": { "headerClass": "ag-header-red", "minWidth": 150 },
+            "component": "cube-input",
+            "logics": [
+              {
+                "effectHook": "onFieldInputValueChange",
+                "logicCode": "test_array1212weweInput",
+                "hasChildren": "",
+                "params": ""
+              }
+            ]
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "operation",
+            "name": "编辑操作",
+            "colSpan": 12,
+            "componentProps": { "editable": true, "headerClass": "ag-header-blue", "width": 150 },
+            "component": "cube-input"
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "count",
+            "name": "排序",
+            "colSpan": 12,
+            "componentProps": {
+              "sortable": true,
+              "sort": "desc",
+              "cellClass": "ag-cell-orange",
+              "minWidth": 150
+            },
+            "component": "cube-input"
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "content",
+            "name": "内容",
+            "colSpan": 12,
+            "componentProps": { "minWidth": 300 },
+            "component": "cube-input"
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "buttonedt",
+            "name": "编辑",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_demo123",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "add",
+            "name": "add",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_clickAdd",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "del",
+            "name": "del",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_clickDel",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "copy",
+            "name": "copy",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_copydel",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "demo",
+            "name": "demo",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_declick",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          }
+        ]
+      },
+      "agDetailMetaSchema": { "data": [] },
+      "group": "menu",
+      "hiddenName": true
+    },
+    {
+      "name": "新增",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "ArrayBase.Addition",
+      "code": "button104",
+      "group": "card101",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "componentType": "ArrayBase.Addition",
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetFiled": "aggrid1102"
+      }
+    },
+    {
+      "name": "逻辑",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "cube-button",
+      "code": "button10323",
+      "logics": [
+        { "effectHook": "onClick", "logicCode": "test_demoCLick", "hasChildren": "", "params": "" }
+      ],
+      "group": "card101",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": "",
+        "targetFiled": "aggrid1102"
+      }
+    },
+    {
+      "component": "ArrayTable",
+      "name": "gridtable",
+      "colSpan": 12,
+      "componentProps": {
+        "apiConfig": { "method": "post", "url": "", "params": {}, "data": {} },
+        "remoteDataPath": "data.record",
+        "additionalOptions": {},
+        "detailOptions": {},
+        "childColumnDefs": [],
+        "rowData": [],
+        "hasPagination": true,
+        "hasSerialNo": true,
+        "hasRowSelection": true,
+        "scrollY": 500,
+        "tableSelection": "single",
+        "isSubtable": false,
+        "childrenListKey": "_details",
+        "childRowKey": "id",
+        "childAllSelect": false,
+        "defaultPage": 1,
+        "defaultPageSize": 30,
+        "autoLoadData": false,
+        "rowKey": "id",
+        "autoHeight": true,
+        "heightinif": ""
+      },
+      "type": "column",
+      "code": "aggrid1102",
+      "schemaType": "array",
+      "itemMetaSchema": {
+        "data": [
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "id",
+            "name": "Id",
+            "colSpan": 12,
+            "componentProps": { "minWidth": 40 },
+            "component": "cube-input"
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "name",
+            "name": "名称",
+            "colSpan": 12,
+            "componentProps": { "headerClass": "ag-header-red", "minWidth": 150 },
+            "component": "cube-input"
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "operation",
+            "name": "编辑操作",
+            "colSpan": 12,
+            "componentProps": { "editable": true, "headerClass": "ag-header-blue", "width": 150 },
+            "component": "cube-input"
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "count",
+            "name": "排序",
+            "colSpan": 12,
+            "componentProps": {
+              "sortable": true,
+              "sort": "desc",
+              "cellClass": "ag-cell-orange",
+              "minWidth": 150
+            }
+          },
+          {
+            "type": "table_column",
+            "schemaType": "string",
+            "code": "content",
+            "name": "内容",
+            "colSpan": 12,
+            "componentProps": { "minWidth": 300 },
+            "component": "cube-input"
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "del1",
+            "name": "de1l",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_demoC1212Lick",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "add1",
+            "name": "add1",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_demoCdqqLick",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "edit1",
+            "name": "edit1",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_demoCL0987ick",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          },
+          {
+            "type": "table_button",
+            "schemaType": "void",
+            "code": "copy1",
+            "name": "copy1",
+            "validator": [],
+            "logics": [
+              {
+                "effectHook": "onClick",
+                "logicCode": "test_123demoCLick",
+                "hasChildren": "",
+                "params": ""
+              }
+            ],
+            "component": "",
+            "componentProps": {
+              "type": "primary",
+              "plain": false,
+              "autofocus": false,
+              "dialogType": "",
+              "dialogPageCode": "",
+              "dialogTitle": "",
+              "drawerPageCode": "",
+              "drawerTitle": "",
+              "mode": "",
+              "title": "",
+              "loading": false,
+              "hasTooltip": false,
+              "hasPopConfirm": false,
+              "icon": ""
+            }
+          }
+        ]
+      },
+      "agDetailMetaSchema": { "data": [] },
+      "group": "card101",
+      "hiddenName": true
+    },
+    {
+      "code": "grdoup",
+      "name": "文本框",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": false,
+      "disabled": false,
+      "required": false,
+      "hidden": false,
+      "description": "",
+      "colSpan": 2,
+      "wrap": false,
+      "defaultValue": "",
+      "component": "cube-input",
+      "parentCode": "",
+      "pageCode": "",
+      "logics": [
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "test_grouInput",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "validator": [],
+      "group": "card1096",
+      "componentProps": {
+        "type": "text",
+        "placeholder": "请输入",
+        "style": { "width": "100%" },
+        "clearable": true,
+        "prefixIcon": "",
+        "suffixIcon": "",
+        "showWordLimit": false,
+        "readonly": false,
+        "autofocus": false,
+        "showPassword": false,
+        "autoComplete": "off",
+        "autosize": { "minRows": 2, "maxRows": 4 },
+        "resize": "none",
+        "min": "",
+        "max": "",
+        "autocomplete": "off"
+      }
+    },
+    {
+      "code": "numb12",
+      "name": "数字输入框",
+      "component": "cube-input-number",
+      "colSpan": 2,
+      "type": "column",
+      "schemaType": "string",
+      "defaultValue": "",
+      "wrap": true,
+      "logics": [
+        {
+          "effectHook": "onFieldInputValueChange",
+          "logicCode": "test_groduGrid1",
+          "hasChildren": "",
+          "params": ""
+        }
+      ],
+      "group": "card1096",
+      "componentProps": {
+        "decimalDigit": null,
+        "range": [null, null],
+        "thousandthSign": false,
+        "negative": false,
+        "autoFocus": false,
+        "focusSelect": false,
+        "required": false,
+        "returnNull": false
+      }
+    },
+    {
+      "name": "分组",
+      "type": "button",
+      "schemaType": "void",
+      "colSpan": 2,
+      "eventCode": "",
+      "component": "cube-button",
+      "code": "button110",
+      "logics": [
+        { "effectHook": "onClick", "logicCode": "test_groupClick", "hasChildren": "", "params": "" }
+      ],
+      "group": "card1096",
+      "componentProps": {
+        "type": "primary",
+        "icon": "",
+        "round": false,
+        "size": "mini",
+        "plain": false,
+        "circle": false,
+        "autofocus": false,
+        "title": "",
+        "loading": false,
+        "hasTooltip": false,
+        "hasPopConfirm": false,
+        "dialogType": "",
+        "dialogPageCode": "",
+        "dialogTitle": "",
+        "drawerPageCode": "",
+        "drawerTitle": ""
+      }
+    }
+  ]
+}

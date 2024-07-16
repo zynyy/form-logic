@@ -1,0 +1,23 @@
+{
+  "code": "Model",
+  "name": "模型编码",
+  "metas": [
+    {
+      "code": "code",
+      "name": "编码",
+      "defaultValue": "",
+      "schemaType": "string",
+      "description": "",
+      "component": "Input",
+      "componentProps": {}
+    },
+    {
+      "code": "name",
+      "name": "名称",
+      "defaultValue": "",
+      "schemaType": "string",
+      "component": "Input",
+      "componentProps": {}
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "code": "User_C",
+  "name": "用户新增配置",
+  "model": "User",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [
+    {
+      "code": "basicInfo",
+      "name": "基础信息"
+    },
+    {
+      "code": "tabsInfo",
+      "name": "标签信息",
+      "mode": "tabs",
+      "modeCodes": ["schoolInfo", "personalInfo"]
+    },
+    {
+      "code": "personalInfo",
+      "name": "个人信息",
+      "componentProps": {
+        "title": "个人"
+      }
+    },
+    {
+      "code": "schoolInfo",
+      "name": "学校信息",
+      "componentProps": {
+        "title": "学校"
+      }
+    }
+  ],
+  "data": [
+    {
+      "code": "delete",
+      "name": "删除",
+      "type": "button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "component": "Button"
+    },
+    {
+      "code": "test0",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "12"
+    },
+    {
+      "code": "code",
+      "name": "用户编码",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "disabled": "1",
+      "colSpan": "6"
+    },
+    {
+      "code": "test1",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "6"
+    },
+    {
+      "code": "test2",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "4"
+    },
+    {
+      "code": "test3",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "4"
+    },
+    {
+      "code": "test4",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "4"
+    },
+    {
+      "code": "test5",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "3"
+    },
+    {
+      "code": "test6",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "3"
+    },
+    {
+      "code": "test7",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "3"
+    },
+    {
+      "code": "test8",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo",
+      "colSpan": "3"
+    },
+    {
+      "code": "test9",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo"
+    },
+    {
+      "code": "test10",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo"
+    },
+    {
+      "code": "test11",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo"
+    },
+    {
+      "code": "test12",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo"
+    },
+    {
+      "code": "test13",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo"
+    },
+    {
+      "code": "test14",
+      "name": "测试",
+      "type": "column",
+      "schemaType": "string",
+      "hiddenName": "0",
+      "group": "basicInfo"
+    },
+    {
+      "code": "name",
+      "name": "用户名称",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1"
+    },
+    {
+      "code": "sex",
+      "name": "性别",
+      "type": "column",
+      "schemaType": "string",
+      "group": "personalInfo",
+      "required": "1",
+      "component": "Select",
+      "componentProps": {},
+      "wrap": 1
+    },
+    {
+      "code": "add",
+      "name": "新增",
+      "type": "button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "group": "schoolInfo",
+      "component": "ArrayBase.Addition"
+    },
+    {
+      "code": "delete",
+      "name": "删除",
+      "type": "button",
+      "schemaType": "void",
+      "hiddenName": "0",
+      "group": "schoolInfo",
+      "component": "ArrayBase.Remove"
+    },
+    {
+      "code": "school",
+      "name": "学校信息",
+      "type": "column",
+      "schemaType": "array",
+      "group": "schoolInfo",
+      "required": "1",
+      "hasSerialNo": "1",
+      "hasSort": "0",
+      "colSpan": 6,
+      "labelCol": 0,
+      "wrapperCol": 24,
+      "component": "ArrayTable",
+      "componentProps": {},
+      "defaultValue": [],
+      "hiddenName": "1",
+      "itemMetaSchema": {
+        "code": "User_L",
+        "name": "用户新增配置",
+        "model": "User",
+        "data": [
+          {
+            "code": "code",
+            "name": "学校编码",
+            "type": "table_column",
+            "schemaType": "string",
+            "hiddenName": "0",
+            "group": "basicInfo",
+            "disabled": "1"
+          },
+          {
+            "code": "name",
+            "name": "学校名称",
+            "type": "table_column",
+            "schemaType": "string",
+            "group": "personalInfo",
+            "required": "1",
+            "component": "Input"
+          }
+        ]
+      }
+    }
+  ]
+}

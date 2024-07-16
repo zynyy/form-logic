@@ -1,0 +1,109 @@
+{
+  "code": "Test_Dropdown_C",
+  "labelCol": "6",
+  "wrapperCol": "18",
+  "defaultSearchColumn": "6",
+  "group": [],
+  "data": [
+    {
+      "type": "button",
+      "schemaType": "void",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "1",
+      "wrap": "0",
+      "logics": [
+        {
+          "logicCode": "com_testDropdown",
+          "effectHook": "onClick"
+        }
+      ],
+      "code": "code",
+      "name": "编码",
+      "component": "Dropdown"
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [
+        {
+          "logicCode": "com_dropdownItem",
+          "effectHook": "onClick"
+        }
+      ],
+      "code": "name",
+      "name": "名称",
+      "parentCode": "code",
+      "component": "Dropdown.Item",
+      "componentProps": {}
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [
+        {
+          "logicCode": "com_dropdownDivided",
+          "effectHook": "onClick"
+        }
+      ],
+      "code": "divided",
+      "name": "分割线",
+      "parentCode": "code",
+      "component": "Dropdown.Item",
+      "componentProps": {
+        "divided": true
+      }
+    },
+    {
+      "type": "column",
+      "schemaType": "void",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "0",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [
+        {
+          "logicCode": "com_dropdownIcon",
+          "effectHook": "onClick"
+        }
+      ],
+      "code": "icon",
+      "name": "图标",
+      "parentCode": "code",
+      "component": "Dropdown.Item",
+      "componentProps": {
+        "icon": "el-icon-user"
+      }
+    },
+    {
+      "type": "button",
+      "schemaType": "void",
+      "required": "0",
+      "hidden": "0",
+      "disabled": "1",
+      "hiddenName": "0",
+      "wrap": "0",
+      "logics": [],
+      "code": "disabled",
+      "name": "禁止",
+      "parentCode": "code",
+      "component": "Dropdown.Item",
+      "componentProps": {}
+    }
+  ],
+  "model": "Test",
+  "codeSuffix": "C",
+  "name": "测试"
+}

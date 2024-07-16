@@ -1,0 +1,90 @@
+{
+  "code": "ModelPage_Dot",
+  "codeSuffix": "C",
+  "name": "模型新增",
+  "model": "ModelPage",
+  "labelCol": 6,
+  "wrapperCol": 18,
+  "columnLayout": 3,
+  "group": [{ "code": "basicInfo.dot", "name": "基础信息" }],
+  "data": [
+    {
+      "code": "code.string",
+      "name": "编码",
+      "type": "column",
+      "required": "1",
+      "schemaType": "string",
+      "group": "basicInfo.dot",
+      "validator": [
+        {
+          "validatorRule": "whitespace",
+          "validatorRuleValue": true
+        }
+      ]
+    },
+    {
+      "code": "code.object",
+      "name": "编码object",
+      "type": "column",
+      "required": "1",
+      "schemaType": "object",
+      "group": "basicInfo.dot",
+      "itemMetaSchema": {
+        "data": [
+          {
+            "code": "code.string",
+            "name": "编码code",
+            "type": "column",
+            "required": "1",
+            "schemaType": "string"
+          }
+        ]
+      }
+    },
+    {
+      "code": "code.array",
+      "name": "编码array",
+      "type": "column",
+      "required": "1",
+      "schemaType": "array",
+      "group": "basicInfo.dot",
+      "colSpan": 12,
+      "hiddenName": true,
+      "defaultValue": [
+        {
+          "code.string": 222
+        }
+      ],
+      "itemMetaSchema": {
+        "data": [
+          {
+            "code": "code.string",
+            "name": "编码",
+            "type": "table_column",
+            "required": "1",
+            "schemaType": "string"
+          }
+        ]
+      }
+    },
+    {
+      "code": "save",
+      "name": "保存",
+      "type": "button",
+      "schemaType": "void",
+      "logics": [
+        {
+          "effectHook": "onClick",
+          "logicCode": "clickSave",
+          "params": {}
+        }
+      ]
+    }
+  ],
+  "defaultSearchColumn": "6",
+  "layoutComponent": "FormPageLayout",
+  "layoutComponentProps": {
+    "title": "模型页面新增",
+    "hasGroup": true
+  }
+}

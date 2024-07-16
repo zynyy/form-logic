@@ -1,0 +1,58 @@
+{
+  "code": "FieldMeta_metasDrawerExtraLogicParams",
+  "cells": [
+    {
+      "id": "edge-bk68mh5j",
+      "shape": "edge",
+      "target": {
+        "cell": "fn-q2d21bri",
+        "port": "42378cea-715c-49f5-8a21-806485db2781"
+      },
+      "source": {
+        "cell": "start-eq7noait",
+        "port": "3dba7b6d-2a57-4141-b953-f59442569592"
+      },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "edge-fez1hmoc",
+      "shape": "edge",
+      "target": {
+        "cell": "end-ge89psuw",
+        "port": "250135ed-cbdb-4b80-b410-ff0b0022773e"
+      },
+      "source": {
+        "cell": "fn-q2d21bri",
+        "port": "b731ba21-1cdb-4e02-86fc-d51ea6f2ed91"
+      },
+      "data": { "settingConfig": "edge-config", "configValues": {} }
+    },
+    {
+      "id": "start-eq7noait",
+      "shape": "custom-rect",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "startTemplateCode"
+      }
+    },
+    {
+      "id": "end-ge89psuw",
+      "shape": "custom-rect",
+      "data": {
+        "validateRules": { "inOut": true },
+        "templateCode": "endTemplateCode"
+      }
+    },
+    {
+      "id": "fn-q2d21bri",
+      "shape": "custom-rect",
+      "data": {
+        "settingConfig": "process-config",
+        "configValues": { "label": "函数" },
+        "codeEditor": true,
+        "validateRules": { "inOut": true },
+        "templateCode": "processTemplateCode"
+      }
+    }
+  ]
+}

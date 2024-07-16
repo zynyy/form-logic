@@ -1,7 +1,7 @@
 import { ResizeObserver } from '@juggle/resize-observer';
 
 import { ViewportResizeEvent } from '@/events/viewport';
-import { Engine } from '@/models';
+import { Engine } from '@/models/Engine';
 import { EventDriver, globalThisPolyfill } from '@/utils';
 
 export class ViewportResizeDriver extends EventDriver<Engine> {
