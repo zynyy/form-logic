@@ -54,11 +54,11 @@ module.exports = override(
       languages: ['javascript', 'json'],
     }),
   ),
-  addWebpackPlugin(
-    new CopyPlugin({
-      patterns: [{ from: path.resolve(__dirname, 'src/low-code-meta/model-page'), to: 'low-code-meta/model-page' }],
-    }),
-  ),
+  // addWebpackPlugin(
+    // new CopyPlugin({
+    //   patterns: [{ from: path.resolve(__dirname, 'src/low-code-meta/model-page'), to: 'low-code-meta/model-page' }],
+    // }),
+  // ),
   //  addBundleVisualizer(),
   addWebpackAlias({
     '@': path.resolve(__dirname, './src/'),

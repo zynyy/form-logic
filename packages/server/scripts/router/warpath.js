@@ -6,7 +6,7 @@ import axios from 'axios';
 export const warpathRouter = Router();
 
 const getGuildMember = async (gid, day) => {
-  const guildMemberUrl = 'https://jk.dmzgame.com/warpath/guild_member';
+  const guildMemberUrl = 'https://yx.dmzgame.com/warpath/guild_member';
   const res = await axios.get(guildMemberUrl, {
     params: {
       gid,
@@ -17,7 +17,7 @@ const getGuildMember = async (gid, day) => {
 };
 
 const getServerRank = async (extraParams) => {
-  const url = 'https://jk.dmzgame.com/warpath/rank_pid';
+  const url = 'https://yx.dmzgame.com/warpath/rank_pid';
 
   const params = {
     day: 20240108,
@@ -50,7 +50,7 @@ const getServerRank = async (extraParams) => {
 };
 
 const getPidDetail = async (pid, perPage) => {
-  const guildMemberUrl = 'https://jk.dmzgame.com/warpath/pid_detail';
+  const guildMemberUrl = 'https://yx.dmzgame.com/warpath/pid_detail';
 
   const res = await axios
     .get(guildMemberUrl, {
@@ -82,7 +82,7 @@ const guildMember = async (req, res) => {
 const pidDetail = async (req, res) => {
   const { pid, page, perPage } = req.query || {};
 
-  const guildMemberUrl = 'https://jk.dmzgame.com/warpath/pid_detail';
+  const guildMemberUrl = 'https://yx.dmzgame.com/warpath/pid_detail';
 
   const { Data } = await axios
     .get(guildMemberUrl, {

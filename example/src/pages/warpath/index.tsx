@@ -4,7 +4,7 @@ import { Button, DatePicker, Form, InputNumber, Select, Space, Table } from 'ant
 import * as XLSX from 'xlsx';
 import { requestPost } from '@/utils/request';
 
-const { RangePicker } = DatePicker;
+const RangePicker = DatePicker.RangePicker;
 
 const guild = {
   // 日期
@@ -215,15 +215,16 @@ const Warpath = () => {
   };
 
   const searchClick = () => {
-    form.validateFields(['gid', 'rangeDate']).then((values) => {
-      const { gid, rangeDate } = values;
+    form.validateFields(['gid']).then((values) => {
+      const { gid } = values;
 
-      const [startDate, endDate] = rangeDate || [];
+      const endDate = dayjs('2024-09-14')
+      const startDate = dayjs('2024-08-22')
 
       setInfo({
         gNick: options.find((cur) => cur.value === gid)?.label || '',
-        startDate: startDate.format('YYYYMMDD'),
-        endDate: endDate.format('YYYYMMDD'),
+        startDate: '20240822',
+        endDate: '20240914',
       });
 
       const diffDay = dayjs(endDate).diff(startDate, 'day');
@@ -498,13 +499,13 @@ const Warpath = () => {
             <Select options={options} style={{ width: 200 }} />
           </Form.Item>
 
-          <Form.Item
-            label="日期范围"
-            name="rangeDate"
-            rules={[{ required: true, message: '请选择日期范围' }]}
-          >
-            <RangePicker />
-          </Form.Item>
+          {/*<Form.Item*/}
+          {/*  label="日期范围"*/}
+          {/*  name="rangeDate"*/}
+          {/*  rules={[{ required: true, message: '请选择日期范围' }]}*/}
+          {/*>*/}
+          {/*  <RangePicker />*/}
+          {/*</Form.Item>*/}
 
           <Form.Item
             label="服务器"

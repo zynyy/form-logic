@@ -202,9 +202,9 @@ const LeftNavSider = () => {
           height: '100%',
         }}
       />
-      <Helmet>
+      {/*<Helmet>*/}
         <title>{title}</title>
-      </Helmet>
+      {/*</Helmet>*/}
     </Sider>
   );
 };
