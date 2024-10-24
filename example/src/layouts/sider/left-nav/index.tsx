@@ -21,7 +21,6 @@ const LeftNavSider = () => {
   const [rootSubmenuKeys, setRootSubmenuKeys] = useState([]);
   const { pathname } = useLocation();
 
-
   const [title, setTitle] = useState('菜单栏');
 
   const [selectedKeys, setSelectedKeys] = useState([]);
@@ -87,6 +86,12 @@ const LeftNavSider = () => {
           path: '/setting/link',
           pid: '1',
           id: '1-2',
+        },
+        {
+          name: '战火勋章',
+          path: '/warpath',
+          pid: '1',
+          id: '1-3',
         },
         {
           name: '数据管理',
@@ -184,7 +189,6 @@ const LeftNavSider = () => {
       setSelectedKeys(path ? [path] : []);
 
       setTitle(name);
-
     });
     return () => window.cancelAnimationFrame && window.cancelAnimationFrame(animationFrameId);
   }, [pathname, flatMenus]);
@@ -203,7 +207,7 @@ const LeftNavSider = () => {
         }}
       />
       {/*<Helmet>*/}
-        <title>{title}</title>
+      <title>{title}</title>
       {/*</Helmet>*/}
     </Sider>
   );

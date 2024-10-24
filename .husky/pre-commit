@@ -1,0 +1,17 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+git diff --cached --name-status | while read status file;do
+  if [ "$file" = ".husky/pre-commit" ] || [ "$status" = "D" ] || [[ "$file" == *.json ]];
+    then
+      echo "忽略 $file 文件检查"
+  elif cat $file | grep -E "debugger";
+    then
+      echo "$file 文件中含有debugger关键字请删除后在提交"
+      exit 1
+  fi
+done
+
+echo "开启代码进行格式化校验"
+
+npx --no-install lint-staged
