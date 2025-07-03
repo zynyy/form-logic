@@ -13,6 +13,18 @@ const getGuildMember = async (gid, day) => {
       day,
     },
   });
+  console.log(gid, day);
+  return res.data.Data;
+};
+
+const getGuildDetail = async (gid) => {
+  const guildMemberUrl = 'https://yx.dmzgame.com/warpath/guild_detail';
+  const res = await axios.get(guildMemberUrl, {
+    params: {
+      gid,
+      ccid: 0,
+    },
+  });
   return res.data.Data;
 };
 
@@ -52,7 +64,7 @@ const getServerRank = async (extraParams) => {
 const getPidDetail = async (pid, perPage) => {
   const guildMemberUrl = 'https://yx.dmzgame.com/warpath/pid_detail';
 
-  const res = await axios
+  return axios
     .get(guildMemberUrl, {
       params: {
         pid,
@@ -62,13 +74,12 @@ const getPidDetail = async (pid, perPage) => {
         perPage: perPage || 30,
       },
     })
-    .catch((err) => {
-      return err;
+    .then((res) => {
+      return {
+        pid,
+        data: res.data.Data,
+      };
     });
-  return {
-    pid,
-    data: res.data.Data,
-  };
 };
 
 const guildMember = async (req, res) => {
@@ -124,8 +135,16 @@ const guildMemberDetails = async (req, res) => {
     const perPage = days.length;
 
     return Promise.all(
-      guildMembers.map((pid) => {
-        return getPidDetail(pid, perPage);
+      guildMembers.map((pid, index) => {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            getPidDetail(pid, perPage)
+              .then(resolve)
+              .catch((data) => {
+                console.error(pid, data);
+              });
+          }, 16 + index);
+        });
       }),
     ).then((res) => {
       return res.reduce((acc, cur) => {
@@ -232,9 +251,26 @@ const serversRank = async (req, res) => {
   return sendJson(res, data);
 };
 
+const guildDetail = async (req, res) => {
+  const { guilds } = req.body || {};
+
+  const data = await Promise.all(
+    guilds.map((guild) => {
+      return getGuildDetail(guild);
+    }),
+  ).then((res) => {
+    return res.reduce((acc, data, currentIndex) => {
+      return acc.concat([data]);
+    }, []);
+  });
+
+  return sendJson(res, data);
+};
+
 warpathRouter.get('/local-api/warpath/guildMember', guildMember);
 warpathRouter.post('/local-api/warpath/guildMember', guildMembers);
 warpathRouter.post('/local-api/warpath/guildMemberDetails', guildMemberDetails);
 warpathRouter.post('/local-api/warpath/serverRank', serverRanks);
 warpathRouter.get('/local-api/warpath/pidDetail', pidDetail);
 warpathRouter.post('/local-api/warpath/serversRank', serversRank);
+warpathRouter.post('/local-api/warpath/guildDetail', guildDetail);

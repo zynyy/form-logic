@@ -31,407 +31,411 @@ const guild = {
   die: 520872,
 };
 
-const options =[
+const options = [
   {
-    "value": 20382,
-    "label": "7_313-无名"
+    value: 20382,
+    label: '7_313-无名',
   },
   {
-    "value": 191099,
-    "label": "23_YSZ-天枢"
+    value: 191099,
+    label: '23_YSZ-天枢',
   },
   {
-    "value": 236724,
-    "label": "25_MTR-墨天阁"
+    value: 236724,
+    label: '25_MTR-墨天阁',
   },
   {
-    "value": 119136,
-    "label": "17_MB-隔壁麻辣"
+    value: 119136,
+    label: '17_MB-隔壁麻辣',
   },
   {
-    "value": 19397,
-    "label": "6_STAR-璀璨星空"
+    value: 19397,
+    label: '6_STAR-璀璨星空',
   },
   {
-    "value": 34202,
-    "label": "9_FA.-情.谊"
+    value: 34202,
+    label: '9_FA.-情.谊',
   },
   {
-    "value": 134686,
-    "label": "18_Vega-北極星"
+    value: 134686,
+    label: '18_Vega-北極星',
   },
   {
-    "value": 66137,
-    "label": "12_Hi-你好"
+    value: 66137,
+    label: '12_Hi-你好',
   },
   {
-    "value": 152743,
-    "label": "20_HOME-龍城飛將"
+    value: 152743,
+    label: '20_HOME-龍城飛將',
   },
   {
-    "value": 245833,
-    "label": "26_XXVI-S议会"
+    value: 245833,
+    label: '26_XXVI-S议会',
   },
   {
-    "value": 70659,
-    "label": "12_Qs-白金瀚"
+    value: 70659,
+    label: '12_Qs-白金瀚',
   },
   {
-    "value": 147141,
-    "label": "19_7th-第七天堂"
+    value: 147141,
+    label: '19_7th-第七天堂',
   },
   {
-    "value": 174558,
-    "label": "22_AMD-铁血军团"
+    value: 174558,
+    label: '22_AMD-铁血军团',
   },
   {
-    "value": 30580,
-    "label": "8_8SH-四海"
+    value: 30580,
+    label: '8_8SH-四海',
   },
   {
-    "value": 216324,
-    "label": "24_XKX-侠客行"
+    value: 216324,
+    label: '24_XKX-侠客行',
   },
   {
-    "value": 44118,
-    "label": "10_QvQ-葫芦娃"
+    value: 44118,
+    label: '10_QvQ-葫芦娃',
   },
   {
-    "value": 279083,
-    "label": "28_TANG-天策"
+    value: 279083,
+    label: '28_TANG-天策',
   },
   {
-    "value": 114647,
-    "label": "16_MDCM-盛世"
+    value: 114647,
+    label: '16_MDCM-盛世',
   },
   {
-    "value": 321998,
-    "label": "32_MR.-山河"
+    value: 321998,
+    label: '32_MR.-山河',
   },
   {
-    "value": 130951,
-    "label": "18_Was-哇噻家族"
+    value: 130951,
+    label: '18_Was-哇噻家族',
   },
   {
-    "value": 164364,
-    "label": "21_Goda-Godaleague"
+    value: 164364,
+    label: '21_Goda-Godaleague',
   },
   {
-    "value": 165471,
-    "label": "21_Godk-止戈"
+    value: 165471,
+    label: '21_Godk-止戈',
   },
   {
-    "value": 7124,
-    "label": "4_JL.-蛟龙"
+    value: 7124,
+    label: '4_JL.-蛟龙',
   },
   {
-    "value": 6317,
-    "label": "3_ST00-七星聚天权"
+    value: 6317,
+    label: '3_ST00-七星聚天权',
   },
   {
-    "value": 53571,
-    "label": "11_FREE-破茧"
+    value: 53571,
+    label: '11_FREE-破茧',
   },
   {
-    "value": 141713,
-    "label": "19_HB-1-虎贲军"
+    value: 141713,
+    label: '19_HB-1-虎贲军',
   },
   {
-    "value": 101466,
-    "label": "16_nz1-ヾ南征北战"
+    value: 147518,
+    label: '19_Bro-叁體',
   },
   {
-    "value": 72609,
-    "label": "14_FASS-情谊九霄"
+    value: 101466,
+    label: '16_nz1-ヾ南征北战',
   },
   {
-    "value": 155583,
-    "label": "20_CH.B-北晋"
+    value: 72609,
+    label: '14_FASS-情谊九霄',
   },
   {
-    "value": 1016,
-    "label": "1_XH-星火"
+    value: 155583,
+    label: '20_CH.B-北晋',
   },
   {
-    "value": 153991,
-    "label": "20_ZAFT-七星阁"
+    value: 1016,
+    label: '1_XH-星火',
   },
   {
-    "value": 258796,
-    "label": "27_YING-龍影"
+    value: 153991,
+    label: '20_ZAFT-七星阁',
   },
   {
-    "value": 43389,
-    "label": "10_QFG-清风阁"
+    value: 258796,
+    label: '27_YING-龍影',
   },
   {
-    "value": 68378,
-    "label": "13_XIII-唐门"
+    value: 43389,
+    label: '10_QFG-清风阁',
   },
   {
-    "value": 13880,
-    "label": "5_LYJ-狼烟军团"
+    value: 68378,
+    label: '13_XIII-唐门',
   },
   {
-    "value": 13653,
-    "label": "5_YH-炎黄"
+    value: 13880,
+    label: '5_LYJ-狼烟军团',
   },
   {
-    "value": 2648,
-    "label": "1_FY-扶摇"
+    value: 13653,
+    label: '5_YH-炎黄',
   },
   {
-    "value": 82118,
-    "label": "15_TIME-时光"
+    value: 2648,
+    label: '1_FY-扶摇',
   },
   {
-    "value": 229687,
-    "label": "24_GAG-夜总会"
+    value: 82118,
+    label: '15_TIME-时光',
   },
   {
-    "value": 9445,
-    "label": "4_1335-故里有长安"
+    value: 229687,
+    label: '24_GAG-夜总会',
   },
   {
-    "value": 70196,
-    "label": "13_Run-纵马关山踏江河"
+    value: 9445,
+    label: '4_1335-故里有长安',
   },
   {
-    "value": 1830,
-    "label": "1_JDL-天丨衍"
+    value: 70196,
+    label: '13_Run-纵马关山踏江河',
   },
   {
-    "value": 164011,
-    "label": "21_Sun-华夏"
+    value: 1830,
+    label: '1_JDL-天丨衍',
   },
   {
-    "value": 141687,
-    "label": "19_JW-九州丶新大陆"
+    value: 164011,
+    label: '21_Sun-华夏',
   },
   {
-    "value": 1953,
-    "label": "2_SLU-戮杀"
+    value: 141687,
+    label: '19_JW-九州丶新大陆',
   },
   {
-    "value": 36374,
-    "label": "8_AL-安东洛夫"
+    value: 1953,
+    label: '2_SLU-戮杀',
   },
   {
-    "value": 160073,
-    "label": "21_CIS-长生"
+    value: 36374,
+    label: '8_AL-安东洛夫',
   },
   {
-    "value": 300463,
-    "label": "31_YC-青青草原"
+    value: 160073,
+    label: '21_CIS-长生',
   },
   {
-    "value": 321141,
-    "label": "31_YTG-云天阁B"
+    value: 300463,
+    label: '31_YC-青青草原',
   },
   {
-    "value": 9014,
-    "label": "4_Bro-善战"
+    value: 321141,
+    label: '31_YTG-云天阁B',
   },
   {
-    "value": 57693,
-    "label": "12_PMC-暗影裁决"
+    value: 9014,
+    label: '4_Bro-善战',
   },
   {
-    "value": 4152,
-    "label": "1_ARMY-红盟"
+    value: 57693,
+    label: '12_PMC-暗影裁决',
   },
   {
-    "value": 287947,
-    "label": "29_BBC-北城"
+    value: 4152,
+    label: '1_ARMY-红盟',
   },
   {
-    "value": 300333,
-    "label": "30_ZTJ-遮天剑"
+    value: 287947,
+    label: '29_BBC-北城',
   },
   {
-    "value": 34246,
-    "label": "9_ig2-IG浮生未歇"
+    value: 300333,
+    label: '30_ZTJ-遮天剑',
   },
   {
-    "value": 1474,
-    "label": "2_CANT-七星聚开阳"
+    value: 34246,
+    label: '9_ig2-IG浮生未歇',
   },
   {
-    "value": 90677,
-    "label": "15_blue-葬爱丶蓝色帝国"
+    value: 1474,
+    label: '2_CANT-七星聚开阳',
   },
   {
-    "value": 7123,
-    "label": "4_SAF-烟与花"
+    value: 90677,
+    label: '15_blue-葬爱丶蓝色帝国',
   },
   {
-    "value": 206692,
-    "label": "24_ATG-迪迦军团"
+    value: 7123,
+    label: '4_SAF-烟与花',
   },
   {
-    "value": 2115,
-    "label": "2_SZ-沈阳军区"
+    value: 206692,
+    label: '24_ATG-迪迦军团',
   },
   {
-    "value": 217928,
-    "label": "24_WN-A-青云"
+    value: 2115,
+    label: '2_SZ-沈阳军区',
   },
   {
-    "value": 9297,
-    "label": "4_dove-黑色公约"
+    value: 217928,
+    label: '24_WN-A-青云',
   },
   {
-    "value": 1175,
-    "label": "3_FSRM-浮生若梦"
+    value: 9297,
+    label: '4_dove-黑色公约',
   },
   {
-    "value": 414125,
-    "label": "37_KLA-柯里昂"
+    value: 1175,
+    label: '3_FSRM-浮生若梦',
   },
   {
-    "value": 1021,
-    "label": "1_DAWN-黎明"
+    value: 414125,
+    label: '37_KLA-柯里昂',
   },
   {
-    "value": 206243,
-    "label": "15_X-W-玄武"
+    value: 1021,
+    label: '1_DAWN-黎明',
   },
   {
-    "value": 223869,
-    "label": "25_DAWN-破晓"
+    value: 206243,
+    label: '15_X-W-玄武',
   },
   {
-    "value": 84179,
-    "label": "15_SHE.-过往传说"
+    value: 223869,
+    label: '25_DAWN-破晓',
   },
   {
-    "value": 1616,
-    "label": "2_S-九溪烟雨"
+    value: 84179,
+    label: '15_SHE.-过往传说',
   },
   {
-    "value": 268049,
-    "label": "27_N.Y-南域"
+    value: 1616,
+    label: '2_S-九溪烟雨',
   },
   {
-    "value": 76177,
-    "label": "14_FAa-情谊道门"
+    value: 268049,
+    label: '27_N.Y-南域',
   },
   {
-    "value": 331070,
-    "label": "31_ZJ-A-仗剑倚青天つ"
+    value: 76177,
+    label: '14_FAa-情谊道门',
   },
   {
-    "value": 321997,
-    "label": "32_SKY-西凉军团"
+    value: 331070,
+    label: '31_ZJ-A-仗剑倚青天つ',
   },
   {
-    "value": 173008,
-    "label": "22_L-Y-揽月"
+    value: 321997,
+    label: '32_SKY-西凉军团',
   },
   {
-    "value": 197184,
-    "label": "23_J.L-君临天下"
+    value: 173008,
+    label: '22_L-Y-揽月',
   },
   {
-    "value": 37438,
-    "label": "9_J8NK-种花家"
+    value: 197184,
+    label: '23_J.L-君临天下',
   },
   {
-    "value": 119490,
-    "label": "18_DSH-定山海"
+    value: 37438,
+    label: '9_J8NK-种花家',
   },
   {
-    "value": 227932,
-    "label": "25_BFA-北府"
+    value: 119490,
+    label: '18_DSH-定山海',
   },
   {
-    "value": 88290,
-    "label": "11_X-J-仙界"
+    value: 227932,
+    label: '25_BFA-北府',
   },
   {
-    "value": 63185,
-    "label": "11_Top-新篇章"
+    value: 88290,
+    label: '11_X-J-仙界',
   },
   {
-    "value": 324588,
-    "label": "31_-Gc--菰城"
+    value: 63185,
+    label: '11_Top-新篇章',
   },
   {
-    "value": 360647,
-    "label": "34_AII-天枢"
+    value: 324588,
+    label: '31_-Gc--菰城',
   },
   {
-    "value": 77678,
-    "label": "14_FAc-情谊丨帝国"
+    value: 360647,
+    label: '34_AII-天枢',
   },
   {
-    "value": 102772,
-    "label": "16_nz2-南征北战2"
+    value: 77678,
+    label: '14_FAc-情谊丨帝国',
   },
   {
-    "value": 16977,
-    "label": "6_GOD-神地"
+    value: 102772,
+    label: '16_nz2-南征北战2',
   },
   {
-    "value": 13755,
-    "label": "5_That-五丈原"
+    value: 16977,
+    label: '6_GOD-神地',
   },
   {
-    "value": 274938,
-    "label": "28_TAME-唐盟"
+    value: 13755,
+    label: '5_That-五丈原',
   },
   {
-    "value": 15967,
-    "label": "6_BOOS-战狼军团"
+    value: 274938,
+    label: '28_TAME-唐盟',
   },
   {
-    "value": 12237,
-    "label": "5_CON-统一合作指挥部"
+    value: 15967,
+    label: '6_BOOS-战狼军团',
   },
   {
-    "value": 20623,
-    "label": "7_1949-東部战区"
+    value: 12237,
+    label: '5_CON-统一合作指挥部',
   },
   {
-    "value": 292631,
-    "label": "29_H.X-华夏"
+    value: 20623,
+    label: '7_1949-東部战区',
   },
   {
-    "value": 28691,
-    "label": "8_JSCP-聚义基金会"
+    value: 292631,
+    label: '29_H.X-华夏',
   },
   {
-    "value": 268554,
-    "label": "27_MEN-墨门"
+    value: 28691,
+    label: '8_JSCP-聚义基金会',
   },
   {
-    "value": 20547,
-    "label": "4_MK-圣火喵喵教"
+    value: 268554,
+    label: '27_MEN-墨门',
   },
   {
-    "value": 328613,
-    "label": "31_Rush-繁花"
+    value: 20547,
+    label: '4_MK-圣火喵喵教',
   },
   {
-    "value": 12687,
-    "label": "5_SSa-平安借贷集团"
+    value: 328613,
+    label: '31_Rush-繁花',
   },
   {
-    "value": 344555,
-    "label": "33_TR-征途"
+    value: 12687,
+    label: '5_SSa-平安借贷集团',
   },
   {
-    "value": 36311,
-    "label": "8_LION-狮子"
+    value: 344555,
+    label: '33_TR-征途',
   },
   {
-    "value": 305845,
-    "label": "30_ZTT-遮天月"
+    value: 36311,
+    label: '8_LION-狮子',
   },
   {
-    "value": 1339,
-    "label": "3_LSJ-齿轮"
-  }
+    value: 305845,
+    label: '30_ZTT-遮天月',
+  },
+  {
+    value: 1339,
+    label: '3_LSJ-齿轮',
+  },
 ];
 const Warpath = () => {
   const [info, setInfo] = useState({
@@ -509,7 +513,7 @@ const Warpath = () => {
       dataIndex: 'nick',
     },
     {
-      title: '统计日期日期',
+      title: '统计日期',
       dataIndex: 'diffDate',
     },
     {
@@ -606,8 +610,8 @@ const Warpath = () => {
     form.validateFields(['gid']).then((values) => {
       const { gid } = values;
 
-      const startDate = dayjs('2024-10-03');
-      const endDate = dayjs('2024-10-14');
+      const startDate = dayjs('2025-3-17');
+      const endDate = dayjs('2025-3-17');
 
       setInfo({
         gNick: options.find((cur) => cur.value === gid)?.label || '',
@@ -734,7 +738,7 @@ const Warpath = () => {
             dataIndex: 'gnick',
           },
           {
-            title: '统计日期日期',
+            title: '统计日期',
             dataIndex: 'day',
           },
           {
@@ -874,6 +878,55 @@ const Warpath = () => {
     });
   };
 
+  const searchGuildKill = () => {
+    const workbook = XLSX.utils.book_new();
+
+    const headerColumn = {
+      sname: '联盟编码',
+      fname: '联盟名称',
+      day: '统计日期',
+      diffKil: '统计击杀',
+      startDate: '开始日期',
+      startKil: '开始击杀',
+      endDate: '结束日期',
+      endKil: '结束击杀',
+    };
+
+    const startDate = dayjs('2024-11-22').format('YYYYMMDD');
+    const endDate = dayjs('2024-11-24').format('YYYYMMDD');
+
+    requestPost('/local-api/warpath/guildDetail', {
+      guilds: form.getFieldValue('gids'),
+    }).then((res) => {
+      const { data } = res;
+
+      const newData = data.map((arr) => {
+        const startRecord = arr.find((cur) => cur.day === Number(startDate));
+        const endRecord = arr.find((cur) => cur.day === Number(endDate));
+
+        return {
+          sname: endRecord.sname,
+          fname: endRecord.fname,
+          day: `${startDate}~${endDate}`,
+          diffKil: endRecord.kil - startRecord.kil,
+          startDate,
+          startKil: startRecord.kil,
+          endDate,
+          endKil: endRecord.kil,
+        };
+      });
+
+      const sheet = XLSX.utils.json_to_sheet([headerColumn].concat(newData), {
+        header: ['sname', 'fname', 'day', 'diffKil', 'startDate', 'startKil', 'endDate', 'endKil'],
+        skipHeader: true,
+      });
+
+      XLSX.utils.book_append_sheet(workbook, sheet, `联盟数据`);
+
+      XLSX.writeFile(workbook, `统计联盟击杀数据.xlsx`);
+    });
+  };
+
   const renderTitle = () => {
     return (
       <>
@@ -886,6 +939,15 @@ const Warpath = () => {
         >
           <Form.Item label="联盟" name="gid" rules={[{ required: true, message: '请选择联盟' }]}>
             <Select optionFilterProp="label" showSearch options={options} style={{ width: 200 }} />
+          </Form.Item>
+          <Form.Item label="联盟" name="gids" rules={[{ required: true, message: '请选择联盟' }]}>
+            <Select
+              mode="multiple"
+              optionFilterProp="label"
+              showSearch
+              options={options}
+              style={{ width: 200 }}
+            />
           </Form.Item>
 
           {/*<Form.Item*/}
@@ -911,6 +973,7 @@ const Warpath = () => {
         <Space>
           <span>{maxPower}</span>
           <Button onClick={searchClick}>查询数据</Button>
+          <Button onClick={searchGuildKill}>查询联盟击杀</Button>
           <Button onClick={searchRankClick}>查询最高记录200强数据</Button>
           <Button onClick={searchRanksClick}>查询服务器集合最高记录200强数据</Button>
           <Button onClick={handleClick}>导出数据</Button>
