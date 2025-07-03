@@ -1,5 +1,5 @@
 // 函数节点
-import { fieldSetValue, LogicCtxArgs } from '@formlogic/render';
+import { fieldSetValue, LogicCtxArgs } from '@formlogic/render-react';
 
 export default async function (ctx: LogicCtxArgs) {
   const { payload } = ctx || {};

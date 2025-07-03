@@ -2,7 +2,7 @@ import { Button } from 'antd';
 import { SortAscendingOutlined } from '@ant-design/icons';
 
 import { sortBy } from 'lodash-es';
-import { getFormValues, toArray, useForm, isField } from '@formlogic/render';
+import { getFormValues, toArray, useForm, isField } from '@formlogic/render-react';
 import { FC } from 'react';
 
 export interface PageSortButtonProps {}

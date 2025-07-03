@@ -1,4 +1,4 @@
-import { FC, forwardRef, MouseEvent, RefAttributes, useState } from 'react';
+import React, { FC, forwardRef, MouseEvent, RefAttributes, useState } from 'react';
 import { Button, ButtonProps, Popconfirm, Tooltip } from 'antd';
 import { CustomButtonMode, CustomButtonModeType } from '@/interface';
 
@@ -6,15 +6,18 @@ export interface CustomButtonProps<Ref = HTMLElement> extends ButtonProps, RefAt
   hasTooltip?: boolean;
   hasPopConfirm?: boolean;
   mode?: CustomButtonModeType;
-  onClick?: (e: MouseEvent<HTMLElement>) => void;
+  onClick?: (e?: MouseEvent<HTMLElement>) => void;
 }
 
 const CustomButton: FC<CustomButtonProps> = forwardRef(
-  ({ title, hasTooltip, hasPopConfirm, onClick, mode, children, disabled, ...btnProps }, ref) => {
+  (
+    { title, hasTooltip, hasPopConfirm, onClick, mode, children, disabled, ...btnProps },
+    ref: React.LegacyRef<any>,
+  ) => {
     const [popConfirmOpen, setPopConfirmOpen] = useState(false);
     const [tooltipOpen, setToolTipOpen] = useState(false);
 
-    const handleConfirmOpenChange = (open) => {
+    const handleConfirmOpenChange = (open: boolean | ((prevState: boolean) => boolean)) => {
       setToolTipOpen(false);
 
       if (!disabled) {
@@ -24,7 +27,7 @@ const CustomButton: FC<CustomButtonProps> = forwardRef(
       }
     };
 
-    const handleTooltipOpenChange = (open) => {
+    const handleTooltipOpenChange = (open: boolean | ((prevState: boolean) => boolean)) => {
       if (popConfirmOpen) {
         return;
       }

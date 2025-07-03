@@ -1,5 +1,5 @@
 // 数据节点
-import { LogicCtxArgs } from '@formlogic/render';
+import { LogicCtxArgs } from '@formlogic/render-react';
 
 export default async function (ctx: LogicCtxArgs) {
   const { payload } = ctx || {};

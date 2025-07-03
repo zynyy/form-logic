@@ -1,5 +1,5 @@
 // 函数节点
-import { fieldVisible } from '@formlogic/render';
+import { fieldVisible } from '@formlogic/render-react';
 
 export default async function (ctx) {
   const { payload } = ctx || {};

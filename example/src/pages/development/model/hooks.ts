@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { modelDetail } from '@/pages/development/model/services';
 
-import { FormConfigProps } from '@formlogic/render';
+import { FormConfigProps } from '@formlogic/render-react';
 
 export const useModelDetail = (): [FormConfigProps, boolean] => {
   const [URLSearchParams] = useSearchParams();

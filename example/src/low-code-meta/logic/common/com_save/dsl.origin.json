@@ -291,7 +291,7 @@
         "codeEditor": true,
         "validateRules": { "inOut": true },
         "templateCode": "processTemplateCode",
-        "code": "// 函数节点\nimport { getSubmitFormValues } from '@formlogic/render';\n\nexport default async function (ctx) {\n  const { payload } = ctx || {};\n  const { form } = payload || {};\n\n  try {\n    const formValues = await getSubmitFormValues(form);\n\n    return {\n      success: true,\n      formValues\n    };\n  } catch (e) {\n    return {\n      success: false,\n    };\n  }\n}\n"
+        "code": "// 函数节点\nimport { getSubmitFormValues } from '@formlogic/render-react';\n\nexport default async function (ctx) {\n  const { payload } = ctx || {};\n  const { form } = payload || {};\n\n  try {\n    const formValues = await getSubmitFormValues(form);\n\n    return {\n      success: true,\n      formValues\n    };\n  } catch (e) {\n    return {\n      success: false,\n    };\n  }\n}\n"
       },
       "zIndex": 3,
       "ports": {

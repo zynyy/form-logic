@@ -1,8 +1,8 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement } from 'react';
 import { ComponentTokenMap, GlobalToken } from 'antd/es/theme/interface';
 import { CSSInterpolation } from '@ant-design/cssinjs';
 
-export type UseComponent = (node: ReactNode) => ReactElement;
+export type UseComponent = (node: ReactElement) => JSX.Element;
 
 export type UseComponentStyleResult = [UseComponent, string];
 
@@ -26,7 +26,7 @@ export type TokenWithCommonCls<T> = T & {
   iconCls: string;
   /** Wrap ant prefixCls class with `.` prefix */
   antCls: string;
-  formLogicCls: string
+  formLogicCls: string;
 };
 
 export type GenerateStyle<

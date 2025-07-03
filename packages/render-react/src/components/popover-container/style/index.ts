@@ -1,7 +1,7 @@
 import { genStyleHook } from '@formlogic/component';
 
 export default genStyleHook('popover-container', (token) => {
-  const { antCls, componentCls, fontSizeSM, colorPrimary } = token;
+  const {  componentCls } = token;
   return {
     [componentCls]: {
       ['&-edit-btn']: {

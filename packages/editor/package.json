@@ -12,7 +12,7 @@
   "scripts": {
     "rmBuildDir": "rimraf -rf lib esm dist ",
     "build:link": "pnpm run rmBuildDir && pnpm run create:style  && pnpm run build:esm && pnpm run build:style",
-    "build": "pnpm run rmBuildDir && pnpm run create:style && pnpm run build:cjs && pnpm run build:esm  && pnpm run build:umd && pnpm run build:style",
+    "build": "package-compiler build-react-ts",
     "create:style": "ts-node --project tsconfig.cjs.json ./create-style",
     "build:style": "ts-node  --project tsconfig.cjs.json ./build-style",
     "build:cjs": "tsc --project tsconfig.cjs.json && tsc-alias -p tsconfig.cjs.json",
@@ -22,7 +22,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.8.0",
+    "@ant-design/icons": "^6.0.0",
     "@antv/x6": "^2.1.2",
     "@antv/x6-common": "^2.0.3",
     "@antv/x6-plugin-dnd": "^2.0.3",
@@ -46,12 +46,14 @@
     "mustache": "^4.2.0",
     "qs": "^6.11.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "core-js": "^3.43.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "devDependencies": {
+    "@formlogic/package-compiler": "1.0.0",
     "@types/qs": "^6.9.7",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9"

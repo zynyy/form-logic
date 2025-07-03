@@ -4,7 +4,7 @@ import {
   useJsonMetaSchema,
 
   JsonPopover,
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 import { useNavigate } from 'react-router-dom';
 
 import { apiUrl, ComponentConfig } from './services';

@@ -1,4 +1,4 @@
-import { SchemeForm, getSubmitFormValues, useCreateForm } from '@formlogic/render';
+import { SchemeForm, getSubmitFormValues, useCreateForm } from '@formlogic/render-react';
 
 import { Alert, Button, Checkbox, Col, Row } from 'antd';
 

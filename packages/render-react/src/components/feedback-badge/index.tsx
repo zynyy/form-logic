@@ -1,6 +1,6 @@
 import { observer, useField,SchemaKey } from '@formily/react';
 import { Badge } from 'antd';
-import React, { FC, PropsWithChildren } from 'react';
+import  { FC, PropsWithChildren } from 'react';
 
 
 interface FeedbackBadgeProps extends PropsWithChildren {

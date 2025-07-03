@@ -1,5 +1,5 @@
 {
-  "name": "@formlogic/render",
+  "name": "@formlogic/render-react",
   "version": "1.0.0",
   "license": "MIT",
   "browser": "./esm/index.js",
@@ -15,7 +15,7 @@
     "run-server": "formlogic-server dev"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.8.0",
+    "@ant-design/icons": "^6.0.0",
     "@formily/core": "2.2.10",
     "@formily/grid": "2.2.10",
     "@formily/react": "2.2.10",

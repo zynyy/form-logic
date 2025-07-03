@@ -1,6 +1,6 @@
 // 数据节点
 import { requestGet } from '@/service';
-import { LogicCtxArgs } from '@formlogic/render';
+import { LogicCtxArgs } from '@formlogic/render-react';
 
 export default async function (ctx: LogicCtxArgs) {
   const { payload, execInfo } = ctx || {};

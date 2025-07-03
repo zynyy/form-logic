@@ -6,7 +6,7 @@
     "@ant-design/icons": "^4.8.0",
     "@formlogic/component": "1.0.0",
     "@formlogic/editor": "1.0.0",
-    "@formlogic/render": "1.0.0",
+    "@formlogic/render-react": "1.0.0",
     "@formlogic/server": "1.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

@@ -26,6 +26,7 @@
     "declarationDir": "./lib",
     "emitDeclarationOnly": true
   },
+  "types": ["vite/client"],
   "include": ["lib/**/*"],
   "exclude": [
     "node_modules",

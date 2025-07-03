@@ -1,5 +1,5 @@
 // 数据节点
-import { fieldResetValue, getPathValue, LogicCtxArgs, MetaDataTypeEnum } from '@formlogic/render';
+import { fieldResetValue, getPathValue, LogicCtxArgs, MetaDataTypeEnum } from '@formlogic/render-react';
 
 export default async function (ctx: LogicCtxArgs) {
   const { payload } = ctx || {};

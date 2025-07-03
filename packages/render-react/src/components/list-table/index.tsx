@@ -57,7 +57,7 @@ const ListTable: FC<ListTableProps> = observer(
     }, [scrollY]);
 
     return warpSSR(
-      <div className={cls(prefixCls, hashId)}>
+      <div className={cls(prefixCls, hashId)} ref={tableRef}>
         <ArrayBase
           onAdd={onAdd}
           onEdit={onEdit}
@@ -71,7 +71,6 @@ const ListTable: FC<ListTableProps> = observer(
         >
           <Table
             {...restProps}
-            ref={tableRef}
             size="small"
             onChange={onTableChange}
             rowKey={defaultRowKey}

@@ -1,4 +1,4 @@
-import { FormPageLayout } from '@formlogic/render';
+import { FormPageLayout } from '@formlogic/render-react';
 
 import getLogicConfig from '@/low-code-meta/logic';
 

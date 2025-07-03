@@ -24,6 +24,7 @@
     "emitDeclarationOnly": false,
     "baseUrl": "./",
     "jsx": "react-jsx",
+    "types": ["react", "react-dom"],
     "paths": {
       "@/*": ["./src/*"]
     }

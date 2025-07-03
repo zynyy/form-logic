@@ -1,4 +1,4 @@
-import { FormPageLayout, JsonPopover, RequestMethodSelect, useJsonMetaSchema } from '@formlogic/render';
+import { FormPageLayout, JsonPopover, RequestMethodSelect, useJsonMetaSchema } from '@formlogic/render-react';
 
 import { useNavigate } from 'react-router-dom';
 import { apiUrl, ComponentConfig } from '@/pages/development/component/services';

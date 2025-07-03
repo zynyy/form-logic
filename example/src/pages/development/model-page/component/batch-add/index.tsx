@@ -12,7 +12,7 @@ import {
   useForm,
   toArray,
   isArrayField,
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 import { FC, useState } from 'react';
 import { ModelPageConfig } from '@/pages/development/model-page/services';
 

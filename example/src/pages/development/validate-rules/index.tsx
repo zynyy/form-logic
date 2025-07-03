@@ -9,7 +9,7 @@ import {
   useReloadFlag,
   getJsonMetaSchema,
   SchemaPatternEnum,
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 
 import getLogicConfig from '@/low-code-meta/logic';
 

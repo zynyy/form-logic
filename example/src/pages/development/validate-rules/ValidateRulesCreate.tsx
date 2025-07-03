@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FormPageLayout, JsonPopover, RequestMethodSelect, useJsonMetaSchema } from '@formlogic/render';
+import { FormPageLayout, JsonPopover, RequestMethodSelect, useJsonMetaSchema } from '@formlogic/render-react';
 import getLogicConfig from '@/low-code-meta/logic';
 
 import { ValidateRulesConfig, apiUrl } from './service';

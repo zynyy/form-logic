@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { FormilyForm, FormConfigProps, Components,JsonPopover } from '@formlogic/render';
+import { FormilyForm, FormConfigProps, Components,JsonPopover } from '@formlogic/render-react';
 import { useSearchParams } from 'react-router-dom';
 
 import { validateRulesDetail } from './service';

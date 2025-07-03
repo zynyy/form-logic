@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { Input, InputProps } from 'antd';
 
 import { UserOutlined } from '@ant-design/icons';
 
 export const UserInput: FC<InputProps> = ({ readOnly, value, ...restProps }) => {
   return readOnly ? (
-    <span>{value}</span>
+    <span>{value as ReactNode}</span>
   ) : (
     <Input
       value={value}

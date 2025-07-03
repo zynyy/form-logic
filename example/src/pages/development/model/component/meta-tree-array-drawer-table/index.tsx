@@ -9,7 +9,7 @@ import {
   FormConfigProps,
   AnyObject,
   findMultiArray, DrawerPageForm, useSchemaComponentsContext, useJsonMetaSchema, useOpen,
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 import { FC, useState } from 'react';
 
 import getLogicConfig from '@/low-code-meta/logic';

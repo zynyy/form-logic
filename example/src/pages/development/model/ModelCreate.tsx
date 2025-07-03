@@ -4,7 +4,7 @@ import {
   RequestMethodSelect,
   SchemaTypeSelect,
   useJsonMetaSchema,
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 import {  useNavigate } from 'react-router-dom';
 
 import { apiUrl, ModelConfig } from './services';

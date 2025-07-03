@@ -1,5 +1,5 @@
 // 数据节点
-import { toArray } from '@formlogic/render';
+import { toArray } from '@formlogic/render-react';
 
 export default async function (ctx) {
   const { payload } = ctx || {};

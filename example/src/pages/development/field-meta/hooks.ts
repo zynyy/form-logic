@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fieldMetaTree, fieldMetaDetail } from './services';
-import { FormConfigProps } from '@formlogic/render';
+import { FormConfigProps } from '@formlogic/render-react';
 import { useSearchParams } from 'react-router-dom';
 
 export const useFieldMetaTree = () => {

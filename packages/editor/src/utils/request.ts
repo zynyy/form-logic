@@ -44,7 +44,7 @@ const serviceInstance = axios.create({
  * 请求拦截器
  */
 serviceInstance.interceptors.request.use(
-  (config: AxiosRequestConfig) => {
+  (config) => {
     // https://github.com/axios/axios#request-config
 
     if (config.baseURL === '/') {

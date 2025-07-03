@@ -301,7 +301,7 @@
         "codeEditor": true,
         "validateRules": { "inOut": true },
         "templateCode": "dataTemplateCode",
-        "code": "// 数据节点\nimport { requestGet } from '@/service';\nimport { LogicCtxArgs } from '@formlogic/render';\n\nexport default async function (ctx: LogicCtxArgs) {\n  const { payload, execInfo } = ctx || {};\n  const { form, field } = payload || {};\n\n  const { currentExecNum, execNumRef, execKey } = execInfo;\n\n  if (field.value) {\n    requestGet('/local-api/component/componentConfig').then((res) => {\n      if (currentExecNum === execNumRef.current[execKey]) {\n        debugger;\n      }\n    });\n  }\n\n  return {};\n}\n"
+        "code": "// 数据节点\nimport { requestGet } from '@/service';\nimport { LogicCtxArgs } from '@formlogic/render-react';\n\nexport default async function (ctx: LogicCtxArgs) {\n  const { payload, execInfo } = ctx || {};\n  const { form, field } = payload || {};\n\n  const { currentExecNum, execNumRef, execKey } = execInfo;\n\n  if (field.value) {\n    requestGet('/local-api/component/componentConfig').then((res) => {\n      if (currentExecNum === execNumRef.current[execKey]) {\n        debugger;\n      }\n    });\n  }\n\n  return {};\n}\n"
       },
       "zIndex": 3
     },

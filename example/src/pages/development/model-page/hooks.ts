@@ -9,7 +9,7 @@ import {
   RequestMethodSelect,
   SchemaTypeSelect,
   FormPageLayoutProps,
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 import { modelPageDetail } from './services';
 import PageCodeSelect from '@/components/page-code-select';
 import PagePreviewButton from '@/pages/development/model-page/component/page-preview-button';

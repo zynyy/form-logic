@@ -1,5 +1,5 @@
 // 函数节点
-import { LogicCtxArgs, toArray, MetaDataTypeEnum } from '@formlogic/render';
+import { LogicCtxArgs, toArray, MetaDataTypeEnum } from '@formlogic/render-react';
 
 export default async function (ctx: LogicCtxArgs) {
   const { payload } = ctx || {};

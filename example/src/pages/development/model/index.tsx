@@ -1,4 +1,4 @@
-import { ListLayout, useJsonMetaSchema, useReloadFlag } from '@formlogic/render';
+import { ListLayout, useJsonMetaSchema, useReloadFlag } from '@formlogic/render-react';
 
 import { apiUrl, ModelConfig, modelRemove } from './services';
 

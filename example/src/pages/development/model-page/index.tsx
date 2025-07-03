@@ -1,4 +1,4 @@
-import { ListLayout, useJsonMetaSchema, useOpen, useReloadFlag } from '@formlogic/render';
+import { ListLayout, useJsonMetaSchema, useOpen, useReloadFlag } from '@formlogic/render-react';
 import { useNavigate } from 'react-router-dom';
 
 import { apiUrl, ModelPageConfig, modelPageRemove } from './services';

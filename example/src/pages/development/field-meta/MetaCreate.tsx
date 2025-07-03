@@ -5,7 +5,7 @@ import {
   SchemaTypeSelect,
 
   useJsonMetaSchema
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 import { useNavigate } from 'react-router-dom';
 import { apiUrl, FieldMetaConfig } from './services';
 import getLogicConfig from '@/low-code-meta/logic';

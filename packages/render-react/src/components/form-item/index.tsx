@@ -26,7 +26,7 @@ import useOverflow from '@/components/form-item/hooks/useOverflow';
 import { FormLayoutValueContext } from '@/components/form-layout/hooks';
 
 import { useFormItemStyle } from '@/components/form-item/hooks';
-import { useDOMHover, useDOMFocus, useDOMResizeChange, useDOMRect } from '@formlogic/component';
+import { useDOMHover, useDOMFocus,  useDOMRect } from '@formlogic/component';
 import BigNumber from 'bignumber.js';
 import { replacePx } from '@/utils';
 

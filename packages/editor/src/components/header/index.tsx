@@ -21,7 +21,7 @@ const Header: FC<HeaderProps> = ({ code, form }) => {
   const typeVal = Form.useWatch('type', form);
   const belongVal = Form.useWatch('belong', form);
 
-  const { isDetail, isEditable } = useMode();
+  const { isDetail } = useMode();
 
   const getAddonBefore = (belong, typeValue) => {
     if (typeValue === 'com') {

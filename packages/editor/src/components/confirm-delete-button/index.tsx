@@ -7,7 +7,15 @@ export interface ConfirmDeleteButtonProps extends PopconfirmProps {}
 
 const ConfirmDeleteButton: FC<ConfirmDeleteButtonProps> = (props) => {
   return (
-    <Popconfirm {...props} icon={<QuestionCircleOutlined style={{ color: 'red' }} />}>
+    <Popconfirm
+      {...props}
+      icon={
+        <QuestionCircleOutlined
+          style={{ color: 'red' }}
+
+        />
+      }
+    >
       <RemoveButton danger />
     </Popconfirm>
   );

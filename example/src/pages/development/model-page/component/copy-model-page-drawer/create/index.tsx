@@ -106,7 +106,7 @@ const CreateCopyPageConfig: FC<CreateCopyPageConfigProps> = ({ pageCode, modelCo
               label="新增页面编码"
               name="codeSuffix"
               rules={[{ required: true, message: '新增页面编码 必须' }]}
-              shouldUpdate={(cur, prev) => cur.modelCode !== prev.modelCode}
+              shouldUpdate={(cur:any, prev:any) => cur.modelCode !== prev.modelCode}
             >
               <Input addonBefore={`${modelCode}_`} placeholder="请输入新增页面编码" />
             </Form.Item>

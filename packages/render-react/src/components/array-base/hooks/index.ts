@@ -5,7 +5,7 @@ import style from '../style';
 import { useComponentStyle } from '@formlogic/component';
 import { toJS } from '@formily/reactive';
 import { uid } from '@formily/shared';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export { useArrayContext } from './context';
 

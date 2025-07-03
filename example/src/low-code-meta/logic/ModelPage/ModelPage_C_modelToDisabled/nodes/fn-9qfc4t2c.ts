@@ -1,5 +1,5 @@
 // 函数节点
-import { fieldDisabled } from '@formlogic/render';
+import { fieldDisabled } from '@formlogic/render-react';
 
 export default async function (ctx) {
   const { payload } = ctx || {};

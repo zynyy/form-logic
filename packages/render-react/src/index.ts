@@ -58,10 +58,11 @@ export {
   useField,
   useFieldSchema,
   RecursionField,
-  ISchema,
   Schema,
   observer,
 } from '@formily/react';
+
+export type { ISchema } from '@formily/react';
 
 export {
   createEffectHook,

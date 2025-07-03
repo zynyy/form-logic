@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import type { FormilyForm, FormConfigProps, Components } from '@formlogic/render';
+import type { FormilyForm, FormConfigProps, Components } from '@formlogic/render-react';
 import { useSearchParams } from 'react-router-dom';
 
 import { drawerDetail } from './service';

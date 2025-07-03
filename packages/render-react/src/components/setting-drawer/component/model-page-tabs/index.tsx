@@ -79,7 +79,7 @@ const ModelPageTabs: FC<ModelPageTabsProps> = ({ options }) => {
   }, [options]);
 
   const items = modelPages.map((item) => {
-    const { logics, modelCode, pageCode, pageDataSource } = item || {};
+    const { pageCode } = item || {};
 
     return {
       label: pageCode,

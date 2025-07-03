@@ -1,4 +1,4 @@
-import { FormConfigProps } from '@formlogic/render';
+import { FormConfigProps } from '@formlogic/render-react';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { componentDetail } from './services';

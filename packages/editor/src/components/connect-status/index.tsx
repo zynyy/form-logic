@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useMemo, useState } from 'react';
+import  { FC, useEffect, useMemo, useState } from 'react';
 
 import { Tag, notification } from 'antd';
 import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
@@ -39,7 +39,19 @@ const ConnectStatus: FC<ConnectStatusProps> = () => {
 
   return (
     <div className="connect-status">
-      <Tag color={status} icon={isConnected ? <CloseCircleOutlined /> : <CheckCircleOutlined />}>
+      <Tag
+        color={status}
+        icon={
+          isConnected ? (
+            <CloseCircleOutlined
+            />
+          ) : (
+            <CheckCircleOutlined
+
+            />
+          )
+        }
+      >
         {tagText}
       </Tag>
     </div>

@@ -1,5 +1,5 @@
 // 函数节点
-import { LogicCtxArgs, isField } from '@formlogic/render';
+import { LogicCtxArgs, isField } from '@formlogic/render-react';
 import { requestGet } from '@/service';
 
 export default async function (ctx: LogicCtxArgs) {

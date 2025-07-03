@@ -48,7 +48,7 @@ export const compileReactScript = (filePath: string, format: Format): Promise<un
 
           const esbuildResult = await esbuild.transform(result.code, {
             loader: 'ts',
-            target: 'ne',
+            target: 'es2016',
             format,
           });
 

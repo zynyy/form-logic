@@ -1,5 +1,5 @@
 // 数据节点
-import { LogicCtxArgs, toArray } from '@formlogic/render';
+import { LogicCtxArgs, toArray } from '@formlogic/render-react';
 import { requestGet } from '@/service';
 
 export default async function (ctx: LogicCtxArgs) {

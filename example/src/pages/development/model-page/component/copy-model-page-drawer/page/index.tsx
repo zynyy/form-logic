@@ -131,7 +131,7 @@ const CopyPageConfig: FC<PageCopyPageConfigProps> = ({
               label="来源页面编码"
               name="copyPageCode"
               rules={[{ required: true, message: '复制页面编码 必须' }]}
-              shouldUpdate={(cur, prev) => cur.pageCode !== prev.pageCode}
+              shouldUpdate={(cur:any, prev:any) => cur.pageCode !== prev.pageCode}
             >
               <RemoteSelect
                 apiConfig={{

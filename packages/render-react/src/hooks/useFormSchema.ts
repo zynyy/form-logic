@@ -1,6 +1,6 @@
 import type { FormSchema, TransformsSchemaOptions } from '@/transforms';
 import { TransformsSchema } from '@/transforms';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { SchemaPatternEnum } from '@/interface';
 
 const initFormSchema = {

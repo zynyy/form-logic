@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {},
     "resolveJsonModule": true,
-    "lib": ["ESNext", "dom"]
+    "lib": ["ESNext", "dom"],
+    "jsx": "react"
   }
 }

@@ -1,5 +1,5 @@
 // 函数节点
-import { getSubmitFormValues } from '@formlogic/render';
+import { getSubmitFormValues } from '@formlogic/render-react';
 
 export default async function (ctx) {
   const { payload } = ctx || {};

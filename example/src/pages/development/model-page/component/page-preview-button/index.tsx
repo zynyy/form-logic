@@ -12,7 +12,7 @@ import {
   useSchemaComponentsContext,
   useSchemeFormContent,
   getItemJsonMetaSchema,
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 import { FC, useState } from 'react';
 
 interface PagePreviewButtonProps {}

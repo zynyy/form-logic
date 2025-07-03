@@ -1,4 +1,4 @@
-import { FormPageLayout, SchemaPatternEnum, useJsonMetaSchema } from '@formlogic/render';
+import { FormPageLayout, SchemaPatternEnum, useJsonMetaSchema } from '@formlogic/render-react';
 import getLogicConfig from '@/low-code-meta/logic';
 import { useNavigate } from 'react-router-dom';
 import { apiUrl, ModelPageConfig } from '@/pages/development/model-page/services';

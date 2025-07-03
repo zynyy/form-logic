@@ -5,7 +5,7 @@ import {
   SchemaPatternEnum,
   SchemaTypeSelect, useJsonMetaSchema,
 
-} from '@formlogic/render';
+} from '@formlogic/render-react';
 
 import getLogicConfig from '@/low-code-meta/logic';
 import { ModelConfig } from '@/pages/development/model/services';

@@ -1,4 +1,4 @@
-import type { CSSInterpolation, CSSObject } from '@ant-design/cssinjs';
+import { createTheme, CSSInterpolation, CSSObject } from '@ant-design/cssinjs';
 import { useStyleRegister } from '@ant-design/cssinjs';
 import merge from 'lodash.merge';
 
@@ -51,7 +51,9 @@ export const genStyleHook = <ComponentName extends OverrideComponent>(
     return [
       useStyleRegister(
         {
-          theme,
+          theme: createTheme(() => {
+            return theme;
+          }),
           token,
           hashId,
           path: [COMPONENT_PREFIX_CLS, component, prefixCls, iconPrefixCls],

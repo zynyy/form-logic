@@ -1,7 +1,8 @@
 import { ConfigProvider, theme } from 'antd';
 import { useContext } from 'react';
 
-const { useToken } = theme;
+export const useAntdThemeToken: typeof theme.useToken = theme.useToken;
+
 const { ConfigContext } = ConfigProvider;
 
 export const useAntdConfig = () => {
@@ -22,6 +23,3 @@ export const usePrefixCls = (
     return `${prefix}${tag ?? ''}`;
   }
 };
-
-// @ts-ignore
-export const useAntdThemeToken = useToken;

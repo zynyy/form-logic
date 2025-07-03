@@ -3,14 +3,14 @@
     "baseUrl": ".",
     "jsx": "preserve",
     "strict": true,
+    "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "node",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "dom"],
     "outDir": "./lib",
     "declaration": true,
-    "moduleResolution": "node",
-    "target": "ESNext",
     "allowJs": true,
     "noUnusedLocals": false,
     "preserveConstEnums": true,
@@ -20,9 +20,13 @@
     "downlevelIteration": true,
     "resolveJsonModule": true,
     "preserveSymlinks": true,
+
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "ts-node": {
+    "esm": true // 关键配置
+  }
 }

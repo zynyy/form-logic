@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SchemaPatternEnum, FormPageLayout, useJsonMetaSchema } from '@formlogic/render';
+import { SchemaPatternEnum, FormPageLayout, useJsonMetaSchema } from '@formlogic/render-react';
 import getLogicConfig from '@/low-code-meta/logic';
 
 import { useValidateRulesDetail } from './hooks';

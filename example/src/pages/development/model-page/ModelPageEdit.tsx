@@ -1,4 +1,4 @@
-import { FormPageLayout, useJsonMetaSchema } from '@formlogic/render';
+import { FormPageLayout, useJsonMetaSchema } from '@formlogic/render-react';
 import { useNavigate } from 'react-router-dom';
 
 import { apiUrl, ModelPageConfig } from './services';

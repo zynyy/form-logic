@@ -1,6 +1,6 @@
 // 函数节点
 import { requestGet } from '@/service';
-import { fieldSetValue } from '@formlogic/render';
+import { fieldSetValue } from '@formlogic/render-react';
 
 export default async function (ctx) {
   const { payload, execInfo } = ctx || {};
